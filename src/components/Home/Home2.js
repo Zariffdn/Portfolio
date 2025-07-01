@@ -56,7 +56,7 @@ function Home2() {
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a
-                  href="https://github.com/zazarip"
+                  href="https://github.com/Zariffdn"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -67,7 +67,7 @@ function Home2() {
  
               <li className="social-icons">
                 <a
-                  href="https://www.linkedin.com/in/zariff-danial-b452a9261/"
+                  href="https://www.linkedin.com/in/zariffdanial/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
