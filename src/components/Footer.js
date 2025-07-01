@@ -23,7 +23,7 @@ function Footer() {
           <ul className="footer-icons">
             <li className="social-icons">
               <a
-                href="https://github.com/zazarip"
+                href="https://github.com/Zariffdn"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -34,7 +34,7 @@ function Footer() {
  
             <li className="social-icons">
               <a
-                href="https://www.linkedin.com/in/zariff-danial-b452a9261/"
+                href="https://www.linkedin.com/in/zariffdanial/"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
