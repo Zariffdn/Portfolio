@@ -10,9 +10,9 @@ function AboutCard() {
           <p style={{ textAlign: "justify" }}>
             Hi Everyone, I am <span className="purple">Zariff Danial </span>
             from <span className="purple"> Selangor, Malaysia.</span>
-            <br /> I am a final year student in BACHELOR OF COMPUTER SCIENCE (HONS.) NETCENTRIC COMPUTING
+            <br /> I am a Graduate in BACHELOR OF COMPUTER SCIENCE (HONS.) NETCENTRIC COMPUTING
             <br />
-            Additionally, I am currently a student looking for an internship
+            Additionally, I am currently a Web Developer at Bestinet Sdn Bhd
             <br />
             <br />
             Apart from coding, some other activities that I love to do!
