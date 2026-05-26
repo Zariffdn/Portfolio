@@ -10,6 +10,7 @@ import Experience from "./Experience";
 import Education from "./Education";
 import Certifications from "./Certifications";
 import StatsCounter from "./StatsCounter";
+import FeaturedWork from "./FeaturedWork";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
 import FadeIn from "../FadeIn";
@@ -49,6 +50,8 @@ function About() {
             <img src={laptopImg} alt="about" className="img-fluid" />
           </Col>
         </Row>
+
+        <FeaturedWork />
 
         <FadeIn>
           <h1 className="project-heading">
