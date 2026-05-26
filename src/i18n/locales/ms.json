@@ -14,6 +14,10 @@
     "availableForHire": "Terbuka untuk peluang"
   },
   "backToTop": "Kembali ke atas",
+  "konami": {
+    "title": "Anda jumpa rahsia!",
+    "subtitle": "Terima kasih kerana meneroka. ↑↑↓↓←→←→ B A"
+  },
   "typewriter": {
     "mobile": "Pembangun Aplikasi Mudah Alih",
     "flutter": "Pembangun Flutter",
@@ -122,6 +126,10 @@
     "headingPre": "Kerja Terkini",
     "headingHighlight": "Saya",
     "intro": "Berikut adalah beberapa projek yang saya kerjakan baru-baru ini.",
+    "filterAll": "Semua",
+    "filterWeb": "Web",
+    "filterMobile": "Mudah Alih",
+    "filterEmbedded": "Terbenam",
     "github": "GitHub",
     "demo": "Demo",
     "blog": "Blog",

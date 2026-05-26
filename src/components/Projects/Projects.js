@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
@@ -9,13 +9,43 @@ import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
 import FadeIn from "../FadeIn";
 
+const projects = [
+  {
+    id: "baglock",
+    category: "embedded",
+    img: bag,
+    tags: ["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"],
+    ghLink: "https://github.com/zazarip/Anti-theft-fingerprint-baglock",
+  },
+  {
+    id: "movie",
+    category: "web",
+    img: movie,
+    tags: ["JavaScript", "PHP", "CSS", "MySQL"],
+    ghLink: "https://github.com/zazarip/movie-ticket",
+  },
+  {
+    id: "bookstore",
+    category: "web",
+    img: bookstore,
+    tags: ["PHP", "HTML", "MySQL"],
+    ghLink: "https://github.com/zazarip/Bookstore",
+  },
+];
+
+const filters = ["all", "web", "mobile", "embedded"];
+
 function Projects() {
   const { t } = useTranslation();
+  const [active, setActive] = useState("all");
   usePageMeta({
     title: "Projects — Zariff Danial",
     description:
       "A selection of projects by Zariff Danial — embedded systems, web applications, and mobile work.",
   });
+
+  const filtered =
+    active === "all" ? projects : projects.filter((p) => p.category === active);
 
   return (
     <Container fluid className="project-section">
@@ -26,49 +56,37 @@ function Projects() {
           <strong className="purple">{t("projects.headingHighlight")} </strong>
         </h1>
         <p style={{ color: "var(--text-primary)" }}>{t("projects.intro")}</p>
+
+        <div className="project-filters" role="tablist">
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              role="tab"
+              aria-selected={active === f}
+              onClick={() => setActive(f)}
+              className={`project-filter-btn ${active === f ? "is-active" : ""}`}
+            >
+              {t(`projects.filter${f.charAt(0).toUpperCase() + f.slice(1)}`)}
+            </button>
+          ))}
+        </div>
+
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          <Col md={4} className="project-card">
-            <FadeIn>
-              <ProjectCard
-                imgPath={bag}
-                isBlog={false}
-                title={t("projects.baglock_title")}
-                description={t("projects.baglock_desc")}
-                ghLink="https://github.com/zazarip/Anti-theft-fingerprint-baglock"
-                tags={["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"]}
-              />
-            </FadeIn>
-          </Col>
-
-          <Col md={4} className="project-card">
-            <FadeIn delay={0.1}>
-              <ProjectCard
-                imgPath={movie}
-                isBlog={false}
-                title={t("projects.movie_title")}
-                description={t("projects.movie_desc")}
-                ghLink="https://github.com/zazarip/movie-ticket"
-                tags={["JavaScript", "PHP", "CSS", "MySQL"]}
-              />
-            </FadeIn>
-          </Col>
-          <Col md={4} className="project-card">
-            <FadeIn delay={0.2}>
-              <ProjectCard
-                imgPath={bookstore}
-                isBlog={false}
-                title={t("projects.bookstore_title")}
-                description={t("projects.bookstore_desc")}
-                ghLink="https://github.com/zazarip/Bookstore"
-                tags={["PHP", "HTML", "MySQL"]}
-              />
-            </FadeIn>
-          </Col>
-
-
-
-
-
+          {filtered.map((p, i) => (
+            <Col md={4} className="project-card" key={p.id}>
+              <FadeIn delay={i * 0.1}>
+                <ProjectCard
+                  imgPath={p.img}
+                  isBlog={false}
+                  title={t(`projects.${p.id}_title`)}
+                  description={t(`projects.${p.id}_desc`)}
+                  ghLink={p.ghLink}
+                  tags={p.tags}
+                />
+              </FadeIn>
+            </Col>
+          ))}
         </Row>
       </Container>
     </Container>
