@@ -24,8 +24,8 @@ function Home2() {
               <i>
                 <b className="purple"> Flutter and Dart </b>
               </i>
-              at Zen Computer System, where I debug and support our mobile
-              apps. From earlier projects I'm also comfortable with
+              at Zen Computer Systems, maintaining the MyTax mobile app under
+              LHDN. From earlier projects I'm also comfortable with
               <i>
                 <b className="purple"> C++, Python, JavaScript, and PHP. </b>
               </i>
