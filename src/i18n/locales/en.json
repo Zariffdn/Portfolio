@@ -130,6 +130,8 @@
     "filterWeb": "Web",
     "filterMobile": "Mobile",
     "filterEmbedded": "Embedded",
+    "emptyTitle": "Nothing here yet",
+    "emptyDesc": "No projects in this category yet. Stay tuned!",
     "github": "GitHub",
     "demo": "Demo",
     "blog": "Blog",
