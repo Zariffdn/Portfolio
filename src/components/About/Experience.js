@@ -1,18 +1,84 @@
 import React from "react";
 import { Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
 
 const keys = [
-  { key: "zen", bullets: ["b1", "b2", "b3", "b4"] },
-  { key: "bestinet", bullets: ["b1", "b2", "b3", "b4"] },
+  {
+    key: "zen",
+    bullets: ["b1", "b2", "b3", "b4"],
+    links: [
+      {
+        kind: "appstore",
+        url: "https://apps.apple.com/my/app/mytax/id1632195676",
+      },
+      {
+        kind: "playstore",
+        url: "https://play.google.com/store/apps/details?id=com.lhdn.mytax",
+      },
+    ],
+  },
+  { key: "bestinet", bullets: ["b1", "b2", "b3", "b4"], links: [] },
 ];
+
+function StoreLinks({ links }) {
+  const { t } = useTranslation();
+  if (!links || links.length === 0) return null;
+
+  return (
+    <div className="store-links">
+      <span className="store-links-label">{t("about.availableOn")}</span>
+      <div className="store-links-row">
+        {links.map((link) => {
+          if (link.kind === "appstore") {
+            return (
+              <a
+                key="appstore"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="store-link"
+                aria-label="Download on the App Store"
+              >
+                <FaApple aria-hidden="true" />
+                <span>
+                  <small>Download on the</small>
+                  <strong>App Store</strong>
+                </span>
+              </a>
+            );
+          }
+          if (link.kind === "playstore") {
+            return (
+              <a
+                key="playstore"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="store-link"
+                aria-label="Get it on Google Play"
+              >
+                <FaGooglePlay aria-hidden="true" />
+                <span>
+                  <small>Get it on</small>
+                  <strong>Google Play</strong>
+                </span>
+              </a>
+            );
+          }
+          return null;
+        })}
+      </div>
+    </div>
+  );
+}
 
 function Experience() {
   const { t } = useTranslation();
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
       <ul className="timeline-list">
-        {keys.map(({ key, bullets }) => (
+        {keys.map(({ key, bullets, links }) => (
           <li key={key} className="timeline-item">
             <div className="timeline-period">{t(`experience.${key}.period`)}</div>
             <div className="timeline-role">{t(`experience.${key}.role`)}</div>
@@ -23,6 +89,7 @@ function Experience() {
                 <li key={b}>{t(`experience.${key}.${b}`)}</li>
               ))}
             </ul>
+            <StoreLinks links={links} />
           </li>
         ))}
       </ul>
