@@ -1,25 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import Preloader from "../src/components/Pre";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
-import Resume from "./components/Resume/ResumeNew";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
   useLocation,
 } from "react-router-dom";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import ScrollToTop from "./components/ScrollToTop";
+import CustomCursor from "./components/CustomCursor";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+const Home = lazy(() => import("./components/Home/Home"));
+const About = lazy(() => import("./components/About/About"));
+const Projects = lazy(() => import("./components/Projects/Projects"));
+const Resume = lazy(() => import("./components/Resume/ResumeNew"));
+const NotFound = lazy(() => import("./components/NotFound"));
 
 const pageVariants = {
   initial: { opacity: 0, y: 12 },
@@ -43,17 +46,23 @@ function PageWrap({ children }) {
   );
 }
 
+function RouteFallback() {
+  return <div style={{ minHeight: "60vh" }} aria-hidden="true" />;
+}
+
 function AnimatedRoutes() {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageWrap><Home /></PageWrap>} />
-        <Route path="/project" element={<PageWrap><Projects /></PageWrap>} />
-        <Route path="/about" element={<PageWrap><About /></PageWrap>} />
-        <Route path="/resume" element={<PageWrap><Resume /></PageWrap>} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <Suspense fallback={<RouteFallback />}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageWrap><Home /></PageWrap>} />
+          <Route path="/project" element={<PageWrap><Projects /></PageWrap>} />
+          <Route path="/about" element={<PageWrap><About /></PageWrap>} />
+          <Route path="/resume" element={<PageWrap><Resume /></PageWrap>} />
+          <Route path="*" element={<PageWrap><NotFound /></PageWrap>} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 }
@@ -75,12 +84,14 @@ function App() {
         <Router>
           <Preloader load={load} />
           <div className="App" id={load ? "no-scroll" : "scroll"}>
+            <CustomCursor />
             <Navbar />
             <ScrollToTop />
             <AnimatedRoutes />
             <Footer />
           </div>
           <Analytics />
+          <SpeedInsights />
         </Router>
       </MotionConfig>
     </ThemeProvider>

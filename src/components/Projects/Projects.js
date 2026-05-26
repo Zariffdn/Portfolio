@@ -5,8 +5,15 @@ import Particle from "../Particle";
 import bag from "../../Assets/Projects/bag.png";
 import movie from "../../Assets/Projects/movie.png";
 import bookstore from "../../Assets/Projects/bookstore.png";
+import usePageMeta from "../../hooks/usePageMeta";
 
 function Projects() {
+  usePageMeta({
+    title: "Projects — Zariff Danial",
+    description:
+      "A selection of projects by Zariff Danial — embedded systems, web applications, and mobile work.",
+  });
+
   return (
     <Container fluid className="project-section">
       <Particle />

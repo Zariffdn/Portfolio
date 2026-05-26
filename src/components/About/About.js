@@ -8,8 +8,15 @@ import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 import Experience from "./Experience";
 import Education from "./Education";
+import usePageMeta from "../../hooks/usePageMeta";
 
 function About() {
+  usePageMeta({
+    title: "About — Zariff Danial",
+    description:
+      "Mobile Developer at Zen Computer Systems. Flutter and Dart, currently working on MyTax mobile app under LHDN.",
+  });
+
   return (
     <Container fluid className="about-section">
       <Particle />
