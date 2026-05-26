@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -15,8 +15,9 @@ const WAKATIME_USERNAME = "Zariffdn";
 function WakatimeStats() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const [hasError, setHasError] = useState(false);
 
-  if (!WAKATIME_USERNAME) return null;
+  if (!WAKATIME_USERNAME || hasError) return null;
 
   const params = new URLSearchParams({
     username: WAKATIME_USERNAME,
@@ -43,6 +44,7 @@ function WakatimeStats() {
           alt={t("wakatime.alt")}
           style={{ maxWidth: "500px", width: "100%", height: "auto" }}
           loading="lazy"
+          onError={() => setHasError(true)}
         />
       </Row>
     </FadeIn>
