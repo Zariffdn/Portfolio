@@ -51,6 +51,12 @@
     "connectHighlight": "berhubung",
     "connectPost": "dengan saya"
   },
+  "stats": {
+    "certifications": "Sijil",
+    "technologies": "Teknologi",
+    "appsShipped": "Aplikasi dilancarkan",
+    "yearsCoding": "Tahun mengekod"
+  },
   "wakatime": {
     "headingPre": "Aktiviti",
     "headingHighlight": "Mengekod",
@@ -68,6 +74,8 @@
     "myCertsHighlight": "Saya",
     "viewCredential": "Lihat kelayakan",
     "credentialId": "ID Sijil:",
+    "byTheNumbersPre": "Dalam",
+    "byTheNumbersHighlight": "Nombor",
     "skillsetPre": "Kemahiran",
     "skillsetHighlight": "Profesional",
     "toolsHighlight": "Alat",
