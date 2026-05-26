@@ -1,36 +1,19 @@
 import React, { useState } from "react";
 import { Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../../contexts/ThemeContext";
 import FadeIn from "../FadeIn";
 
-// To enable this widget:
-//   1. Sign up at https://wakatime.com (free)
-//   2. Install the Wakatime plugin in your editor (Android Studio, VS Code, etc.)
-//   3. Settings → Profile → make profile public
-//   4. Put your Wakatime username below
-//   5. Code for a few days so stats accumulate
-const WAKATIME_USERNAME = "Zariffdn";
+// Wakatime "Embeddable Charts" share URL. Generate one at:
+//   https://wakatime.com/share → Embeddable Charts → Add New
+// then paste the .svg URL below. Set to empty string to hide the widget.
+const WAKATIME_SHARE_URL =
+  "https://wakatime.com/share/@Zariffdn/fc72fa5a-228b-44b0-bd37-6370c72b9302.svg";
 
 function WakatimeStats() {
   const { t } = useTranslation();
-  const { theme } = useTheme();
   const [hasError, setHasError] = useState(false);
 
-  if (!WAKATIME_USERNAME || hasError) return null;
-
-  const params = new URLSearchParams({
-    username: WAKATIME_USERNAME,
-    layout: "compact",
-    hide_border: "true",
-    bg_color: "00000000",
-    title_color: "c770f0",
-    text_color: theme === "light" ? "1a1429" : "ffffff",
-    icon_color: "c770f0",
-    custom_title: t("wakatime.cardTitle"),
-  });
-
-  const cardUrl = `https://github-readme-stats.vercel.app/api/wakatime?${params.toString()}`;
+  if (!WAKATIME_SHARE_URL || hasError) return null;
 
   return (
     <FadeIn>
@@ -40,9 +23,9 @@ function WakatimeStats() {
       </h1>
       <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
         <img
-          src={cardUrl}
+          src={WAKATIME_SHARE_URL}
           alt={t("wakatime.alt")}
-          style={{ maxWidth: "500px", width: "100%", height: "auto" }}
+          className="wakatime-chart"
           loading="lazy"
           onError={() => setHasError(true)}
         />

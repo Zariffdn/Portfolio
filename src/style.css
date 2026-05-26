@@ -787,6 +787,21 @@ html[data-theme="light"] .available-badge:focus-visible {
   box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561) !important;
 }
 
+.wakatime-chart {
+  max-width: 640px;
+  width: 100%;
+  height: auto;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--tech-icon-border);
+  box-shadow: 0 8px 24px rgba(89, 4, 168, 0.18);
+}
+
+html[data-theme="light"] .wakatime-chart {
+  background: #ffffff;
+}
+
 .stats-row {
   max-width: 900px;
   margin: 0 auto !important;
