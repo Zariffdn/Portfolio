@@ -14,6 +14,12 @@
     "availableForHire": "Terbuka untuk peluang"
   },
   "backToTop": "Kembali ke atas",
+  "toast": {
+    "switchedToLight": "Ditukar ke mod cerah",
+    "switchedToDark": "Ditukar ke mod gelap",
+    "switchedToEnglish": "Language switched to English",
+    "switchedToMalay": "Bahasa ditukar kepada Bahasa Malaysia"
+  },
   "konami": {
     "title": "Anda jumpa rahsia!",
     "subtitle": "Terima kasih kerana meneroka. ↑↑↓↓←→←→ B A"
@@ -44,6 +50,12 @@
     "connectPre": "Jangan segan untuk",
     "connectHighlight": "berhubung",
     "connectPost": "dengan saya"
+  },
+  "wakatime": {
+    "headingPre": "Aktiviti",
+    "headingHighlight": "Mengekod",
+    "cardTitle": "Statistik mengekod saya (7 hari terkini)",
+    "alt": "Bahasa pengaturcaraan teratas dari Wakatime"
   },
   "about": {
     "knowMePre": "Kenali Siapa",

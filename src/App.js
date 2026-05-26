@@ -17,7 +17,9 @@ import ScrollProgress from "./components/ScrollProgress";
 import BackToTop from "./components/BackToTop";
 import SocialSidebar from "./components/SocialSidebar";
 import KonamiEgg from "./components/KonamiEgg";
+import ToastContainer from "./components/ToastContainer";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { ToastProvider } from "./contexts/ToastContext";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -84,24 +86,27 @@ function App() {
 
   return (
     <ThemeProvider>
-      <MotionConfig reducedMotion="user">
-        <Router>
-          <Preloader load={load} />
-          <div className="App" id={load ? "no-scroll" : "scroll"}>
-            <CustomCursor />
-            <ScrollProgress />
-            <Navbar />
-            <ScrollToTop />
-            <SocialSidebar />
-            <AnimatedRoutes />
-            <BackToTop />
-            <Footer />
-          </div>
-          <KonamiEgg />
-          <Analytics />
-          <SpeedInsights />
-        </Router>
-      </MotionConfig>
+      <ToastProvider>
+        <MotionConfig reducedMotion="user">
+          <Router>
+            <Preloader load={load} />
+            <div className="App" id={load ? "no-scroll" : "scroll"}>
+              <CustomCursor />
+              <ScrollProgress />
+              <Navbar />
+              <ScrollToTop />
+              <SocialSidebar />
+              <AnimatedRoutes />
+              <BackToTop />
+              <Footer />
+            </div>
+            <ToastContainer />
+            <KonamiEgg />
+            <Analytics />
+            <SpeedInsights />
+          </Router>
+        </MotionConfig>
+      </ToastProvider>
     </ThemeProvider>
   );
 }

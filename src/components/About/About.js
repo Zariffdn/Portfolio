@@ -8,6 +8,7 @@ import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 import Experience from "./Experience";
 import Education from "./Education";
+import WakatimeStats from "./WakatimeStats";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
 import FadeIn from "../FadeIn";
@@ -78,6 +79,8 @@ function About() {
           </h1>
           <Toolstack />
         </FadeIn>
+
+        <WakatimeStats />
 
         <FadeIn>
           <Github />
