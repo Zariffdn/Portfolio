@@ -9,15 +9,42 @@ import FadeIn from "../FadeIn";
 // credentialUrl + credentialId fields. Leave the array empty to hide the
 // entire section.
 const certifications = [
-  // Example shape — uncomment and edit when ready:
-  // {
-  //   id: "google-flutter",
-  //   title: "Flutter Development Professional",
-  //   issuer: "Google",
-  //   date: "March 2025",
-  //   credentialUrl: "https://www.credly.com/badges/...",
-  //   credentialId: "ABC123XYZ",
-  // },
+  {
+    id: "ibm-flutter-spec",
+    title: "Developing Mobile Apps with Flutter Specialization",
+    issuer: "IBM",
+    date: "July 2025",
+  },
+  {
+    id: "ibm-flutter-dart",
+    title: "Flutter and Dart: Developing iOS, Android, and Mobile Apps",
+    issuer: "IBM",
+    date: "July 2025",
+  },
+  {
+    id: "comptia-tech-plus",
+    title: "CompTIA Tech+ Certification",
+    issuer: "CompTIA",
+    date: "October 2025",
+  },
+  {
+    id: "meta-frontend-spec",
+    title: "Meta Front-End Developer Specialization",
+    issuer: "Meta",
+    date: "October 2025",
+  },
+  {
+    id: "meta-advanced-react",
+    title: "Advanced React",
+    issuer: "Meta",
+    date: "October 2025",
+  },
+  {
+    id: "meta-ux-ui",
+    title: "Principles of UX/UI Design",
+    issuer: "Meta",
+    date: "October 2025",
+  },
 ];
 
 function Certifications() {
