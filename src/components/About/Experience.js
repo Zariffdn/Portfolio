@@ -2,6 +2,7 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
+import { SiHuawei } from "react-icons/si";
 
 const keys = [
   {
@@ -15,6 +16,10 @@ const keys = [
       {
         kind: "playstore",
         url: "https://play.google.com/store/apps/details?id=com.lhdn.mytax",
+      },
+      {
+        kind: "appgallery",
+        url: "https://appgallery.cloud.huawei.com/ag/n/app/C106575285",
       },
     ],
   },
@@ -62,6 +67,24 @@ function StoreLinks({ links }) {
                 <span>
                   <small>Get it on</small>
                   <strong>Google Play</strong>
+                </span>
+              </a>
+            );
+          }
+          if (link.kind === "appgallery") {
+            return (
+              <a
+                key="appgallery"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="store-link"
+                aria-label="Explore it on AppGallery"
+              >
+                <SiHuawei aria-hidden="true" />
+                <span>
+                  <small>Explore it on</small>
+                  <strong>AppGallery</strong>
                 </span>
               </a>
             );
