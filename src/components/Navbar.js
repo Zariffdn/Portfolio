@@ -17,14 +17,37 @@ import { useTranslation } from "react-i18next";
 
 import { CgFileDocument } from "react-icons/cg";
 import { useTheme } from "../contexts/ThemeContext";
+import { useToast } from "../contexts/ToastContext";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { t, i18n } = useTranslation();
+  const { showToast } = useToast();
   const currentLang = i18n.resolvedLanguage || i18n.language || "en";
-  const toggleLanguage = () => i18n.changeLanguage(currentLang === "ms" ? "en" : "ms");
+
+  const handleThemeToggle = () => {
+    toggleTheme();
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    showToast(
+      nextTheme === "light"
+        ? t("toast.switchedToLight")
+        : t("toast.switchedToDark"),
+      { icon: nextTheme === "light" ? "☀️" : "🌙" }
+    );
+  };
+
+  const handleLanguageToggle = () => {
+    const nextLang = currentLang === "ms" ? "en" : "ms";
+    i18n.changeLanguage(nextLang);
+    showToast(
+      nextLang === "en"
+        ? t("toast.switchedToEnglish", { lng: "en" })
+        : t("toast.switchedToMalay", { lng: "ms" }),
+      { icon: "🌐" }
+    );
+  };
 
   useEffect(() => {
     function scrollHandler() {
@@ -99,7 +122,7 @@ function NavBar() {
 
             <Nav.Item className="theme-toggle-item">
               <Button
-                onClick={toggleTheme}
+                onClick={handleThemeToggle}
                 aria-label={
                   theme === "dark"
                     ? t("navbar.toggleLightAria")
@@ -113,7 +136,7 @@ function NavBar() {
 
             <Nav.Item className="theme-toggle-item">
               <Button
-                onClick={toggleLanguage}
+                onClick={handleLanguageToggle}
                 aria-label={t("navbar.toggleLanguageAria")}
                 className="lang-toggle-btn"
               >

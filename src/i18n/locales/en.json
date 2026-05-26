@@ -14,6 +14,12 @@
     "availableForHire": "Available for hire"
   },
   "backToTop": "Back to top",
+  "toast": {
+    "switchedToLight": "Switched to light mode",
+    "switchedToDark": "Switched to dark mode",
+    "switchedToEnglish": "Language switched to English",
+    "switchedToMalay": "Bahasa ditukar kepada Bahasa Malaysia"
+  },
   "konami": {
     "title": "You found the easter egg!",
     "subtitle": "Thanks for poking around. ↑↑↓↓←→←→ B A"
@@ -44,6 +50,12 @@
     "connectPre": "Feel free to",
     "connectHighlight": "connect",
     "connectPost": "with me"
+  },
+  "wakatime": {
+    "headingPre": "Coding",
+    "headingHighlight": "Activity",
+    "cardTitle": "My coding stats (last 7 days)",
+    "alt": "Top programming languages from Wakatime"
   },
   "about": {
     "knowMePre": "Know Who",
