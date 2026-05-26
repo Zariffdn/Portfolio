@@ -6,10 +6,16 @@ import pdf from "../../Assets/../Assets/ZARIFF DANIAL RESUME .pdf";
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import usePageMeta from "../../hooks/usePageMeta";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumeNew() {
   const [width, setWidth] = useState(1200);
+
+  usePageMeta({
+    title: "Resume — Zariff Danial",
+    description: "Download or view Zariff Danial's resume / CV.",
+  });
 
   useEffect(() => {
     setWidth(window.innerWidth);

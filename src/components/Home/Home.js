@@ -4,8 +4,15 @@ import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
+import usePageMeta from "../../hooks/usePageMeta";
 
 function Home() {
+  usePageMeta({
+    title: "Zariff Danial | Portfolio",
+    description:
+      "Zariff Danial — Mobile Developer based in Cyberjaya, Malaysia. Flutter and Dart. Explore my projects, experience, and resume.",
+  });
+
   return (
     <section>
       <Container fluid className="home-section" id="home">
