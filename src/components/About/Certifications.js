@@ -32,6 +32,8 @@ const certifications = [
     title: "CompTIA Tech+ Certification",
     issuer: "CompTIA",
     date: "October 2025",
+    credentialUrl:
+      "https://www.credly.com/badges/63fedd61-90a9-4869-bb9d-a5725016c123",
   },
   {
     id: "meta-frontend-spec",
