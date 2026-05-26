@@ -72,22 +72,32 @@ function Projects() {
           ))}
         </div>
 
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {filtered.map((p, i) => (
-            <Col md={4} className="project-card" key={p.id}>
-              <FadeIn delay={i * 0.1}>
-                <ProjectCard
-                  imgPath={p.img}
-                  isBlog={false}
-                  title={t(`projects.${p.id}_title`)}
-                  description={t(`projects.${p.id}_desc`)}
-                  ghLink={p.ghLink}
-                  tags={p.tags}
-                />
-              </FadeIn>
-            </Col>
-          ))}
-        </Row>
+        {filtered.length === 0 ? (
+          <FadeIn>
+            <div className="projects-empty">
+              <span className="projects-empty-icon" aria-hidden="true">🛠️</span>
+              <h3>{t("projects.emptyTitle")}</h3>
+              <p>{t("projects.emptyDesc")}</p>
+            </div>
+          </FadeIn>
+        ) : (
+          <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+            {filtered.map((p, i) => (
+              <Col md={4} className="project-card" key={p.id}>
+                <FadeIn delay={i * 0.1}>
+                  <ProjectCard
+                    imgPath={p.img}
+                    isBlog={false}
+                    title={t(`projects.${p.id}_title`)}
+                    description={t(`projects.${p.id}_desc`)}
+                    ghLink={p.ghLink}
+                    tags={p.tags}
+                  />
+                </FadeIn>
+              </Col>
+            ))}
+          </Row>
+        )}
       </Container>
     </Container>
   );

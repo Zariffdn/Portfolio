@@ -130,6 +130,8 @@
     "filterWeb": "Web",
     "filterMobile": "Mudah Alih",
     "filterEmbedded": "Terbenam",
+    "emptyTitle": "Tiada apa-apa di sini",
+    "emptyDesc": "Tiada projek dalam kategori ini lagi. Nantikan!",
     "github": "GitHub",
     "demo": "Demo",
     "blog": "Blog",
