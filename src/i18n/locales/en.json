@@ -51,6 +51,12 @@
     "connectHighlight": "connect",
     "connectPost": "with me"
   },
+  "stats": {
+    "certifications": "Certifications",
+    "technologies": "Technologies",
+    "appsShipped": "Apps in production",
+    "yearsCoding": "Years coding"
+  },
   "wakatime": {
     "headingPre": "Coding",
     "headingHighlight": "Activity",
@@ -68,6 +74,8 @@
     "myCertsHighlight": "Certifications",
     "viewCredential": "View credential",
     "credentialId": "Credential ID:",
+    "byTheNumbersPre": "By The",
+    "byTheNumbersHighlight": "Numbers",
     "skillsetPre": "Professional",
     "skillsetHighlight": "Skillset",
     "toolsHighlight": "Tools",

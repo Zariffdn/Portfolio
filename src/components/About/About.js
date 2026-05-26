@@ -9,6 +9,7 @@ import Toolstack from "./Toolstack";
 import Experience from "./Experience";
 import Education from "./Education";
 import Certifications from "./Certifications";
+import StatsCounter from "./StatsCounter";
 import WakatimeStats from "./WakatimeStats";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
@@ -49,6 +50,15 @@ function About() {
             <img src={laptopImg} alt="about" className="img-fluid" />
           </Col>
         </Row>
+
+        <FadeIn>
+          <h1 className="project-heading">
+            {t("about.byTheNumbersPre")}{" "}
+            <strong className="purple">{t("about.byTheNumbersHighlight")}</strong>
+          </h1>
+        </FadeIn>
+        <StatsCounter />
+
         <FadeIn>
           <h1 className="project-heading">
             {t("about.myExperiencePre")}{" "}
