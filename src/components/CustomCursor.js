@@ -34,6 +34,10 @@ function CustomCursor() {
     let currentX = 0;
     let currentY = 0;
     let hasMoved = false;
+    let scale = 1;
+    let targetScale = 1;
+    const interactiveSelector =
+      'a, button, [role="button"], [tabindex]:not([tabindex="-1"]), .project-card-view, .tech-icons, .theme-toggle-btn, .lang-toggle-btn';
 
     const onMove = (e) => {
       targetX = e.clientX;
@@ -49,8 +53,19 @@ function CustomCursor() {
     const tick = () => {
       currentX += (targetX - currentX) * 0.18;
       currentY += (targetY - currentY) * 0.18;
-      node.style.transform = `translate3d(${currentX - 12}px, ${currentY - 12}px, 0)`;
+      scale += (targetScale - scale) * 0.22;
+      node.style.transform = `translate3d(${currentX - 12}px, ${currentY - 12}px, 0) scale(${scale})`;
       rafId = requestAnimationFrame(tick);
+    };
+
+    const onOver = (e) => {
+      if (e.target.closest && e.target.closest(interactiveSelector)) {
+        targetScale = 1.9;
+        node.classList.add("cursor-hover");
+      } else {
+        targetScale = 1;
+        node.classList.remove("cursor-hover");
+      }
     };
 
     const onLeave = () => {
@@ -61,12 +76,14 @@ function CustomCursor() {
     };
 
     window.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseover", onOver);
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
     rafId = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseover", onOver);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
       if (rafId) cancelAnimationFrame(rafId);

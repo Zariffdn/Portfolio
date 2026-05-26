@@ -10,8 +10,10 @@
   },
   "home": {
     "greeting": "Hai!",
-    "iam": "SAYA"
+    "iam": "SAYA",
+    "availableForHire": "Terbuka untuk peluang"
   },
+  "backToTop": "Kembali ke atas",
   "typewriter": {
     "mobile": "Pembangun Aplikasi Mudah Alih",
     "flutter": "Pembangun Flutter",

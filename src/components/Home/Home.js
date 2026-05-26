@@ -6,6 +6,7 @@ import Home2 from "./Home2";
 import Type from "./Type";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
+import AvailableForHire from "../AvailableForHire";
 
 function Home() {
   const { t } = useTranslation();
@@ -22,6 +23,7 @@ function Home() {
         <Container className="home-content">
           <Row>
             <Col md={7} className="home-header">
+              <AvailableForHire />
               <h1 style={{ paddingBottom: 15 }} className="heading">
                 {t("home.greeting")}{" "}
                 <span className="wave" role="img" aria-labelledby="wave">

@@ -13,6 +13,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ScrollToTop from "./components/ScrollToTop";
 import CustomCursor from "./components/CustomCursor";
+import ScrollProgress from "./components/ScrollProgress";
+import BackToTop from "./components/BackToTop";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./style.css";
 import "./App.css";
@@ -85,9 +87,11 @@ function App() {
           <Preloader load={load} />
           <div className="App" id={load ? "no-scroll" : "scroll"}>
             <CustomCursor />
+            <ScrollProgress />
             <Navbar />
             <ScrollToTop />
             <AnimatedRoutes />
+            <BackToTop />
             <Footer />
           </div>
           <Analytics />
