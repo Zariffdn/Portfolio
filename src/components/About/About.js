@@ -7,6 +7,7 @@ import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 import Experience from "./Experience";
+import Education from "./Education";
 
 function About() {
   return (
@@ -40,6 +41,12 @@ function About() {
         </h1>
 
         <Experience />
+
+        <h1 className="project-heading">
+          My <strong className="purple">Education</strong>
+        </h1>
+
+        <Education />
 
         <h1 className="project-heading">
           Professional <strong className="purple">Skillset </strong>

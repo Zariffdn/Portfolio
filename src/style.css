@@ -534,7 +534,7 @@ button:focus {
   box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561) !important;
 }
 
-.experience-timeline {
+.timeline-list {
   list-style: none;
   padding-left: 0;
   max-width: 760px;
@@ -542,7 +542,7 @@ button:focus {
   margin: 30px auto 0;
 }
 
-.experience-item {
+.timeline-item {
   position: relative;
   padding-left: 32px;
   padding-bottom: 32px;
@@ -550,11 +550,11 @@ button:focus {
   text-align: left;
 }
 
-.experience-item:last-child {
+.timeline-item:last-child {
   padding-bottom: 8px;
 }
 
-.experience-item::before {
+.timeline-item::before {
   content: "";
   position: absolute;
   left: -10px;
@@ -566,40 +566,40 @@ button:focus {
   border: 3px solid var(--body-bg);
 }
 
-.experience-period {
+.timeline-period {
   font-size: 0.9em;
   color: var(--imp-text-color);
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.experience-role {
+.timeline-role {
   font-size: 1.3em;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-.experience-company {
+.timeline-company {
   font-size: 1em;
   color: var(--text-primary);
   opacity: 0.85;
   margin-bottom: 2px;
 }
 
-.experience-meta {
+.timeline-meta {
   font-size: 0.85em;
   color: var(--text-primary);
   opacity: 0.6;
   margin-bottom: 10px;
 }
 
-.experience-bullets {
+.timeline-bullets {
   padding-left: 18px;
   margin-top: 8px;
   margin-bottom: 0;
 }
 
-.experience-bullets li {
+.timeline-bullets li {
   color: var(--text-primary);
   opacity: 0.9;
   padding-bottom: 6px;

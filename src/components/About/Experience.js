@@ -31,18 +31,20 @@ const experiences = [
 function Experience() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
-      <ul className="experience-timeline">
+      <ul className="timeline-list">
         {experiences.map((exp) => (
-          <li key={exp.company} className="experience-item">
-            <div className="experience-period">{exp.period}</div>
-            <div className="experience-role">{exp.role}</div>
-            <div className="experience-company">{exp.company}</div>
-            <div className="experience-meta">{exp.meta}</div>
-            <ul className="experience-bullets">
-              {exp.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
-              ))}
-            </ul>
+          <li key={exp.company} className="timeline-item">
+            <div className="timeline-period">{exp.period}</div>
+            <div className="timeline-role">{exp.role}</div>
+            <div className="timeline-company">{exp.company}</div>
+            <div className="timeline-meta">{exp.meta}</div>
+            {exp.bullets.length > 0 && (
+              <ul className="timeline-bullets">
+                {exp.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
