@@ -8,6 +8,7 @@ import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 import Experience from "./Experience";
 import Education from "./Education";
+import Certifications from "./Certifications";
 import WakatimeStats from "./WakatimeStats";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
@@ -63,6 +64,8 @@ function About() {
           </h1>
           <Education />
         </FadeIn>
+
+        <Certifications />
 
         <FadeIn>
           <h1 className="project-heading">
