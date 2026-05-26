@@ -1,43 +1,47 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { ImPointRight } from "react-icons/im";
+import { useTranslation } from "react-i18next";
 
 function AboutCard() {
+  const { t } = useTranslation();
   return (
     <Card className="quote-card-view">
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Zariff Danial </span>
-            from <span className="purple"> Selangor, Malaysia.</span>
-            <br /> I am a Graduate in BACHELOR OF COMPUTER SCIENCE (HONS.) NETCENTRIC COMPUTING
+            {t("aboutCard.intro_pre")}{" "}
+            <span className="purple">{t("aboutCard.intro_name")} </span>
+            {t("aboutCard.intro_from")}{" "}
+            <span className="purple"> {t("aboutCard.intro_location")}</span>
+            <br /> {t("aboutCard.degree")}
             <br />
             <br />
-            I'm currently a
-            <span className="purple"> Solutions Developer</span> at
-            <span className="purple"> Zen Computer Systems</span> (since
-            November 2025), maintaining the MyTax mobile app under LHDN.
-            Previously a Mobile Application Developer at
-            <span className="purple"> Bestinet Sdn Bhd</span> (July to
-            November 2025), where I built a mobile TOTP authenticator app.
+            {t("aboutCard.currentRole_pre")}
+            <span className="purple"> {t("aboutCard.currentRole_title")}</span>{" "}
+            {t("aboutCard.currentRole_at")}
+            <span className="purple"> {t("aboutCard.currentRole_company")}</span>{" "}
+            {t("aboutCard.currentRole_post")}
+            <span className="purple"> {t("aboutCard.currentRole_prevCompany")}</span>{" "}
+            {t("aboutCard.currentRole_end")}
             <br />
             <br />
-            Apart from coding, some other activities that I love to do!
+            {t("aboutCard.hobbies")}
           </p>
           <ul>
             <li className="about-activity">
-              <ImPointRight /> Playing Games
+              <ImPointRight /> {t("aboutCard.playingGames")}
             </li>
             <li className="about-activity">
-              <ImPointRight /> Working Out
+              <ImPointRight /> {t("aboutCard.workingOut")}
             </li>
             <li className="about-activity">
-              <ImPointRight /> Listening To Music
+              <ImPointRight /> {t("aboutCard.listeningMusic")}
             </li>
           </ul>
 
           <p style={{ color: "var(--quote-text)" }}>
-            "Turning ideas into executable magic!"{" "}
+            {t("aboutCard.quote")}{" "}
           </p>
           <footer className="blockquote-footer">Zariff</footer>
         </blockquote>

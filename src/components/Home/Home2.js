@@ -4,46 +4,48 @@ import myImg from "../../Assets/avatar.svg";
 import Tilt from "react-parallax-tilt";
 import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 function Home2() {
+  const { t } = useTranslation();
+
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
         <Row>
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="purple"> INTRODUCE </span> MYSELF
+              {t("home2.headingPre")}{" "}
+              <span className="purple"> {t("home2.headingHighlight")} </span>{" "}
+              {t("home2.headingPost")}
             </h1>
             <p className="home-about-body">
-              I'm a developer who loves turning ideas into apps people can
-              actually tap, swipe, and use. 📱 Still picking up new tricks
-              every day, and enjoying the ride.
+              {t("home2.bioP1")}
               <br />
               <br />
-              Day to day, I work with
+              {t("home2.bioP2_pre")}{" "}
               <i>
-                <b className="purple"> Flutter and Dart </b>
+                <b className="purple"> {t("home2.bioP2_flutterDart")} </b>
               </i>
-              at Zen Computer Systems, maintaining the MyTax mobile app under
-              LHDN. From earlier projects I'm also comfortable with
+              {" "}{t("home2.bioP2_mid")}{" "}
               <i>
-                <b className="purple"> C++, Python, JavaScript, and PHP. </b>
+                <b className="purple"> {t("home2.bioP2_langs")} </b>
               </i>
               <br />
               <br />
-              My focus is&nbsp;
+              {t("home2.bioP3_pre")}&nbsp;
               <i>
-                <b className="purple">Mobile Development</b>
+                <b className="purple">{t("home2.bioP3_mobileDev")}</b>
               </i>
-              : building clean UIs and smooth user experiences across&nbsp;
+              {t("home2.bioP3_mid")}&nbsp;
               <i>
-                <b className="purple">iOS and Android</b>
+                <b className="purple">{t("home2.bioP3_platforms")}</b>
               </i>
-              , with a side interest in&nbsp;
+              {t("home2.bioP3_mid2")}&nbsp;
               <i>
-                <b className="purple">Front-End</b>
+                <b className="purple">{t("home2.bioP3_frontend")}</b>
               </i>
-              &nbsp;web work.
+              &nbsp;{t("home2.bioP3_post")}
               <br />
               <br />
             </p>
@@ -56,9 +58,11 @@ function Home2() {
         </Row>
         <Row>
           <Col md={12} className="home-about-social">
-            <h1>FIND ME ON</h1>
+            <h1>{t("home2.findMeOn")}</h1>
             <p>
-              Feel free to <span className="purple">connect </span>with me
+              {t("home2.connectPre")}{" "}
+              <span className="purple">{t("home2.connectHighlight")} </span>
+              {t("home2.connectPost")}
             </p>
             <ul className="home-about-social-links">
               <li className="social-icons">

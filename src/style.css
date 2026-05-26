@@ -943,6 +943,33 @@ html[data-theme="light"] .custom-cursor {
   box-shadow: none !important;
 }
 
+.lang-toggle-btn {
+  background-color: transparent !important;
+  border: 1.5px solid var(--imp-text-color) !important;
+  color: var(--imp-text-color) !important;
+  padding: 0.25rem 0.6rem !important;
+  line-height: 1.2 !important;
+  border-radius: 18px !important;
+  min-width: 44px !important;
+  height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.9em !important;
+  font-weight: 600 !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+.lang-toggle-btn:hover,
+.lang-toggle-btn:focus,
+.lang-toggle-btn:active {
+  background-color: var(--imp-text-color) !important;
+  color: var(--text-primary) !important;
+  transform: translateY(-2px) !important;
+  border-color: var(--imp-text-color) !important;
+  box-shadow: none !important;
+}
+
 .fork-btn {
   font-size: 1.1em !important;
   padding-top: 10px !important;

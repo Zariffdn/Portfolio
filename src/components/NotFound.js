@@ -3,8 +3,10 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Particle from "./Particle";
 import usePageMeta from "../hooks/usePageMeta";
+import { useTranslation } from "react-i18next";
 
 function NotFound() {
+  const { t } = useTranslation();
   usePageMeta({
     title: "404 — Zariff Danial",
     description: "The page you're looking for doesn't exist.",
@@ -32,13 +34,12 @@ function NotFound() {
             >
               404
             </h1>
-            <h2 style={{ marginBottom: "1rem" }}>Page not found</h2>
+            <h2 style={{ marginBottom: "1rem" }}>{t("notFound.title")}</h2>
             <p style={{ opacity: 0.85, marginBottom: "1.5rem" }}>
-              Looks like this page took a wrong turn. The link might be broken
-              or the page may have moved.
+              {t("notFound.desc")}
             </p>
             <Button as={Link} to="/" variant="primary">
-              Take me home
+              {t("notFound.takeMeHome")}
             </Button>
           </Col>
         </Row>

@@ -9,8 +9,10 @@ import Toolstack from "./Toolstack";
 import Experience from "./Experience";
 import Education from "./Education";
 import usePageMeta from "../../hooks/usePageMeta";
+import { useTranslation } from "react-i18next";
 
 function About() {
+  const { t } = useTranslation();
   usePageMeta({
     title: "About — Zariff Danial",
     description:
@@ -31,7 +33,8 @@ function About() {
             }}
           >
             <h1 style={{ fontSize: "2.1em", paddingBottom: "20px" }}>
-              Know Who <strong className="purple">I'M</strong>
+              {t("about.knowMePre")}{" "}
+              <strong className="purple">{t("about.knowMeHighlight")}</strong>
             </h1>
             <Aboutcard />
           </Col>
@@ -44,25 +47,29 @@ function About() {
           </Col>
         </Row>
         <h1 className="project-heading">
-          My <strong className="purple">Experience</strong>
+          {t("about.myExperiencePre")}{" "}
+          <strong className="purple">{t("about.myExperienceHighlight")}</strong>
         </h1>
 
         <Experience />
 
         <h1 className="project-heading">
-          My <strong className="purple">Education</strong>
+          {t("about.myEducationPre")}{" "}
+          <strong className="purple">{t("about.myEducationHighlight")}</strong>
         </h1>
 
         <Education />
 
         <h1 className="project-heading">
-          Professional <strong className="purple">Skillset </strong>
+          {t("about.skillsetPre")}{" "}
+          <strong className="purple">{t("about.skillsetHighlight")} </strong>
         </h1>
 
         <Techstack />
 
         <h1 className="project-heading">
-          <strong className="purple">Tools</strong> I use
+          <strong className="purple">{t("about.toolsHighlight")}</strong>{" "}
+          {t("about.toolsPost")}
         </h1>
         <Toolstack />
 

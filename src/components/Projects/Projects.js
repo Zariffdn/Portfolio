@@ -6,8 +6,10 @@ import bag from "../../Assets/Projects/bag.png";
 import movie from "../../Assets/Projects/movie.png";
 import bookstore from "../../Assets/Projects/bookstore.png";
 import usePageMeta from "../../hooks/usePageMeta";
+import { useTranslation } from "react-i18next";
 
 function Projects() {
+  const { t } = useTranslation();
   usePageMeta({
     title: "Projects — Zariff Danial",
     description:
@@ -19,18 +21,17 @@ function Projects() {
       <Particle />
       <Container>
         <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
+          {t("projects.headingPre")}{" "}
+          <strong className="purple">{t("projects.headingHighlight")} </strong>
         </h1>
-        <p style={{ color: "var(--text-primary)" }}>
-          Here are a few projects I've worked on recently.
-        </p>
+        <p style={{ color: "var(--text-primary)" }}>{t("projects.intro")}</p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={bag}
               isBlog={false}
-              title="Anti-theft fingerprint baglock"
-              description="This project implements an anti-theft system using a fingerprint scanner, GPS module, and GSM module to protect a bag or backpack. The system allows authorized users to unlock the bag using their fingerprints while sending GPS coordinates to a predefined number in case of unauthorized access."
+              title={t("projects.baglock_title")}
+              description={t("projects.baglock_desc")}
               ghLink="https://github.com/zazarip/Anti-theft-fingerprint-baglock"
               tags={["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"]}
             />
@@ -40,8 +41,8 @@ function Projects() {
             <ProjectCard
               imgPath={movie}
               isBlog={false}
-              title="Movie ticket"
-              description="The Movie Ticket Booking System is a web-based application that facilitates easy and convenient booking, cancellation, and management of movie tickets. With separate user and admin interfaces, the system offers a streamlined experience for both users and administrators."
+              title={t("projects.movie_title")}
+              description={t("projects.movie_desc")}
               ghLink="https://github.com/zazarip/movie-ticket"
               tags={["JavaScript", "PHP", "CSS", "MySQL"]}
             />
@@ -50,8 +51,8 @@ function Projects() {
             <ProjectCard
               imgPath={bookstore}
               isBlog={false}
-              title="Bookstore"
-              description="This web application allows customers to explore a variety of books, create accounts, make purchases, and view their purchase history. Sellers have the ability to manage the book inventory and access pickup details for completed orders. The system provides a seamless way for customers to discover and acquire their favorite books, while empowering sellers with the tools to efficiently manage their book offerings."
+              title={t("projects.bookstore_title")}
+              description={t("projects.bookstore_desc")}
               ghLink="https://github.com/zazarip/Bookstore"
               tags={["PHP", "HTML", "MySQL"]}
             />

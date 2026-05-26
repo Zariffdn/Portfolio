@@ -1,0 +1,145 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "resume": "Resume",
+    "toggleLightAria": "Switch to light mode",
+    "toggleDarkAria": "Switch to dark mode",
+    "toggleLanguageAria": "Switch language"
+  },
+  "home": {
+    "greeting": "Hi There!",
+    "iam": "I'M"
+  },
+  "typewriter": {
+    "mobile": "Mobile App Developer",
+    "flutter": "Flutter Developer",
+    "web": "Web Developer",
+    "programmer": "Programmer"
+  },
+  "home2": {
+    "headingPre": "LET ME",
+    "headingHighlight": "INTRODUCE",
+    "headingPost": "MYSELF",
+    "bioP1": "I'm a developer who loves turning ideas into apps people can actually tap, swipe, and use. 📱 Still picking up new tricks every day, and enjoying the ride.",
+    "bioP2_pre": "Day to day, I work with",
+    "bioP2_flutterDart": "Flutter and Dart",
+    "bioP2_mid": "at Zen Computer Systems, maintaining the MyTax mobile app under LHDN. From earlier projects I'm also comfortable with",
+    "bioP2_langs": "C++, Python, JavaScript, and PHP.",
+    "bioP3_pre": "My focus is",
+    "bioP3_mobileDev": "Mobile Development",
+    "bioP3_mid": ": building clean UIs and smooth user experiences across",
+    "bioP3_platforms": "iOS and Android",
+    "bioP3_mid2": ", with a side interest in",
+    "bioP3_frontend": "Front-End",
+    "bioP3_post": "web work.",
+    "findMeOn": "FIND ME ON",
+    "connectPre": "Feel free to",
+    "connectHighlight": "connect",
+    "connectPost": "with me"
+  },
+  "about": {
+    "knowMePre": "Know Who",
+    "knowMeHighlight": "I'M",
+    "myExperiencePre": "My",
+    "myExperienceHighlight": "Experience",
+    "myEducationPre": "My",
+    "myEducationHighlight": "Education",
+    "skillsetPre": "Professional",
+    "skillsetHighlight": "Skillset",
+    "toolsHighlight": "Tools",
+    "toolsPost": "I use",
+    "daysICodePre": "Days I",
+    "daysICodeHighlight": "Code"
+  },
+  "aboutCard": {
+    "intro_pre": "Hi Everyone, I am",
+    "intro_name": "Zariff Danial",
+    "intro_from": "from",
+    "intro_location": "Cyberjaya, Selangor, Malaysia.",
+    "degree": "I am a Graduate in BACHELOR OF COMPUTER SCIENCE (HONS.) NETCENTRIC COMPUTING",
+    "currentRole_pre": "I'm currently a",
+    "currentRole_title": "Solutions Developer",
+    "currentRole_at": "at",
+    "currentRole_company": "Zen Computer Systems",
+    "currentRole_post": "(since November 2025), maintaining the MyTax mobile app under LHDN. Previously a Mobile Application Developer at",
+    "currentRole_prevCompany": "Bestinet Sdn Bhd",
+    "currentRole_end": "(July to November 2025), where I built a mobile TOTP authenticator app.",
+    "hobbies": "Apart from coding, some other activities that I love to do!",
+    "playingGames": "Playing Games",
+    "workingOut": "Working Out",
+    "listeningMusic": "Listening To Music",
+    "quote": "\"Turning ideas into executable magic!\""
+  },
+  "experience": {
+    "zen": {
+      "role": "Solutions Developer (Mobile App Developer)",
+      "company": "Zen Computer Systems",
+      "period": "November 2025 to Present",
+      "meta": "Cyberjaya, Selangor · On-site · Contract",
+      "b1": "Responsible for maintaining and supporting the MyTax mobile application under LHDN.",
+      "b2": "Troubleshoot, debug, and resolve technical issues to ensure smooth app performance.",
+      "b3": "Implement fixes, updates, and improvements independently from end to end.",
+      "b4": "Ensure app stability, reliability, and a seamless user experience."
+    },
+    "bestinet": {
+      "role": "Mobile Application Developer",
+      "company": "Bestinet Sdn Bhd",
+      "period": "July 2025 to November 2025",
+      "meta": "Cyberjaya, Selangor · Hybrid · Contract",
+      "b1": "Assigned to enhance login security by developing a mobile TOTP Authenticator app.",
+      "b2": "Built the front-end with Flutter and collaborated with the backend team for smooth API integration.",
+      "b3": "Optimized performance and resolved bugs to improve responsiveness.",
+      "b4": "Improved authentication speed by 40% and user satisfaction by 25%."
+    }
+  },
+  "education": {
+    "peoplelogy": {
+      "role": "Data Science Analyst Bootcamp Programme",
+      "company": "PEOPLElogy Group",
+      "period": "March 2024 to August 2024",
+      "meta": "Data Science",
+      "b1": "Capstone project: movie genre prediction from plot summaries.",
+      "b2": "Covered Python programming, data wrangling, exploratory data analysis, machine learning, and natural language processing."
+    },
+    "uitm": {
+      "role": "Bachelor of Computer Science (Hons.) Netcentric Computing",
+      "company": "Universiti Teknologi MARA (UiTM)",
+      "period": "October 2020 to September 2023",
+      "meta": "CGPA: 3.32"
+    },
+    "matrikulasi": {
+      "role": "Module 2, Physical Sciences",
+      "company": "Kolej Matrikulasi Selangor",
+      "period": "May 2019 to March 2020",
+      "meta": "CGPA: 3.04"
+    }
+  },
+  "projects": {
+    "headingPre": "My Recent",
+    "headingHighlight": "Works",
+    "intro": "Here are a few projects I've worked on recently.",
+    "github": "GitHub",
+    "demo": "Demo",
+    "blog": "Blog",
+    "baglock_title": "Anti-theft fingerprint baglock",
+    "baglock_desc": "This project implements an anti-theft system using a fingerprint scanner, GPS module, and GSM module to protect a bag or backpack. The system allows authorized users to unlock the bag using their fingerprints while sending GPS coordinates to a predefined number in case of unauthorized access.",
+    "movie_title": "Movie ticket",
+    "movie_desc": "The Movie Ticket Booking System is a web-based application that facilitates easy and convenient booking, cancellation, and management of movie tickets. With separate user and admin interfaces, the system offers a streamlined experience for both users and administrators.",
+    "bookstore_title": "Bookstore",
+    "bookstore_desc": "This web application allows customers to explore a variety of books, create accounts, make purchases, and view their purchase history. Sellers have the ability to manage the book inventory and access pickup details for completed orders. The system provides a seamless way for customers to discover and acquire their favorite books, while empowering sellers with the tools to efficiently manage their book offerings."
+  },
+  "resume": {
+    "download": "Download CV"
+  },
+  "footer": {
+    "developedBy": "Developed by Zariff Danial",
+    "copyright": "Copyright"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "desc": "Looks like this page took a wrong turn. The link might be broken or the page may have moved.",
+    "takeMeHome": "Take me home"
+  }
+}
