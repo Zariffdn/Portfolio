@@ -2,11 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/avatar.svg";
 import Tilt from "react-parallax-tilt";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-  AiFillInstagram,
-} from "react-icons/ai";
+import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 function Home2() {
@@ -19,26 +15,37 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-            I'm like a programming apprentice who's got a knack for falling in love with code—
-            though I might still be in the "it's complicated" phase... 😎
+              I'm a developer who loves turning ideas into apps people can
+              actually tap, swipe, and use. 📱 Still picking up new tricks
+              every day, and enjoying the ride.
               <br />
-              <br />I am fluent in classics like
+              <br />
+              Day to day, I work with
               <i>
-                <b className="purple"> C++, Python, Javascript, PHP and CSS. </b>
+                <b className="purple"> Flutter and Dart </b>
+              </i>
+              at Zen Computer System, where I debug and support our mobile
+              apps. From earlier projects I'm also comfortable with
+              <i>
+                <b className="purple"> C++, Python, JavaScript, and PHP. </b>
               </i>
               <br />
               <br />
-              My field of Interest's are building new &nbsp;
+              My focus is&nbsp;
               <i>
-                <b className="purple">Web Application </b> and
-                also in areas related to{" "}
-                <b className="purple">
-                  Front-End.
-                </b>
+                <b className="purple">Mobile Development</b>
               </i>
+              : building clean UIs and smooth user experiences across&nbsp;
+              <i>
+                <b className="purple">iOS and Android</b>
+              </i>
+              , with a side interest in&nbsp;
+              <i>
+                <b className="purple">Front-End</b>
+              </i>
+              &nbsp;web work.
               <br />
               <br />
-            
             </p>
           </Col>
           <Col md={4} className="myAvtar">
@@ -75,7 +82,17 @@ function Home2() {
                   <FaLinkedinIn />
                 </a>
               </li>
-      
+
+              <li className="social-icons">
+                <a
+                  href="mailto:zariffdanial.zul@gmail.com"
+                  aria-label="Email Zariff"
+                  className="icon-colour  home-social-icons"
+                >
+                  <AiOutlineMail />
+                </a>
+              </li>
+
             </ul>
           </Col>
         </Row>

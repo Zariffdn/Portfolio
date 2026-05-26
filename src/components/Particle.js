@@ -1,10 +1,15 @@
 import React from "react";
 import Particles from "react-tsparticles";
+import { useTheme } from "../contexts/ThemeContext";
 
 function Particle() {
+  const { theme } = useTheme();
+  const particleColor = theme === "light" ? "#3a1d5c" : "#ffffff";
+
   return (
     <Particles
       id="tsparticles"
+      key={theme}
       params={{
         particles: {
           number: {
@@ -13,6 +18,9 @@ function Particle() {
               enable: true,
               value_area: 1500,
             },
+          },
+          color: {
+            value: particleColor,
           },
           line_linked: {
             enable: false,

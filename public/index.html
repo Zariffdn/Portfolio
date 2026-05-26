@@ -6,31 +6,40 @@
   <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("theme");
+        var theme = (stored === "light" || stored === "dark")
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    })();
+  </script>
+  <meta name="description" content="Zariff Danial — Web Developer based in Selangor, Malaysia. Portfolio, projects, and resume.">
+  <meta name="author" content="Zariff Danial">
+  <link rel="canonical" href="https://portfolioo-beta.vercel.app/">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>Zariff | Portfolio</title>
-  <meta name="description" content="Self Developed personal website build with React.js">
+  <title>Zariff Danial | Portfolio</title>
 
   <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="Zariff | Portfolio">
-  <meta itemprop="description" content="Self Developed personal website build with React.js">
-  <meta itemprop="image"
-    content="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/Images/readme-img.png?token=AK7VCIF5RYEUZZAURELPTAC76U6AK">
+  <meta itemprop="name" content="Zariff Danial | Portfolio">
+  <meta itemprop="description" content="Web Developer based in Selangor, Malaysia. Explore my projects, tech stack, and resume.">
+  <meta itemprop="image" content="%PUBLIC_URL%/preview.jpg">
 
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://soumyajit.vercel.app">
+  <!-- Facebook / Open Graph Meta Tags -->
+  <meta property="og:url" content="https://portfolioo-beta.vercel.app/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Zariff | Portfolio">
-  <meta property="og:description" content="Self Developed personal website build with React.js">
-  <meta property="og:image"
-    content="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/Images/readme-img.png?token=AK7VCIF5RYEUZZAURELPTAC76U6AK">
+  <meta property="og:title" content="Zariff Danial | Portfolio">
+  <meta property="og:description" content="Web Developer based in Selangor, Malaysia. Explore my projects, tech stack, and resume.">
+  <meta property="og:image" content="https://portfolioo-beta.vercel.app/preview.jpg">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Zariff | Portfolio">
-  <meta name="twitter:description" content="Self Developed personal website build with React.js">
-  <meta name="twitter:image"
-    content="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/Images/readme-img.png?token=AK7VCIF5RYEUZZAURELPTAC76U6AK">
+  <meta name="twitter:title" content="Zariff Danial | Portfolio">
+  <meta name="twitter:description" content="Web Developer based in Selangor, Malaysia. Explore my projects, tech stack, and resume.">
+  <meta name="twitter:image" content="https://portfolioo-beta.vercel.app/preview.jpg">
 </head>
 
 <body>

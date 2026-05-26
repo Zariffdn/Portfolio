@@ -10,12 +10,53 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
+  Navigate,
+  useLocation,
 } from "react-router-dom";
+import { AnimatePresence, motion, MotionConfig } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import ScrollToTop from "./components/ScrollToTop";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+const pageVariants = {
+  initial: { opacity: 0, y: 12 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -12 },
+};
+
+const pageTransition = { duration: 0.35, ease: "easeOut" };
+
+function PageWrap({ children }) {
+  return (
+    <motion.div
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function AnimatedRoutes() {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageWrap><Home /></PageWrap>} />
+        <Route path="/project" element={<PageWrap><Projects /></PageWrap>} />
+        <Route path="/about" element={<PageWrap><About /></PageWrap>} />
+        <Route path="/resume" element={<PageWrap><Resume /></PageWrap>} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -29,21 +70,20 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Preloader load={load} />
-      <div className="App" id={load ? "no-scroll" : "scroll"}>
-        <Navbar />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/project" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/"/>} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <ThemeProvider>
+      <MotionConfig reducedMotion="user">
+        <Router>
+          <Preloader load={load} />
+          <div className="App" id={load ? "no-scroll" : "scroll"}>
+            <Navbar />
+            <ScrollToTop />
+            <AnimatedRoutes />
+            <Footer />
+          </div>
+          <Analytics />
+        </Router>
+      </MotionConfig>
+    </ThemeProvider>
   );
 }
 
