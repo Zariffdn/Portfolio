@@ -11,6 +11,8 @@ import Education from "./Education";
 import Certifications from "./Certifications";
 import StatsCounter from "./StatsCounter";
 import FeaturedWork from "./FeaturedWork";
+import PressFeaturedIn from "./PressFeaturedIn";
+import Testimonials from "./Testimonials";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
 import FadeIn from "../FadeIn";
@@ -53,6 +55,8 @@ function About() {
 
         <FeaturedWork />
 
+        <PressFeaturedIn />
+
         <FadeIn>
           <h1 className="project-heading">
             {t("about.byTheNumbersPre")}{" "}
@@ -78,6 +82,8 @@ function About() {
         </FadeIn>
 
         <Certifications />
+
+        <Testimonials />
 
         <FadeIn>
           <h1 className="project-heading">
