@@ -10,7 +10,6 @@ import Experience from "./Experience";
 import Education from "./Education";
 import Certifications from "./Certifications";
 import StatsCounter from "./StatsCounter";
-import WakatimeStats from "./WakatimeStats";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
 import FadeIn from "../FadeIn";
@@ -92,8 +91,6 @@ function About() {
           </h1>
           <Toolstack />
         </FadeIn>
-
-        <WakatimeStats />
 
         <FadeIn>
           <Github />
