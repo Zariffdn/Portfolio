@@ -10,7 +10,7 @@ import FadeIn from "../FadeIn";
 //   3. Settings → Profile → make profile public
 //   4. Put your Wakatime username below
 //   5. Code for a few days so stats accumulate
-const WAKATIME_USERNAME = "";
+const WAKATIME_USERNAME = "Zariffdn";
 
 function WakatimeStats() {
   const { t } = useTranslation();
