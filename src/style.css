@@ -544,6 +544,17 @@ html[data-theme="light"] .available-badge:focus-visible {
   padding-left: 45px !important;
 }
 
+.home-badge-wrap {
+  padding-left: 50px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+  .home-badge-wrap {
+    padding-left: 20px;
+  }
+}
+
 .main-name {
   color: var(--imp-text-color);
 }

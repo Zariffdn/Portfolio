@@ -23,7 +23,9 @@ function Home() {
         <Container className="home-content">
           <Row>
             <Col md={7} className="home-header">
-              <AvailableForHire />
+              <div className="home-badge-wrap">
+                <AvailableForHire />
+              </div>
               <h1 style={{ paddingBottom: 15 }} className="heading">
                 {t("home.greeting")}{" "}
                 <span className="wave" role="img" aria-labelledby="wave">
