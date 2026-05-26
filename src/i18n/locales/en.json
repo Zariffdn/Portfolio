@@ -10,8 +10,10 @@
   },
   "home": {
     "greeting": "Hi There!",
-    "iam": "I'M"
+    "iam": "I'M",
+    "availableForHire": "Available for hire"
   },
+  "backToTop": "Back to top",
   "typewriter": {
     "mobile": "Mobile App Developer",
     "flutter": "Flutter Developer",

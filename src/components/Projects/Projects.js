@@ -7,6 +7,7 @@ import movie from "../../Assets/Projects/movie.png";
 import bookstore from "../../Assets/Projects/bookstore.png";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
+import FadeIn from "../FadeIn";
 
 function Projects() {
   const { t } = useTranslation();
@@ -27,35 +28,41 @@ function Projects() {
         <p style={{ color: "var(--text-primary)" }}>{t("projects.intro")}</p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={bag}
-              isBlog={false}
-              title={t("projects.baglock_title")}
-              description={t("projects.baglock_desc")}
-              ghLink="https://github.com/zazarip/Anti-theft-fingerprint-baglock"
-              tags={["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"]}
-            />
+            <FadeIn>
+              <ProjectCard
+                imgPath={bag}
+                isBlog={false}
+                title={t("projects.baglock_title")}
+                description={t("projects.baglock_desc")}
+                ghLink="https://github.com/zazarip/Anti-theft-fingerprint-baglock"
+                tags={["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"]}
+              />
+            </FadeIn>
           </Col>
 
           <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={movie}
-              isBlog={false}
-              title={t("projects.movie_title")}
-              description={t("projects.movie_desc")}
-              ghLink="https://github.com/zazarip/movie-ticket"
-              tags={["JavaScript", "PHP", "CSS", "MySQL"]}
-            />
+            <FadeIn delay={0.1}>
+              <ProjectCard
+                imgPath={movie}
+                isBlog={false}
+                title={t("projects.movie_title")}
+                description={t("projects.movie_desc")}
+                ghLink="https://github.com/zazarip/movie-ticket"
+                tags={["JavaScript", "PHP", "CSS", "MySQL"]}
+              />
+            </FadeIn>
           </Col>
           <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={bookstore}
-              isBlog={false}
-              title={t("projects.bookstore_title")}
-              description={t("projects.bookstore_desc")}
-              ghLink="https://github.com/zazarip/Bookstore"
-              tags={["PHP", "HTML", "MySQL"]}
-            />
+            <FadeIn delay={0.2}>
+              <ProjectCard
+                imgPath={bookstore}
+                isBlog={false}
+                title={t("projects.bookstore_title")}
+                description={t("projects.bookstore_desc")}
+                ghLink="https://github.com/zazarip/Bookstore"
+                tags={["PHP", "HTML", "MySQL"]}
+              />
+            </FadeIn>
           </Col>
 
 

@@ -108,8 +108,17 @@ a:focus-visible,
     rgba(199, 112, 240, 0) 100%
   );
   mix-blend-mode: screen;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, background 0.2s ease;
   will-change: transform;
+}
+
+.custom-cursor.cursor-hover {
+  background: radial-gradient(
+    circle,
+    rgba(199, 112, 240, 0.9) 0%,
+    rgba(199, 112, 240, 0.35) 50%,
+    rgba(199, 112, 240, 0) 100%
+  );
 }
 
 html[data-theme="light"] .custom-cursor {
@@ -120,6 +129,160 @@ html[data-theme="light"] .custom-cursor {
     rgba(122, 47, 175, 0) 100%
   );
   mix-blend-mode: multiply;
+}
+
+html[data-theme="light"] .custom-cursor.cursor-hover {
+  background: radial-gradient(
+    circle,
+    rgba(122, 47, 175, 0.75) 0%,
+    rgba(122, 47, 175, 0.3) 50%,
+    rgba(122, 47, 175, 0) 100%
+  );
+}
+
+/* --------- */
+/* Scroll progress bar */
+/* --------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--imp-text-color),
+    #7e3ba5,
+    var(--imp-text-color)
+  );
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  z-index: 10000;
+  pointer-events: none;
+  will-change: transform;
+  box-shadow: 0 0 8px rgba(199, 112, 240, 0.45);
+}
+
+/* --------- */
+/* Back-to-top button */
+/* --------- */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--imp-text-color);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.3em;
+  box-shadow: 0 6px 18px rgba(89, 4, 168, 0.4);
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  transform: translateY(-3px);
+  background: #7e3ba5;
+  box-shadow: 0 8px 22px rgba(89, 4, 168, 0.55);
+}
+
+@media (max-width: 767px) {
+  .back-to-top {
+    bottom: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* --------- */
+/* Available-for-hire badge */
+/* --------- */
+.available-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.13);
+  color: #22c55e;
+  font-size: 0.9em;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  margin-bottom: 20px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.available-badge:hover,
+.available-badge:focus-visible {
+  background: rgba(34, 197, 94, 0.22);
+  color: #22c55e;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+html[data-theme="light"] .available-badge {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+  border-color: rgba(22, 163, 74, 0.35);
+}
+
+html[data-theme="light"] .available-badge:hover,
+html[data-theme="light"] .available-badge:focus-visible {
+  background: rgba(22, 163, 74, 0.2);
+  color: #15803d;
+}
+
+.available-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.available-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: available-pulse 2.2s ease-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes available-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
 }
 
 /* --------- */

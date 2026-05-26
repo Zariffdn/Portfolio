@@ -10,6 +10,7 @@ import Experience from "./Experience";
 import Education from "./Education";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
+import FadeIn from "../FadeIn";
 
 function About() {
   const { t } = useTranslation();
@@ -46,34 +47,41 @@ function About() {
             <img src={laptopImg} alt="about" className="img-fluid" />
           </Col>
         </Row>
-        <h1 className="project-heading">
-          {t("about.myExperiencePre")}{" "}
-          <strong className="purple">{t("about.myExperienceHighlight")}</strong>
-        </h1>
+        <FadeIn>
+          <h1 className="project-heading">
+            {t("about.myExperiencePre")}{" "}
+            <strong className="purple">{t("about.myExperienceHighlight")}</strong>
+          </h1>
+          <Experience />
+        </FadeIn>
 
-        <Experience />
+        <FadeIn>
+          <h1 className="project-heading">
+            {t("about.myEducationPre")}{" "}
+            <strong className="purple">{t("about.myEducationHighlight")}</strong>
+          </h1>
+          <Education />
+        </FadeIn>
 
-        <h1 className="project-heading">
-          {t("about.myEducationPre")}{" "}
-          <strong className="purple">{t("about.myEducationHighlight")}</strong>
-        </h1>
+        <FadeIn>
+          <h1 className="project-heading">
+            {t("about.skillsetPre")}{" "}
+            <strong className="purple">{t("about.skillsetHighlight")} </strong>
+          </h1>
+          <Techstack />
+        </FadeIn>
 
-        <Education />
+        <FadeIn>
+          <h1 className="project-heading">
+            <strong className="purple">{t("about.toolsHighlight")}</strong>{" "}
+            {t("about.toolsPost")}
+          </h1>
+          <Toolstack />
+        </FadeIn>
 
-        <h1 className="project-heading">
-          {t("about.skillsetPre")}{" "}
-          <strong className="purple">{t("about.skillsetHighlight")} </strong>
-        </h1>
-
-        <Techstack />
-
-        <h1 className="project-heading">
-          <strong className="purple">{t("about.toolsHighlight")}</strong>{" "}
-          {t("about.toolsPost")}
-        </h1>
-        <Toolstack />
-
-        <Github />
+        <FadeIn>
+          <Github />
+        </FadeIn>
       </Container>
     </Container>
   );

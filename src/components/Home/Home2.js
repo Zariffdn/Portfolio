@@ -5,6 +5,7 @@ import Tilt from "react-parallax-tilt";
 import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import FadeIn from "../FadeIn";
 
 function Home2() {
   const { t } = useTranslation();
@@ -12,6 +13,7 @@ function Home2() {
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
+        <FadeIn>
         <Row>
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
@@ -56,6 +58,8 @@ function Home2() {
             </Tilt>
           </Col>
         </Row>
+        </FadeIn>
+        <FadeIn delay={0.1}>
         <Row>
           <Col md={12} className="home-about-social">
             <h1>{t("home2.findMeOn")}</h1>
@@ -100,6 +104,7 @@ function Home2() {
             </ul>
           </Col>
         </Row>
+        </FadeIn>
       </Container>
     </Container>
   );
