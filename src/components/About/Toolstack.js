@@ -10,31 +10,32 @@ import {
   SiPostman,
 } from "react-icons/si";
 
+const tools = [
+  { name: "VS Code", Icon: SiVisualstudiocode },
+  { name: "npm", Icon: SiNpm },
+  { name: "GitHub", Icon: SiGithub },
+  { name: "Gradle", Icon: SiGradle },
+  { name: "Android Studio", Icon: SiAndroidstudio },
+  { name: "Arduino", Icon: SiArduino },
+  { name: "Postman", Icon: SiPostman },
+];
+
 function Toolstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <SiVisualstudiocode />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiNpm />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiGithub />
+      {tools.map(({ name, Icon }) => (
+        <Col
+          xs={4}
+          md={2}
+          className="tech-icons"
+          key={name}
+          tabIndex={0}
+          aria-label={name}
+        >
+          <Icon />
+          <span className="icon-tooltip" role="tooltip">{name}</span>
         </Col>
-        <Col xs={4} md={2} className="tech-icons">
-        <SiGradle />
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-        <SiAndroidstudio />
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-        <SiArduino />
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-        <SiPostman />
-        </Col>
+      ))}
     </Row>
   );
 }
