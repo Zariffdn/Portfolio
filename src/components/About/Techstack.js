@@ -9,7 +9,6 @@ import {
   DiPython,
   DiGit,
   DiJava,
-  
 } from "react-icons/di";
 import {
   SiFirebase,
@@ -17,58 +16,41 @@ import {
   SiFlutter,
   SiDart,
 } from "react-icons/si";
-import { FaDatabase } from "react-icons/fa"; 
-import { FaPhp } from "react-icons/fa";
+import { FaDatabase, FaPhp } from "react-icons/fa";
 
+const techs = [
+  { name: "Flutter", Icon: SiFlutter },
+  { name: "Dart", Icon: SiDart },
+  { name: "C++", Icon: CgCPlusPlus },
+  { name: "JavaScript", Icon: DiJavascript1 },
+  { name: "Node.js", Icon: DiNodejs },
+  { name: "React", Icon: DiReact },
+  { name: "Code", Icon: DiCode },
+  { name: "PHP", Icon: FaPhp },
+  { name: "MySQL", Icon: FaDatabase },
+  { name: "Git", Icon: DiGit },
+  { name: "Firebase", Icon: SiFirebase },
+  { name: "Bootstrap", Icon: SiBootstrap },
+  { name: "Python", Icon: DiPython },
+  { name: "Java", Icon: DiJava },
+];
 
 function Techstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiFlutter />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiDart />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <CgCPlusPlus />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiJavascript1 />
-      </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <DiNodejs />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiReact />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiCode />
-      </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <FaPhp />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <FaDatabase />
-      </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <DiGit />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiFirebase />
-      </Col>
-     <Col xs={4} md={2} className="tech-icons">
-        <SiBootstrap />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiPython />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiJava />
-      </Col>
+      {techs.map(({ name, Icon }) => (
+        <Col
+          xs={4}
+          md={2}
+          className="tech-icons"
+          key={name}
+          tabIndex={0}
+          aria-label={name}
+        >
+          <Icon />
+          <span className="icon-tooltip" role="tooltip">{name}</span>
+        </Col>
+      ))}
     </Row>
   );
 }
