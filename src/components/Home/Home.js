@@ -22,7 +22,7 @@ function Home() {
         <Particle />
         <Container className="home-content">
           <Row>
-            <Col md={7} className="home-header">
+            <Col md={{ span: 6, offset: 1 }} className="home-header">
               <div className="home-badge-wrap">
                 <AvailableForHire />
               </div>
