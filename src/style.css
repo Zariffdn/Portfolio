@@ -788,14 +788,20 @@ html[data-theme="light"] .available-badge:focus-visible {
 }
 
 .wakatime-chart {
-  max-width: 640px;
+  max-width: 440px;
   width: 100%;
   height: auto;
   background: rgba(255, 255, 255, 0.92);
-  padding: 14px;
+  padding: 10px;
   border-radius: 12px;
   border: 1px solid var(--tech-icon-border);
   box-shadow: 0 8px 24px rgba(89, 4, 168, 0.18);
+}
+
+@media (max-width: 767px) {
+  .wakatime-chart {
+    max-width: 100%;
+  }
 }
 
 html[data-theme="light"] .wakatime-chart {
