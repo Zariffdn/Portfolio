@@ -14,12 +14,18 @@ const certifications = [
     title: "Developing Mobile Apps with Flutter Specialization",
     issuer: "IBM",
     date: "July 2025",
+    credentialUrl:
+      "https://www.coursera.org/account/accomplishments/specialization/UL4M9RW95NWE",
+    credentialId: "UL4M9RW95NWE",
   },
   {
     id: "ibm-flutter-dart",
     title: "Flutter and Dart: Developing iOS, Android, and Mobile Apps",
     issuer: "IBM",
     date: "July 2025",
+    credentialUrl:
+      "https://www.coursera.org/account/accomplishments/verify/RQW9W999M8OT",
+    credentialId: "RQW9W999M8OT",
   },
   {
     id: "comptia-tech-plus",
@@ -32,18 +38,27 @@ const certifications = [
     title: "Meta Front-End Developer Specialization",
     issuer: "Meta",
     date: "October 2025",
+    credentialUrl:
+      "https://www.coursera.org/account/accomplishments/professional-cert/GBO8HRSDL0IJ",
+    credentialId: "GBO8HRSDL0IJ",
   },
   {
     id: "meta-advanced-react",
     title: "Advanced React",
     issuer: "Meta",
     date: "October 2025",
+    credentialUrl:
+      "https://www.coursera.org/account/accomplishments/verify/CUDTV61VL1BZ",
+    credentialId: "CUDTV61VL1BZ",
   },
   {
     id: "meta-ux-ui",
     title: "Principles of UX/UI Design",
     issuer: "Meta",
     date: "October 2025",
+    credentialUrl:
+      "https://www.coursera.org/account/accomplishments/verify/OR4OXFF5AVWR",
+    credentialId: "OR4OXFF5AVWR",
   },
 ];
 
