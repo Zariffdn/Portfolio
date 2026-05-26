@@ -808,6 +808,149 @@ html[data-theme="light"] .available-badge:focus-visible {
   line-height: 1.5;
 }
 
+.konami-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 11000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: konami-fade 4s ease-out;
+}
+
+.konami-card {
+  background: linear-gradient(135deg, #7e2cb8 0%, #4a0d7e 100%);
+  color: #ffffff;
+  padding: 28px 36px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 90vw;
+  box-shadow: 0 24px 60px rgba(89, 4, 168, 0.5),
+    0 0 0 1px rgba(199, 112, 240, 0.5);
+  animation: konami-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.konami-emoji {
+  font-size: 3em;
+  display: block;
+  animation: konami-spin 1.5s ease-out;
+}
+
+.konami-card h3 {
+  margin: 12px 0 8px;
+  font-size: 1.4em;
+  color: #ffffff;
+}
+
+.konami-card p {
+  margin: 0;
+  opacity: 0.92;
+  font-size: 0.95em;
+  letter-spacing: 0.5px;
+}
+
+@keyframes konami-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes konami-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(720deg); }
+}
+
+@keyframes konami-fade {
+  0%, 85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.social-sidebar {
+  position: fixed;
+  bottom: 0;
+  left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  z-index: 50;
+}
+
+.social-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.social-sidebar a {
+  color: var(--text-primary);
+  opacity: 0.7;
+  font-size: 1.25em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-sidebar a:hover,
+.social-sidebar a:focus-visible {
+  color: var(--imp-text-color);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.social-sidebar-line {
+  width: 2px;
+  height: 110px;
+  background: var(--text-primary);
+  opacity: 0.35;
+}
+
+@media (max-width: 991px) {
+  .social-sidebar {
+    display: none;
+  }
+}
+
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px 0 30px;
+}
+
+.project-filter-btn {
+  background: transparent;
+  border: 1.5px solid var(--imp-text-color);
+  color: var(--text-primary);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 0.92em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.project-filter-btn:hover,
+.project-filter-btn:focus-visible {
+  background: rgba(199, 112, 240, 0.18);
+  transform: translateY(-2px);
+}
+
+.project-filter-btn.is-active {
+  background: var(--imp-text-color);
+  color: #ffffff;
+  border-color: var(--imp-text-color);
+}
+
+html[data-theme="light"] .project-filter-btn.is-active {
+  color: #ffffff;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;

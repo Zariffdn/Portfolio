@@ -14,6 +14,10 @@
     "availableForHire": "Available for hire"
   },
   "backToTop": "Back to top",
+  "konami": {
+    "title": "You found the easter egg!",
+    "subtitle": "Thanks for poking around. ↑↑↓↓←→←→ B A"
+  },
   "typewriter": {
     "mobile": "Mobile App Developer",
     "flutter": "Flutter Developer",
@@ -122,6 +126,10 @@
     "headingPre": "My Recent",
     "headingHighlight": "Works",
     "intro": "Here are a few projects I've worked on recently.",
+    "filterAll": "All",
+    "filterWeb": "Web",
+    "filterMobile": "Mobile",
+    "filterEmbedded": "Embedded",
     "github": "GitHub",
     "demo": "Demo",
     "blog": "Blog",

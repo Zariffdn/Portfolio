@@ -15,6 +15,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 import BackToTop from "./components/BackToTop";
+import SocialSidebar from "./components/SocialSidebar";
+import KonamiEgg from "./components/KonamiEgg";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./style.css";
 import "./App.css";
@@ -90,10 +92,12 @@ function App() {
             <ScrollProgress />
             <Navbar />
             <ScrollToTop />
+            <SocialSidebar />
             <AnimatedRoutes />
             <BackToTop />
             <Footer />
           </div>
+          <KonamiEgg />
           <Analytics />
           <SpeedInsights />
         </Router>
