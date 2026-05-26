@@ -13,12 +13,13 @@ function AboutCard() {
             <br /> I am a Graduate in BACHELOR OF COMPUTER SCIENCE (HONS.) NETCENTRIC COMPUTING
             <br />
             <br />
-            I'm currently a <span className="purple">Mobile Developer</span> at
-            <span className="purple"> Zen Computer System</span> (since November
-            2025), focused on bug fixing and technical support for Flutter
-            applications. Previously at
-            <span className="purple"> Bestinet Sdn Bhd</span> as a Mobile
-            Developer (June to November 2025), where I built new UI features.
+            I'm currently a
+            <span className="purple"> Solutions Developer</span> at
+            <span className="purple"> Zen Computer Systems</span> (since
+            November 2025), maintaining the MyTax mobile app under LHDN.
+            Previously a Mobile Application Developer at
+            <span className="purple"> Bestinet Sdn Bhd</span> (July to
+            November 2025), where I built a mobile TOTP authenticator app.
             <br />
             <br />
             Apart from coding, some other activities that I love to do!
