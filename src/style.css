@@ -791,9 +791,18 @@ html[data-theme="light"] .available-badge:focus-visible {
   max-width: 440px;
   width: 100%;
   height: auto;
-  background: rgba(255, 255, 255, 0.92);
-  padding: 10px;
   border-radius: 12px;
+  transition: filter 0.3s ease;
+}
+
+html[data-theme="dark"] .wakatime-chart {
+  filter: invert(0.92) hue-rotate(180deg);
+  background: transparent;
+}
+
+html[data-theme="light"] .wakatime-chart {
+  background: #ffffff;
+  padding: 10px;
   border: 1px solid var(--tech-icon-border);
   box-shadow: 0 8px 24px rgba(89, 4, 168, 0.18);
 }
@@ -802,10 +811,6 @@ html[data-theme="light"] .available-badge:focus-visible {
   .wakatime-chart {
     max-width: 100%;
   }
-}
-
-html[data-theme="light"] .wakatime-chart {
-  background: #ffffff;
 }
 
 .stats-row {
