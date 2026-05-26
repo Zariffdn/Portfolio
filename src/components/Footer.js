@@ -1,10 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-  AiFillInstagram,
-} from "react-icons/ai";
+import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 function Footer() {
@@ -24,7 +20,7 @@ function Footer() {
             <li className="social-icons">
               <a
                 href="https://github.com/Zariffdn"
-                style={{ color: "white" }}
+                style={{ color: "var(--text-primary)" }}
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -35,11 +31,21 @@ function Footer() {
             <li className="social-icons">
               <a
                 href="https://www.linkedin.com/in/zariffdanial/"
-                style={{ color: "white" }}
-                target="_blank" 
+                style={{ color: "var(--text-primary)" }}
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <FaLinkedinIn />
+              </a>
+            </li>
+
+            <li className="social-icons">
+              <a
+                href="mailto:zariffdanial.zul@gmail.com"
+                style={{ color: "var(--text-primary)" }}
+                aria-label="Email Zariff"
+              >
+                <AiOutlineMail />
               </a>
             </li>
 

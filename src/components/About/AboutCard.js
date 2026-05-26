@@ -12,7 +12,13 @@ function AboutCard() {
             from <span className="purple"> Selangor, Malaysia.</span>
             <br /> I am a Graduate in BACHELOR OF COMPUTER SCIENCE (HONS.) NETCENTRIC COMPUTING
             <br />
-            Additionally, I am currently a Web Developer at Bestinet Sdn Bhd
+            <br />
+            I'm currently a <span className="purple">Mobile Developer</span> at
+            <span className="purple"> Zen Computer System</span> (since November
+            2025), focused on bug fixing and technical support for Flutter
+            applications. Previously at
+            <span className="purple"> Bestinet Sdn Bhd</span> as a Mobile
+            Developer (June to November 2025), where I built new UI features.
             <br />
             <br />
             Apart from coding, some other activities that I love to do!
@@ -29,7 +35,7 @@ function AboutCard() {
             </li>
           </ul>
 
-          <p style={{ color: "rgb(155 126 172)" }}>
+          <p style={{ color: "var(--quote-text)" }}>
             "Turning ideas into executable magic!"{" "}
           </p>
           <footer className="blockquote-footer">Zariff</footer>

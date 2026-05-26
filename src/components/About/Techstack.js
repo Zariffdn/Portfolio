@@ -12,12 +12,10 @@ import {
   
 } from "react-icons/di";
 import {
-  SiRedis,
   SiFirebase,
-  SiNextdotjs,
-  SiSolidity,
-  SiPostgresql,
   SiBootstrap,
+  SiFlutter,
+  SiDart,
 } from "react-icons/si";
 import { FaDatabase } from "react-icons/fa"; 
 import { FaPhp } from "react-icons/fa";
@@ -26,6 +24,12 @@ import { FaPhp } from "react-icons/fa";
 function Techstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiFlutter />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiDart />
+      </Col>
       <Col xs={4} md={2} className="tech-icons">
         <CgCPlusPlus />
       </Col>
