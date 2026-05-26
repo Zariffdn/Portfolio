@@ -10,14 +10,14 @@ import FadeIn from "../FadeIn";
 // Tip: use ChatGPT with web search to find mentions of MyTax in The Star,
 // NST, Malaysiakini, BERNAMA, Astro Awani, etc.
 const press = [
-  // Example shape — uncomment and edit when ready:
-  // {
-  //   id: "the-star-2024",
-  //   publication: "The Star",
-  //   title: "LHDN launches MyTax mobile app for easier filing",
-  //   url: "https://www.thestar.com.my/...",
-  //   date: "March 2024",
-  // },
+  {
+    id: "bernama-ekyc-2026",
+    publication: "BERNAMA",
+    title:
+      "MyTax adds e-KYC and digital onboarding for new taxpayers",
+    url: "https://bernama.com/bm/news.php?id=2522325",
+    date: "February 2026",
+  },
 ];
 
 function PressFeaturedIn() {
