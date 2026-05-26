@@ -2,6 +2,7 @@ import React from "react";
 import GitHubCalendar from "react-github-calendar";
 import { Row } from "react-bootstrap";
 import { useTheme } from "../../contexts/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const darkPalette = {
   level0: "rgba(255, 255, 255, 0.06)",
@@ -21,12 +22,14 @@ const lightPalette = {
 
 function Github() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const palette = theme === "light" ? lightPalette : darkPalette;
 
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
       <h1 className="project-heading" style={{ paddingBottom: "20px" }}>
-        Days I <strong className="purple">Code</strong>
+        {t("about.daysICodePre")}{" "}
+        <strong className="purple">{t("about.daysICodeHighlight")}</strong>
       </h1>
       <div
         style={{

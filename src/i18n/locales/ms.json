@@ -1,0 +1,145 @@
+{
+  "navbar": {
+    "home": "Utama",
+    "about": "Tentang",
+    "projects": "Projek",
+    "resume": "Resume",
+    "toggleLightAria": "Tukar ke mod cerah",
+    "toggleDarkAria": "Tukar ke mod gelap",
+    "toggleLanguageAria": "Tukar bahasa"
+  },
+  "home": {
+    "greeting": "Hai!",
+    "iam": "SAYA"
+  },
+  "typewriter": {
+    "mobile": "Pembangun Aplikasi Mudah Alih",
+    "flutter": "Pembangun Flutter",
+    "web": "Pembangun Web",
+    "programmer": "Pengaturcara"
+  },
+  "home2": {
+    "headingPre": "MARI SAYA",
+    "headingHighlight": "PERKENALKAN",
+    "headingPost": "DIRI",
+    "bioP1": "Saya seorang pembangun yang gemar mengubah idea menjadi aplikasi yang boleh ditekan, dileret, dan digunakan oleh orang ramai. 📱 Masih mempelajari perkara baharu setiap hari, dan menikmati perjalanan ini.",
+    "bioP2_pre": "Hari demi hari, saya bekerja dengan",
+    "bioP2_flutterDart": "Flutter dan Dart",
+    "bioP2_mid": "di Zen Computer Systems, mengekalkan aplikasi mudah alih MyTax di bawah LHDN. Dari projek terdahulu, saya juga selesa dengan",
+    "bioP2_langs": "C++, Python, JavaScript, dan PHP.",
+    "bioP3_pre": "Tumpuan saya adalah",
+    "bioP3_mobileDev": "Pembangunan Mudah Alih",
+    "bioP3_mid": ": membina UI yang kemas dan pengalaman pengguna yang lancar di",
+    "bioP3_platforms": "iOS dan Android",
+    "bioP3_mid2": ", dengan minat sampingan dalam kerja",
+    "bioP3_frontend": "Front-End",
+    "bioP3_post": "web.",
+    "findMeOn": "CARI SAYA DI",
+    "connectPre": "Jangan segan untuk",
+    "connectHighlight": "berhubung",
+    "connectPost": "dengan saya"
+  },
+  "about": {
+    "knowMePre": "Kenali Siapa",
+    "knowMeHighlight": "SAYA",
+    "myExperiencePre": "Pengalaman",
+    "myExperienceHighlight": "Saya",
+    "myEducationPre": "Pendidikan",
+    "myEducationHighlight": "Saya",
+    "skillsetPre": "Kemahiran",
+    "skillsetHighlight": "Profesional",
+    "toolsHighlight": "Alat",
+    "toolsPost": "yang saya guna",
+    "daysICodePre": "Hari Saya",
+    "daysICodeHighlight": "Mengekod"
+  },
+  "aboutCard": {
+    "intro_pre": "Hai semua, saya",
+    "intro_name": "Zariff Danial",
+    "intro_from": "dari",
+    "intro_location": "Cyberjaya, Selangor, Malaysia.",
+    "degree": "Saya seorang graduan dalam IJAZAH SARJANA MUDA SAINS KOMPUTER (KEPUJIAN) PENGKOMPUTERAN BERPUSATKAN RANGKAIAN",
+    "currentRole_pre": "Saya sedang bekerja sebagai",
+    "currentRole_title": "Solutions Developer",
+    "currentRole_at": "di",
+    "currentRole_company": "Zen Computer Systems",
+    "currentRole_post": "(sejak November 2025), mengekalkan aplikasi mudah alih MyTax di bawah LHDN. Sebelum ini sebagai Mobile Application Developer di",
+    "currentRole_prevCompany": "Bestinet Sdn Bhd",
+    "currentRole_end": "(Julai hingga November 2025), di mana saya membina aplikasi pengesah TOTP mudah alih.",
+    "hobbies": "Selain daripada mengekod, beberapa aktiviti lain yang saya gemari!",
+    "playingGames": "Bermain Permainan",
+    "workingOut": "Bersenam",
+    "listeningMusic": "Mendengar Muzik",
+    "quote": "\"Mengubah idea menjadi magik yang boleh dilaksanakan!\""
+  },
+  "experience": {
+    "zen": {
+      "role": "Solutions Developer (Mobile App Developer)",
+      "company": "Zen Computer Systems",
+      "period": "November 2025 hingga Kini",
+      "meta": "Cyberjaya, Selangor · Di pejabat · Kontrak",
+      "b1": "Bertanggungjawab mengekalkan dan menyokong aplikasi mudah alih MyTax di bawah LHDN.",
+      "b2": "Mencari punca, nyahpepijat, dan menyelesaikan isu teknikal untuk memastikan prestasi aplikasi yang lancar.",
+      "b3": "Melaksanakan pembetulan, kemas kini, dan penambahbaikan secara bebas dari hujung ke hujung.",
+      "b4": "Memastikan kestabilan, kebolehpercayaan, dan pengalaman pengguna yang lancar."
+    },
+    "bestinet": {
+      "role": "Mobile Application Developer",
+      "company": "Bestinet Sdn Bhd",
+      "period": "Julai 2025 hingga November 2025",
+      "meta": "Cyberjaya, Selangor · Hibrid · Kontrak",
+      "b1": "Ditugaskan untuk meningkatkan keselamatan log masuk dengan membangunkan aplikasi Pengesah TOTP mudah alih.",
+      "b2": "Membina bahagian hadapan dengan Flutter dan bekerjasama dengan pasukan backend untuk integrasi API yang lancar.",
+      "b3": "Mengoptimumkan prestasi dan menyelesaikan pepijat untuk meningkatkan respons.",
+      "b4": "Meningkatkan kelajuan pengesahan sebanyak 40% dan kepuasan pengguna sebanyak 25%."
+    }
+  },
+  "education": {
+    "peoplelogy": {
+      "role": "Program Bootcamp Analisis Sains Data",
+      "company": "PEOPLElogy Group",
+      "period": "Mac 2024 hingga Ogos 2024",
+      "meta": "Sains Data",
+      "b1": "Projek kemuncak: ramalan genre filem daripada ringkasan plot.",
+      "b2": "Merangkumi pengaturcaraan Python, penyusunan data, analisis data penerokaan, pembelajaran mesin, dan pemprosesan bahasa semula jadi."
+    },
+    "uitm": {
+      "role": "Ijazah Sarjana Muda Sains Komputer (Kepujian) Pengkomputeran Berpusatkan Rangkaian",
+      "company": "Universiti Teknologi MARA (UiTM)",
+      "period": "Oktober 2020 hingga September 2023",
+      "meta": "CGPA: 3.32"
+    },
+    "matrikulasi": {
+      "role": "Modul 2, Sains Fizikal",
+      "company": "Kolej Matrikulasi Selangor",
+      "period": "Mei 2019 hingga Mac 2020",
+      "meta": "CGPA: 3.04"
+    }
+  },
+  "projects": {
+    "headingPre": "Kerja Terkini",
+    "headingHighlight": "Saya",
+    "intro": "Berikut adalah beberapa projek yang saya kerjakan baru-baru ini.",
+    "github": "GitHub",
+    "demo": "Demo",
+    "blog": "Blog",
+    "baglock_title": "Kunci Beg Cap Jari Anti-Kecurian",
+    "baglock_desc": "Projek ini melaksanakan sistem anti-kecurian menggunakan pengimbas cap jari, modul GPS, dan modul GSM untuk melindungi beg atau beg galas. Sistem ini membenarkan pengguna yang dibenarkan untuk membuka kunci beg menggunakan cap jari mereka sambil menghantar koordinat GPS ke nombor yang telah ditetapkan jika berlaku akses tanpa kebenaran.",
+    "movie_title": "Tiket Wayang",
+    "movie_desc": "Sistem Tempahan Tiket Wayang ialah aplikasi berasaskan web yang memudahkan tempahan, pembatalan, dan pengurusan tiket wayang. Dengan antara muka pengguna dan admin yang berasingan, sistem ini menawarkan pengalaman yang lancar untuk kedua-dua pengguna dan pentadbir.",
+    "bookstore_title": "Kedai Buku",
+    "bookstore_desc": "Aplikasi web ini membolehkan pelanggan meneroka pelbagai buku, mencipta akaun, membuat pembelian, dan melihat sejarah pembelian mereka. Penjual mempunyai keupayaan untuk menguruskan inventori buku dan mengakses butiran pengambilan untuk pesanan yang selesai. Sistem ini menyediakan cara yang lancar untuk pelanggan menemui dan memperoleh buku kegemaran mereka, sambil memperkasakan penjual dengan alat untuk menguruskan tawaran buku mereka dengan cekap."
+  },
+  "resume": {
+    "download": "Muat Turun CV"
+  },
+  "footer": {
+    "developedBy": "Dibangunkan oleh Zariff Danial",
+    "copyright": "Hak Cipta"
+  },
+  "notFound": {
+    "title": "Halaman tidak dijumpai",
+    "desc": "Nampaknya halaman ini telah hilang. Pautan mungkin rosak atau halaman telah dipindahkan.",
+    "takeMeHome": "Bawa saya pulang"
+  }
+}
