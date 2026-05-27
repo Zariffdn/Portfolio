@@ -103,11 +103,11 @@ function About() {
           <Toolstack />
         </FadeIn>
 
+        <FAQ />
+
         <FadeIn>
           <Github />
         </FadeIn>
-
-        <FAQ />
 
         <Contact />
       </Container>
