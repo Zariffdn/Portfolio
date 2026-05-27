@@ -26,8 +26,6 @@ import {
   FaJava,
   FaTerminal,
   FaLaptopCode,
-  FaMicrochip,
-  FaMemory,
 } from "react-icons/fa";
 import { CgCPlusPlus } from "react-icons/cg";
 
@@ -78,18 +76,13 @@ const sections = [
     items: [
       {
         Icon: FaLaptopCode,
+        label: "ASUS ROG Zephyrus G14",
+        note: "Personal rig — where I built my early projects (baglock, bookstore, movie ticket). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
+      },
+      {
+        Icon: FaLaptopCode,
         label: "Lenovo IdeaPad 1 (15AMN7)",
-        note: "Daily driver — Windows 11, 15.6\" display",
-      },
-      {
-        Icon: FaMicrochip,
-        label: "AMD Ryzen 5 7520U",
-        note: "2.80 GHz with Radeon integrated graphics",
-      },
-      {
-        Icon: FaMemory,
-        label: "16 GB RAM",
-        note: "Plenty of room for Android emulator + IDE",
+        note: "Work daily driver at Zen — MyTax mobile dev. Ryzen 5 7520U · 16 GB RAM · Windows 11",
       },
     ],
   },
