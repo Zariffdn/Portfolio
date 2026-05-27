@@ -520,7 +520,6 @@ html[data-theme="light"] .available-badge:focus-visible {
 
 .home-section {
   position: relative;
-  z-index: -1;
   background-image: var(--image-gradient), var(--home-bg-image);
   background-position: top center;
   background-repeat: no-repeat;
