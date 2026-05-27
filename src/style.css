@@ -861,6 +861,7 @@ html[data-theme="light"] .wakatime-chart {
   gap: 12px;
   padding: 14px;
   height: 100%;
+  width: 100%;
   background: linear-gradient(
     135deg,
     rgba(199, 112, 240, 0.05) 0%,
@@ -914,14 +915,33 @@ html[data-theme="light"] .wakatime-chart {
   margin: 0 auto !important;
 }
 
+.faq-col,
+.cert-col,
+.stat-col,
+.testimonial-col,
+.uses-item-col {
+  display: flex !important;
+}
+
+/* The FadeIn motion.div sits between the Col and the card — without this
+   it doesn't stretch, so cards in the same row end up uneven heights. */
+.faq-col > div,
+.cert-col > div,
+.stat-col > div,
+.testimonial-col > div,
+.uses-item-col > div {
+  width: 100%;
+  display: flex;
+}
+
 .faq-col {
   padding: 10px !important;
-  display: flex;
 }
 
 .faq-card {
   position: relative;
   width: 100%;
+  height: 100%;
   background: linear-gradient(
     135deg,
     rgba(199, 112, 240, 0.05) 0%,
@@ -1407,6 +1427,7 @@ html[data-theme="light"] .contact-field .form-control {
   transition: transform 0.25s ease, border-color 0.25s ease,
     box-shadow 0.25s ease;
   height: 100%;
+  width: 100%;
 }
 
 .stat-card:hover {
@@ -1462,6 +1483,7 @@ html[data-theme="light"] .contact-field .form-control {
 .cert-card {
   position: relative;
   height: 100%;
+  width: 100%;
   background: linear-gradient(
     135deg,
     rgba(199, 112, 240, 0.06) 0%,
