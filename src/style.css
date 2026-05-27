@@ -813,6 +813,101 @@ html[data-theme="light"] .wakatime-chart {
   }
 }
 
+.contact-container {
+  max-width: 880px;
+  margin-bottom: 40px;
+}
+
+.contact-subtitle {
+  text-align: center;
+  color: var(--text-primary);
+  opacity: 0.85;
+  font-size: 1.05em;
+  margin-bottom: 28px;
+}
+
+.contact-form {
+  background: linear-gradient(
+    135deg,
+    rgba(199, 112, 240, 0.05) 0%,
+    rgba(199, 112, 240, 0.02) 100%
+  );
+  border: 1px solid var(--tech-icon-border);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+}
+
+.contact-field {
+  margin-bottom: 18px;
+}
+
+.contact-field .form-label {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--imp-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.contact-field .form-control {
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid var(--tech-icon-border) !important;
+  color: var(--text-primary) !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  font-size: 0.95em !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+html[data-theme="light"] .contact-field .form-control {
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+.contact-field .form-control::placeholder {
+  color: var(--text-primary);
+  opacity: 0.4;
+}
+
+.contact-field .form-control:focus,
+.contact-field .form-control:focus-visible {
+  border-color: var(--imp-text-color) !important;
+  box-shadow: 0 0 0 3px rgba(199, 112, 240, 0.18) !important;
+  outline: none !important;
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.contact-submit {
+  display: inline-flex !important;
+  align-items: center;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+}
+
+.contact-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+@media (max-width: 767px) {
+  .contact-form {
+    padding: 20px 18px 18px;
+  }
+  .contact-actions {
+    justify-content: stretch;
+  }
+  .contact-submit {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .testimonials-row {
   margin-top: 10px !important;
 }

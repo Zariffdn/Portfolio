@@ -51,6 +51,24 @@
     "connectHighlight": "connect",
     "connectPost": "with me"
   },
+  "contact": {
+    "headingPre": "Get In",
+    "headingHighlight": "Touch",
+    "subtitle": "Have a project, a role, or just want to chat? Drop me a line and I'll get back within a day or two.",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "jane@example.com",
+    "subjectLabel": "Subject (optional)",
+    "subjectPlaceholder": "Let's build something",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me a bit about what you have in mind…",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Message sent! I'll get back to you soon.",
+    "error": "Couldn't send. Try emailing me at zariffdanial.zul@gmail.com",
+    "notConfigured": "Contact form not set up yet. Email me directly!"
+  },
   "stats": {
     "certifications": "Certifications",
     "technologies": "Technologies",
