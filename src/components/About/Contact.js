@@ -48,7 +48,7 @@ function Contact() {
 
   return (
     <FadeIn>
-      <h1 className="project-heading">
+      <h1 className="project-heading" id="contact">
         {t("contact.headingPre")}{" "}
         <strong className="purple">{t("contact.headingHighlight")}</strong>
       </h1>
