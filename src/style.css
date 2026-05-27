@@ -532,6 +532,8 @@ html[data-theme="light"] .available-badge:focus-visible {
   padding: 9rem 0 2rem !important;
   color: var(--text-primary);
   text-align: left;
+  position: relative;
+  z-index: 1;
 }
 
 .heading {
