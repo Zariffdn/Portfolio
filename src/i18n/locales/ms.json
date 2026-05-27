@@ -51,6 +51,24 @@
     "connectHighlight": "berhubung",
     "connectPost": "dengan saya"
   },
+  "contact": {
+    "headingPre": "Hubungi",
+    "headingHighlight": "Saya",
+    "subtitle": "Ada projek, jawatan, atau sekadar mahu berbual? Tinggalkan mesej dan saya akan balas dalam sehari dua.",
+    "nameLabel": "Nama anda",
+    "namePlaceholder": "Ahmad Bin Ali",
+    "emailLabel": "E-mel",
+    "emailPlaceholder": "ahmad@example.com",
+    "subjectLabel": "Subjek (pilihan)",
+    "subjectPlaceholder": "Mari bina sesuatu",
+    "messageLabel": "Mesej",
+    "messagePlaceholder": "Ceritakan sedikit tentang apa yang anda fikirkan…",
+    "send": "Hantar mesej",
+    "sending": "Menghantar…",
+    "success": "Mesej dihantar! Saya akan balas tidak lama lagi.",
+    "error": "Tidak dapat hantar. Sila e-mel saya di zariffdanial.zul@gmail.com",
+    "notConfigured": "Borang hubungan belum disediakan. E-mel saya terus!"
+  },
   "stats": {
     "certifications": "Sijil",
     "technologies": "Teknologi",
