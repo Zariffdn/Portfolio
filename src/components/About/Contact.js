@@ -12,7 +12,7 @@ import { useToast } from "../../contexts/ToastContext";
 //   3. Paste it below in place of the empty string
 // Until this is filled in, submitting the form shows a friendly "not yet
 // configured" toast instead of trying to POST.
-const FORMSPREE_ENDPOINT = "";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoepdvd";
 
 function Contact() {
   const { t } = useTranslation();
