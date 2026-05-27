@@ -13,7 +13,7 @@ function Home() {
   usePageMeta({
     title: "Zariff Danial | Portfolio",
     description:
-      "Zariff Danial — Mobile Developer based in Cyberjaya, Malaysia. Flutter and Dart. Explore my projects, experience, and resume.",
+      "Zariff Danial — Mobile Developer based in Klang, Selangor, Malaysia. Flutter and Dart. Explore my projects, experience, and resume.",
   });
 
   return (
