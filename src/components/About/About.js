@@ -13,6 +13,7 @@ import StatsCounter from "./StatsCounter";
 import FeaturedWork from "./FeaturedWork";
 import PressFeaturedIn from "./PressFeaturedIn";
 import Testimonials from "./Testimonials";
+import FAQ from "./FAQ";
 import Contact from "./Contact";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
@@ -105,6 +106,8 @@ function About() {
         <FadeIn>
           <Github />
         </FadeIn>
+
+        <FAQ />
 
         <Contact />
       </Container>

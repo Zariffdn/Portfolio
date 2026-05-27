@@ -51,6 +51,31 @@
     "connectHighlight": "berhubung",
     "connectPost": "dengan saya"
   },
+  "faq": {
+    "headingPre": "Soalan",
+    "headingHighlight": "Lazim",
+    "subtitle": "Jawapan ringkas untuk soalan yang sering ditanya oleh recruiter.",
+    "remote": {
+      "q": "Adakah anda terbuka untuk kerja jarak jauh?",
+      "a": "Ya, sama ada jarak jauh, hibrid, atau di pejabat, mengikut keperluan."
+    },
+    "visa": {
+      "q": "Visa atau kebenaran kerja?",
+      "a": "Warganegara Malaysia. Tidak memerlukan tajaan untuk jawatan di Malaysia."
+    },
+    "notice": {
+      "q": "Tempoh notis di jawatan semasa?",
+      "a": "3 bulan."
+    },
+    "salary": {
+      "q": "Jangkaan gaji?",
+      "a": "Terbuka untuk berbincang, gembira menyelaras dengan kadar pasaran semasa."
+    },
+    "tech": {
+      "q": "Teknologi yang anda ingin gunakan seterusnya?",
+      "a": "Server-side Dart, pembangunan iOS native, atau apa-apa yang menolak senibina mobile ke hadapan."
+    }
+  },
   "contact": {
     "headingPre": "Hubungi",
     "headingHighlight": "Saya",
@@ -205,7 +230,20 @@
   },
   "footer": {
     "developedBy": "Dibangunkan oleh Zariff Danial",
-    "copyright": "Hak Cipta"
+    "copyright": "Hak Cipta",
+    "uses": "Yang Saya Guna"
+  },
+  "uses": {
+    "headingPre": "Apa Yang Saya",
+    "headingHighlight": "Guna",
+    "subtitle": "Perkakasan, editor, dan alat yang saya gunakan setiap hari.",
+    "editor": "Editor & IDE",
+    "languages": "Bahasa & Rangka Kerja",
+    "tools": "Alat & Perkhidmatan",
+    "system": "Sistem & Terminal",
+    "browser": "Pelayar & Produktiviti",
+    "hardware": "Perkakasan",
+    "hardwarePlaceholder": "Tambah laptop, monitor, papan kekunci, fon kepala anda di sini."
   },
   "notFound": {
     "title": "Halaman tidak dijumpai",

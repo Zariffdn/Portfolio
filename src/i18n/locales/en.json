@@ -51,6 +51,31 @@
     "connectHighlight": "connect",
     "connectPost": "with me"
   },
+  "faq": {
+    "headingPre": "Frequently",
+    "headingHighlight": "Asked",
+    "subtitle": "Quick answers to the questions recruiters ask most often.",
+    "remote": {
+      "q": "Are you open to remote work?",
+      "a": "Yes — remote, hybrid, or on-site, whichever fits the role best."
+    },
+    "visa": {
+      "q": "Visa or work authorization?",
+      "a": "Malaysian citizen. No sponsorship needed for Malaysia-based roles."
+    },
+    "notice": {
+      "q": "Notice period at your current role?",
+      "a": "3 months."
+    },
+    "salary": {
+      "q": "Salary expectations?",
+      "a": "Open to discuss — happy to align with market rate for the role and location."
+    },
+    "tech": {
+      "q": "Tech you'd love to work with next?",
+      "a": "Server-side Dart, native iOS development, or anything that pushes mobile architecture forward."
+    }
+  },
   "contact": {
     "headingPre": "Get In",
     "headingHighlight": "Touch",
@@ -205,7 +230,20 @@
   },
   "footer": {
     "developedBy": "Developed by Zariff Danial",
-    "copyright": "Copyright"
+    "copyright": "Copyright",
+    "uses": "Uses"
+  },
+  "uses": {
+    "headingPre": "What I",
+    "headingHighlight": "Use",
+    "subtitle": "The hardware, editor, and tools I work with every day.",
+    "editor": "Editor & IDE",
+    "languages": "Languages & Frameworks",
+    "tools": "Tools & Services",
+    "system": "System & Terminal",
+    "browser": "Browser & Productivity",
+    "hardware": "Hardware",
+    "hardwarePlaceholder": "Add your laptop, monitor, keyboard, headphones, etc."
   },
   "notFound": {
     "title": "Page not found",

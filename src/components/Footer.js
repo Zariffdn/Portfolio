@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -15,7 +16,13 @@ function Footer() {
           <h3>{t("footer.developedBy")}</h3>
         </Col>
         <Col md="4" className="footer-copywright">
-          <h3>{t("footer.copyright")} © {year} ZD</h3>
+          <h3>
+            {t("footer.copyright")} © {year} ZD{" "}
+            <span className="footer-sep" aria-hidden="true">·</span>{" "}
+            <Link to="/uses" className="footer-link">
+              {t("footer.uses")}
+            </Link>
+          </h3>
         </Col>
         <Col md="4" className="footer-body">
           <ul className="footer-icons">
