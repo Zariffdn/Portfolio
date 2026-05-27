@@ -6,18 +6,18 @@ import { useTranslation } from "react-i18next";
 
 const darkPalette = {
   level0: "rgba(255, 255, 255, 0.06)",
-  level1: "#3a1d5c",
-  level2: "#6f1ba8",
-  level3: "#9a3fd1",
-  level4: "#c770f0",
+  level1: "#1e3a5f",
+  level2: "#1d4ed8",
+  level3: "#2563eb",
+  level4: "#3794ff",
 };
 
 const lightPalette = {
-  level0: "rgba(122, 47, 175, 0.1)",
-  level1: "#d4b5f0",
-  level2: "#a86fc9",
-  level3: "#7e3ba5",
-  level4: "#4a0d7e",
+  level0: "rgba(0, 102, 204, 0.1)",
+  level1: "#bfdbfe",
+  level2: "#60a5fa",
+  level3: "#1d4ed8",
+  level4: "#0066cc",
 };
 
 function Github() {
