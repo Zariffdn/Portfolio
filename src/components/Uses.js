@@ -21,7 +21,14 @@ import {
   SiGooglechrome,
   SiArduino,
 } from "react-icons/si";
-import { FaWindows, FaJava, FaTerminal, FaLaptopCode } from "react-icons/fa";
+import {
+  FaWindows,
+  FaJava,
+  FaTerminal,
+  FaLaptopCode,
+  FaMicrochip,
+  FaMemory,
+} from "react-icons/fa";
 import { CgCPlusPlus } from "react-icons/cg";
 
 // Edit any line below to reflect your actual setup. Items with "[edit]" are
@@ -68,9 +75,22 @@ const sections = [
   },
   {
     key: "hardware",
-    placeholder: true,
     items: [
-      { Icon: FaLaptopCode, label: "Laptop", note: "[edit Uses.js to add your model]" },
+      {
+        Icon: FaLaptopCode,
+        label: "Lenovo IdeaPad 1 (15AMN7)",
+        note: "Daily driver — Windows 11, 15.6\" display",
+      },
+      {
+        Icon: FaMicrochip,
+        label: "AMD Ryzen 5 7520U",
+        note: "2.80 GHz with Radeon integrated graphics",
+      },
+      {
+        Icon: FaMemory,
+        label: "16 GB RAM",
+        note: "Plenty of room for Android emulator + IDE",
+      },
     ],
   },
 ];
