@@ -4,7 +4,7 @@ import { useTheme } from "../contexts/ThemeContext";
 
 function Particle() {
   const { theme } = useTheme();
-  const particleColor = theme === "light" ? "#0066cc" : "#ffffff";
+  const particleColor = theme === "light" ? "#3a1d5c" : "#ffffff";
 
   return (
     <Particles
