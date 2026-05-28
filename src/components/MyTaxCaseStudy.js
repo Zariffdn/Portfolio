@@ -152,7 +152,8 @@ function MyTaxCaseStudy() {
                   three distinct mobile ecosystems: iOS via the Apple App
                   Store, Android via Google Play, and Huawei devices via
                   Huawei AppGallery. It has been in continuous production
-                  since 2022 and is currently on version 1.0.48 (build 69).
+                  since 2022 and is currently on version 1.0.48 (build 69),
+                  with over 894,000 active installs on Google Play alone.
                 </p>
               </section>
             </FadeIn>
