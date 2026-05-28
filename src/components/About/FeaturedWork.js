@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { SiHuawei } from "react-icons/si";
 import { HiSparkles } from "react-icons/hi";
+import { HiArrowRight } from "react-icons/hi";
 import FadeIn from "../FadeIn";
 import shot1 from "../../Assets/featured/pic 1.jpeg";
 import shot2 from "../../Assets/featured/pic 2.jpeg";
@@ -97,6 +99,11 @@ function FeaturedWork() {
             </a>
           ))}
         </div>
+
+        <Link to="/mytax" className="featured-work-case-study">
+          {t("about.readCaseStudy")}
+          <HiArrowRight aria-hidden="true" />
+        </Link>
       </article>
     </FadeIn>
   );
