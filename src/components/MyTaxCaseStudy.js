@@ -18,16 +18,19 @@ const storeLinks = [
     Icon: FaApple,
     label: "App Store",
     url: "https://apps.apple.com/my/app/mytax/id1632195676",
+    count: "1.7M+ installs",
   },
   {
     Icon: FaGooglePlay,
     label: "Google Play",
     url: "https://play.google.com/store/apps/details?id=com.lhdn.mytax",
+    count: "894K+ installs",
   },
   {
     Icon: SiHuawei,
     label: "AppGallery",
     url: "https://appgallery.cloud.huawei.com/ag/n/app/C106575285",
+    count: "282K+ installs",
   },
 ];
 
@@ -106,7 +109,7 @@ function MyTaxCaseStudy() {
               <span><strong>Period</strong> · Nov 2025 to Present</span>
             </div>
             <div className="case-study-store-links">
-              {storeLinks.map(({ Icon, label, url }) => (
+              {storeLinks.map(({ Icon, label, url, count }) => (
                 <a
                   key={label}
                   href={url}
@@ -119,9 +122,19 @@ function MyTaxCaseStudy() {
                     <small>Available on</small>
                     <strong>{label}</strong>
                   </span>
+                  {count && (
+                    <span className="store-link-count" aria-label={count}>
+                      {count}
+                    </span>
+                  )}
                 </a>
               ))}
             </div>
+            <p className="case-study-store-caption">
+              Install counts as of May 2026. App Store figure is from
+              App Store Connect analytics; Google Play and AppGallery
+              are publicly visible on each store listing.
+            </p>
           </header>
         </FadeIn>
 
@@ -141,6 +154,27 @@ function MyTaxCaseStudy() {
 
         <Row className="case-study-body">
           <Col lg={8} className="mx-auto">
+            <FadeIn>
+              <section className="case-study-block">
+                <h2>Problem</h2>
+                <p>
+                  Filing income tax in Malaysia traditionally meant queuing
+                  at LHDN branches, navigating a desktop portal, or
+                  completing paper forms. That friction landed hardest on
+                  working taxpayers and on anyone without easy desktop
+                  access.
+                </p>
+                <p>
+                  MyTax brings the full LHDN filing surface to the device
+                  most Malaysians already carry. It handles e-Filing,
+                  payment and refund history, e-KYC onboarding for new
+                  taxpayers, and biometric login, shipped across iOS,
+                  Android, and Huawei AppGallery so no major handset
+                  segment is locked out.
+                </p>
+              </section>
+            </FadeIn>
+
             <FadeIn>
               <section className="case-study-block">
                 <h2>Overview</h2>
@@ -226,6 +260,38 @@ function MyTaxCaseStudy() {
                     </div>
                   ))}
                 </div>
+              </section>
+            </FadeIn>
+
+            <FadeIn>
+              <section className="case-study-block">
+                <h2>Platform &amp; release</h2>
+                <dl className="case-study-facts">
+                  <div>
+                    <dt>Min OS</dt>
+                    <dd>iOS 15+ · Android 9 (API 28)+</dd>
+                  </div>
+                  <div>
+                    <dt>Distribution</dt>
+                    <dd>iOS · Android · Huawei AppGallery (HMS)</dd>
+                  </div>
+                  <div>
+                    <dt>App size</dt>
+                    <dd>100 to 200 MB per platform</dd>
+                  </div>
+                  <div>
+                    <dt>Current version</dt>
+                    <dd>1.0.48 (build 69)</dd>
+                  </div>
+                  <div>
+                    <dt>Latest release</dt>
+                    <dd>May 2026</dd>
+                  </div>
+                  <div>
+                    <dt>Update cadence</dt>
+                    <dd>Roughly monthly</dd>
+                  </div>
+                </dl>
               </section>
             </FadeIn>
 

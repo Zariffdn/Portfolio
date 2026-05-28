@@ -20,6 +20,7 @@ const links = [
     big: "App Store",
     Icon: FaApple,
     aria: "Download MyTax on the App Store",
+    count: "1.7M+ installs",
   },
   {
     kind: "playstore",
@@ -28,6 +29,7 @@ const links = [
     big: "Google Play",
     Icon: FaGooglePlay,
     aria: "Get MyTax on Google Play",
+    count: "894K+ installs",
   },
   {
     kind: "appgallery",
@@ -36,6 +38,7 @@ const links = [
     big: "AppGallery",
     Icon: SiHuawei,
     aria: "Explore MyTax on AppGallery",
+    count: "282K+ installs",
   },
 ];
 
@@ -82,7 +85,7 @@ function FeaturedWork() {
         </div>
 
         <div className="featured-work-links">
-          {links.map(({ kind, url, small, big, Icon, aria }) => (
+          {links.map(({ kind, url, small, big, Icon, aria, count }) => (
             <a
               key={kind}
               href={url}
@@ -96,6 +99,11 @@ function FeaturedWork() {
                 <small>{small}</small>
                 <strong>{big}</strong>
               </span>
+              {count && (
+                <span className="store-link-count" aria-label={count}>
+                  {count}
+                </span>
+              )}
             </a>
           ))}
         </div>
