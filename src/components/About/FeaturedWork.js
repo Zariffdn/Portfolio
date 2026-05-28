@@ -4,6 +4,11 @@ import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { SiHuawei } from "react-icons/si";
 import { HiSparkles } from "react-icons/hi";
 import FadeIn from "../FadeIn";
+import shot1 from "../../Assets/featured/pic 1.jpeg";
+import shot2 from "../../Assets/featured/pic 2.jpeg";
+import shot3 from "../../Assets/featured/pic 3.jpeg";
+
+const screenshots = [shot1, shot2, shot3];
 
 const links = [
   {
@@ -48,6 +53,18 @@ function FeaturedWork() {
         <p className="featured-work-description">
           {t("about.featuredDescription")}
         </p>
+
+        <div className="featured-work-screenshots">
+          {screenshots.map((src, i) => (
+            <div className="featured-work-screenshot" key={i}>
+              <img
+                src={src}
+                alt={`MyTax mobile app screenshot ${i + 1}`}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
 
         <div className="featured-work-stats">
           {[1, 2, 3].map((n) => (

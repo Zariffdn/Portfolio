@@ -169,20 +169,20 @@
       "company": "Zen Computer Systems",
       "period": "November 2025 hingga Kini",
       "meta": "Cyberjaya, Selangor · Di pejabat · Kontrak",
-      "b1": "Bertanggungjawab mengekalkan dan menyokong aplikasi mudah alih MyTax di bawah LHDN.",
-      "b2": "Mencari punca, nyahpepijat, dan menyelesaikan isu teknikal untuk memastikan prestasi aplikasi yang lancar.",
-      "b3": "Melaksanakan pembetulan, kemas kini, dan penambahbaikan secara bebas dari hujung ke hujung.",
-      "b4": "Memastikan kestabilan, kebolehpercayaan, dan pengalaman pengguna yang lancar."
+      "b1": "Mengekalkan aplikasi Flutter produksi yang digunakan oleh pembayar cukai Malaysia di Android, iOS, dan Huawei AppGallery.",
+      "b2": "Nyahpepijat isu khusus platform di pelbagai varian Android OEM dan persekitaran Huawei HMS, di mana Google Mobile Services tidak tersedia.",
+      "b3": "Menguruskan localization sebelah mudah alih untuk Bahasa Malaysia dan Inggeris, selaras dengan konvensyen string yang dikongsi platform web.",
+      "b4": "Bekerjasama dengan pasukan backend untuk integrasi REST API dan konsistensi data merentas keluaran."
     },
     "bestinet": {
       "role": "Mobile Application Developer",
       "company": "Bestinet Sdn Bhd",
       "period": "Julai 2025 hingga November 2025",
       "meta": "Cyberjaya, Selangor · Hibrid · Kontrak",
-      "b1": "Ditugaskan untuk meningkatkan keselamatan log masuk dengan membangunkan aplikasi Pengesah TOTP mudah alih.",
-      "b2": "Membina bahagian hadapan dengan Flutter dan bekerjasama dengan pasukan backend untuk integrasi API yang lancar.",
-      "b3": "Mengoptimumkan prestasi dan menyelesaikan pepijat untuk meningkatkan respons.",
-      "b4": "Meningkatkan kelajuan pengesahan sebanyak 40% dan kepuasan pengguna sebanyak 25%."
+      "b1": "Membina aplikasi pengesah TOTP mudah alih menggunakan Flutter untuk mengukuhkan keselamatan log masuk perusahaan dengan token sekali guna berasaskan masa.",
+      "b2": "Mengoptimumkan latensi pengesahan melalui penstrukturan panggilan API dan caching respons, mengurangkan masa log masuk sebanyak 40% dan meningkatkan kepuasan pengguna sebanyak 25%.",
+      "b3": "Mereka bentuk aliran pengguna yang selamat dan penyimpanan token untuk melindungi rahsia TOTP merentas sesi aplikasi.",
+      "b4": "Bekerjasama dengan jurutera backend untuk integrasi REST API yang kukuh dan boleh diskala."
     }
   },
   "education": {
