@@ -21,7 +21,16 @@ function Footer() {
             <span className="footer-sep" aria-hidden="true">·</span>{" "}
             <Link to="/uses" className="footer-link">
               {t("footer.uses")}
-            </Link>
+            </Link>{" "}
+            <span className="footer-sep" aria-hidden="true">·</span>{" "}
+            <a
+              href="https://github.com/Zariffdn/Portfolio"
+              className="footer-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("footer.viewSource")}
+            </a>
           </h3>
         </Col>
         <Col md="4" className="footer-body">

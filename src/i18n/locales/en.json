@@ -239,7 +239,8 @@
   "footer": {
     "developedBy": "Developed by Zariff Danial",
     "copyright": "Copyright",
-    "uses": "Uses"
+    "uses": "Uses",
+    "viewSource": "View source"
   },
   "uses": {
     "headingPre": "What I",

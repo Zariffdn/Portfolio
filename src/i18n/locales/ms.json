@@ -239,7 +239,8 @@
   "footer": {
     "developedBy": "Dibangunkan oleh Zariff Danial",
     "copyright": "Hak Cipta",
-    "uses": "Yang Saya Guna"
+    "uses": "Yang Saya Guna",
+    "viewSource": "Lihat kod sumber"
   },
   "uses": {
     "headingPre": "Apa Yang Saya",
