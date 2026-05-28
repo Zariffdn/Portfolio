@@ -171,7 +171,7 @@
       "period": "November 2025 hingga Kini",
       "meta": "Cyberjaya, Selangor · Di pejabat · Kontrak",
       "b1": "Mengekalkan aplikasi Flutter produksi yang digunakan oleh pembayar cukai Malaysia di Android, iOS, dan Huawei AppGallery.",
-      "b2": "Nyahpepijat isu khusus platform di pelbagai varian Android OEM dan persekitaran Huawei HMS, di mana Google Mobile Services tidak tersedia.",
+      "b2": "Menyiasat isu khusus platform di iOS, Android, dan binaan Huawei AppGallery yang berjalan dalam persekitaran HMS tanpa Google Mobile Services.",
       "b3": "Menguruskan localization sebelah mudah alih untuk Bahasa Malaysia dan Inggeris, selaras dengan konvensyen string yang dikongsi platform web.",
       "b4": "Bekerjasama dengan pasukan backend untuk integrasi REST API dan konsistensi data merentas keluaran."
     },
