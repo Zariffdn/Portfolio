@@ -1073,6 +1073,25 @@ html[data-theme="light"] .contact-field .form-control {
   cursor: progress;
 }
 
+.contact-submit.is-sent,
+.contact-submit.is-sent:disabled {
+  background-color: #16a34a !important;
+  border-color: #16a34a !important;
+  color: #ffffff !important;
+  opacity: 1;
+  cursor: default;
+  animation: contact-sent-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes contact-sent-pop {
+  0% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 767px) {
   .contact-form {
     padding: 20px 18px 18px;

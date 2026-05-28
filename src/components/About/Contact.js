@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { FiSend } from "react-icons/fi";
+import { FiSend, FiCheck } from "react-icons/fi";
 import FadeIn from "../FadeIn";
 import { useToast } from "../../contexts/ToastContext";
 
@@ -18,6 +18,7 @@ function Contact() {
   const { t } = useTranslation();
   const { showToast } = useToast();
   const [sending, setSending] = useState(false);
+  const [justSent, setJustSent] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +37,8 @@ function Contact() {
       if (response.ok) {
         showToast(t("contact.success"), { icon: "✅" });
         formEl.reset();
+        setJustSent(true);
+        window.setTimeout(() => setJustSent(false), 4000);
       } else {
         throw new Error("Submission failed");
       }
@@ -109,12 +112,21 @@ function Contact() {
                 <Button
                   type="submit"
                   variant="primary"
-                  className="contact-submit"
-                  disabled={sending}
+                  className={`contact-submit ${justSent ? "is-sent" : ""}`}
+                  disabled={sending || justSent}
                 >
-                  <FiSend aria-hidden="true" />
-                  &nbsp;
-                  {sending ? t("contact.sending") : t("contact.send")}
+                  {justSent ? (
+                    <>
+                      <FiCheck aria-hidden="true" />
+                      &nbsp;{t("contact.sent")}
+                    </>
+                  ) : (
+                    <>
+                      <FiSend aria-hidden="true" />
+                      &nbsp;
+                      {sending ? t("contact.sending") : t("contact.send")}
+                    </>
+                  )}
                 </Button>
               </div>
             </Form>
