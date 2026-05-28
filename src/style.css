@@ -792,7 +792,13 @@ html[data-theme="light"] .available-badge:focus-visible {
   height: auto !important;
 }
 
+.project-card > div {
+  height: 100%;
+}
+
 .project-card-view {
+  display: flex !important;
+  flex-direction: column !important;
   box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459) !important;
   color: var(--text-primary) !important;
   background-color: transparent !important;
@@ -804,6 +810,30 @@ html[data-theme="light"] .available-badge:focus-visible {
   transform: scale(1.02) !important;
   overflow: hidden !important;
   box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561) !important;
+}
+
+.project-card-view .card-img-top {
+  aspect-ratio: 16 / 10;
+  width: 100% !important;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card-view .card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+}
+
+.project-card-view .card-text {
+  margin-bottom: 14px !important;
+}
+
+.project-card-actions {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .wakatime-chart {
