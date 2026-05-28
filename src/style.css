@@ -1410,6 +1410,50 @@ html[data-theme="light"] .contact-field .form-control {
   z-index: 1;
 }
 
+.featured-work-screenshots {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 auto 26px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.featured-work-screenshot {
+  flex: 0 1 auto;
+  max-width: 180px;
+  border-radius: 18px;
+  padding: 6px;
+  background: linear-gradient(
+    160deg,
+    rgba(199, 112, 240, 0.25) 0%,
+    rgba(74, 13, 126, 0.15) 100%
+  );
+  border: 1px solid rgba(199, 112, 240, 0.3);
+  box-shadow: 0 14px 28px rgba(89, 4, 168, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-work-screenshot:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 36px rgba(89, 4, 168, 0.4);
+}
+
+.featured-work-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .featured-work-screenshot {
+    max-width: 140px;
+  }
+}
+
 .featured-work-stats {
   display: flex;
   flex-wrap: wrap;

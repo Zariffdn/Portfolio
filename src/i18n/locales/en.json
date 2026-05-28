@@ -169,20 +169,20 @@
       "company": "Zen Computer Systems",
       "period": "November 2025 to Present",
       "meta": "Cyberjaya, Selangor · On-site · Contract",
-      "b1": "Responsible for maintaining and supporting the MyTax mobile application under LHDN.",
-      "b2": "Troubleshoot, debug, and resolve technical issues to ensure smooth app performance.",
-      "b3": "Implement fixes, updates, and improvements independently from end to end.",
-      "b4": "Ensure app stability, reliability, and a seamless user experience."
+      "b1": "Maintain a production Flutter application serving Malaysian taxpayers across Android, iOS, and Huawei AppGallery ecosystems.",
+      "b2": "Debug platform-specific issues across Android OEM variants and the Huawei HMS environment, where Google Mobile Services are not available.",
+      "b3": "Handle mobile-side localization across English and Bahasa Malaysia, aligning with shared string conventions used by the web platform.",
+      "b4": "Collaborate with backend teams on REST API integration and data consistency across releases."
     },
     "bestinet": {
       "role": "Mobile Application Developer",
       "company": "Bestinet Sdn Bhd",
       "period": "July 2025 to November 2025",
       "meta": "Cyberjaya, Selangor · Hybrid · Contract",
-      "b1": "Assigned to enhance login security by developing a mobile TOTP Authenticator app.",
-      "b2": "Built the front-end with Flutter and collaborated with the backend team for smooth API integration.",
-      "b3": "Optimized performance and resolved bugs to improve responsiveness.",
-      "b4": "Improved authentication speed by 40% and user satisfaction by 25%."
+      "b1": "Built a mobile TOTP authenticator app in Flutter to harden enterprise login security with time-based one-time tokens.",
+      "b2": "Optimized authentication latency through API call restructuring and response caching, reducing login time by 40% and lifting user satisfaction by 25%.",
+      "b3": "Designed secure user flows and token storage to keep TOTP secrets safe across app sessions.",
+      "b4": "Collaborated with backend engineers on robust, scalable REST API integration."
     }
   },
   "education": {
