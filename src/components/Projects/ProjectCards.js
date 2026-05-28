@@ -24,24 +24,23 @@ function ProjectCards(props) {
             ))}
           </div>
         )}
-        <Button variant="primary" href={props.ghLink} target="_blank">
-          <BsGithub /> &nbsp;
-          {props.isBlog ? t("projects.blog") : t("projects.github")}
-        </Button>
-        {"\n"}
-        {"\n"}
-
-        {!props.isBlog && props.demoLink && (
-          <Button
-            variant="primary"
-            href={props.demoLink}
-            target="_blank"
-            style={{ marginLeft: "10px" }}
-          >
-            <CgWebsite /> &nbsp;
-            {t("projects.demo")}
+        <div className="project-card-actions">
+          <Button variant="primary" href={props.ghLink} target="_blank">
+            <BsGithub /> &nbsp;
+            {props.isBlog ? t("projects.blog") : t("projects.github")}
           </Button>
-        )}
+
+          {!props.isBlog && props.demoLink && (
+            <Button
+              variant="primary"
+              href={props.demoLink}
+              target="_blank"
+            >
+              <CgWebsite /> &nbsp;
+              {t("projects.demo")}
+            </Button>
+          )}
+        </div>
       </Card.Body>
     </Card>
   );
