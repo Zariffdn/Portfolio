@@ -90,6 +90,7 @@
     "messagePlaceholder": "Tell me a bit about what you have in mind…",
     "send": "Send message",
     "sending": "Sending…",
+    "sent": "Message sent — thanks!",
     "success": "Message sent! I'll get back to you soon.",
     "error": "Couldn't send. Try emailing me at zariffdanial.zul@gmail.com",
     "notConfigured": "Contact form not set up yet. Email me directly!"
