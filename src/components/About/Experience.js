@@ -12,14 +12,17 @@ const keys = [
       {
         kind: "appstore",
         url: "https://apps.apple.com/my/app/mytax/id1632195676",
+        count: "1.7M+ installs",
       },
       {
         kind: "playstore",
         url: "https://play.google.com/store/apps/details?id=com.lhdn.mytax",
+        count: "894K+ installs",
       },
       {
         kind: "appgallery",
         url: "https://appgallery.cloud.huawei.com/ag/n/app/C106575285",
+        count: "282K+ installs",
       },
     ],
   },
@@ -50,6 +53,11 @@ function StoreLinks({ links }) {
                   <small>Download on the</small>
                   <strong>App Store</strong>
                 </span>
+                {link.count && (
+                  <span className="store-link-count" aria-label={link.count}>
+                    {link.count}
+                  </span>
+                )}
               </a>
             );
           }
@@ -68,6 +76,11 @@ function StoreLinks({ links }) {
                   <small>Get it on</small>
                   <strong>Google Play</strong>
                 </span>
+                {link.count && (
+                  <span className="store-link-count" aria-label={link.count}>
+                    {link.count}
+                  </span>
+                )}
               </a>
             );
           }
@@ -86,6 +99,11 @@ function StoreLinks({ links }) {
                   <small>Explore it on</small>
                   <strong>AppGallery</strong>
                 </span>
+                {link.count && (
+                  <span className="store-link-count" aria-label={link.count}>
+                    {link.count}
+                  </span>
+                )}
               </a>
             );
           }
