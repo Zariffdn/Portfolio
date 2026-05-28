@@ -44,12 +44,16 @@ const techStack = [
     items: ["Syncfusion PDF Viewer", "pdf"],
   },
   {
-    group: "Push & Notifications",
+    group: "Push (iOS / Android)",
     items: [
       "Firebase Messaging",
       "Flutter Local Notifications",
       "Overlay Support",
     ],
+  },
+  {
+    group: "Push (Huawei)",
+    items: ["huawei_push (HMS Push Kit)", "Flutter Local Notifications"],
   },
   {
     group: "Camera & Scanning",
@@ -71,9 +75,9 @@ const techStack = [
 
 function MyTaxCaseStudy() {
   usePageMeta({
-    title: "MyTax Case Study — Zariff Danial",
+    title: "MyTax Case Study, Zariff Danial",
     description:
-      "Engineering case study on the MyTax mobile app — Malaysia's official tax filing application maintained by Zariff Danial at Zen Computer Systems, deployed across iOS, Android, and Huawei AppGallery.",
+      "Engineering case study on the MyTax mobile app, Malaysia's official tax filing application maintained by Zariff Danial at Zen Computer Systems and deployed across iOS, Android, and Huawei AppGallery.",
   });
 
   return (
@@ -98,8 +102,8 @@ function MyTaxCaseStudy() {
             <div className="case-study-meta">
               <span><strong>Client</strong> · LHDN Malaysia</span>
               <span><strong>Company</strong> · Zen Computer Systems</span>
-              <span><strong>Role</strong> · Solutions Developer (Mobile)</span>
-              <span><strong>Period</strong> · Nov 2025 – Present</span>
+              <span><strong>Role</strong> · Sole Mobile Developer</span>
+              <span><strong>Period</strong> · Nov 2025 to Present</span>
             </div>
             <div className="case-study-store-links">
               {storeLinks.map(({ Icon, label, url }) => (
@@ -144,12 +148,11 @@ function MyTaxCaseStudy() {
                   MyTax is the official mobile companion to the LHDN tax
                   filing platform. It lets Malaysian taxpayers file returns,
                   view payment and refund history, manage authentication,
-                  and access tax-related services from their phone. The app
-                  ships to three distinct mobile ecosystems — iOS via the
-                  Apple App Store, Android via Google Play, and Huawei
-                  devices via Huawei AppGallery — and has been in
-                  continuous production since 2022, currently on version
-                  1.0.48 (build 69).
+                  and access tax services from their phone. The app ships to
+                  three distinct mobile ecosystems: iOS via the Apple App
+                  Store, Android via Google Play, and Huawei devices via
+                  Huawei AppGallery. It has been in continuous production
+                  since 2022 and is currently on version 1.0.48 (build 69).
                 </p>
               </section>
             </FadeIn>
@@ -158,22 +161,45 @@ function MyTaxCaseStudy() {
               <section className="case-study-block">
                 <h2>My role</h2>
                 <p>
-                  I joined the mobile team in November 2025 as a Solutions
-                  Developer focused on production stability and feature
-                  parity across all three platforms. I do not own the
-                  product roadmap or backend architecture — I work
-                  alongside backend engineers and other mobile developers
-                  to ship updates, debug platform-specific issues, and
-                  keep the app reliable for end users.
+                  I'm the sole mobile developer on MyTax. The rest of the
+                  engineering team focuses on the web platform, so anything
+                  that ships to phones runs through me. I own mobile
+                  end-to-end: bug fixes, releases, platform-specific
+                  adaptations, localization, and feature shipping across
+                  iOS, Android, and Huawei builds.
                 </p>
                 <p>
-                  Concretely, in any given week I might be: tracing an
+                  In practice, in any given week I might be tracing an
                   Android-OEM-specific crash, adapting a feature to work
-                  under Huawei Mobile Services (which doesn't have Google
-                  Mobile Services available), updating Bahasa Malaysia
-                  localization strings to align with the web platform,
-                  or integrating a new API endpoint the backend team
-                  has just shipped.
+                  under Huawei Mobile Services (which has no Google Mobile
+                  Services available), keeping Bahasa Malaysia and English
+                  strings aligned with the web platform's copy, or
+                  integrating a new API endpoint the backend team has just
+                  shipped on the web side.
+                </p>
+              </section>
+            </FadeIn>
+
+            <FadeIn>
+              <section className="case-study-block">
+                <h2>Two codebases, one product</h2>
+                <p>
+                  The Huawei build runs in an environment without Google
+                  Mobile Services, which means Firebase Messaging,
+                  Google-dependent SDKs, and several Google-tied plugins
+                  simply aren't available. Rather than ship a half-working
+                  Huawei version, I maintain a separate Flutter codebase
+                  for Huawei that swaps in HMS-native equivalents,
+                  including the Huawei Push Kit (huawei_push) in place of
+                  Firebase Messaging.
+                </p>
+                <p>
+                  In practice this means features land in the iOS and
+                  Android codebase first, then get ported to the Huawei
+                  codebase with the right HMS adaptations. Both codebases
+                  need to stay in sync on UX, API integration, and
+                  localization so users on every platform get the same
+                  tax-filing experience.
                 </p>
               </section>
             </FadeIn>
@@ -182,9 +208,9 @@ function MyTaxCaseStudy() {
               <section className="case-study-block">
                 <h2>Technical stack</h2>
                 <p>
-                  The app is a single Flutter codebase running across
-                  iOS, Android, and Huawei. Below is the core stack I work
-                  with day-to-day:
+                  Both codebases are Flutter and Dart. Below is the core
+                  stack I work with day-to-day. The Push category is split
+                  because the two codebases use different services:
                 </p>
                 <div className="case-study-tech-grid">
                   {techStack.map((group) => (
@@ -205,43 +231,45 @@ function MyTaxCaseStudy() {
               <section className="case-study-block">
                 <h2>Engineering challenges</h2>
                 <p className="case-study-block-intro">
-                  The interesting work isn't just writing Flutter — it's the
-                  cross-platform and production constraints that come with a
-                  government-grade app at scale.
+                  The interesting work isn't just writing Flutter. It's the
+                  cross-platform and production constraints that come with
+                  a government-grade app at scale.
                 </p>
                 <ul className="case-study-challenges">
                   <li>
                     <strong>Huawei without Google Mobile Services.</strong>
                     {" "}
-                    The Huawei AppGallery build runs in an environment where
-                    Google Mobile Services aren't available. That means
-                    Firebase, Google Maps, and any Google-dependent plugin
-                    needs an HMS fallback or an alternative implementation.
-                    Every release has to be validated against the Huawei
-                    build path separately.
+                    HMS is a parallel ecosystem to GMS. Firebase Messaging,
+                    Google Maps, and any Google-dependent plugin needs a
+                    Huawei-native replacement (huawei_push for messaging,
+                    different geocoding, different in-app purchases). The
+                    separate Huawei codebase exists specifically to handle
+                    this without compromising the iOS/Android build.
                   </li>
                   <li>
                     <strong>Android OEM fragmentation.</strong> Samsung,
-                    Xiaomi, Oppo, Vivo, Huawei, and stock Android all
-                    behave differently around permissions, background
-                    services, and notifications. A crash that only happens
-                    on one OEM's Android 12 build is its own debugging
-                    rabbit hole.
+                    Xiaomi, Oppo, Vivo, Realme, and stock Android all run
+                    customised versions of Android with different
+                    permission systems, different battery-optimisation
+                    rules, and different notification handling. A crash
+                    that only happens on a specific OEM's Android 13 is
+                    its own debugging rabbit hole.
                   </li>
                   <li>
-                    <strong>Localization aligned with the web platform.</strong>
-                    {" "}
-                    Mobile localization strings have to stay consistent with
-                    the existing web platform's Bahasa Malaysia and English
-                    copy, so changes go through a shared review process
-                    rather than mobile owning the translations independently.
+                    <strong>
+                      Localization aligned with the web platform.
+                    </strong>{" "}
+                    Mobile localization strings stay consistent with the
+                    web platform's Bahasa Malaysia and English copy.
+                    Changes to translations go through a shared review
+                    process rather than mobile owning them independently.
                   </li>
                   <li>
-                    <strong>Production reliability for a tax app.</strong>
+                    <strong>Production reliability during filing season.</strong>
                     {" "}
-                    The app sees the heaviest traffic during filing season
-                    (Mar–Apr each year). Every regression has user impact at
-                    scale, so changes are released cautiously with extra QA
+                    Traffic spikes hard in March and April each year. Every
+                    regression has user impact at scale, so changes around
+                    that window are released cautiously with extra QA
                     cycles.
                   </li>
                 </ul>
@@ -253,7 +281,7 @@ function MyTaxCaseStudy() {
                 <h2>Press coverage</h2>
                 <p>
                   MyTax was covered by BERNAMA in February 2026 when LHDN
-                  added e-KYC and digital onboarding for new taxpayers — a
+                  added e-KYC and digital onboarding for new taxpayers, a
                   feature shipped through the mobile app.
                 </p>
                 <a
@@ -280,8 +308,10 @@ function MyTaxCaseStudy() {
                 <h2>What I've learned so far</h2>
                 <ul className="case-study-takeaways">
                   <li>
-                    Cross-platform isn't free — every plugin needs to be
-                    validated on Huawei, not just iOS and Android.
+                    Cross-platform isn't free. Every plugin has to be
+                    validated on Huawei, not just iOS and Android, and
+                    sometimes the answer is a second codebase rather than
+                    a clever runtime check.
                   </li>
                   <li>
                     Production Flutter at scale rewards careful version
@@ -289,11 +319,13 @@ function MyTaxCaseStudy() {
                   </li>
                   <li>
                     Debugging is half the job. Reproducing an OEM-specific
-                    bug on a device you don't own is its own skill.
+                    bug on a device you don't physically own is its own
+                    skill.
                   </li>
                   <li>
-                    Localization is engineering work too — string keys,
-                    pluralization, and review workflows all matter.
+                    Being the sole mobile developer means owning the
+                    boring stuff too: release pipelines, store metadata,
+                    crash triage, and keeping two codebases in sync.
                   </li>
                 </ul>
               </section>
