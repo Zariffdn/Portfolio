@@ -1181,6 +1181,45 @@ html[data-theme="light"] .contact-field .form-control {
   opacity: 0.7;
 }
 
+.testimonials-see-all {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 32px;
+}
+
+.testimonials-see-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(199, 112, 240, 0.08);
+  color: var(--imp-text-color);
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--tech-icon-border);
+  transition: transform 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.testimonials-see-all-link:hover,
+.testimonials-see-all-link:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(199, 112, 240, 0.16);
+  border-color: var(--tech-icon-border-hover);
+  color: var(--imp-text-color);
+  text-decoration: none;
+}
+
+.testimonials-see-all-link svg:first-child {
+  font-size: 1.15em;
+}
+
+.testimonials-see-all-link svg:last-child {
+  opacity: 0.7;
+}
+
 .press-strip {
   display: flex;
   flex-wrap: wrap;

@@ -1,12 +1,14 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaQuoteLeft, FaLinkedin } from "react-icons/fa";
+import { HiOutlineExternalLink } from "react-icons/hi";
 import FadeIn from "../FadeIn";
+import nizamPhoto from "../../Assets/nizam.jpg";
 
 // To add a testimonial: append an object with name, role, company, quote, and
-// optionally an avatar URL (a remote photo or imported image). Leave the array
-// empty to hide the entire section.
+// optionally an avatar (a local imported image — preferred — or a remote URL).
+// Leave the array empty to hide the entire section.
 //
 // Tip: ask for LinkedIn recommendations from a peer, a manager, and a lecturer
 // for the strongest spread.
@@ -18,9 +20,14 @@ const testimonials = [
     company: "Zen Computer Systems",
     quote:
       "Independent developer with the ability to learn something new.",
-    // avatar: "https://media.licdn.com/...", // add Shazlin's LinkedIn photo URL if you want
+    avatar: nizamPhoto,
   },
 ];
+
+// Full LinkedIn recommendations list — shown as a single "see all" link
+// beneath the testimonial grid for visitors who want to verify.
+const RECOMMENDATIONS_URL =
+  "https://www.linkedin.com/in/zariffdanial/details/recommendations/";
 
 function initialOf(name) {
   if (!name) return "?";
@@ -41,7 +48,7 @@ function Testimonials() {
         </h1>
       </FadeIn>
       <Row
-        style={{ justifyContent: "center", paddingBottom: "30px" }}
+        style={{ justifyContent: "center", paddingBottom: "10px" }}
         className="testimonials-row"
       >
         {testimonials.map((tst, i) => (
@@ -76,6 +83,20 @@ function Testimonials() {
           </Col>
         ))}
       </Row>
+      <FadeIn delay={0.15}>
+        <div className="testimonials-see-all">
+          <a
+            href={RECOMMENDATIONS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="testimonials-see-all-link"
+          >
+            <FaLinkedin aria-hidden="true" />
+            <span>{t("about.seeAllRecommendations")}</span>
+            <HiOutlineExternalLink aria-hidden="true" />
+          </a>
+        </div>
+      </FadeIn>
     </>
   );
 }
