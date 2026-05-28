@@ -11,15 +11,15 @@ import FadeIn from "../FadeIn";
 // Tip: ask for LinkedIn recommendations from a peer, a manager, and a lecturer
 // for the strongest spread.
 const testimonials = [
-  // Example shape — uncomment and edit when ready:
-  // {
-  //   id: "peer-zen",
-  //   name: "Coworker Name",
-  //   role: "Mobile Developer",
-  //   company: "Zen Computer Systems",
-  //   quote: "Short quote praising specific work and one or two strengths.",
-  //   avatar: "https://media.licdn.com/...", // optional
-  // },
+  {
+    id: "shazlin-zen",
+    name: "Shazlin Nizam A.",
+    role: "Mobile Developer",
+    company: "Zen Computer Systems",
+    quote:
+      "Independent developer with the ability to learn something new.",
+    // avatar: "https://media.licdn.com/...", // add Shazlin's LinkedIn photo URL if you want
+  },
 ];
 
 function initialOf(name) {
