@@ -102,7 +102,7 @@ function MyTaxCaseStudy() {
             <div className="case-study-meta">
               <span><strong>Client</strong> · LHDN Malaysia</span>
               <span><strong>Company</strong> · Zen Computer Systems</span>
-              <span><strong>Role</strong> · Sole Mobile Developer</span>
+              <span><strong>Role</strong> · Sole Mobile Developer (MyTax)</span>
               <span><strong>Period</strong> · Nov 2025 to Present</span>
             </div>
             <div className="case-study-store-links">
@@ -162,12 +162,13 @@ function MyTaxCaseStudy() {
               <section className="case-study-block">
                 <h2>My role</h2>
                 <p>
-                  I'm the sole mobile developer on MyTax. The rest of the
-                  engineering team focuses on the web platform, so anything
-                  that ships to phones runs through me. I own mobile
-                  end-to-end: bug fixes, releases, platform-specific
-                  adaptations, localization, and feature shipping across
-                  iOS, Android, and Huawei builds.
+                  I'm the sole mobile developer assigned to MyTax. The rest
+                  of the team on this product focuses on the web platform,
+                  so anything that ships to phones for MyTax runs through
+                  me. I own the MyTax mobile surface end-to-end: bug
+                  fixes, releases, platform-specific adaptations,
+                  localization, and feature shipping across iOS, Android,
+                  and Huawei builds.
                 </p>
                 <p>
                   In practice, in any given week I might be investigating
