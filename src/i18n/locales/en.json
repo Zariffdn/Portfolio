@@ -171,7 +171,7 @@
       "period": "November 2025 to Present",
       "meta": "Cyberjaya, Selangor · On-site · Contract",
       "b1": "Maintain a production Flutter application serving Malaysian taxpayers across Android, iOS, and Huawei AppGallery ecosystems.",
-      "b2": "Debug platform-specific issues across Android OEM variants and the Huawei HMS environment, where Google Mobile Services are not available.",
+      "b2": "Investigate platform-specific issues across iOS, Android, and the Huawei AppGallery build, which runs in the HMS environment without Google Mobile Services.",
       "b3": "Handle mobile-side localization across English and Bahasa Malaysia, aligning with shared string conventions used by the web platform.",
       "b4": "Collaborate with backend teams on REST API integration and data consistency across releases."
     },

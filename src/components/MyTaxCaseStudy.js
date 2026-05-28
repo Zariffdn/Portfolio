@@ -169,13 +169,13 @@ function MyTaxCaseStudy() {
                   iOS, Android, and Huawei builds.
                 </p>
                 <p>
-                  In practice, in any given week I might be tracing an
-                  Android-OEM-specific crash, adapting a feature to work
-                  under Huawei Mobile Services (which has no Google Mobile
-                  Services available), keeping Bahasa Malaysia and English
-                  strings aligned with the web platform's copy, or
-                  integrating a new API endpoint the backend team has just
-                  shipped on the web side.
+                  In practice, in any given week I might be investigating
+                  a user-reported issue, adapting a feature for the
+                  Huawei build (which runs in the HMS environment without
+                  Google Mobile Services), keeping Bahasa Malaysia and
+                  English strings aligned with the web platform's copy,
+                  or integrating a new API endpoint the backend team has
+                  just shipped on the web side.
                 </p>
               </section>
             </FadeIn>
@@ -247,13 +247,13 @@ function MyTaxCaseStudy() {
                     this without compromising the iOS/Android build.
                   </li>
                   <li>
-                    <strong>Android OEM fragmentation.</strong> Samsung,
-                    Xiaomi, Oppo, Vivo, Realme, and stock Android all run
-                    customised versions of Android with different
-                    permission systems, different battery-optimisation
-                    rules, and different notification handling. A crash
-                    that only happens on a specific OEM's Android 13 is
-                    its own debugging rabbit hole.
+                    <strong>Solo ownership of the mobile surface.</strong>
+                    {" "}
+                    Being the only mobile developer on a multi-platform
+                    production app means every release, every store
+                    submission, every fix routes through one person. Time
+                    management and prioritisation matter as much as the
+                    code itself.
                   </li>
                   <li>
                     <strong>
@@ -318,14 +318,15 @@ function MyTaxCaseStudy() {
                     pinning and conservative dependency upgrades.
                   </li>
                   <li>
-                    Debugging is half the job. Reproducing an OEM-specific
-                    bug on a device you don't physically own is its own
-                    skill.
-                  </li>
-                  <li>
                     Being the sole mobile developer means owning the
                     boring stuff too: release pipelines, store metadata,
-                    crash triage, and keeping two codebases in sync.
+                    and keeping two codebases in sync.
+                  </li>
+                  <li>
+                    The Android ecosystem is broader than I first thought.
+                    Different device makers behave differently under the
+                    hood, and that's an area I want to invest more
+                    structured testing in as the app evolves.
                   </li>
                 </ul>
               </section>
