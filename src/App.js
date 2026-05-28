@@ -29,6 +29,7 @@ const About = lazy(() => import("./components/About/About"));
 const Projects = lazy(() => import("./components/Projects/Projects"));
 const Resume = lazy(() => import("./components/Resume/ResumeNew"));
 const Uses = lazy(() => import("./components/Uses"));
+const MyTaxCaseStudy = lazy(() => import("./components/MyTaxCaseStudy"));
 const NotFound = lazy(() => import("./components/NotFound"));
 
 const pageVariants = {
@@ -68,6 +69,7 @@ function AnimatedRoutes() {
           <Route path="/about" element={<PageWrap><About /></PageWrap>} />
           <Route path="/resume" element={<PageWrap><Resume /></PageWrap>} />
           <Route path="/uses" element={<PageWrap><Uses /></PageWrap>} />
+          <Route path="/mytax" element={<PageWrap><MyTaxCaseStudy /></PageWrap>} />
           <Route path="*" element={<PageWrap><NotFound /></PageWrap>} />
         </Routes>
       </Suspense>
