@@ -44,6 +44,10 @@ function ResumeNew() {
           </Button>
         </Row>
 
+        <Row style={{ justifyContent: "center" }}>
+          <p className="resume-last-updated">{t("resume.lastUpdated")}</p>
+        </Row>
+
         <Row className="resume">
           <Document
             file={pdf}

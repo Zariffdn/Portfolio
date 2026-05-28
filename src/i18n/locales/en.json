@@ -162,7 +162,11 @@
     "playingGames": "Playing Games",
     "workingOut": "Working Out",
     "listeningMusic": "Listening To Music",
-    "quote": "\"Turning ideas into executable magic!\""
+    "quote": "\"Turning ideas into executable magic!\"",
+    "metaLocationLabel": "Based in",
+    "metaLocationValue": "Klang, Malaysia · GMT+8 · Open to remote, hybrid, or on-site",
+    "metaLanguagesLabel": "Languages",
+    "metaLanguagesValue": "Bahasa Malaysia and English"
   },
   "experience": {
     "zen": {
@@ -229,7 +233,8 @@
     "bookstore_desc": "This web application allows customers to explore a variety of books, create accounts, make purchases, and view their purchase history. Sellers have the ability to manage the book inventory and access pickup details for completed orders. The system provides a seamless way for customers to discover and acquire their favorite books, while empowering sellers with the tools to efficiently manage their book offerings."
   },
   "resume": {
-    "download": "Download CV"
+    "download": "Download CV",
+    "lastUpdated": "Last updated May 2026"
   },
   "footer": {
     "developedBy": "Developed by Zariff Danial",

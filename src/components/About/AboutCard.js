@@ -40,6 +40,17 @@ function AboutCard() {
             </li>
           </ul>
 
+          <dl className="about-card-meta">
+            <div className="about-card-meta-row">
+              <dt>{t("aboutCard.metaLocationLabel")}</dt>
+              <dd>{t("aboutCard.metaLocationValue")}</dd>
+            </div>
+            <div className="about-card-meta-row">
+              <dt>{t("aboutCard.metaLanguagesLabel")}</dt>
+              <dd>{t("aboutCard.metaLanguagesValue")}</dd>
+            </div>
+          </dl>
+
           <p style={{ color: "var(--quote-text)" }}>
             {t("aboutCard.quote")}{" "}
           </p>

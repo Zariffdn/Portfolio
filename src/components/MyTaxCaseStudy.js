@@ -152,6 +152,15 @@ function MyTaxCaseStudy() {
           </section>
         </FadeIn>
 
+        <FadeIn>
+          <div className="case-study-hero-stat" role="figure" aria-label="2.8 million plus lifetime installs across iOS, Android, and Huawei">
+            <div className="case-study-hero-stat-value">2.8M+</div>
+            <div className="case-study-hero-stat-label">
+              Lifetime installs across iOS, Android, and Huawei
+            </div>
+          </div>
+        </FadeIn>
+
         <Row className="case-study-body">
           <Col lg={8} className="mx-auto">
             <FadeIn>

@@ -1632,6 +1632,79 @@ html[data-theme="light"] .contact-field .form-control {
   line-height: 1.55;
 }
 
+.case-study-hero-stat {
+  margin: 8px auto 40px;
+  padding: 22px 28px;
+  max-width: 720px;
+  text-align: center;
+  background: linear-gradient(
+    160deg,
+    rgba(199, 112, 240, 0.14) 0%,
+    rgba(74, 13, 126, 0.05) 100%
+  );
+  border: 1px solid rgba(199, 112, 240, 0.32);
+  border-radius: 18px;
+  box-shadow: 0 12px 24px rgba(89, 4, 168, 0.18);
+}
+
+.case-study-hero-stat-value {
+  font-size: 2.8em;
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--imp-text-color);
+  letter-spacing: -1px;
+}
+
+.case-study-hero-stat-label {
+  font-size: 0.95em;
+  color: var(--text-primary);
+  opacity: 0.82;
+  margin-top: 6px;
+  letter-spacing: 0.2px;
+}
+
+.resume-last-updated {
+  text-align: center;
+  font-size: 0.85em;
+  color: var(--text-primary);
+  opacity: 0.6;
+  margin: 10px 0 6px;
+  font-style: italic;
+}
+
+.about-card-meta {
+  margin: 22px 0 18px;
+  padding: 16px 0 4px;
+  border-top: 1px solid var(--tech-icon-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-card-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  font-size: 0.9em;
+  color: var(--text-primary);
+}
+
+.about-card-meta-row dt {
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--imp-text-color);
+  font-weight: 700;
+  margin: 0;
+}
+
+.about-card-meta-row dd {
+  margin: 0;
+  opacity: 0.88;
+  font-weight: 500;
+}
+
 .case-study-facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

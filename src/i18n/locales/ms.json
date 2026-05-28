@@ -162,7 +162,11 @@
     "playingGames": "Bermain Permainan",
     "workingOut": "Bersenam",
     "listeningMusic": "Mendengar Muzik",
-    "quote": "\"Mengubah idea menjadi magik yang boleh dilaksanakan!\""
+    "quote": "\"Mengubah idea menjadi magik yang boleh dilaksanakan!\"",
+    "metaLocationLabel": "Berpangkalan di",
+    "metaLocationValue": "Klang, Malaysia · GMT+8 · Terbuka untuk kerja jarak jauh, hibrid, atau di pejabat",
+    "metaLanguagesLabel": "Bahasa",
+    "metaLanguagesValue": "Bahasa Malaysia dan Bahasa Inggeris"
   },
   "experience": {
     "zen": {
@@ -229,7 +233,8 @@
     "bookstore_desc": "Aplikasi web ini membolehkan pelanggan meneroka pelbagai buku, mencipta akaun, membuat pembelian, dan melihat sejarah pembelian mereka. Penjual mempunyai keupayaan untuk menguruskan inventori buku dan mengakses butiran pengambilan untuk pesanan yang selesai. Sistem ini menyediakan cara yang lancar untuk pelanggan menemui dan memperoleh buku kegemaran mereka, sambil memperkasakan penjual dengan alat untuk menguruskan tawaran buku mereka dengan cekap."
   },
   "resume": {
-    "download": "Muat Turun CV"
+    "download": "Muat Turun CV",
+    "lastUpdated": "Dikemaskini Mei 2026"
   },
   "footer": {
     "developedBy": "Dibangunkan oleh Zariff Danial",
