@@ -5,11 +5,19 @@ import Particle from "../Particle";
 import bag from "../../Assets/Projects/bag.png";
 import movie from "../../Assets/Projects/movie.png";
 import bookstore from "../../Assets/Projects/bookstore.png";
+import silentsupport from "../../Assets/Projects/silentsupport.png";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
 import FadeIn from "../FadeIn";
 
 const projects = [
+  {
+    id: "silentsupport",
+    category: "mobile",
+    img: silentsupport,
+    tags: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
+    ghLink: "https://github.com/Zariffdn/Silent-Support-App",
+  },
   {
     id: "baglock",
     category: "embedded",
