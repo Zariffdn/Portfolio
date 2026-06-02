@@ -225,6 +225,8 @@
     "github": "GitHub",
     "demo": "Demo",
     "blog": "Blog",
+    "silentsupport_title": "Silent Support",
+    "silentsupport_desc": "A private emotional space for moments when feelings are heavy but words feel impossible. Instead of typing or explaining, you tap how you feel and receive a calm, validating response, with optional breathing and grounding exercises. The app quietly records your emotional patterns over time so you can look back gently. Built solo as an MVP with React Native (Expo), TypeScript, Supabase for auth and storage, and the OpenAI API for grounding responses.",
     "baglock_title": "Anti-theft fingerprint baglock",
     "baglock_desc": "This project implements an anti-theft system using a fingerprint scanner, GPS module, and GSM module to protect a bag or backpack. The system allows authorized users to unlock the bag using their fingerprints while sending GPS coordinates to a predefined number in case of unauthorized access.",
     "movie_title": "Movie ticket",
