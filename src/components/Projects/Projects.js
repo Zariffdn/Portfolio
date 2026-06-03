@@ -15,6 +15,7 @@ const projects = [
     id: "silentsupport",
     category: "mobile",
     img: silentsupport,
+    personal: true,
     tags: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
     ghLink: "https://github.com/Zariffdn/Silent-Support-App",
   },
@@ -100,6 +101,7 @@ function Projects() {
                     description={t(`projects.${p.id}_desc`)}
                     ghLink={p.ghLink}
                     tags={p.tags}
+                    personal={p.personal}
                   />
                 </FadeIn>
               </Col>

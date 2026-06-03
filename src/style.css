@@ -2493,6 +2493,24 @@ html[data-theme="light"] .project-filter-btn.is-active {
   color: #ffffff;
 }
 
+.project-card-media {
+  position: relative;
+}
+
+.project-personal-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 12px;
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background-color: var(--imp-text-color);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;

@@ -225,6 +225,7 @@
     "github": "GitHub",
     "demo": "Demo",
     "blog": "Blog",
+    "personalBadge": "Projek peribadi",
     "silentsupport_title": "Silent Support",
     "silentsupport_desc": "Ruang emosi peribadi untuk saat-saat apabila perasaan terasa berat tetapi kata-kata terasa mustahil. Tanpa perlu menaip atau menerangkan, anda hanya ketik bagaimana perasaan anda dan menerima respons yang tenang dan mengiktiraf, dengan latihan pernafasan dan grounding pilihan. Aplikasi ini merekod corak emosi anda dari semasa ke semasa supaya anda boleh mengimbau kembali dengan lembut. Dibina secara solo sebagai MVP menggunakan React Native (Expo), TypeScript, Supabase untuk pengesahan dan storan, serta OpenAI API untuk respons grounding.",
     "baglock_title": "Kunci Beg Cap Jari Anti-Kecurian",
