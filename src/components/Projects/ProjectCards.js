@@ -9,7 +9,14 @@ function ProjectCards(props) {
   const { t } = useTranslation();
   return (
     <Card className="project-card-view">
-      <Card.Img variant="top" src={props.imgPath} alt="card-img" />
+      <div className="project-card-media">
+        <Card.Img variant="top" src={props.imgPath} alt="card-img" />
+        {props.personal && (
+          <span className="project-personal-badge">
+            {t("projects.personalBadge")}
+          </span>
+        )}
+      </div>
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Text style={{ textAlign: "justify" }}>

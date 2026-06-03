@@ -11,9 +11,9 @@
     </linearGradient>
     <clipPath id='screenClip'><rect x='487' y='62' width='306' height='676' rx='40'/></clipPath>
   </defs>
-  <rect width='1280' height='800' fill='url(#bg)'/>
+  <rect width='1280' height='800' fill='none'/>
   <!-- soft shadow under phone -->
-  <ellipse cx='640' cy='752' rx='150' ry='22' fill='#000000' opacity='0.45'/>
+  <ellipse cx='640' cy='752' rx='150' ry='22' fill='#000000' opacity='0.22'/>
   <!-- phone body -->
   <rect x='471' y='46' width='338' height='708' rx='56' fill='url(#phone)' stroke='#3C4160' stroke-width='2'/>
   <!-- screen base -->
