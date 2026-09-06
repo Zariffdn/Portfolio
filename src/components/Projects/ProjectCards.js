@@ -16,6 +16,11 @@ function ProjectCards(props) {
             {t("projects.personalBadge")}
           </span>
         )}
+        {props.proprietary && (
+          <span className="project-personal-badge">
+            {t("projects.proprietaryBadge")}
+          </span>
+        )}
       </div>
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
@@ -32,10 +37,12 @@ function ProjectCards(props) {
           </div>
         )}
         <div className="project-card-actions">
-          <Button variant="primary" href={props.ghLink} target="_blank">
-            <BsGithub /> &nbsp;
-            {props.isBlog ? t("projects.blog") : t("projects.github")}
-          </Button>
+          {props.ghLink && (
+            <Button variant="primary" href={props.ghLink} target="_blank">
+              <BsGithub /> &nbsp;
+              {props.isBlog ? t("projects.blog") : t("projects.github")}
+            </Button>
+          )}
 
           {!props.isBlog && props.demoLink && (
             <Button
