@@ -6,7 +6,7 @@ import FadeIn from "../FadeIn";
 const stats = [
   { value: 80, suffix: "+", label: "certifications" },
   { value: 14, suffix: "+", label: "technologies" },
-  { value: 2, suffix: "", label: "appsShipped" },
+  { value: 1, suffix: "", label: "appsShipped" },
   { value: 5, suffix: "+", label: "yearsCoding" },
 ];
 

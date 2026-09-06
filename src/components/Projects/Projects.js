@@ -6,6 +6,7 @@ import bag from "../../Assets/Projects/bag.png";
 import movie from "../../Assets/Projects/movie.png";
 import bookstore from "../../Assets/Projects/bookstore.png";
 import silentsupport from "../../Assets/Projects/silentsupport.svg";
+import bestinet from "../../Assets/Projects/bestinet.svg";
 import usePageMeta from "../../hooks/usePageMeta";
 import { useTranslation } from "react-i18next";
 import FadeIn from "../FadeIn";
@@ -18,6 +19,13 @@ const projects = [
     personal: true,
     tags: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
     ghLink: "https://github.com/Zariffdn/Silent-Support-App",
+  },
+  {
+    id: "bestinet",
+    category: "mobile",
+    img: bestinet,
+    proprietary: true,
+    tags: ["Flutter", "Dart", "GetX", "TOTP", "Secure storage"],
   },
   {
     id: "baglock",
@@ -102,6 +110,7 @@ function Projects() {
                     ghLink={p.ghLink}
                     tags={p.tags}
                     personal={p.personal}
+                    proprietary={p.proprietary}
                   />
                 </FadeIn>
               </Col>
