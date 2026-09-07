@@ -184,10 +184,10 @@
       "company": "Bestinet Sdn Bhd",
       "period": "July 2025 to November 2025",
       "meta": "Research & Development · Cyberjaya, Selangor · Hybrid · Contract",
-      "b1": "Took over a broken TOTP feature in an internal Flutter authenticator app — the one-time code never appeared on screen — and got it generating and displaying correctly.",
+      "b1": "Took over a broken TOTP feature in an internal Flutter authenticator app where the one-time code never appeared on screen, and got it generating and displaying correctly.",
       "b2": "Traced the failure with a numbered step-by-step trace through the generation chain and found two defects: the controller's init routine was never called from the view layer, and an invalid type cast on a secure-storage read threw on any device that was already enrolled.",
-      "b3": "Hardened the TOTP generation path — wrapped code generation in error handling and made a failed device or secret-key lookup return early instead of generating a code from an empty key.",
-      "b4": "Built the authenticator screen to the design I was given — a countdown ring tied to the 30-second refresh window and the code rendered digit by digit — and applied the same supplied branding to the app shell and login screen."
+      "b3": "Hardened the TOTP generation path by wrapping code generation in error handling and making a failed device or secret-key lookup return early instead of generating a code from an empty key.",
+      "b4": "Built the authenticator screen to the design I was given, with a countdown ring tied to the 30-second refresh window and the code rendered digit by digit, then applied the same supplied branding to the app shell and login screen."
     }
   },
   "education": {
@@ -228,7 +228,7 @@
     "personalBadge": "Personal project",
     "proprietaryBadge": "Client work · code proprietary",
     "bestinet_title": "TOTP authenticator (client work)",
-    "bestinet_desc": "An internal Flutter authenticator app I worked on at Bestinet's R&D team. The TOTP feature was already written but never produced a code on screen, so my job was to find out why and make it work. I traced the generation chain step by step and found two faults: the controller's init routine was never triggered from the view layer, and a bad type cast on a secure-storage read threw on devices that were already enrolled, failing silently inside a swallowed error handler. I fixed both, then hardened the path so a failed secret lookup stops cleanly instead of generating from an empty key. Once codes were generating I built the screen to the design I was given — a countdown ring tied to the 30-second window and the code laid out digit by digit, keeping the existing tap-to-copy. The code belongs to the client, so there is no repository to link.",
+    "bestinet_desc": "An internal Flutter authenticator app I worked on at Bestinet's R&D team. The TOTP feature was already written but never produced a code on screen, so my job was to find out why and make it work. I traced the generation chain step by step and found two faults: the controller's init routine was never triggered from the view layer, and a bad type cast on a secure-storage read threw on devices that were already enrolled, failing silently inside a swallowed error handler. I fixed both, then hardened the path so a failed secret lookup stops cleanly instead of generating from an empty key. Once codes were generating I built the screen to the design I was given, with a countdown ring tied to the 30-second window and the code laid out digit by digit, keeping the existing tap-to-copy. The code belongs to the client, so there is no repository to link.",
     "silentsupport_title": "Silent Support",
     "silentsupport_desc": "A private emotional space for moments when feelings are heavy but words feel impossible. Instead of typing or explaining, you tap how you feel and receive a calm, validating response, with optional breathing and grounding exercises. The app quietly records your emotional patterns over time so you can look back gently. Built solo as an MVP with React Native (Expo), TypeScript, Supabase for auth and storage, and the OpenAI API for grounding responses.",
     "baglock_title": "Anti-theft fingerprint baglock",
