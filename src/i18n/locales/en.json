@@ -6,12 +6,44 @@
     "resume": "Resume",
     "toggleLightAria": "Switch to light mode",
     "toggleDarkAria": "Switch to dark mode",
-    "toggleLanguageAria": "Switch language"
+    "toggleLanguageAria": "Switch language",
+    "menu": "Main",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "locationLine": "Klang, MY · GMT+8",
+    "wordmarkAria": "Zariff Danial, home",
+    "socialAria": "Social links"
   },
   "home": {
-    "greeting": "Hi There!",
-    "iam": "I'M",
-    "availableForHire": "Available for hire · 3-month notice"
+    "availableForHire": "Available for hire · 3-month notice",
+    "heroLine1": "Malaysia files its taxes",
+    "heroLine2": "on an app I ship.",
+    "heroLead": "I am Zariff Danial, a Flutter developer at Zen Computer Systems and the sole mobile developer on LHDN’s MyTax, live on iOS, Android and Huawei AppGallery.",
+    "ctaWork": "See the work",
+    "ctaContact": "Get in touch",
+    "proofInstallsValue": "2.8M+",
+    "proofInstallsLabel": "lifetime installs",
+    "proofStoresValue": "3",
+    "proofStoresLabel": "app stores",
+    "proofPressValue": "BERNAMA",
+    "proofPressLabel": "press coverage",
+    "proofSinceValue": "2022",
+    "proofSinceLabel": "in production since",
+    "phoneAlt": "MyTax app screenshot",
+    "featuredEyebrow": "Currently shipping",
+    "workEyebrow": "Selected work",
+    "workTitle": "Things I have built and fixed",
+    "workLead": "Production apps, a personal MVP, and the university projects that got me started.",
+    "workAll": "All projects",
+    "aboutEyebrow": "About",
+    "aboutTitle": "Mobile developer from Klang, shipping to three app stores.",
+    "aboutBody": "Day to day I work in Flutter and Dart, maintaining and extending MyTax for Malaysian taxpayers. Before that I fixed a broken TOTP feature in Bestinet’s R&D department. From earlier projects I am comfortable with C++, Python, JavaScript and PHP, with a side interest in front-end web.",
+    "aboutMore": "More about me",
+    "ctaEyebrow": "Get in touch",
+    "ctaTitle": "Have a role or a project in mind?",
+    "ctaBody": "I am open to remote, hybrid or on-site work in Malaysia. Three-month notice.",
+    "ctaButton": "Start a conversation",
+    "ctaEmail": "or email zariffdanial.zul@gmail.com"
   },
   "backToTop": "Back to top",
   "toast": {
@@ -24,40 +56,13 @@
     "title": "You found the easter egg!",
     "subtitle": "Thanks for poking around. ↑↑↓↓←→←→ B A"
   },
-  "typewriter": {
-    "mobile": "Mobile App Developer",
-    "flutter": "Flutter Developer",
-    "web": "Web Developer",
-    "programmer": "Programmer"
-  },
-  "home2": {
-    "headingPre": "LET ME",
-    "headingHighlight": "INTRODUCE",
-    "headingPost": "MYSELF",
-    "bioP1": "I'm a developer who loves turning ideas into apps people can actually tap, swipe, and use. 📱 Still picking up new tricks every day, and enjoying the ride.",
-    "bioP2_pre": "Day to day, I work with",
-    "bioP2_flutterDart": "Flutter and Dart",
-    "bioP2_mid": "at Zen Computer Systems, maintaining the MyTax mobile app under LHDN with over 894,000 active installs on Google Play alone. From earlier projects I'm also comfortable with",
-    "bioP2_langs": "C++, Python, JavaScript, and PHP.",
-    "bioP3_pre": "My focus is",
-    "bioP3_mobileDev": "Mobile Development",
-    "bioP3_mid": ": building clean UIs and smooth user experiences across",
-    "bioP3_platforms": "iOS and Android",
-    "bioP3_mid2": ", with a side interest in",
-    "bioP3_frontend": "Front-End",
-    "bioP3_post": "web work.",
-    "findMeOn": "FIND ME ON",
-    "connectPre": "Feel free to",
-    "connectHighlight": "connect",
-    "connectPost": "with me"
-  },
   "faq": {
     "headingPre": "Frequently",
     "headingHighlight": "Asked",
     "subtitle": "Quick answers to the questions recruiters ask most often.",
     "remote": {
       "q": "Are you open to remote work?",
-      "a": "Yes — remote, hybrid, or on-site, whichever fits the role best."
+      "a": "Yes. Remote, hybrid, or on-site, whichever fits the role best."
     },
     "visa": {
       "q": "Visa or work authorization?",
@@ -69,7 +74,7 @@
     },
     "salary": {
       "q": "Salary expectations?",
-      "a": "Open to discuss — happy to align with market rate for the role and location."
+      "a": "Open to discussion. Happy to align with market rate for the role and location."
     },
     "tech": {
       "q": "Tech you'd love to work with next?",
@@ -90,7 +95,7 @@
     "messagePlaceholder": "Tell me a bit about what you have in mind…",
     "send": "Send message",
     "sending": "Sending…",
-    "sent": "Message sent — thanks!",
+    "sent": "Message sent, thanks!",
     "success": "Message sent! I'll get back to you soon.",
     "error": "Couldn't send. Try emailing me at zariffdanial.zul@gmail.com",
     "notConfigured": "Contact form not set up yet. Email me directly!"
@@ -98,14 +103,8 @@
   "stats": {
     "certifications": "Certifications",
     "technologies": "Technologies",
-    "appsShipped": "Apps in production",
+    "appsShipped": "App in production",
     "yearsCoding": "Years coding"
-  },
-  "wakatime": {
-    "headingPre": "Coding",
-    "headingHighlight": "Activity",
-    "cardTitle": "My coding stats (last 7 days)",
-    "alt": "Top programming languages from Wakatime"
   },
   "about": {
     "knowMePre": "Know Who",
@@ -143,14 +142,15 @@
     "toolsHighlight": "Tools",
     "toolsPost": "I use",
     "daysICodePre": "Days I",
-    "daysICodeHighlight": "Code"
+    "daysICodeHighlight": "Code",
+    "stackLead": "Languages, frameworks and the tools around them."
   },
   "aboutCard": {
-    "intro_pre": "Hi Everyone, I am",
+    "intro_pre": "I am",
     "intro_name": "Zariff Danial",
     "intro_from": "from",
     "intro_location": "Klang, Selangor.",
-    "degree": "I am a Graduate in BACHELOR OF COMPUTER SCIENCE (HONS.) NETCENTRIC COMPUTING",
+    "degree": "I graduated with a Bachelor of Computer Science (Hons.) in Netcentric Computing from UiTM.",
     "currentRole_pre": "I'm currently a",
     "currentRole_title": "Solutions Developer",
     "currentRole_at": "at",
@@ -166,7 +166,8 @@
     "metaLocationLabel": "Based in",
     "metaLocationValue": "Klang, Malaysia · GMT+8 · Open to remote, hybrid, or on-site",
     "metaLanguagesLabel": "Languages",
-    "metaLanguagesValue": "Bahasa Malaysia and English"
+    "metaLanguagesValue": "Bahasa Malaysia and English",
+    "hobbiesLabel": "Off the clock"
   },
   "experience": {
     "zen": {
@@ -236,17 +237,31 @@
     "movie_title": "Movie ticket",
     "movie_desc": "The Movie Ticket Booking System is a web-based application that facilitates easy and convenient booking, cancellation, and management of movie tickets. With separate user and admin interfaces, the system offers a streamlined experience for both users and administrators.",
     "bookstore_title": "Bookstore",
-    "bookstore_desc": "This web application allows customers to explore a variety of books, create accounts, make purchases, and view their purchase history. Sellers have the ability to manage the book inventory and access pickup details for completed orders. The system provides a seamless way for customers to discover and acquire their favorite books, while empowering sellers with the tools to efficiently manage their book offerings."
+    "bookstore_desc": "This web application allows customers to explore a variety of books, create accounts, make purchases, and view their purchase history. Sellers have the ability to manage the book inventory and access pickup details for completed orders. The system provides a seamless way for customers to discover and acquire their favorite books, while empowering sellers with the tools to efficiently manage their book offerings.",
+    "eyebrow": "Projects",
+    "featuredEyebrow": "Featured",
+    "featuredCta": "Read the case study",
+    "viewCode": "View code",
+    "noRepo": "No public repo",
+    "productionBadge": "In production",
+    "mytax_title": "MyTax",
+    "mytax_desc": "Malaysia’s official income tax filing app, used by taxpayers nationwide. I am the sole mobile developer, shipping fixes and features across iOS, Android and Huawei AppGallery for LHDN, including a separate HMS codebase for Huawei devices."
   },
   "resume": {
     "download": "Download CV",
-    "lastUpdated": "Last updated May 2026"
+    "lastUpdated": "Last updated May 2026",
+    "loading": "Loading resume",
+    "loadError": "The resume could not be displayed here. Use the download button to open it."
   },
   "footer": {
     "developedBy": "Developed by Zariff Danial",
     "copyright": "Copyright",
     "uses": "Uses",
-    "viewSource": "View source"
+    "viewSource": "View source",
+    "tagline": "Mobile developer, Flutter and Dart. Klang, Malaysia.",
+    "nav": "Navigate",
+    "elsewhere": "Elsewhere",
+    "builtWith": "Built with React, deployed on Vercel."
   },
   "uses": {
     "headingPre": "What I",
@@ -256,13 +271,67 @@
     "languages": "Languages & Frameworks",
     "tools": "Tools & Services",
     "system": "System & Terminal",
-    "browser": "Browser & Productivity",
     "hardware": "Hardware",
-    "hardwarePlaceholder": "Add your laptop, monitor, keyboard, headphones, etc."
+    "notes": {
+      "vscode": "Default Dark+ theme",
+      "androidStudio": "For Flutter & Android builds",
+      "git": "Source control",
+      "flutter": "Primary mobile framework",
+      "dart": "Day-to-day language",
+      "javascript": "Web work & this portfolio",
+      "cpp": "Embedded / Arduino projects",
+      "php": "Earlier web projects",
+      "python": "Data science / scripting",
+      "java": "University & Android basics",
+      "postman": "API testing",
+      "figma": "UI mockups & handoff",
+      "npm": "JS package manager",
+      "gradle": "Android builds",
+      "arduino": "Microcontroller projects",
+      "windows": "Daily driver OS",
+      "powershell": "Default terminal",
+      "chrome": "Primary browser",
+      "zephyrus": "Personal rig, where I built my early projects (baglock, bookstore, movie ticket). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
+      "ideapad": "Work daily driver at Zen for MyTax mobile dev. Ryzen 5 7520U · 16 GB RAM · Windows 11"
+    }
   },
   "notFound": {
     "title": "Page not found",
     "desc": "Looks like this page took a wrong turn. The link might be broken or the page may have moved.",
-    "takeMeHome": "Take me home"
+    "takeMeHome": "Take me home",
+    "eyebrow": "Error 404"
+  },
+  "skipToContent": "Skip to content",
+  "store": {
+    "appstore": {
+      "small": "Download on the",
+      "aria": "Download MyTax on the App Store",
+      "count": "1.7M+ installs"
+    },
+    "playstore": {
+      "small": "Get it on",
+      "aria": "Get MyTax on Google Play",
+      "count": "894K+ installs"
+    },
+    "appgallery": {
+      "small": "Explore it on",
+      "aria": "Explore MyTax on AppGallery",
+      "count": "282K+ installs"
+    }
+  },
+  "meta": {
+    "home": "Zariff Danial · Mobile Developer (Flutter)",
+    "homeDesc": "Zariff Danial, mobile developer in Klang, Selangor. Flutter and Dart. Sole mobile developer on MyTax, Malaysia’s official tax filing app.",
+    "about": "About · Zariff Danial",
+    "aboutDesc": "Mobile developer at Zen Computer Systems. Flutter and Dart, currently working on the MyTax mobile app under LHDN.",
+    "projects": "Projects · Zariff Danial",
+    "projectsDesc": "A selection of projects by Zariff Danial: mobile apps, embedded systems, and web applications.",
+    "resume": "Resume · Zariff Danial",
+    "resumeDesc": "Download or view the resume of Zariff Danial.",
+    "uses": "Uses · Zariff Danial",
+    "usesDesc": "The hardware, editor, languages, and tools Zariff Danial uses day to day for mobile development.",
+    "mytax": "MyTax Case Study · Zariff Danial",
+    "notFound": "404 · Zariff Danial",
+    "notFoundDesc": "The page you are looking for does not exist."
   }
 }

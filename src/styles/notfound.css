@@ -1,0 +1,49 @@
+/* ==========================================================================
+   404 page
+   A short centred message over a huge, faint decorative numeral.
+   ========================================================================== */
+
+.section.notfound {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.notfound__content {
+  position: relative;
+  z-index: 1;
+}
+
+.notfound__content .eyebrow {
+  margin-bottom: var(--s-4);
+}
+
+.notfound__desc {
+  max-width: 44ch;
+  margin-top: var(--s-4);
+  margin-inline: auto;
+}
+
+.notfound__cta {
+  margin-top: var(--s-8);
+}
+
+/* Decorative numeral behind the copy */
+.notfound__numeral {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 30vw, 20rem);
+  font-weight: 800;
+  letter-spacing: var(--track-display);
+  line-height: 1;
+  color: var(--bg-3);
+  user-select: none;
+  pointer-events: none;
+}

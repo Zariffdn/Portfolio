@@ -1,76 +1,67 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FiGithub, FiLinkedin, FiMail, FiArrowUpRight } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import Wordmark from "./ui/Wordmark";
 
 function Footer() {
   const { t } = useTranslation();
-  let date = new Date();
-  let year = date.getFullYear();
+  const year = new Date().getFullYear();
+
   return (
-    <Container fluid className="footer">
-      <Row>
-        <Col md="4" className="footer-copywright">
-          <h3>{t("footer.developedBy")}</h3>
-        </Col>
-        <Col md="4" className="footer-copywright">
-          <h3>
-            {t("footer.copyright")} © {year} ZD{" "}
-            <span className="footer-sep" aria-hidden="true">·</span>{" "}
-            <Link to="/uses" className="footer-link">
-              {t("footer.uses")}
-            </Link>{" "}
-            <span className="footer-sep" aria-hidden="true">·</span>{" "}
-            <a
-              href="https://github.com/Zariffdn/Portfolio"
-              className="footer-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t("footer.viewSource")}
-            </a>
-          </h3>
-        </Col>
-        <Col md="4" className="footer-body">
-          <ul className="footer-icons">
-            <li className="social-icons">
-              <a
-                href="https://github.com/Zariffdn"
-                style={{ color: "var(--text-primary)" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <AiFillGithub />
-              </a>
-            </li>
- 
-            <li className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/zariffdanial/"
-                style={{ color: "var(--text-primary)" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedinIn />
-              </a>
-            </li>
+    <footer className="footer">
+      <div className="container">
+        <div className="footer__grid">
+          <div className="footer__brand">
+            <Wordmark aria-label={t("navbar.wordmarkAria")} />
+            <p className="footer__tagline">{t("footer.tagline")}</p>
+          </div>
 
-            <li className="social-icons">
-              <a
-                href="mailto:zariffdanial.zul@gmail.com"
-                style={{ color: "var(--text-primary)" }}
-                aria-label="Email Zariff"
-              >
-                <AiOutlineMail />
-              </a>
-            </li>
+          <div className="footer__col">
+            <h2 className="footer__heading">{t("footer.nav")}</h2>
+            <ul>
+              <li><Link to="/">{t("navbar.home")}</Link></li>
+              <li><Link to="/about">{t("navbar.about")}</Link></li>
+              <li><Link to="/project">{t("navbar.projects")}</Link></li>
+              <li><Link to="/resume">{t("navbar.resume")}</Link></li>
+              <li><Link to="/uses">{t("footer.uses")}</Link></li>
+              <li><Link to="/mytax">MyTax</Link></li>
+            </ul>
+          </div>
 
-          </ul>
-        </Col>
-      </Row>
-    </Container>
+          <div className="footer__col">
+            <h2 className="footer__heading">{t("footer.elsewhere")}</h2>
+            <ul>
+              <li>
+                <a href="https://github.com/Zariffdn" target="_blank" rel="noopener noreferrer">
+                  <FiGithub aria-hidden="true" /> GitHub
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/zariffdanial/" target="_blank" rel="noopener noreferrer">
+                  <FiLinkedin aria-hidden="true" /> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="mailto:zariffdanial.zul@gmail.com">
+                  <FiMail aria-hidden="true" /> zariffdanial.zul@<wbr />gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Zariffdn/Portfolio" target="_blank" rel="noopener noreferrer">
+                  <FiArrowUpRight aria-hidden="true" /> {t("footer.viewSource")}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="footer__bottom">
+          <span>© {year} Zariff Danial</span>
+          <span>{t("footer.builtWith")}</span>
+        </div>
+      </div>
+    </footer>
   );
 }
 

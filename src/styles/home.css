@@ -1,0 +1,349 @@
+/* ==========================================================================
+   Home page: hero, selected work, about teaser, CTA band.
+   Builds only on tokens.css and base.css primitives.
+   Also styles the AvailableForHire pill (this page is its only consumer).
+   ========================================================================== */
+
+/* ---- Available for hire pill ------------------------------------------ */
+.available-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  max-width: 100%;
+  min-height: 30px;
+  padding: var(--s-1) var(--s-4) var(--s-1) var(--s-3);
+  border-radius: var(--r-full);
+  border: 1px solid var(--ok-line);
+  background: var(--ok-soft);
+  color: var(--ok-text);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  transition: border-color var(--dur) ease, background-color var(--dur) ease;
+}
+
+.available-badge:hover,
+.available-badge:focus-visible {
+  color: var(--ok);
+  text-decoration: none;
+  border-color: var(--ok);
+}
+
+.available-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+/* The only looping motion on the site: a soft ring that breathes outward. */
+.available-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--ok);
+  opacity: 0;
+  animation: available-pulse 2.2s var(--ease-out) infinite;
+}
+
+@keyframes available-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* ---- Hero ---------------------------------------------------------------- */
+.section.home-hero {
+  padding-top: calc(var(--section-y) * 0.5);
+  /* Clips the side phones and the glow so nothing widens the page. */
+  overflow: hidden;
+}
+
+.home-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: var(--s-12);
+  align-items: center;
+}
+
+.home-hero__text {
+  min-width: 0;
+}
+
+.home-hero__title {
+  margin-top: var(--s-6);
+}
+
+/* Each line is its own clip box so the inner span can slide up into view.
+   The small bottom padding keeps descenders inside the clip without
+   loosening the tight display leading. */
+.home-hero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.home-hero__line-inner {
+  display: block;
+}
+
+.home-hero__line--accent {
+  color: var(--accent-text);
+}
+
+/* Malay copy runs about half as long again as the English, so the display
+   size steps down to 80% for that locale (with a floor) to keep each line
+   to two rows instead of three. */
+html[lang|="ms"] .home-hero__title {
+  font-size: max(2.5rem, calc(var(--fs-display) * 0.8));
+}
+
+.home-hero__lead {
+  max-width: 52ch;
+  margin-top: var(--s-6);
+}
+
+.home-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-8);
+}
+
+/* Proof strip: four value-over-label items divided by hairlines */
+.home-proof {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  margin-top: var(--s-12);
+}
+
+.home-proof__item:not(:last-child) {
+  padding-right: var(--s-2);
+}
+
+.home-proof__item:not(:first-child) {
+  padding-left: var(--s-6);
+  border-left: 1px solid var(--line);
+}
+
+.home-proof__value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text-1);
+}
+
+.home-proof .eyebrow {
+  display: block;
+  margin-top: var(--s-2);
+  color: var(--text-3);
+  line-height: 1.4;
+  /* Slightly tighter than the section eyebrow so four labels sit on one
+     line inside the text column at the container cap. */
+  letter-spacing: 0.1em;
+}
+
+/* Visual column: one tilting phone, two faded phones behind it */
+.home-hero__visual {
+  position: relative;
+  min-width: 0;
+}
+
+.home-hero__glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 50% 40%, var(--accent-glow), transparent 60%);
+  filter: blur(50px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.home-hero__stack {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+.home-hero__main {
+  position: relative;
+  z-index: 2;
+}
+
+.home-hero__side {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 66%;
+  opacity: 0.75;
+}
+
+.home-hero__side--left {
+  left: 0;
+  transform: translate(-46%, 14%) rotate(-7deg) scale(0.9);
+}
+
+.home-hero__side--right {
+  right: 0;
+  transform: translate(46%, 14%) rotate(7deg) scale(0.9);
+}
+
+@media (max-width: 1099px) {
+  .home-hero__stack {
+    max-width: 260px;
+  }
+
+  /* Four auto columns need about 520px; below this the text column is
+     narrower than that, so the strip steps down to two by two. */
+  .home-proof {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--s-6);
+  }
+
+  .home-proof__item:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 899px) {
+  .home-hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-12);
+  }
+
+  .home-hero__stack {
+    max-width: 220px;
+  }
+
+  .home-hero__side {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .available-badge {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* ---- Selected work ------------------------------------------------------- */
+.home-work__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-6);
+}
+
+.home-work__item {
+  display: grid;
+  min-width: 0;
+}
+
+.home-work__item--wide {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 699px) {
+  .home-work__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---- About teaser -------------------------------------------------------- */
+.home-about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--s-12);
+  align-items: start;
+}
+
+.home-about__head .eyebrow {
+  margin-bottom: var(--s-4);
+}
+
+.home-about__more {
+  margin-top: var(--s-6);
+}
+
+/* Stat tiles themselves live in styles/stat-tile.css (shared with About) */
+.home-about__stats {
+  margin-top: var(--s-12);
+}
+
+@media (max-width: 899px) {
+  .home-about__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-8);
+  }
+}
+
+/* ---- CTA band ------------------------------------------------------------ */
+.surface.home-cta {
+  position: relative;
+  overflow: hidden;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+  box-shadow: var(--shadow-glow);
+}
+
+.home-cta::before {
+  content: "";
+  position: absolute;
+  top: -35%;
+  right: -20%;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow), transparent 65%);
+  filter: blur(30px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.home-cta > * {
+  position: relative;
+}
+
+.home-cta h2 {
+  margin-top: var(--s-4);
+}
+
+.home-cta .lead {
+  max-width: 44ch;
+  margin-top: var(--s-4);
+  margin-inline: auto;
+}
+
+.home-cta__actions {
+  margin-top: var(--s-8);
+}
+
+.home-cta__email {
+  display: block;
+  margin-top: var(--s-5);
+}

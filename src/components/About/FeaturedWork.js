@@ -1,119 +1,71 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FaApple, FaGooglePlay } from "react-icons/fa";
-import { SiHuawei } from "react-icons/si";
-import { HiSparkles } from "react-icons/hi";
-import { HiArrowRight } from "react-icons/hi";
-import FadeIn from "../FadeIn";
-import shot1 from "../../Assets/featured/pic 1.jpeg";
-import shot2 from "../../Assets/featured/pic 2.jpeg";
-import shot3 from "../../Assets/featured/pic 3.jpeg";
+import { FiArrowRight } from "react-icons/fi";
+import { Container, Section, Button, Reveal, PhoneFrame } from "../ui";
+import StoreLinks from "../StoreLinks";
+import { screenshots } from "../../data/mytax";
 
-const screenshots = [shot1, shot2, shot3];
+const STATS = [1, 2, 3];
 
-const links = [
-  {
-    kind: "appstore",
-    url: "https://apps.apple.com/my/app/mytax/id1632195676",
-    small: "Download on the",
-    big: "App Store",
-    Icon: FaApple,
-    aria: "Download MyTax on the App Store",
-    count: "1.7M+ installs",
-  },
-  {
-    kind: "playstore",
-    url: "https://play.google.com/store/apps/details?id=com.lhdn.mytax",
-    small: "Get it on",
-    big: "Google Play",
-    Icon: FaGooglePlay,
-    aria: "Get MyTax on Google Play",
-    count: "894K+ installs",
-  },
-  {
-    kind: "appgallery",
-    url: "https://appgallery.cloud.huawei.com/ag/n/app/C106575285",
-    small: "Explore it on",
-    big: "AppGallery",
-    Icon: SiHuawei,
-    aria: "Explore MyTax on AppGallery",
-    count: "282K+ installs",
-  },
-];
-
+// The MyTax panel: label, title, three stats, store links, case study CTA,
+// and three real screenshots in small phone frames.
 function FeaturedWork() {
   const { t } = useTranslation();
 
   return (
-    <FadeIn>
-      <article className="featured-work">
-        <div className="featured-work-label">
-          <HiSparkles aria-hidden="true" /> {t("about.featuredLabel")}
-        </div>
-        <h2 className="featured-work-title">{t("about.featuredTitle")}</h2>
-        <p className="featured-work-subtitle">
-          {t("about.featuredSubtitle")}
-        </p>
-        <p className="featured-work-description">
-          {t("about.featuredDescription")}
-        </p>
+    <Section hairline id="featured">
+      <Container>
+        <Reveal>
+          <article className="surface fw-panel">
+            <div className="fw-grid">
+              <div className="fw-text">
+                <span className="eyebrow">{t("about.featuredLabel")}</span>
+                <h2>{t("about.featuredTitle")}</h2>
+                <p className="lead fw-sub">{t("about.featuredSubtitle")}</p>
+                <p className="text-2 fw-desc">{t("about.featuredDescription")}</p>
 
-        <div className="featured-work-screenshots">
-          {screenshots.map((src, i) => (
-            <div className="featured-work-screenshot" key={i}>
-              <img
-                src={src}
-                alt={`MyTax mobile app screenshot ${i + 1}`}
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </div>
+                <div className="fw-stats">
+                  {STATS.map((n) => (
+                    <div className="fw-stat" key={n}>
+                      <span className="fw-stat__value">
+                        {t(`about.featuredStat${n}Value`)}
+                      </span>
+                      <span className="eyebrow eyebrow--plain fw-stat__label">
+                        {t(`about.featuredStat${n}Label`)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
-        <div className="featured-work-stats">
-          {[1, 2, 3].map((n) => (
-            <div className="featured-work-stat" key={n}>
-              <div className="featured-work-stat-value">
-                {t(`about.featuredStat${n}Value`)}
               </div>
-              <div className="featured-work-stat-label">
-                {t(`about.featuredStat${n}Label`)}
+
+              <div className="fw-visual">
+                {screenshots.map((src, i) => (
+                  <PhoneFrame
+                    key={src}
+                    src={src}
+                    size="sm"
+                    alt={`${t("home.phoneAlt")} ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              <div className="fw-footer">
+                <StoreLinks />
+                <Button
+                  to="/mytax"
+                  variant="primary"
+                  icon={<FiArrowRight />}
+                  iconArrow
+                >
+                  {t("about.readCaseStudy")}
+                </Button>
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className="featured-work-links">
-          {links.map(({ kind, url, small, big, Icon, aria, count }) => (
-            <a
-              key={kind}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="store-link featured-store-link"
-              aria-label={aria}
-            >
-              <Icon aria-hidden="true" />
-              <span>
-                <small>{small}</small>
-                <strong>{big}</strong>
-              </span>
-              {count && (
-                <span className="store-link-count" aria-label={count}>
-                  {count}
-                </span>
-              )}
-            </a>
-          ))}
-        </div>
-
-        <Link to="/mytax" className="featured-work-case-study">
-          {t("about.readCaseStudy")}
-          <HiArrowRight aria-hidden="true" />
-        </Link>
-      </article>
-    </FadeIn>
+          </article>
+        </Reveal>
+      </Container>
+    </Section>
   );
 }
 

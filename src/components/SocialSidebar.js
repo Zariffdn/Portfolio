@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
@@ -24,8 +25,9 @@ const links = [
 ];
 
 function SocialSidebar() {
+  const { t } = useTranslation();
   return (
-    <aside className="social-sidebar" aria-label="Social links">
+    <aside className="social-sidebar" aria-label={t("navbar.socialAria")}>
       <ul>
         {links.map(({ href, label, Icon, external }) => (
           <li key={label}>

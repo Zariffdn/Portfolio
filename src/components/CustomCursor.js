@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
+// How close the eased position and scale must get to their targets before the
+// frame loop parks itself. It wakes again on the next mousemove or hover
+// change, so a still pointer costs no per-frame work.
+const SETTLE_PX = 0.1;
+const SETTLE_SCALE = 0.001;
+
 function CustomCursor() {
   const cursorRef = useRef(null);
   const [enabled, setEnabled] = useState(false);
@@ -37,7 +43,38 @@ function CustomCursor() {
     let scale = 1;
     let targetScale = 1;
     const interactiveSelector =
-      'a, button, [role="button"], [tabindex]:not([tabindex="-1"]), .project-card-view, .tech-icons, .theme-toggle-btn, .lang-toggle-btn';
+      'a, button, [role="button"], [tabindex]:not([tabindex="-1"]), .btn, .chip, .surface--interactive, .icon-btn';
+
+    const paint = () => {
+      node.style.transform = `translate3d(${currentX - 12}px, ${currentY - 12}px, 0) scale(${scale})`;
+    };
+
+    const isSettled = () =>
+      Math.abs(targetX - currentX) < SETTLE_PX &&
+      Math.abs(targetY - currentY) < SETTLE_PX &&
+      Math.abs(targetScale - scale) < SETTLE_SCALE;
+
+    const tick = () => {
+      rafId = null;
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+      scale += (targetScale - scale) * 0.22;
+      if (isSettled()) {
+        // Land exactly on the target and park the loop.
+        currentX = targetX;
+        currentY = targetY;
+        scale = targetScale;
+        paint();
+        return;
+      }
+      paint();
+      rafId = requestAnimationFrame(tick);
+    };
+
+    // Starts the loop when it is parked; a no-op while it is already running.
+    const wake = () => {
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    };
 
     const onMove = (e) => {
       targetX = e.clientX;
@@ -48,23 +85,18 @@ function CustomCursor() {
         node.style.opacity = "1";
         hasMoved = true;
       }
-    };
-
-    const tick = () => {
-      currentX += (targetX - currentX) * 0.18;
-      currentY += (targetY - currentY) * 0.18;
-      scale += (targetScale - scale) * 0.22;
-      node.style.transform = `translate3d(${currentX - 12}px, ${currentY - 12}px, 0) scale(${scale})`;
-      rafId = requestAnimationFrame(tick);
+      wake();
     };
 
     const onOver = (e) => {
-      if (e.target.closest && e.target.closest(interactiveSelector)) {
-        targetScale = 1.9;
-        node.classList.add("cursor-hover");
-      } else {
-        targetScale = 1;
-        node.classList.remove("cursor-hover");
+      const interactive = !!(
+        e.target.closest && e.target.closest(interactiveSelector)
+      );
+      node.classList.toggle("cursor-hover", interactive);
+      const nextScale = interactive ? 1.9 : 1;
+      if (nextScale !== targetScale) {
+        targetScale = nextScale;
+        wake();
       }
     };
 
@@ -79,14 +111,14 @@ function CustomCursor() {
     document.addEventListener("mouseover", onOver);
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
-    rafId = requestAnimationFrame(tick);
+    // No frame is scheduled here: the loop starts on the first mousemove.
 
     return () => {
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseover", onOver);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
-      if (rafId) cancelAnimationFrame(rafId);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, [enabled]);
 
