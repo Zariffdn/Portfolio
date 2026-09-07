@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiSend, FiCheck } from "react-icons/fi";
-import FadeIn from "../FadeIn";
+import { Container, Section, Button, Reveal } from "../ui";
 import { useToast } from "../../contexts/ToastContext";
+import "../../styles/about-sections.css";
 
 // To enable the form:
 //   1. Sign up free at https://formspree.io
@@ -14,11 +14,30 @@ import { useToast } from "../../contexts/ToastContext";
 // configured" toast instead of trying to POST.
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoepdvd";
 
+const EMAIL = "zariffdanial.zul@gmail.com";
+
 function Contact() {
   const { t } = useTranslation();
   const { showToast } = useToast();
   const [sending, setSending] = useState(false);
   const [justSent, setJustSent] = useState(false);
+
+  // The fetch and the 4s "sent" reset can outlive this section when the user
+  // navigates away mid-submit, so every setState that follows an await or a
+  // timer checks this ref, and the timer is cleared on unmount.
+  const mountedRef = useRef(true);
+  const sentTimerRef = useRef(null);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      if (sentTimerRef.current !== null) {
+        window.clearTimeout(sentTimerRef.current);
+        sentTimerRef.current = null;
+      }
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,103 +56,143 @@ function Contact() {
       if (response.ok) {
         showToast(t("contact.success"), { icon: "✅" });
         formEl.reset();
-        setJustSent(true);
-        window.setTimeout(() => setJustSent(false), 4000);
+        if (mountedRef.current) {
+          setJustSent(true);
+          if (sentTimerRef.current !== null) {
+            window.clearTimeout(sentTimerRef.current);
+          }
+          sentTimerRef.current = window.setTimeout(() => {
+            sentTimerRef.current = null;
+            if (mountedRef.current) setJustSent(false);
+          }, 4000);
+        }
       } else {
         throw new Error("Submission failed");
       }
     } catch (err) {
       showToast(t("contact.error"), { icon: "❌" });
     } finally {
-      setSending(false);
+      if (mountedRef.current) setSending(false);
     }
   };
 
   return (
-    <FadeIn>
-      <h1 className="project-heading" id="contact">
-        {t("contact.headingPre")}{" "}
-        <strong className="purple">{t("contact.headingHighlight")}</strong>
-      </h1>
-      <Container className="contact-container">
-        <Row style={{ justifyContent: "center" }}>
-          <Col md={9} lg={8}>
-            <p className="contact-subtitle">{t("contact.subtitle")}</p>
-            <Form
+    <Section hairline id="contact" className="contact-section">
+      <Container>
+        <div className="contact">
+          <Reveal className="contact__intro">
+            <span className="eyebrow">{t("home.ctaEyebrow")}</span>
+            <h2>
+              {t("contact.headingPre") + " " + t("contact.headingHighlight")}
+            </h2>
+            <p className="lead">{t("contact.subtitle")}</p>
+            <dl className="meta-list contact__meta">
+              <dt>{t("contact.emailLabel")}</dt>
+              <dd>
+                <a href={"mailto:" + EMAIL}>{EMAIL}</a>
+              </dd>
+              <dt>{t("aboutCard.metaLocationLabel")}</dt>
+              <dd>{t("aboutCard.metaLocationValue")}</dd>
+            </dl>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <form
               onSubmit={handleSubmit}
-              className="contact-form"
+              className="contact__form"
               noValidate={false}
             >
-              <Row>
-                <Col md={6}>
-                  <Form.Group controlId="contact-name" className="contact-field">
-                    <Form.Label>{t("contact.nameLabel")}</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="name"
-                      placeholder={t("contact.namePlaceholder")}
-                      required
-                      autoComplete="name"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={6}>
-                  <Form.Group controlId="contact-email" className="contact-field">
-                    <Form.Label>{t("contact.emailLabel")}</Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      placeholder={t("contact.emailPlaceholder")}
-                      required
-                      autoComplete="email"
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Form.Group controlId="contact-subject" className="contact-field">
-                <Form.Label>{t("contact.subjectLabel")}</Form.Label>
-                <Form.Control
+              <div className="contact__row">
+                <div className="contact__field">
+                  <label
+                    htmlFor="contact-name"
+                    className="eyebrow eyebrow--plain"
+                  >
+                    {t("contact.nameLabel")}
+                  </label>
+                  <input
+                    id="contact-name"
+                    className="contact__input"
+                    type="text"
+                    name="name"
+                    placeholder={t("contact.namePlaceholder")}
+                    required
+                    autoComplete="name"
+                  />
+                </div>
+                <div className="contact__field">
+                  <label
+                    htmlFor="contact-email"
+                    className="eyebrow eyebrow--plain"
+                  >
+                    {t("contact.emailLabel")}
+                  </label>
+                  <input
+                    id="contact-email"
+                    className="contact__input"
+                    type="email"
+                    name="email"
+                    placeholder={t("contact.emailPlaceholder")}
+                    required
+                    autoComplete="email"
+                  />
+                </div>
+              </div>
+
+              <div className="contact__field">
+                <label
+                  htmlFor="contact-subject"
+                  className="eyebrow eyebrow--plain"
+                >
+                  {t("contact.subjectLabel")}
+                </label>
+                <input
+                  id="contact-subject"
+                  className="contact__input"
                   type="text"
                   name="subject"
                   placeholder={t("contact.subjectPlaceholder")}
                 />
-              </Form.Group>
-              <Form.Group controlId="contact-message" className="contact-field">
-                <Form.Label>{t("contact.messageLabel")}</Form.Label>
-                <Form.Control
-                  as="textarea"
+              </div>
+
+              <div className="contact__field">
+                <label
+                  htmlFor="contact-message"
+                  className="eyebrow eyebrow--plain"
+                >
+                  {t("contact.messageLabel")}
+                </label>
+                <textarea
+                  id="contact-message"
+                  className="contact__input"
                   rows={5}
                   name="message"
                   placeholder={t("contact.messagePlaceholder")}
                   required
                 />
-              </Form.Group>
-              <div className="contact-actions">
+              </div>
+
+              <div className="contact__actions">
                 <Button
                   type="submit"
                   variant="primary"
-                  className={`contact-submit ${justSent ? "is-sent" : ""}`}
+                  icon={justSent ? <FiCheck /> : <FiSend />}
+                  iconPosition="start"
+                  className={justSent ? "is-sent" : ""}
                   disabled={sending || justSent}
                 >
-                  {justSent ? (
-                    <>
-                      <FiCheck aria-hidden="true" />
-                      &nbsp;{t("contact.sent")}
-                    </>
-                  ) : (
-                    <>
-                      <FiSend aria-hidden="true" />
-                      &nbsp;
-                      {sending ? t("contact.sending") : t("contact.send")}
-                    </>
-                  )}
+                  {justSent
+                    ? t("contact.sent")
+                    : sending
+                    ? t("contact.sending")
+                    : t("contact.send")}
                 </Button>
               </div>
-            </Form>
-          </Col>
-        </Row>
+            </form>
+          </Reveal>
+        </div>
       </Container>
-    </FadeIn>
+    </Section>
   );
 }
 

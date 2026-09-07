@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Design tokens
+   Dark is the primary theme. html[data-theme="light"] redefines the same
+   names, so components never branch on theme; they only read tokens.
+   ========================================================================== */
+
+:root {
+  /* Surfaces, deepest to most elevated */
+  --bg-0: #09060f;
+  --bg-1: #0e0a17;
+  --bg-2: #15101f;
+  --bg-3: #1d1729;
+  --bg-elev: #231c31;
+
+  /* Hairlines */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+
+  /* Text */
+  --text-1: #f4f0fb;
+  --text-2: rgba(244, 240, 251, 0.7);
+  --text-3: rgba(244, 240, 251, 0.52);
+  --text-inverse: #0b0714;
+
+  /* Accent: one violet, used sparingly */
+  --accent: #b78cff;
+  --accent-strong: #9b6bff;
+  --accent-deep: #6d3fd6;
+  --accent-text: #cdb0ff;
+  --accent-soft: rgba(183, 140, 255, 0.12);
+  --accent-soft-2: rgba(183, 140, 255, 0.2);
+  --accent-glow: rgba(155, 107, 255, 0.35);
+
+  /* Status */
+  --ok: #4ade80;
+  --ok-text: #4ade80;
+  --ok-soft: rgba(74, 222, 128, 0.12);
+  --ok-line: rgba(74, 222, 128, 0.3);
+  --danger: #f87171;
+
+  /* Type families */
+  --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale (fluid) */
+  --fs-display: clamp(2.75rem, 5.2vw + 1.2rem, 5.75rem);
+  --fs-h1: clamp(2.125rem, 3vw + 1rem, 3.5rem);
+  --fs-h2: clamp(1.625rem, 1.6vw + 1rem, 2.375rem);
+  --fs-h3: clamp(1.25rem, 0.6vw + 1rem, 1.5rem);
+  --fs-lead: clamp(1.0625rem, 0.4vw + 0.95rem, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-xs: 0.78125rem;
+  --fs-eyebrow: 0.75rem;
+  --fs-stat: clamp(2.25rem, 3.4vw + 1rem, 4rem);
+
+  --lh-tight: 1.02;
+  --lh-snug: 1.15;
+  --lh-body: 1.65;
+
+  --track-display: -0.035em;
+  --track-heading: -0.02em;
+  --track-eyebrow: 0.14em;
+
+  /* Space, 4px base */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --s-24: 6rem;
+  --section-y: clamp(4.5rem, 9vw, 8rem);
+  --container: 1180px;
+  --container-narrow: 760px;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-full: 999px;
+
+  /* Elevation. Glow is reserved for hero-level objects. */
+  --shadow-1: inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-2: inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 24px 60px -24px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 0 1px var(--line-strong),
+    0 30px 80px -30px var(--accent-glow);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur: 260ms;
+  --dur-slow: 480ms;
+
+  /* Chrome */
+  --nav-h: 72px;
+  --nav-bg: rgba(9, 6, 15, 0.72);
+  --z-backdrop: 0;
+  --z-page: 1;
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-toast: 300;
+  --z-cursor: 999;
+
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  --bg-0: #faf8fd;
+  --bg-1: #f4f0fa;
+  --bg-2: #ffffff;
+  --bg-3: #efe9f7;
+  --bg-elev: #ffffff;
+
+  --line: rgba(22, 13, 40, 0.09);
+  --line-strong: rgba(22, 13, 40, 0.16);
+
+  --text-1: #160e24;
+  --text-2: rgba(22, 14, 36, 0.7);
+  --text-3: rgba(22, 14, 36, 0.62);
+  --text-inverse: #ffffff;
+
+  --accent: #6b2fd9;
+  --accent-strong: #5a22c4;
+  --accent-deep: #4a17a8;
+  --accent-text: #5a22c4;
+  --accent-soft: rgba(107, 47, 217, 0.08);
+  --accent-soft-2: rgba(107, 47, 217, 0.14);
+  --accent-glow: rgba(107, 47, 217, 0.22);
+
+  --ok: #16a34a;
+  --ok-text: #166534;
+  --ok-soft: rgba(22, 163, 74, 0.1);
+  --ok-line: rgba(22, 163, 74, 0.3);
+  --danger: #dc2626;
+
+  --shadow-1: 0 1px 2px rgba(22, 13, 40, 0.06),
+    0 8px 24px -12px rgba(22, 13, 40, 0.18);
+  --shadow-2: 0 2px 4px rgba(22, 13, 40, 0.06),
+    0 24px 60px -24px rgba(22, 13, 40, 0.25);
+  --shadow-glow: 0 0 0 1px var(--line-strong),
+    0 30px 80px -30px var(--accent-glow);
+
+  --nav-bg: rgba(250, 248, 253, 0.78);
+
+  color-scheme: light;
+}

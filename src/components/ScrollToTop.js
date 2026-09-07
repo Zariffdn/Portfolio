@@ -1,34 +1,48 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
+// On every route change: scroll to the top and move focus to <main> so
+// keyboard and screen-reader users land on the new page's content instead of
+// staying on the link they activated. With a #hash, scroll to that element
+// instead (polling briefly, since the destination route is lazy-loaded).
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
+  const first = useRef(true);
 
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
+      // Skip the initial load: nothing was "navigated from" yet.
+      if (!first.current) {
+        const main = document.getElementById("main");
+        if (main) main.focus({ preventScroll: true });
+      }
+      first.current = false;
       return undefined;
     }
+    first.current = false;
 
-    // Poll for the hash target — the destination route is lazy-loaded plus
-    // the framer-motion page transition runs first, so the element may not
-    // exist in the DOM yet on the first frame. Polls every 80ms for up to
-    // 2.5 seconds.
+    let id;
+    try {
+      id = decodeURIComponent(hash.slice(1));
+    } catch (_) {
+      id = hash.slice(1);
+    }
+    if (!id) return undefined;
+
     let cancelled = false;
     let attempts = 0;
     const maxAttempts = 30;
 
     const tryScroll = () => {
       if (cancelled) return;
-      const el = document.querySelector(hash);
+      const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
       attempts += 1;
-      if (attempts < maxAttempts) {
-        window.setTimeout(tryScroll, 80);
-      }
+      if (attempts < maxAttempts) window.setTimeout(tryScroll, 80);
     };
 
     window.setTimeout(tryScroll, 80);

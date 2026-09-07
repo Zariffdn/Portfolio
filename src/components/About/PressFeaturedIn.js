@@ -1,66 +1,80 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { HiOutlineExternalLink } from "react-icons/hi";
-import { FaNewspaper } from "react-icons/fa";
-import FadeIn from "../FadeIn";
+import { FiArrowUpRight } from "react-icons/fi";
+import { Container, Section, SectionHeading, Stagger, StaggerItem } from "../ui";
+import { press } from "../../data/mytax";
+import { formatMonth } from "../../utils/formatMonth";
 
-// To add a press mention: append an object with publication, title, url and
-// (optionally) a date. Leave the array empty to hide the entire section.
-//
-// Tip: use ChatGPT with web search to find mentions of MyTax in The Star,
-// NST, Malaysiakini, BERNAMA, Astro Awani, etc.
-const press = [
-  {
-    id: "bernama-ekyc-2026",
-    publication: "BERNAMA",
-    title:
-      "MyTax adds e-KYC and digital onboarding for new taxpayers",
-    url: "https://bernama.com/bm/news.php?id=2522325",
-    date: "February 2026",
-  },
-];
-
+// One full-width row per press mention. The list lives in data/mytax.js;
+// an empty list hides the section. The heading shows the article's original
+// Malay title when the site is in Bahasa Malaysia and the English gloss
+// otherwise; the other language drops to the secondary line.
 function PressFeaturedIn() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.resolvedLanguage;
+  const isMs = lang === "ms";
 
   if (press.length === 0) return null;
 
   return (
-    <>
-      <FadeIn>
-        <h1 className="project-heading">
-          {t("about.pressPre")}{" "}
-          <strong className="purple">{t("about.pressHighlight")}</strong>
-        </h1>
-      </FadeIn>
-      <FadeIn>
-        <div className="press-strip">
-          {press.map((p) => (
-            <a
-              key={p.id}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="press-chip"
-              aria-label={`${p.publication}: ${p.title}`}
-            >
-              <span className="press-chip-icon" aria-hidden="true">
-                <FaNewspaper />
-              </span>
-              <span className="press-chip-text">
-                <span className="press-chip-publication">{p.publication}</span>
-                <span className="press-chip-title">{p.title}</span>
-                {p.date && <span className="press-chip-date">{p.date}</span>}
-              </span>
-              <HiOutlineExternalLink
-                className="press-chip-external"
-                aria-hidden="true"
-              />
-            </a>
-          ))}
-        </div>
-      </FadeIn>
-    </>
+    <Section tight id="press">
+      <Container>
+        <SectionHeading
+          title={`${t("about.pressPre")} ${t("about.pressHighlight")}`}
+        />
+        <Stagger className="press-list">
+          {press.map((p) => {
+            const english = { text: p.title, lang: "en" };
+            const original = p.titleOriginal
+              ? { text: p.titleOriginal, lang: "ms" }
+              : null;
+            const heading = isMs && original ? original : english;
+            const secondary = original ? (isMs ? english : original) : null;
+            const date = p.date ? formatMonth(p.date, lang) : "";
+
+            return (
+              <StaggerItem key={p.id}>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="surface surface--interactive press-row"
+                  aria-label={`${p.publication}: ${heading.text}`}
+                >
+                  <div className="press-row__body">
+                    <span className="eyebrow eyebrow--plain press-row__meta">
+                      {/* One child so the eyebrow flex gap never splits the line */}
+                      <span>
+                        {p.publication}
+                        {date ? (
+                          <>
+                            {" · "}
+                            <time dateTime={p.date}>{date}</time>
+                          </>
+                        ) : null}
+                      </span>
+                    </span>
+                    <h3 lang={heading.lang}>{heading.text}</h3>
+                    {secondary && (
+                      <p
+                        className="text-3 small press-row__orig"
+                        lang={secondary.lang}
+                      >
+                        {secondary.text}
+                      </p>
+                    )}
+                  </div>
+                  <FiArrowUpRight
+                    className="press-row__icon"
+                    aria-hidden="true"
+                  />
+                </a>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
+      </Container>
+    </Section>
   );
 }
 

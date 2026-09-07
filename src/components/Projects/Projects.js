@@ -1,124 +1,172 @@
-import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import ProjectCard from "./ProjectCards";
-import Particle from "../Particle";
-import bag from "../../Assets/Projects/bag.png";
-import movie from "../../Assets/Projects/movie.png";
-import bookstore from "../../Assets/Projects/bookstore.png";
-import silentsupport from "../../Assets/Projects/silentsupport.svg";
-import bestinet from "../../Assets/Projects/bestinet.svg";
-import usePageMeta from "../../hooks/usePageMeta";
+import "../../styles/projects.css";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import FadeIn from "../FadeIn";
+import { motion, AnimatePresence } from "framer-motion";
+import { Container, Section, SectionHeading, Stagger, StaggerItem } from "../ui";
+import ProjectCard from "./ProjectCard";
+import { projects, filters } from "../../data/projects";
+import usePageMeta from "../../hooks/usePageMeta";
 
-const projects = [
-  {
-    id: "silentsupport",
-    category: "mobile",
-    img: silentsupport,
-    personal: true,
-    tags: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
-    ghLink: "https://github.com/Zariffdn/Silent-Support-App",
-  },
-  {
-    id: "bestinet",
-    category: "mobile",
-    img: bestinet,
-    proprietary: true,
-    tags: ["Flutter", "Dart", "GetX", "TOTP", "Secure storage"],
-  },
-  {
-    id: "baglock",
-    category: "embedded",
-    img: bag,
-    tags: ["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"],
-    ghLink: "https://github.com/zazarip/Anti-theft-fingerprint-baglock",
-  },
-  {
-    id: "movie",
-    category: "web",
-    img: movie,
-    tags: ["JavaScript", "PHP", "CSS", "MySQL"],
-    ghLink: "https://github.com/zazarip/movie-ticket",
-  },
-  {
-    id: "bookstore",
-    category: "web",
-    img: bookstore,
-    tags: ["PHP", "HTML", "MySQL"],
-    ghLink: "https://github.com/zazarip/Bookstore",
-  },
-];
+const EASE = [0.22, 1, 0.36, 1];
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
-const filters = ["all", "web", "mobile", "embedded"];
+// Number of projects behind each filter; "all" is the full list.
+const counts = filters.reduce((acc, f) => {
+  acc[f] = f === "all" ? projects.length : projects.filter((p) => p.category === f).length;
+  return acc;
+}, {});
+
+const swap = { opacity: 0, y: 8 };
+const swapTransition = { duration: 0.25, ease: EASE };
+
+// One grid cell. Cards present at the first reveal are staggered in by the
+// parent <Stagger>. A card mounted later (after a filter change) sits inside
+// a parent whose in-view state has already fired, so it runs its own short
+// entrance instead. `late` is captured once at mount so it never flips.
+function GridItem({ project, late, priority }) {
+  const wide = Boolean(project.featured);
+  const lateRef = useRef(late);
+  const entrance = lateRef.current
+    ? { initial: swap, animate: { opacity: 1, y: 0 } }
+    : {};
+
+  return (
+    <StaggerItem
+      layout="position"
+      className={`projects-grid__item ${wide ? "projects-grid__item--wide" : ""}`.trim()}
+      exit={swap}
+      transition={swapTransition}
+      {...entrance}
+    >
+      <ProjectCard
+        project={project}
+        variant={wide ? "wide" : "default"}
+        clamp={0}
+        priority={priority}
+      />
+    </StaggerItem>
+  );
+}
 
 function Projects() {
   const { t } = useTranslation();
   const [active, setActive] = useState("all");
+  const revealedRef = useRef(false);
+  const tabRefs = useRef({});
+
   usePageMeta({
-    title: "Projects — Zariff Danial",
-    description:
-      "A selection of projects by Zariff Danial — embedded systems, web applications, and mobile work.",
+    title: t("meta.projects"),
+    description: t("meta.projectsDesc"),
   });
 
   const filtered =
     active === "all" ? projects : projects.filter((p) => p.category === active);
 
+  // Roving tabindex: arrows, Home and End move between tabs and select.
+  const onTabKeyDown = (e) => {
+    const i = filters.indexOf(active);
+    let next = null;
+    if (e.key === "ArrowRight") next = (i + 1) % filters.length;
+    else if (e.key === "ArrowLeft") next = (i - 1 + filters.length) % filters.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = filters.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    const id = filters[next];
+    setActive(id);
+    const el = tabRefs.current[id];
+    if (el) el.focus();
+  };
+
   return (
-    <Container fluid className="project-section">
-      <Particle />
+    <Section className="projects-section" aria-labelledby="projects-title">
       <Container>
-        <h1 className="project-heading">
-          {t("projects.headingPre")}{" "}
-          <strong className="purple">{t("projects.headingHighlight")} </strong>
-        </h1>
-        <p style={{ color: "var(--text-primary)" }}>{t("projects.intro")}</p>
+        <SectionHeading
+          as="h1"
+          id="projects-title"
+          eyebrow={t("projects.eyebrow")}
+          title={t("home.workTitle")}
+          lead={t("projects.intro")}
+        />
 
-        <div className="project-filters" role="tablist">
-          {filters.map((f) => (
-            <button
-              key={f}
-              type="button"
-              role="tab"
-              aria-selected={active === f}
-              onClick={() => setActive(f)}
-              className={`project-filter-btn ${active === f ? "is-active" : ""}`}
-            >
-              {t(`projects.filter${f.charAt(0).toUpperCase() + f.slice(1)}`)}
-            </button>
-          ))}
-        </div>
+        <motion.div className="projects-filters" layoutScroll>
+          <div
+            className="projects-filters__list"
+            role="tablist"
+            aria-label={t("projects.eyebrow")}
+            onKeyDown={onTabKeyDown}
+          >
+            {filters.map((f) => {
+              const isActive = f === active;
+              const label = t(`projects.filter${cap(f)}`);
+              return (
+                <button
+                  key={f}
+                  ref={(el) => {
+                    tabRefs.current[f] = el;
+                  }}
+                  type="button"
+                  role="tab"
+                  id={`projects-tab-${f}`}
+                  aria-selected={isActive}
+                  aria-controls="projects-panel"
+                  tabIndex={isActive ? 0 : -1}
+                  aria-label={`${label} (${counts[f]})`}
+                  className="projects-filter"
+                  onClick={() => setActive(f)}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="projects-filter-pill"
+                      className="projects-filter__pill"
+                      aria-hidden="true"
+                      transition={{ type: "tween", duration: 0.3, ease: EASE }}
+                    />
+                  )}
+                  <span className="projects-filter__label">{label}</span>
+                  <span className="projects-filter__count">{counts[f]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </motion.div>
 
-        {filtered.length === 0 ? (
-          <FadeIn>
-            <div className="projects-empty">
-              <span className="projects-empty-icon" aria-hidden="true">🛠️</span>
-              <h3>{t("projects.emptyTitle")}</h3>
+        <div
+          id="projects-panel"
+          role="tabpanel"
+          aria-labelledby={`projects-tab-${active}`}
+        >
+          {/* Names the active filter so the outline reads h1 > h2 > h3 cards. */}
+          <h2 className="sr-only">{t(`projects.filter${cap(active)}`)}</h2>
+          {filtered.length === 0 ? (
+            <div className="surface projects-empty">
+              <h2 className="h3">{t("projects.emptyTitle")}</h2>
               <p>{t("projects.emptyDesc")}</p>
             </div>
-          </FadeIn>
-        ) : (
-          <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-            {filtered.map((p, i) => (
-              <Col md={4} className="project-card" key={p.id}>
-                <FadeIn delay={i * 0.1}>
-                  <ProjectCard
-                    imgPath={p.img}
-                    isBlog={false}
-                    title={t(`projects.${p.id}_title`)}
-                    description={t(`projects.${p.id}_desc`)}
-                    ghLink={p.ghLink}
-                    tags={p.tags}
-                    personal={p.personal}
-                    proprietary={p.proprietary}
+          ) : (
+            <Stagger
+              className="projects-grid"
+              onViewportEnter={() => {
+                revealedRef.current = true;
+              }}
+            >
+              {/* `mode` is ignored by the installed framer-motion 6.5.1 and
+                  takes effect once the dependency is on 7 or later. */}
+              <AnimatePresence mode="popLayout">
+                {filtered.map((p, i) => (
+                  <GridItem
+                    key={p.id}
+                    project={p}
+                    late={revealedRef.current}
+                    priority={i === 0}
                   />
-                </FadeIn>
-              </Col>
-            ))}
-          </Row>
-        )}
+                ))}
+              </AnimatePresence>
+            </Stagger>
+          )}
+        </div>
       </Container>
-    </Container>
+    </Section>
   );
 }
 

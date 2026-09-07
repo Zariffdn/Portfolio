@@ -1,0 +1,142 @@
+/* Projects page: heading, segmented filter, card grid, empty state.
+   Card internals live in project-card.css (shared with Home). */
+
+.projects-section {
+  padding-top: calc(var(--section-y) * 0.5);
+}
+
+.projects-section .section-head {
+  margin-bottom: var(--s-8);
+}
+
+/* ---- Segmented filter ---------------------------------------------------
+   The outer div scrolls sideways when the four options do not fit. The
+   small bleed padding keeps focus rings from being clipped by overflow. */
+.projects-filters {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: var(--s-2);
+  margin: calc(-1 * var(--s-2)) calc(-1 * var(--s-2))
+    calc(var(--s-10) - var(--s-2));
+}
+
+.projects-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.projects-filters__list {
+  display: inline-flex;
+  flex: none;
+  padding: var(--s-1);
+  border-radius: var(--r-full);
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.projects-filter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  height: 40px;
+  padding: 0 var(--s-5);
+  border-radius: var(--r-full);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--text-2);
+  transition: color var(--dur) ease;
+}
+
+.projects-filter:hover {
+  color: var(--text-1);
+}
+
+.projects-filter[aria-selected="true"] {
+  color: var(--text-inverse);
+}
+
+.projects-filter__pill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--r-full);
+  background: var(--text-1);
+}
+
+.projects-filter__label,
+.projects-filter__count {
+  position: relative;
+  z-index: 1;
+}
+
+.projects-filter__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+  transition: color var(--dur) ease, opacity var(--dur) ease;
+}
+
+/* text-3 is invisible on the text-1 pill, so the active count inherits
+   the inverse colour and steps back with opacity instead. */
+.projects-filter[aria-selected="true"] .projects-filter__count {
+  color: var(--text-inverse);
+  opacity: 0.6;
+}
+
+/* ---- Grid ----------------------------------------------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: var(--s-6);
+  align-items: stretch;
+}
+
+.projects-grid__item {
+  display: flex;
+  min-width: 0;
+}
+
+.projects-grid__item > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.projects-grid__item--wide {
+  grid-column: 1 / -1;
+}
+
+/* ---- Empty state ---------------------------------------------------- */
+.projects-empty {
+  max-width: 520px;
+  margin-inline: auto;
+  padding: var(--s-12);
+  text-align: center;
+}
+
+.projects-empty p {
+  margin-top: var(--s-2);
+  color: var(--text-2);
+}
+
+/* ---- Narrow screens ------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Let the segmented control scroll edge to edge. */
+  .projects-filters {
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+  }
+
+  .projects-filter {
+    padding: 0 var(--s-3);
+  }
+
+  /* Longer Malay labels: let the tabs wrap onto two lines instead of scrolling. */
+  .projects-filters__list {
+    flex-wrap: wrap;
+    border-radius: var(--r-md);
+  }
+}

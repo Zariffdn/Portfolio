@@ -4,18 +4,50 @@
     "about": "Tentang",
     "projects": "Projek",
     "resume": "Resume",
-    "toggleLightAria": "Tukar ke mod cerah",
+    "toggleLightAria": "Tukar ke mod terang",
     "toggleDarkAria": "Tukar ke mod gelap",
-    "toggleLanguageAria": "Tukar bahasa"
+    "toggleLanguageAria": "Tukar bahasa",
+    "menu": "Utama",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu",
+    "locationLine": "Klang, Malaysia · GMT+8",
+    "wordmarkAria": "Zariff Danial, laman utama",
+    "socialAria": "Pautan sosial"
   },
   "home": {
-    "greeting": "Hai!",
-    "iam": "SAYA",
-    "availableForHire": "Terbuka untuk peluang · Notis 3 bulan"
+    "availableForHire": "Terbuka untuk peluang baharu · Notis 3 bulan",
+    "heroLine1": "Malaysia memfailkan cukai",
+    "heroLine2": "melalui aplikasi saya.",
+    "heroLead": "Saya Zariff Danial, pembangun Flutter di Zen Computer Systems dan satu-satunya pembangun mudah alih untuk MyTax LHDN, yang kini beroperasi di iOS, Android dan Huawei AppGallery.",
+    "ctaWork": "Lihat hasil kerja",
+    "ctaContact": "Hubungi saya",
+    "proofInstallsValue": "2.8M+",
+    "proofInstallsLabel": "jumlah pemasangan",
+    "proofStoresValue": "3",
+    "proofStoresLabel": "gedung aplikasi",
+    "proofPressValue": "BERNAMA",
+    "proofPressLabel": "liputan media",
+    "proofSinceValue": "2022",
+    "proofSinceLabel": "beroperasi sejak",
+    "phoneAlt": "Tangkapan skrin aplikasi MyTax",
+    "featuredEyebrow": "Sedang dibangunkan",
+    "workEyebrow": "Kerja terpilih",
+    "workTitle": "Apa yang saya bina dan baiki",
+    "workLead": "Aplikasi yang sedang digunakan, MVP peribadi, dan projek universiti yang menjadi titik permulaan saya.",
+    "workAll": "Semua projek",
+    "aboutEyebrow": "Tentang",
+    "aboutTitle": "Pembangun mudah alih dari Klang, melancarkan ke tiga gedung aplikasi.",
+    "aboutBody": "Setiap hari saya bekerja dengan Flutter dan Dart, menyelenggara dan mengembangkan MyTax untuk pembayar cukai Malaysia. Sebelum itu saya membaiki ciri TOTP yang rosak di jabatan R&D Bestinet. Daripada projek-projek terdahulu, saya selesa dengan C++, Python, JavaScript dan PHP, dan mempunyai minat sampingan dalam pembangunan web front-end.",
+    "aboutMore": "Lebih lanjut tentang saya",
+    "ctaEyebrow": "Hubungi saya",
+    "ctaTitle": "Ada jawatan atau projek dalam fikiran?",
+    "ctaBody": "Saya terbuka untuk kerja jarak jauh, hibrid atau di pejabat, di mana-mana di Malaysia. Tempoh notis tiga bulan.",
+    "ctaButton": "Mulakan perbualan",
+    "ctaEmail": "atau e-mel saya di zariffdanial.zul@gmail.com"
   },
   "backToTop": "Kembali ke atas",
   "toast": {
-    "switchedToLight": "Ditukar ke mod cerah",
+    "switchedToLight": "Ditukar ke mod terang",
     "switchedToDark": "Ditukar ke mod gelap",
     "switchedToEnglish": "Language switched to English",
     "switchedToMalay": "Bahasa ditukar kepada Bahasa Malaysia"
@@ -23,33 +55,6 @@
   "konami": {
     "title": "Anda jumpa rahsia!",
     "subtitle": "Terima kasih kerana meneroka. ↑↑↓↓←→←→ B A"
-  },
-  "typewriter": {
-    "mobile": "Pembangun Aplikasi Mudah Alih",
-    "flutter": "Pembangun Flutter",
-    "web": "Pembangun Web",
-    "programmer": "Pengaturcara"
-  },
-  "home2": {
-    "headingPre": "MARI SAYA",
-    "headingHighlight": "PERKENALKAN",
-    "headingPost": "DIRI",
-    "bioP1": "Saya seorang pembangun yang gemar mengubah idea menjadi aplikasi yang boleh ditekan, dileret, dan digunakan oleh orang ramai. 📱 Masih mempelajari perkara baharu setiap hari, dan menikmati perjalanan ini.",
-    "bioP2_pre": "Hari demi hari, saya bekerja dengan",
-    "bioP2_flutterDart": "Flutter dan Dart",
-    "bioP2_mid": "di Zen Computer Systems, mengekalkan aplikasi mudah alih MyTax di bawah LHDN dengan lebih 894,000 pemasangan aktif di Google Play sahaja. Dari projek terdahulu, saya juga selesa dengan",
-    "bioP2_langs": "C++, Python, JavaScript, dan PHP.",
-    "bioP3_pre": "Tumpuan saya adalah",
-    "bioP3_mobileDev": "Pembangunan Mudah Alih",
-    "bioP3_mid": ": membina UI yang kemas dan pengalaman pengguna yang lancar di",
-    "bioP3_platforms": "iOS dan Android",
-    "bioP3_mid2": ", dengan minat sampingan dalam kerja",
-    "bioP3_frontend": "Front-End",
-    "bioP3_post": "web.",
-    "findMeOn": "CARI SAYA DI",
-    "connectPre": "Jangan segan untuk",
-    "connectHighlight": "berhubung",
-    "connectPost": "dengan saya"
   },
   "faq": {
     "headingPre": "Soalan",
@@ -90,7 +95,7 @@
     "messagePlaceholder": "Ceritakan sedikit tentang apa yang anda fikirkan…",
     "send": "Hantar mesej",
     "sending": "Menghantar…",
-    "sent": "Mesej dihantar — terima kasih!",
+    "sent": "Mesej dihantar, terima kasih!",
     "success": "Mesej dihantar! Saya akan balas tidak lama lagi.",
     "error": "Tidak dapat hantar. Sila e-mel saya di zariffdanial.zul@gmail.com",
     "notConfigured": "Borang hubungan belum disediakan. E-mel saya terus!"
@@ -98,14 +103,8 @@
   "stats": {
     "certifications": "Sijil",
     "technologies": "Teknologi",
-    "appsShipped": "Aplikasi dilancarkan",
+    "appsShipped": "Aplikasi beroperasi",
     "yearsCoding": "Tahun mengekod"
-  },
-  "wakatime": {
-    "headingPre": "Aktiviti",
-    "headingHighlight": "Mengekod",
-    "cardTitle": "Statistik mengekod saya (7 hari terkini)",
-    "alt": "Bahasa pengaturcaraan teratas dari Wakatime"
   },
   "about": {
     "knowMePre": "Kenali Siapa",
@@ -119,23 +118,23 @@
     "viewCredential": "Lihat kelayakan",
     "credentialId": "ID Sijil:",
     "byTheNumbersPre": "Dalam",
-    "byTheNumbersHighlight": "Nombor",
+    "byTheNumbersHighlight": "Angka",
     "availableOn": "Tersedia di:",
     "testimonialsPre": "Apa Yang Orang",
     "testimonialsHighlight": "Kata",
     "seeAllRecommendations": "Lihat semua syor di LinkedIn",
-    "pressPre": "Disebut",
-    "pressHighlight": "Dalam",
+    "pressPre": "Liputan",
+    "pressHighlight": "Media",
     "readArticle": "Baca artikel",
     "featuredLabel": "Sedang Membangunkan",
     "featuredTitle": "MyTax",
     "featuredSubtitle": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia",
-    "featuredDescription": "Saya membantu mengekalkan dan menambah baik pengalaman mudah alih untuk pembayar cukai Malaysia di Zen Computer Systems, melaksanakan pembetulan dan kemas kini untuk peranti iOS, Android, dan Huawei.",
+    "featuredDescription": "Saya membantu menyelenggara dan menambah baik pengalaman mudah alih untuk pembayar cukai Malaysia di Zen Computer Systems, melaksanakan pembetulan dan kemas kini untuk peranti iOS, Android, dan Huawei.",
     "readCaseStudy": "Baca kajian kes",
     "featuredStat1Value": "3",
     "featuredStat1Label": "Platform dilancarkan",
     "featuredStat2Value": "Sejak 2022",
-    "featuredStat2Label": "Aktif dalam produksi",
+    "featuredStat2Label": "Beroperasi secara langsung",
     "featuredStat3Value": "LHDN",
     "featuredStat3Label": "Kerja gred kerajaan",
     "skillsetPre": "Kemahiran",
@@ -143,19 +142,20 @@
     "toolsHighlight": "Alat",
     "toolsPost": "yang saya guna",
     "daysICodePre": "Hari Saya",
-    "daysICodeHighlight": "Mengekod"
+    "daysICodeHighlight": "Mengekod",
+    "stackLead": "Bahasa, rangka kerja dan alatan yang berkaitan."
   },
   "aboutCard": {
-    "intro_pre": "Hai semua, saya",
+    "intro_pre": "Saya",
     "intro_name": "Zariff Danial",
     "intro_from": "dari",
     "intro_location": "Klang, Selangor.",
-    "degree": "Saya seorang graduan dalam IJAZAH SARJANA MUDA SAINS KOMPUTER (KEPUJIAN) PENGKOMPUTERAN BERPUSATKAN RANGKAIAN",
+    "degree": "Saya lulusan Ijazah Sarjana Muda Sains Komputer (Kepujian) Pengkomputeran Berpusatkan Rangkaian dari UiTM.",
     "currentRole_pre": "Saya sedang bekerja sebagai",
     "currentRole_title": "Solutions Developer",
     "currentRole_at": "di",
     "currentRole_company": "Zen Computer Systems",
-    "currentRole_post": "(sejak November 2025), mengekalkan aplikasi mudah alih MyTax di bawah LHDN. Sebelum ini sebagai Mobile Application Developer di",
+    "currentRole_post": "(sejak November 2025), menyelenggara aplikasi mudah alih MyTax di bawah LHDN. Sebelum ini sebagai Mobile Application Developer di",
     "currentRole_prevCompany": "Bestinet Sdn Bhd",
     "currentRole_end": "(Julai hingga November 2025), dalam jabatan R&D mereka, di mana saya membaiki dan menyiapkan ciri TOTP dalam aplikasi pengesah Flutter dalaman.",
     "hobbies": "Selain daripada mengekod, beberapa aktiviti lain yang saya gemari!",
@@ -166,7 +166,8 @@
     "metaLocationLabel": "Berpangkalan di",
     "metaLocationValue": "Klang, Malaysia · GMT+8 · Terbuka untuk kerja jarak jauh, hibrid, atau di pejabat",
     "metaLanguagesLabel": "Bahasa",
-    "metaLanguagesValue": "Bahasa Malaysia dan Bahasa Inggeris"
+    "metaLanguagesValue": "Bahasa Malaysia dan Bahasa Inggeris",
+    "hobbiesLabel": "Di luar waktu kerja"
   },
   "experience": {
     "zen": {
@@ -174,7 +175,7 @@
       "company": "Zen Computer Systems",
       "period": "November 2025 hingga Kini",
       "meta": "Cyberjaya, Selangor · Di pejabat · Kontrak",
-      "b1": "Mengekalkan aplikasi Flutter produksi yang digunakan oleh pembayar cukai Malaysia di Android, iOS, dan Huawei AppGallery.",
+      "b1": "Menyelenggara aplikasi Flutter produksi yang digunakan oleh pembayar cukai Malaysia di Android, iOS, dan Huawei AppGallery.",
       "b2": "Menyiasat isu khusus platform di iOS, Android, dan binaan Huawei AppGallery yang berjalan dalam persekitaran HMS tanpa Google Mobile Services.",
       "b3": "Menguruskan localization sebelah mudah alih untuk Bahasa Malaysia dan Inggeris, selaras dengan konvensyen string yang dikongsi platform web.",
       "b4": "Bekerjasama dengan pasukan backend untuk integrasi REST API dan konsistensi data merentas keluaran."
@@ -236,17 +237,31 @@
     "movie_title": "Tiket Wayang",
     "movie_desc": "Sistem Tempahan Tiket Wayang ialah aplikasi berasaskan web yang memudahkan tempahan, pembatalan, dan pengurusan tiket wayang. Dengan antara muka pengguna dan admin yang berasingan, sistem ini menawarkan pengalaman yang lancar untuk kedua-dua pengguna dan pentadbir.",
     "bookstore_title": "Kedai Buku",
-    "bookstore_desc": "Aplikasi web ini membolehkan pelanggan meneroka pelbagai buku, mencipta akaun, membuat pembelian, dan melihat sejarah pembelian mereka. Penjual mempunyai keupayaan untuk menguruskan inventori buku dan mengakses butiran pengambilan untuk pesanan yang selesai. Sistem ini menyediakan cara yang lancar untuk pelanggan menemui dan memperoleh buku kegemaran mereka, sambil memperkasakan penjual dengan alat untuk menguruskan tawaran buku mereka dengan cekap."
+    "bookstore_desc": "Aplikasi web ini membolehkan pelanggan meneroka pelbagai buku, mencipta akaun, membuat pembelian, dan melihat sejarah pembelian mereka. Penjual mempunyai keupayaan untuk menguruskan inventori buku dan mengakses butiran pengambilan untuk pesanan yang selesai. Sistem ini menyediakan cara yang lancar untuk pelanggan menemui dan memperoleh buku kegemaran mereka, sambil memperkasakan penjual dengan alat untuk menguruskan tawaran buku mereka dengan cekap.",
+    "eyebrow": "Projek",
+    "featuredEyebrow": "Pilihan",
+    "featuredCta": "Baca kajian kes",
+    "viewCode": "Lihat kod",
+    "noRepo": "Tiada repositori awam",
+    "productionBadge": "Sedang beroperasi",
+    "mytax_title": "MyTax",
+    "mytax_desc": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia, digunakan oleh pembayar cukai di seluruh negara. Saya merupakan satu-satunya pembangun mudah alih, menghantar pembetulan dan ciri baharu merentas iOS, Android dan Huawei AppGallery untuk LHDN, termasuk pangkalan kod HMS berasingan untuk peranti Huawei."
   },
   "resume": {
     "download": "Muat Turun CV",
-    "lastUpdated": "Dikemaskini Mei 2026"
+    "lastUpdated": "Dikemaskini Mei 2026",
+    "loading": "Memuatkan resume",
+    "loadError": "Resume tidak dapat dipaparkan di sini. Gunakan butang muat turun untuk membukanya."
   },
   "footer": {
     "developedBy": "Dibangunkan oleh Zariff Danial",
     "copyright": "Hak Cipta",
-    "uses": "Yang Saya Guna",
-    "viewSource": "Lihat kod sumber"
+    "uses": "Peralatan saya",
+    "viewSource": "Lihat kod sumber",
+    "tagline": "Pembangun mudah alih, Flutter dan Dart. Klang, Malaysia.",
+    "nav": "Navigasi",
+    "elsewhere": "Pautan lain",
+    "builtWith": "Dibina dengan React, dihoskan di Vercel."
   },
   "uses": {
     "headingPre": "Apa Yang Saya",
@@ -256,13 +271,67 @@
     "languages": "Bahasa & Rangka Kerja",
     "tools": "Alat & Perkhidmatan",
     "system": "Sistem & Terminal",
-    "browser": "Pelayar & Produktiviti",
     "hardware": "Perkakasan",
-    "hardwarePlaceholder": "Tambah laptop, monitor, papan kekunci, fon kepala anda di sini."
+    "notes": {
+      "vscode": "Tema Default Dark+",
+      "androidStudio": "Untuk binaan Flutter & Android",
+      "git": "Kawalan versi",
+      "flutter": "Rangka kerja mudah alih utama",
+      "dart": "Bahasa harian saya",
+      "javascript": "Kerja web & portfolio ini",
+      "cpp": "Projek terbenam / Arduino",
+      "php": "Projek web terdahulu",
+      "python": "Sains data / skrip",
+      "java": "Subjek universiti & asas Android",
+      "postman": "Pengujian API",
+      "figma": "Mockup UI & serahan reka bentuk",
+      "npm": "Pengurus pakej JS",
+      "gradle": "Binaan Android",
+      "arduino": "Projek mikropengawal",
+      "windows": "OS harian",
+      "powershell": "Terminal lalai",
+      "chrome": "Pelayar utama",
+      "zephyrus": "Komputer riba peribadi, tempat saya membina projek awal saya (baglock, bookstore, movie ticket). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
+      "ideapad": "Komputer kerja harian di Zen untuk pembangunan mudah alih MyTax. Ryzen 5 7520U · 16 GB RAM · Windows 11"
+    }
   },
   "notFound": {
     "title": "Halaman tidak dijumpai",
     "desc": "Nampaknya halaman ini telah hilang. Pautan mungkin rosak atau halaman telah dipindahkan.",
-    "takeMeHome": "Bawa saya pulang"
+    "takeMeHome": "Bawa saya pulang",
+    "eyebrow": "Ralat 404"
+  },
+  "skipToContent": "Langkau ke kandungan",
+  "store": {
+    "appstore": {
+      "small": "Muat turun di",
+      "aria": "Muat turun MyTax di App Store",
+      "count": "1.7M+ pemasangan"
+    },
+    "playstore": {
+      "small": "Dapatkan di",
+      "aria": "Dapatkan MyTax di Google Play",
+      "count": "894K+ pemasangan"
+    },
+    "appgallery": {
+      "small": "Terokai di",
+      "aria": "Terokai MyTax di AppGallery",
+      "count": "282K+ pemasangan"
+    }
+  },
+  "meta": {
+    "home": "Zariff Danial · Pembangun Mudah Alih (Flutter)",
+    "homeDesc": "Zariff Danial, pembangun mudah alih dari Klang, Selangor. Flutter dan Dart. Satu-satunya pembangun mudah alih untuk MyTax, aplikasi rasmi pemfailan cukai Malaysia.",
+    "about": "Tentang · Zariff Danial",
+    "aboutDesc": "Pembangun mudah alih di Zen Computer Systems. Flutter dan Dart, kini mengusahakan aplikasi mudah alih MyTax di bawah LHDN.",
+    "projects": "Projek · Zariff Danial",
+    "projectsDesc": "Pilihan projek oleh Zariff Danial: aplikasi mudah alih, sistem terbenam, dan aplikasi web.",
+    "resume": "Resume · Zariff Danial",
+    "resumeDesc": "Muat turun atau lihat resume Zariff Danial.",
+    "uses": "Peralatan · Zariff Danial",
+    "usesDesc": "Perkakasan, editor, bahasa, dan alatan yang Zariff Danial gunakan setiap hari untuk pembangunan mudah alih.",
+    "mytax": "Kajian Kes MyTax · Zariff Danial",
+    "notFound": "404 · Zariff Danial",
+    "notFoundDesc": "Halaman yang anda cari tidak wujud."
   }
 }

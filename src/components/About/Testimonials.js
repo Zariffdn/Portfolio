@@ -1,14 +1,13 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { FaQuoteLeft, FaLinkedin } from "react-icons/fa";
-import { HiOutlineExternalLink } from "react-icons/hi";
-import FadeIn from "../FadeIn";
+import { FiLinkedin } from "react-icons/fi";
+import { Container, Section, SectionHeading, Reveal } from "../ui";
 import nizamPhoto from "../../Assets/nizam.jpg";
+import "../../styles/about-sections.css";
 
 // To add a testimonial: append an object with name, role, company, quote, and
-// optionally an avatar (a local imported image — preferred — or a remote URL).
-// Leave the array empty to hide the entire section.
+// optionally an avatar (a local imported image is preferred over a remote
+// URL). Leave the array empty to hide the entire section.
 //
 // Tip: ask for LinkedIn recommendations from a peer, a manager, and a lecturer
 // for the strongest spread.
@@ -24,8 +23,8 @@ const testimonials = [
   },
 ];
 
-// Full LinkedIn recommendations list — shown as a single "see all" link
-// beneath the testimonial grid for visitors who want to verify.
+// Full LinkedIn recommendations list, shown as a single "see all" link
+// beneath the quote for visitors who want to verify.
 const RECOMMENDATIONS_URL =
   "https://www.linkedin.com/in/zariffdanial/details/recommendations/";
 
@@ -40,64 +39,66 @@ function Testimonials() {
   if (testimonials.length === 0) return null;
 
   return (
-    <>
-      <FadeIn>
-        <h1 className="project-heading">
-          {t("about.testimonialsPre")}{" "}
-          <strong className="purple">{t("about.testimonialsHighlight")}</strong>
-        </h1>
-      </FadeIn>
-      <Row
-        style={{ justifyContent: "center", paddingBottom: "10px" }}
-        className="testimonials-row"
-      >
+    <Section tone="alt" hairline>
+      <Container>
+        <SectionHeading
+          title={
+            t("about.testimonialsPre") + " " + t("about.testimonialsHighlight")
+          }
+        />
         {testimonials.map((tst, i) => (
-          <Col md={4} key={tst.id} className="testimonial-col">
-            <FadeIn delay={i * 0.08}>
-              <article className="testimonial-card">
-                <FaQuoteLeft className="testimonial-quote-icon" aria-hidden="true" />
-                <p className="testimonial-quote">{tst.quote}</p>
-                <div className="testimonial-author">
-                  {tst.avatar ? (
-                    <img
-                      src={tst.avatar}
-                      alt={tst.name}
-                      className="testimonial-avatar"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span className="testimonial-avatar testimonial-avatar-placeholder">
-                      {initialOf(tst.name)}
-                    </span>
-                  )}
-                  <div className="testimonial-meta">
-                    <div className="testimonial-name">{tst.name}</div>
-                    <div className="testimonial-role">
-                      {tst.role}
-                      {tst.company ? ` · ${tst.company}` : ""}
-                    </div>
+          <Reveal key={tst.id} delay={i * 0.08}>
+            <figure className="testimonial">
+              <span className="testimonial__mark" aria-hidden="true">
+                &ldquo;
+              </span>
+              <blockquote className="testimonial__quote">
+                <p>{tst.quote}</p>
+              </blockquote>
+              <figcaption className="testimonial__author">
+                {tst.avatar ? (
+                  <img
+                    src={tst.avatar}
+                    alt={tst.name}
+                    className="testimonial__avatar"
+                    width="44"
+                    height="44"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span
+                    className="testimonial__avatar testimonial__avatar--placeholder"
+                    aria-hidden="true"
+                  >
+                    {initialOf(tst.name)}
+                  </span>
+                )}
+                <div>
+                  <div className="testimonial__name">{tst.name}</div>
+                  <div className="testimonial__role text-3 small">
+                    {tst.role}
+                    {tst.company ? " · " + tst.company : ""}
                   </div>
                 </div>
-              </article>
-            </FadeIn>
-          </Col>
+              </figcaption>
+            </figure>
+          </Reveal>
         ))}
-      </Row>
-      <FadeIn delay={0.15}>
-        <div className="testimonials-see-all">
-          <a
-            href={RECOMMENDATIONS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="testimonials-see-all-link"
-          >
-            <FaLinkedin aria-hidden="true" />
-            <span>{t("about.seeAllRecommendations")}</span>
-            <HiOutlineExternalLink aria-hidden="true" />
-          </a>
-        </div>
-      </FadeIn>
-    </>
+        <Reveal delay={0.15}>
+          <div className="testimonial__more">
+            <a
+              href={RECOMMENDATIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-arrow"
+            >
+              <FiLinkedin aria-hidden="true" />
+              {t("about.seeAllRecommendations")}
+            </a>
+          </div>
+        </Reveal>
+      </Container>
+    </Section>
   );
 }
 

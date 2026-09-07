@@ -1,0 +1,337 @@
+/* ==========================================================================
+   MyTax case study (/mytax)
+   Builds only on tokens.css and base.css primitives; no overrides by force.
+   ========================================================================== */
+
+/* ---- Hero entrance (the hero owns its own reveal; body blocks use Reveal) */
+@keyframes cs-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cs-rise {
+  animation: cs-rise var(--dur-slow) var(--ease-out) both;
+}
+
+.cs-hero > .cs-rise:nth-child(1) { animation-delay: 60ms; }
+.cs-hero > .cs-rise:nth-child(2) { animation-delay: 120ms; }
+.cs-hero > .cs-rise:nth-child(3) { animation-delay: 180ms; }
+.cs-hero > .cs-rise:nth-child(4) { animation-delay: 240ms; }
+.cs-hero > .cs-rise:nth-child(5) { animation-delay: 300ms; }
+.cs-hero > .cs-rise:nth-child(6) { animation-delay: 360ms; }
+
+/* ---- Back link: same as .link-arrow, but the arrow nudges left --------- */
+.link-arrow.cs-back:hover svg,
+.link-arrow.cs-back:focus-visible svg {
+  transform: translateX(-3px);
+}
+
+.cs-back--bottom {
+  margin-top: var(--s-12);
+}
+
+/* ---- Hero ---------------------------------------------------------------- */
+.cs-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cs-hero > .eyebrow {
+  margin-bottom: var(--s-5);
+}
+
+.cs-hero > h1 {
+  margin-bottom: var(--s-6);
+}
+
+.cs-hero > .lead {
+  max-width: 60ch;
+}
+
+.cs-hero .cs-meta {
+  width: 100%;
+  margin-top: var(--s-10);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-6) var(--s-8);
+  align-items: start;
+}
+
+.cs-meta > div {
+  display: grid;
+  gap: var(--s-1);
+  min-width: 0;
+}
+
+.cs-stores {
+  margin-top: var(--s-8);
+  width: 100%;
+}
+
+.cs-caption {
+  max-width: 60ch;
+  margin-top: var(--s-4);
+}
+
+/* ---- Screens band -------------------------------------------------------- */
+.cs-screens {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: var(--s-6);
+  /* room for the raised middle phone and for the bezel shadow */
+  padding-top: 20px;
+  padding-bottom: var(--s-2);
+}
+
+.cs-screens__item {
+  flex: 0 0 auto;
+  width: 240px;
+  max-width: 240px;
+}
+
+.cs-screens__item:nth-child(2) {
+  margin-bottom: 20px;
+}
+
+.cs-screens .phone {
+  max-width: 240px;
+}
+
+/* Reserve the screenshot's box before the lazy image arrives (no layout shift). */
+.cs-screens .phone__screen {
+  aspect-ratio: 589 / 1280;
+}
+
+@media (max-width: 880px) {
+  .cs-screens {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    /* bleed to the viewport edges but keep the gutter as inner padding */
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    /* the scroller clips vertically too: leave room for the bezel shadow */
+    padding-bottom: var(--s-12);
+    margin-bottom: calc(-1 * var(--s-6));
+    scroll-padding-inline: var(--gutter);
+  }
+
+  .cs-screens__item {
+    width: 150px;
+    max-width: 150px;
+    scroll-snap-align: start;
+  }
+
+  .cs-screens .phone {
+    max-width: 150px;
+    padding: 6px;
+    border-radius: 28px;
+  }
+
+  .cs-screens .phone__screen {
+    border-radius: 22px;
+  }
+
+  .cs-screens .phone__island {
+    top: 11px;
+    width: 44px;
+    height: 12px;
+  }
+}
+
+/* ---- Headline stat ------------------------------------------------------- */
+.cs-stat {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  text-align: center;
+}
+
+.cs-stat__value {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--accent-text);
+}
+
+.cs-stat__label {
+  color: var(--text-3);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---- Body blocks --------------------------------------------------------- */
+.cs-blocks {
+  display: grid;
+  gap: var(--s-16);
+}
+
+.cs-block {
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-8);
+}
+
+.cs-block__index {
+  margin-bottom: var(--s-4);
+}
+
+.cs-block > h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--s-6);
+}
+
+.cs-block .prose + .cs-tech,
+.cs-block .prose + .cs-list,
+.cs-block .prose + .cs-press {
+  margin-top: var(--s-6);
+}
+
+/* Technical stack groups */
+.cs-tech {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s-4);
+}
+
+.cs-tech__group {
+  padding: var(--s-5);
+  display: grid;
+  align-content: start;
+  gap: var(--s-4);
+  min-width: 0;
+}
+
+.cs-tech__group > .eyebrow {
+  color: var(--text-3);
+}
+
+/* Package names can be long; let a chip wrap instead of overflowing. */
+.cs-tech .chip {
+  height: auto;
+  min-height: 28px;
+  padding-block: 5px;
+  white-space: normal;
+  line-height: 1.3;
+  text-align: left;
+}
+
+/* Platform and release facts */
+.cs-facts {
+  padding: var(--s-6);
+}
+
+.cs-facts .meta-list {
+  gap: var(--s-3) var(--s-8);
+}
+
+@media (max-width: 480px) {
+  .cs-facts .meta-list {
+    grid-template-columns: 1fr;
+    gap: var(--s-1);
+  }
+
+  .cs-facts .meta-list dd + dt {
+    margin-top: var(--s-4);
+  }
+}
+
+/* Challenge and takeaway lists */
+.cs-list {
+  display: grid;
+  gap: var(--s-3);
+  line-height: 1.65;
+  padding-left: 1.25em;
+}
+
+.cs-list li::marker {
+  color: var(--accent-text);
+}
+
+.cs-list strong {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+/* Press row */
+.cs-press {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  color: var(--text-1);
+}
+
+.cs-press:hover,
+.cs-press:focus-visible {
+  text-decoration: none;
+  color: var(--text-1);
+}
+
+.cs-press__icon,
+.cs-press__arrow {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.cs-press__icon {
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 1.125rem;
+}
+
+.cs-press__arrow {
+  color: var(--text-3);
+  font-size: 1.25rem;
+  transition: transform var(--dur) var(--ease-out), color var(--dur) ease;
+}
+
+.cs-press:hover .cs-press__arrow,
+.cs-press:focus-visible .cs-press__arrow {
+  color: var(--accent-text);
+  transform: translate(2px, -2px);
+}
+
+.cs-press__body {
+  display: grid;
+  gap: var(--s-1);
+  min-width: 0;
+}
+
+.cs-press__source {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--accent-text);
+}
+
+.cs-press__title {
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-1);
+}
+
+@media (max-width: 480px) {
+  .cs-press {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .cs-press__arrow {
+    display: none;
+  }
+}

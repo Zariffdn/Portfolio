@@ -1,0 +1,73 @@
+/* Store link buttons: shared by About, Experience and the case study. */
+.store-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  height: 52px;
+  padding: 0 var(--s-4) 0 var(--s-3);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-strong);
+  background: var(--bg-2);
+  color: var(--text-1);
+  transition: transform var(--dur) var(--ease-out), border-color var(--dur) ease,
+    background-color var(--dur) ease;
+}
+
+.store-link:hover,
+.store-link:focus-visible {
+  text-decoration: none;
+  color: var(--text-1);
+  transform: translateY(-2px);
+  border-color: var(--text-2);
+  background: var(--bg-3);
+}
+
+.store-link__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.store-link__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.store-link__text small {
+  font-size: 0.6875rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+
+.store-link__text strong {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.store-link__count {
+  margin-left: var(--s-2);
+  height: 24px;
+  font-size: 0.6875rem;
+}
+
+.store-links--compact .store-link {
+  height: 44px;
+}
+
+@media (max-width: 480px) {
+  .store-link {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
+
+  .store-link__count {
+    margin-left: auto;
+  }
+}

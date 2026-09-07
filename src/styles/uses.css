@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Uses page
+   Editorial list rows: each group sits under a mono eyebrow, and every item
+   is a full-width row separated by a hairline (the DESIGN.md list-row
+   pattern shared with certifications and FAQ). No cards, no surfaces.
+   ========================================================================== */
+
+.section.uses-section {
+  padding-top: calc(var(--section-y) * 0.5);
+}
+
+.uses__groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-12);
+}
+
+/* The first row's border-top is the hairline under the eyebrow, so the head
+   only needs breathing room; a border here would double the line. */
+.uses__group-head {
+  display: flex;
+  align-items: center;
+  padding-bottom: var(--s-4);
+}
+
+.uses__list {
+  list-style: none;
+  padding: 0;
+}
+
+.uses__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-4);
+  padding-block: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.uses__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  background: var(--bg-3);
+  color: var(--accent-text);
+  font-size: 1.15rem;
+}
+
+.uses__text {
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.uses__label {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--text-1);
+  text-wrap: pretty;
+}
+
+.uses__note {
+  margin-top: var(--s-1);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}

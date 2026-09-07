@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Resume page
+   Heading with a download action, then the PDF rendered page by page at the
+   container's width (capped), each page framed like a sheet of paper.
+   ========================================================================== */
+
+.section.resume-section {
+  padding-top: calc(var(--section-y) * 0.5);
+}
+
+.resume__doc {
+  position: relative;
+  width: 100%;
+}
+
+/* Shown until react-pdf reports how many pages there are */
+.resume__placeholder {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  padding: var(--s-6);
+}
+
+.resume__placeholder-text {
+  max-width: 44ch;
+  text-align: center;
+}
+
+/* Pages stack in a centred column */
+.resume__pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-6);
+}
+
+.resume__pages .react-pdf__Page {
+  max-width: 100%;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-2);
+}
+
+.resume__pages .react-pdf__Page canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.resume__foot {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-8);
+}
