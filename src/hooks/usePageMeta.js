@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const ORIGIN = "https://portfolioo-beta.vercel.app";
+const ORIGIN = "https://zariffdanial.vercel.app";
 
 function ensureTag(selector, create) {
   let el = document.head.querySelector(selector);

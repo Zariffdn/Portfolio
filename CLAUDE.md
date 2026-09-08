@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Personal portfolio for Zariff Danial, built with Create React App (react-scripts 5, React 17) and deployed to Vercel at https://portfolioo-beta.vercel.app/. All content lives in the locale files and a few data modules; there is no CMS. The design system is documented in [docs/DESIGN.md](docs/DESIGN.md).
+Personal portfolio for Zariff Danial, built with Create React App (react-scripts 5, React 17) and deployed to Vercel at https://zariffdanial.vercel.app/. All content lives in the locale files and a few data modules; there is no CMS. The design system is documented in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Commands
 
