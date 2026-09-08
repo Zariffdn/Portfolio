@@ -26,6 +26,7 @@ function Footer() {
               <li><Link to="/resume">{t("navbar.resume")}</Link></li>
               <li><Link to="/uses">{t("footer.uses")}</Link></li>
               <li><Link to="/mytax">MyTax</Link></li>
+              <li><Link to="/bestinet">TOTP authenticator</Link></li>
             </ul>
           </div>
 

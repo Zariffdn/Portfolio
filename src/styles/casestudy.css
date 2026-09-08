@@ -1,6 +1,7 @@
 /* ==========================================================================
-   MyTax case study (/mytax)
+   Case studies (/mytax and /bestinet)
    Builds only on tokens.css and base.css primitives; no overrides by force.
+   .cs-art, .cs-moment and .cs-trace are the Bestinet-only additions.
    ========================================================================== */
 
 /* ---- Hero entrance (the hero owns its own reveal; body blocks use Reveal) */
@@ -67,6 +68,10 @@
   display: grid;
   gap: var(--s-1);
   min-width: 0;
+}
+
+.cs-meta__span {
+  grid-column: 1 / -1;
 }
 
 .cs-stores {
@@ -193,7 +198,10 @@
 
 .cs-block .prose + .cs-tech,
 .cs-block .prose + .cs-list,
-.cs-block .prose + .cs-press {
+.cs-block .prose + .cs-press,
+.cs-block .prose + .cs-trace,
+.cs-block .prose + .cs-block__cta,
+.cs-block .cs-list + .prose {
   margin-top: var(--s-6);
 }
 
@@ -333,5 +341,160 @@
 
   .cs-press__arrow {
     display: none;
+  }
+}
+
+/* ==========================================================================
+   Bestinet additions
+   ========================================================================== */
+
+/* ---- Card art band: the real app is proprietary, so the card art stands in */
+.cs-art {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.cs-art__panel {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* The art is drawn at 1280x800; reserve its box before the file arrives. */
+.cs-art__panel img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
+
+.cs-art__caption {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+  text-align: center;
+}
+
+/* ---- Headline moment: a display line where MyTax shows a number ---------- */
+.cs-moment {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  text-align: center;
+}
+
+.cs-moment__line {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 800;
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-tight);
+  color: var(--text-1);
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+.cs-moment__label {
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---- Trace stepper: CSS only, one row per step, rail between the nodes --- */
+.cs-trace {
+  display: grid;
+  list-style: none;
+  padding-left: 0;
+}
+
+.cs-trace__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: var(--s-4);
+  align-items: start;
+  padding-bottom: var(--s-6);
+}
+
+.cs-trace__step::before {
+  content: "";
+  position: absolute;
+  top: calc(28px + var(--s-1));
+  bottom: var(--s-1);
+  left: 13.5px;
+  width: 1px;
+  background: var(--line);
+}
+
+.cs-trace__step:last-child {
+  padding-bottom: 0;
+}
+
+.cs-trace__step:last-child::before {
+  display: none;
+}
+
+.cs-trace__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  line-height: 1;
+}
+
+.cs-trace__step--defect .cs-trace__index {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.cs-trace__body {
+  min-width: 0;
+}
+
+.cs-trace__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+  min-height: 28px;
+}
+
+.cs-trace__title {
+  font-size: var(--fs-lead);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.cs-trace__text {
+  margin-top: var(--s-2);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* "Defect" chip in danger tones. The soft fill and hairline are derived from
+   the single --danger token; older engines fall back to the outlined chip. */
+.cs-trace__flag {
+  height: 22px;
+  padding: 0 var(--s-2);
+  color: var(--danger);
+  border-color: var(--danger);
+  background: transparent;
+}
+
+@supports (color: color-mix(in srgb, red 50%, transparent)) {
+  .cs-trace__flag {
+    border-color: color-mix(in srgb, var(--danger) 35%, transparent);
+    background: color-mix(in srgb, var(--danger) 12%, transparent);
   }
 }

@@ -1,43 +1,18 @@
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { SiHuawei } from "react-icons/si";
-import shot1 from "../Assets/featured/pic 1.jpeg";
-import shot2 from "../Assets/featured/pic 2.jpeg";
-import shot3 from "../Assets/featured/pic 3.jpeg";
-import shot1Small from "../Assets/featured/pic 1-300.jpeg";
-import shot2Small from "../Assets/featured/pic 2-300.jpeg";
-import shot3Small from "../Assets/featured/pic 3-300.jpeg";
+import { mytaxScreens } from "./screenshots";
+
+// The responsive-image helpers live in data/screenshots.js now; they are
+// re-exported here so existing imports keep working.
+export {
+  screenshotWidth,
+  screenshotSmallWidth,
+  screenshotSizes,
+  srcSetFor,
+} from "./screenshots";
 
 // Everything MyTax-related that more than one page shows.
-export const screenshots = [shot1, shot2, shot3];
-
-// Intrinsic widths of the two renditions of every screenshot. The originals
-// are 589x1280; the small ones are the same crops resized to 300px wide.
-export const screenshotWidth = 589;
-export const screenshotSmallWidth = 300;
-
-// Default sizes hint: a phone frame is never wider than 300px on desktop.
-export const screenshotSizes = "(max-width: 767px) 60vw, 300px";
-
-const smallScreenshots = new Map([
-  [shot1, shot1Small],
-  [shot2, shot2Small],
-  [shot3, shot3Small],
-]);
-
-// srcset splits candidates on whitespace and commas, and the screenshot
-// filenames contain a space, so those two characters are percent-encoded.
-const srcsetUrl = (url) => url.replace(/[ ,]/g, encodeURIComponent);
-
-// srcSet and sizes for a known screenshot src, or null for any other image so
-// the caller can fall back to a plain src.
-export function srcSetFor(src) {
-  const small = smallScreenshots.get(src);
-  if (!small) return null;
-  return {
-    srcSet: `${srcsetUrl(small)} ${screenshotSmallWidth}w, ${srcsetUrl(src)} ${screenshotWidth}w`,
-    sizes: screenshotSizes,
-  };
-}
+export const screenshots = mytaxScreens;
 
 export const lifetimeInstalls = "2.8M+";
 

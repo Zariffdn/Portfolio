@@ -1,20 +1,23 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
 import { Container, Section, SectionHeading } from "../ui";
 import StoreLinks from "../StoreLinks";
 import Timeline from "./Timeline";
 
 // Copy lives under experience.<key>.* in the locale files. `links` marks the
-// entry that shows the MyTax store buttons.
+// entry that shows the MyTax store buttons; `caseStudy` points an entry at its
+// case study page.
 const keys = [
   { key: "zen", bullets: ["b1", "b2", "b3", "b4"], links: true },
-  { key: "bestinet", bullets: ["b1", "b2", "b3", "b4"], links: false },
+  { key: "bestinet", bullets: ["b1", "b2", "b3", "b4"], caseStudy: "/bestinet" },
 ];
 
 function Experience() {
   const { t } = useTranslation();
 
-  const entries = keys.map(({ key, bullets, links }) => ({
+  const entries = keys.map(({ key, bullets, links, caseStudy }) => ({
     id: key,
     period: t(`experience.${key}.period`),
     role: t(`experience.${key}.role`),
@@ -25,6 +28,12 @@ function Experience() {
       <div className="tl__extra">
         <span className="eyebrow eyebrow--plain">{t("about.availableOn")}</span>
         <StoreLinks compact />
+      </div>
+    ) : caseStudy ? (
+      <div className="tl__extra">
+        <Link to={caseStudy} className="link-arrow">
+          {t("about.readCaseStudy")} <FiArrowRight aria-hidden="true" />
+        </Link>
       </div>
     ) : null,
   }));
