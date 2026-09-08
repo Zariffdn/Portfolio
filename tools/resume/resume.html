@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Zariff Danial, Mobile Developer (Flutter and Dart)</title>
+<meta name="author" content="Zariff Danial" />
+<meta name="description" content="Resume of Zariff Danial, mobile developer in Klang, Selangor. Flutter and Dart. Sole mobile developer on MyTax, Malaysia's official tax filing app." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ------------------------------------------------------------------
+     Source of truth for src/Assets/Zariff-Danial-Resume.pdf.
+     Rebuild with: node tools/resume/build.js   Check with: node tools/resume/check.js
+
+     Written to parse cleanly in applicant tracking systems:
+     - one column, top to bottom, in the order a parser expects
+     - real text everywhere; bullets are text characters in normal flow
+       (positioned elements are painted, and therefore extracted, last)
+     - no letter-spacing (extractors turn spaced caps into "S U M M A R Y")
+     - dates as "Mon YYYY to Mon YYYY"; no dashes of any kind
+     ------------------------------------------------------------------ */
+  :root {
+    --ink: #160e24;
+    --muted: #574f65;
+    --faint: #8a8496;
+    --line: #e3dfeb;
+    --accent: #5a22c4;
+    --display: "Bricolage Grotesque", "Inter", Arial, sans-serif;
+    --body: "Inter", Arial, Helvetica, sans-serif;
+  }
+
+  @page { size: A4; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: var(--body);
+    font-size: 8.6pt;
+    line-height: 1.26;
+    color: var(--ink);
+    background: #ffffff;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 9mm 14mm 8mm;
+    border-top: 3px solid var(--accent);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---- Header ---------------------------------------------------- */
+  .head { margin-bottom: 3.2mm; }
+
+  .head__name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 22pt;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .head__title { margin-top: 1.4mm; font-size: 10.2pt; font-weight: 500; color: var(--muted); }
+
+  .head__contact {
+    margin-top: 2mm;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 8pt;
+    color: var(--muted);
+  }
+
+  .head__contact span + span::before { content: "\00B7"; margin: 0 1.4mm; color: var(--faint); }
+
+  /* ---- Sections -------------------------------------------------- */
+  section { margin-top: 2.6mm; }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 2.6mm;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 8.6pt;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1mm;
+  }
+
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* ---- Entries --------------------------------------------------- */
+  .entry { break-inside: avoid; }
+  .entry + .entry { margin-top: 1.7mm; }
+
+  .entry__row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+
+  .entry__title { font-family: var(--display); font-weight: 700; font-size: 10pt; letter-spacing: -0.01em; }
+
+  .entry__when { flex-shrink: 0; font-size: 8.5pt; font-weight: 500; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .entry__where { margin-top: 0.2mm; font-size: 8.8pt; color: var(--muted); }
+  .entry__where strong { font-weight: 600; color: var(--ink); }
+
+  ul { list-style: none; margin-top: 0.9mm; }
+
+  /* In-flow bullet, no positioning: keeps the PDF text stream in reading order */
+  li { display: flex; gap: 1.6mm; margin-top: 0.4mm; }
+  li::before { content: "\2022"; color: var(--accent); flex: none; }
+
+  /* ---- Projects -------------------------------------------------- */
+  .project + .project { margin-top: 1.4mm; }
+  .project__row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .project__name { font-family: var(--display); font-weight: 700; font-size: 9.8pt; letter-spacing: -0.01em; }
+  .project__tech { font-size: 8.4pt; color: var(--muted); flex-shrink: 0; }
+  .project p { margin-top: 0.3mm; }
+  .project__link { color: var(--accent); }
+
+  /* ---- Key/value lists (skills, certifications) ------------------ */
+  .kv { display: grid; grid-template-columns: 24mm 1fr; column-gap: 3mm; row-gap: 0.6mm; }
+  .kv dt { font-family: var(--display); font-weight: 700; font-size: 8.6pt; color: var(--muted); padding-top: 0.4mm; }
+  .kv dd { color: var(--ink); }
+
+</style>
+</head>
+<body>
+
+<header class="head">
+  <h1 class="head__name">Zariff Danial</h1>
+  <p class="head__title">Mobile Developer (Flutter and Dart)</p>
+  <p class="head__contact">
+    <span>Klang, Selangor, Malaysia</span>
+    <span><a href="mailto:zariffdanial.zul@gmail.com">zariffdanial.zul@gmail.com</a></span>
+    <span><a href="https://www.linkedin.com/in/zariffdanial/">linkedin.com/in/zariffdanial</a></span>
+    <span><a href="https://github.com/Zariffdn">github.com/Zariffdn</a></span>
+    <span><a href="https://portfolioo-beta.vercel.app/">portfolioo-beta.vercel.app</a></span>
+  </p>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p>
+    Mobile developer shipping production Flutter apps to the App Store, Google Play and Huawei AppGallery. Sole mobile
+    developer on MyTax, the official income tax filing app of Malaysia's Inland Revenue Board (LHDN), with 2.8 million
+    lifetime installs across two Flutter codebases (GMS and HMS). Previously fixed and shipped a TOTP authentication
+    feature at Bestinet. Bachelor of Computer Science (Hons.) in Netcentric Computing from UiTM.
+  </p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <article class="entry">
+    <div class="entry__row">
+      <h3 class="entry__title">Solutions Developer (Mobile App Developer)</h3>
+      <span class="entry__when">Nov 2025 to Present</span>
+    </div>
+    <p class="entry__where"><strong>Zen Computer Systems</strong>, Cyberjaya, Selangor. Contract, on-site.</p>
+    <ul>
+      <li>Sole mobile developer for MyTax, LHDN's official tax filing app, live on the App Store, Google Play and Huawei AppGallery with 2.8M+ lifetime installs and roughly monthly releases.</li>
+      <li>Own the mobile surface end to end: bug fixes, feature work, platform-specific adaptations, localisation and store submissions across iOS, Android and Huawei builds.</li>
+      <li>Maintain a separate HMS codebase for Huawei devices, replacing Firebase Messaging and other Google-dependent plugins with Huawei Push Kit, and keep both codebases in sync on UX, API integration and localisation.</li>
+      <li>Integrate new REST endpoints as the backend team ships them, keep Bahasa Malaysia and English strings aligned with the web platform, and release conservatively through the March and April filing peak.</li>
+    </ul>
+  </article>
+
+  <article class="entry">
+    <div class="entry__row">
+      <h3 class="entry__title">Mobile Application Developer</h3>
+      <span class="entry__when">Jul 2025 to Nov 2025</span>
+    </div>
+    <p class="entry__where"><strong>Bestinet Sdn Bhd</strong>, Research and Development department, Cyberjaya, Selangor. Contract, hybrid.</p>
+    <ul>
+      <li>Took over a broken TOTP feature in an internal Flutter authenticator app and got one-time codes generating and displaying correctly.</li>
+      <li>Traced the failure to two defects: a controller init routine never called from the view layer, and an invalid type cast on a secure-storage read that threw on already-enrolled devices.</li>
+      <li>Hardened the generation path with error handling and early returns on failed device or secret-key lookups, so a missing key never produces a code.</li>
+      <li>Built the authenticator screen in GetX to a supplied design (30-second countdown ring, digit-by-digit code, tap to copy) and applied the same branding to the app shell and login screen.</li>
+    </ul>
+  </article>
+
+  <article class="entry">
+    <div class="entry__row">
+      <h3 class="entry__title">IT Support Intern</h3>
+      <span class="entry__when">Sep 2023 to Dec 2023</span>
+    </div>
+    <p class="entry__where"><strong>KPJ Klang Specialist Hospital</strong>, Klang, Selangor.</p>
+    <ul>
+      <li>Provided first-line technical support for hospital staff, workstations and internal systems, and supported staff adoption of the hospital's internal application across departments.</li>
+    </ul>
+  </article>
+</section>
+
+<section>
+  <h2>Selected projects</h2>
+
+  <article class="project">
+    <div class="project__row">
+      <h3 class="project__name">Silent Support</h3>
+      <span class="project__tech">React Native (Expo), TypeScript, Supabase, OpenAI API</span>
+    </div>
+    <p>Personal MVP: tap how you feel and get a calm response with breathing and grounding exercises; patterns are saved over time. Solo build with Supabase auth and storage. <a class="project__link" href="https://github.com/Zariffdn/Silent-Support-App">github.com/Zariffdn/Silent-Support-App</a></p>
+  </article>
+
+  <article class="project">
+    <div class="project__row">
+      <h3 class="project__name">Anti-theft Fingerprint Bag Lock</h3>
+      <span class="project__tech">Arduino, C++, fingerprint sensor, GPS, GSM</span>
+    </div>
+    <p>Final year project. Unlocks with an enrolled fingerprint and texts the bag's GPS coordinates on unauthorised access. <a class="project__link" href="https://github.com/zazarip/Anti-theft-fingerprint-baglock">github.com/zazarip/Anti-theft-fingerprint-baglock</a></p>
+  </article>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <dl class="kv">
+    <dt>Mobile</dt>
+    <dd>Flutter, Dart, Provider, GetX, Firebase Messaging, Huawei HMS (Push Kit), REST APIs (Dio), flutter_secure_storage, biometric login (local_auth), push notifications, TOTP (RFC 6238), App Store, Google Play and AppGallery releases</dd>
+    <dt>Languages</dt>
+    <dd>Dart, JavaScript, TypeScript, Python, C++, PHP, Java, SQL, HTML, CSS</dd>
+    <dt>Web and data</dt>
+    <dd>React, React Native (Expo), Node.js, MySQL, Supabase, scikit-learn, pandas, NLP</dd>
+    <dt>Tools</dt>
+    <dd>Git, GitHub, Android Studio, VS Code, Postman, Figma, Gradle, npm</dd>
+    <dt>Spoken</dt>
+    <dd>Bahasa Malaysia (native), English (fluent, spoken and written)</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Education</h2>
+
+  <article class="entry">
+    <div class="entry__row">
+      <h3 class="entry__title">Bachelor of Computer Science (Hons.) Netcentric Computing</h3>
+      <span class="entry__when">Oct 2020 to Sep 2023</span>
+    </div>
+    <p class="entry__where"><strong>Universiti Teknologi MARA (UiTM)</strong>, Shah Alam. CGPA 3.32.</p>
+  </article>
+
+  <article class="entry">
+    <div class="entry__row">
+      <h3 class="entry__title">Data Science Analyst Bootcamp</h3>
+      <span class="entry__when">Mar 2024 to Aug 2024</span>
+    </div>
+    <p class="entry__where"><strong>PEOPLElogy Group</strong>. Python, data wrangling, machine learning and NLP. Capstone: movie genre prediction from plot summaries (<a class="project__link" href="https://github.com/zazarip/Movie-Genre-Classification">github.com/zazarip/Movie-Genre-Classification</a>).</p>
+  </article>
+</section>
+
+<section>
+  <h2>Certifications</h2>
+  <dl class="kv">
+    <dt>IBM, 2025</dt>
+    <dd>Developing Mobile Apps with Flutter Specialization; Flutter and Dart: Developing iOS, Android, and Mobile Apps</dd>
+    <dt>Meta, 2025</dt>
+    <dd>Front-End Developer Specialization; Advanced React; Principles of UX/UI Design</dd>
+    <dt>CompTIA, 2025</dt>
+    <dd>CompTIA Tech+</dd>
+  </dl>
+</section>
+
+</body>
+</html>
