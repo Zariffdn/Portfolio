@@ -1,7 +1,7 @@
 import bag from "../Assets/Projects/bag.png";
 import movie from "../Assets/Projects/movie.png";
 import bookstore from "../Assets/Projects/bookstore.png";
-import silentsupport from "../Assets/Projects/silentsupport.svg";
+import silentShot from "../Assets/featured/silent-1.jpeg";
 import bestinet from "../Assets/Projects/bestinet.svg";
 import mytaxShot from "../Assets/featured/pic 2.jpeg";
 
@@ -24,8 +24,8 @@ export const projects = [
   {
     id: "silentsupport",
     category: "mobile",
-    img: silentsupport,
-    imgFit: "cover",
+    img: silentShot,
+    imgKind: "phone",
     personal: true,
     tags: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
     ghLink: "https://github.com/Zariffdn/Silent-Support-App",
@@ -36,6 +36,7 @@ export const projects = [
     img: bestinet,
     imgFit: "cover",
     proprietary: true,
+    caseStudy: "/bestinet",
     tags: ["Flutter", "Dart", "GetX", "TOTP", "Secure storage"],
   },
   {

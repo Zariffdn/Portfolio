@@ -1,11 +1,15 @@
 import React from "react";
-import { srcSetFor } from "../../data/mytax";
+import {
+  srcSetFor,
+  screenshotSizes,
+  screenshotSizesSmall,
+} from "../../data/screenshots";
 
 // Widest each frame size renders, so the browser can pick the 300w rendition
 // on 1x screens and the full 589w one on 2x and up.
 const SIZES = {
-  md: "(max-width: 767px) 60vw, 300px",
-  sm: "(max-width: 767px) 40vw, 220px",
+  md: screenshotSizes,
+  sm: screenshotSizesSmall,
 };
 
 // size:     "md" | "sm"

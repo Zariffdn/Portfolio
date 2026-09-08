@@ -239,6 +239,9 @@ function NavBar() {
               <Link to="/mytax" onClick={close}>
                 MyTax
               </Link>
+              <Link to="/bestinet" onClick={close}>
+                TOTP authenticator
+              </Link>
               <a href="https://github.com/Zariffdn/Portfolio" target="_blank" rel="noopener noreferrer">
                 {t("footer.viewSource")}
               </a>
