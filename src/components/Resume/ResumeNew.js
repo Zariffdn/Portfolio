@@ -5,7 +5,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "../../styles/resume.css";
 import { Container, Section, SectionHeading, Button } from "../ui";
 import usePageMeta from "../../hooks/usePageMeta";
-import pdf from "../../Assets/ZARIFF DANIAL RESUME .pdf";
+import pdf from "../../Assets/Zariff-Danial-Resume.pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
