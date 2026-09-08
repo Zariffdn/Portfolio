@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolioo-beta.vercel.app/sitemap.xml
+Sitemap: https://zariffdanial.vercel.app/sitemap.xml
