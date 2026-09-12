@@ -143,7 +143,8 @@
     "toolsPost": "yang saya guna",
     "daysICodePre": "Hari Saya",
     "daysICodeHighlight": "Mengekod",
-    "stackLead": "Bahasa, rangka kerja dan alatan yang berkaitan."
+    "stackLead": "Bahasa, rangka kerja dan alatan yang berkaitan.",
+    "calendarError": "Kalendar sumbangan tidak dapat dimuatkan."
   },
   "aboutCard": {
     "intro_pre": "Saya",
@@ -261,7 +262,8 @@
     "tagline": "Pembangun mudah alih, Flutter dan Dart. Klang, Malaysia.",
     "nav": "Navigasi",
     "elsewhere": "Pautan lain",
-    "builtWith": "Dibina dengan React, dihoskan di Vercel."
+    "builtWith": "Dibina dengan React, dihoskan di Vercel.",
+    "bestinet": "Pengesah TOTP"
   },
   "uses": {
     "headingPre": "Apa Yang Saya",

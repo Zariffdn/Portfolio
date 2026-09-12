@@ -1,5 +1,6 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-import "@testing-library/jest-dom";
+// jest-dom adds custom matchers for asserting on DOM nodes; this entry
+// registers them with vitest's expect.
+import "@testing-library/jest-dom/vitest";
 
 // jsdom has neither matchMedia nor IntersectionObserver; the app reads both
 // on mount (theme detection, cursor, scroll reveals).

@@ -1,0 +1,65 @@
+# Quality gate: the standard the site was reviewed against, enforced on every
+# push to main and every pull request. Lint, unit test, production build, then
+# the browser sweep in tools/qa/sweep.mjs: both themes and both viewports in
+# English, plus Bahasa Malaysia at desktop dark and mobile dark (console
+# errors, horizontal overflow, one h1, html lang, web fonts loaded, axe
+# WCAG 2.1 AA). Screenshots, axe reports and report.json are uploaded even
+# when a step fails so a red run can be inspected without re-running it.
+
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, test, build, sweep
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: true
+    steps:
+      - name: Check out
+        uses: actions/checkout@v7
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Quality sweep
+        run: npm run qa
+
+      - name: Upload screenshots and axe reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: qa-screenshots
+          path: tools/qa/output
+          retention-days: 14
+          if-no-files-found: warn

@@ -4,10 +4,10 @@
  * problems. Run after build.js:  node tools/resume/check.js
  *
  * Uses pdfjs-dist, which is already installed as a dependency of react-pdf.
+ * Its legacy build is ESM only, so it is loaded with a dynamic import below.
  */
 const fs = require("fs");
 const path = require("path");
-const pdfjs = require("pdfjs-dist/legacy/build/pdf.js");
 
 const pdfPath = path.resolve(__dirname, "../../src/Assets/Zariff-Danial-Resume.pdf");
 
@@ -35,6 +35,7 @@ function linesFromItems(items) {
 }
 
 (async () => {
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
   const data = new Uint8Array(fs.readFileSync(pdfPath));
   const doc = await pdfjs.getDocument({ data }).promise;
   const meta = await doc.getMetadata().catch(() => null);

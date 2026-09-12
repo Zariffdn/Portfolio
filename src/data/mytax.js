@@ -1,5 +1,5 @@
 import { FaApple, FaGooglePlay } from "react-icons/fa";
-import { SiHuawei } from "react-icons/si";
+import Huawei from "../components/icons/Huawei";
 import { mytaxScreens } from "./screenshots";
 
 // The responsive-image helpers live in data/screenshots.js now; they are
@@ -40,7 +40,7 @@ export const storeLinks = [
   {
     kind: "appgallery",
     url: "https://appgallery.cloud.huawei.com/ag/n/app/C106575285",
-    Icon: SiHuawei,
+    Icon: Huawei,
     small: "Explore it on",
     big: "AppGallery",
     aria: "Explore MyTax on AppGallery",

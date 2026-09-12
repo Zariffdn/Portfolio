@@ -4,11 +4,11 @@
  *
  * Usage:  node tools/resume/build.js
  *
- * Needs the playwright package (not a project dependency), and optionally
- * pdf-lib for the metadata step. Either
- *   npm i -D playwright pdf-lib
- * or point NODE_PATH at a folder that has them installed. It drives the Chrome
- * already on the machine (channel "chrome"), so no browser download is needed.
+ * Needs playwright (a devDependency; npm install) and optionally pdf-lib for
+ * the metadata step, which is not a project dependency: run with NODE_PATH
+ * pointing at a folder that has pdf-lib installed, or skip it. It drives the
+ * Chrome already on the machine (channel "chrome"), so no browser download
+ * is needed.
  */
 const path = require("path");
 const fs = require("fs");
@@ -17,7 +17,7 @@ let chromium;
 try {
   ({ chromium } = require("playwright"));
 } catch (e) {
-  console.error("playwright is not installed. Run: npm i -D playwright");
+  console.error("playwright is not installed. Run: npm install");
   process.exit(1);
 }
 
@@ -64,7 +64,7 @@ const previewPath = path.resolve(here, "preview.png");
     doc.setCreator("tools/resume/resume.html");
     fs.writeFileSync(pdfPath, await doc.save());
   } catch (e) {
-    console.warn("pdf-lib not installed; metadata left as Chrome wrote it (npm i -D pdf-lib to set it)");
+    console.warn("pdf-lib not available; metadata left as Chrome wrote it (set NODE_PATH to a folder with pdf-lib to fill it)");
   }
 
   const bytes = fs.statSync(pdfPath).size;
