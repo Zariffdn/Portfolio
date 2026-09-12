@@ -1,58 +1,39 @@
-<h2 align="center">
-  Portfolio Website - v2.0<br/>
-  <a href="https://zariffdanial.vercel.app/" target="_blank">Zariff.portfolio</a>
-</h2>
-<div align="center">
-  <img alt="Demo" src="./Images/readme-img.png" />
-</div>
+# Zariff Danial, portfolio
 
-<br/>
+Live at [zariffdanial.vercel.app](https://zariffdanial.vercel.app/).
 
+A personal site for a Flutter developer: the MyTax case study, a second case study on the Bestinet TOTP work, selected projects, a one-page resume, and an about page with experience, education, certifications and a contact form. Dark and light themes, English and Bahasa Malaysia.
 
+## Stack
 
+- React 19 with Vite 8
+- react-router-dom 7, react-i18next, framer-motion
+- react-pdf for the resume page
+- A token-based design system in plain CSS (`src/styles/tokens.css`, no CSS framework)
+- Vitest for tests, ESLint 10 for lint, Playwright plus axe-core for the browser quality sweep
+- Deployed on Vercel
 
-## TL;DR
+## Running it
 
-You can fork this repo to modify and make changes of your own. Please give me proper credit by linking back to [Zariff](https://github.com/zazarip/Portfolio). Thanks!
+```
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build to dist/
+npm run preview    # serve dist/ locally
+npm run lint
+npm test
+npm run qa         # build first; screenshots every route in both themes, both viewports and both languages, then runs axe
+```
 
-## Built With
+Node 22 or newer.
 
-My personal portfolio <a href="https://zariffdanial.vercel.app/" target="_blank">Zariff.portfolio</a> which features some of my github projects as well as my resume and technical skills.<br/>
+## Where things live
 
-This project was built using these technologies.
+- Copy: `src/i18n/locales/en.json` and `ms.json` (keep the two in sync)
+- Projects: `src/data/projects.js`; screenshots and store links: `src/data/screenshots.js`, `src/data/mytax.js`
+- Design contract: `docs/DESIGN.md`; architecture notes for tooling: `CLAUDE.md`
+- Resume source: `tools/resume/resume.html`, rebuilt to PDF with `node tools/resume/build.js`
 
-- React.js
-- Node.js
-- Express.js
-- CSS3
-- VsCode
-- Vercel
+## Credit
 
-## Features
-
-**📖 Multi-Page Layout**
-
-**🎨 Styled with React-Bootstrap and Css with easy to customize colors**
-
-**📱 Fully Responsive**
-
-## Getting Started
-
-Clone down this repository. You will need `node.js` and `git` installed globally on your machine.
-
-## 🛠 Installation and Setup Instructions
-
-1. Installation: `npm install`
-
-2. In the project directory, you can run: `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-The page will reload if you make edits.
-
-## Usage Instructions
-
-Open the project folder and Navigate to `/src/components/`. <br/>
-You will find all the components used and you can edit your information accordingly.
-
-
+The site is my own design and code. If you fork it, a link back to [Zariffdn/Portfolio](https://github.com/Zariffdn/Portfolio) is appreciated.

@@ -16,7 +16,7 @@ export function formatMonth(iso, lang) {
       month: "long",
       year: "numeric",
     }).format(new Date(year, month - 1, 1));
-  } catch (e) {
+  } catch {
     return iso;
   }
 }

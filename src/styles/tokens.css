@@ -143,7 +143,9 @@ html[data-theme="light"] {
   --ok-text: #166534;
   --ok-soft: rgba(22, 163, 74, 0.1);
   --ok-line: rgba(22, 163, 74, 0.3);
-  --danger: #dc2626;
+  /* red-700, not red-600: the defect chip sets this as text on its own 12%
+     fill, and red-600 only reaches 3.8:1 there (WCAG AA needs 4.5:1). */
+  --danger: #b91c1c;
 
   --shadow-1: 0 1px 2px rgba(22, 13, 40, 0.06),
     0 8px 24px -12px rgba(22, 13, 40, 0.18);

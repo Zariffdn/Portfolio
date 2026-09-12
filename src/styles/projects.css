@@ -89,6 +89,8 @@
 
 /* ---- Grid ----------------------------------------------------------- */
 .projects-grid {
+  /* popLayout pins exiting cards absolutely; they anchor to the grid */
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: var(--s-6);

@@ -197,6 +197,13 @@
   color: var(--text-2);
   overflow-x: auto;
   scrollbar-width: thin;
+  /* The calendar wraps its svg in a container with an inline max-width of
+     100% and overflow: auto, which would make that inner div the scroller
+     (unfocusable, and never snapped to the newest weeks). A single
+     max-content track lets the calendar take its natural width so this
+     surface, which is focusable, is the element that scrolls. */
+  display: grid;
+  grid-template-columns: max-content;
 }
 
 .gh__surface .react-activity-calendar {
