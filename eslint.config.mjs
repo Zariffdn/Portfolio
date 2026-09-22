@@ -27,6 +27,12 @@ export default [
       // not enable this rule either); component contracts are documented in
       // comments and exercised by the app-level test.
       "react/prop-types": "off",
+
+      // WebKit strips list semantics from any ul with list-style: none, so an
+      // unbulleted list has to say role="list" to stay a list in VoiceOver.
+      // base.css carries a ul[role="list"] reset for exactly this, and every
+      // unbulleted list in src opts in. The default rule calls that redundant.
+      "jsx-a11y/no-redundant-roles": ["error", { ul: ["list"] }],
     },
     settings: {
       // Pinned rather than "detect": the plugin's detector calls a context

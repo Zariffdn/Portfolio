@@ -122,7 +122,7 @@ function BestinetCaseStudy() {
               </div>
               <div>
                 <dt>Period</dt>
-                <dd>July 2025 to November 2025</dd>
+                <dd>June 2025 to November 2025</dd>
               </div>
               <div className="cs-meta__span">
                 <dt>Stack</dt>
