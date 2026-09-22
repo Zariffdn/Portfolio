@@ -354,6 +354,12 @@
   color: var(--text-3);
 }
 
+/* Subject and topic tags, education entries only. */
+.tl__tags {
+  margin-top: var(--s-5);
+  max-width: 68ch;
+}
+
 .tl__extra {
   margin-top: var(--s-5);
   display: grid;

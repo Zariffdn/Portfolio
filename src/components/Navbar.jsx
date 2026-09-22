@@ -154,9 +154,18 @@ function NavBar() {
       type="button"
       onClick={handleLanguageToggle}
       className="icon-btn icon-btn--text"
-      aria-label={t("navbar.toggleLanguageAria")}
+      aria-label={
+        currentLang === "ms"
+          ? `BM, ${t("navbar.switchToEnglishAria")}`
+          : `EN, ${t("navbar.switchToMalayAria")}`
+      }
+      title={
+        currentLang === "ms"
+          ? t("navbar.switchToEnglishAria")
+          : t("navbar.switchToMalayAria")
+      }
     >
-      {currentLang === "ms" ? "EN" : "BM"}
+      {currentLang === "ms" ? "BM" : "EN"}
     </button>
   );
 

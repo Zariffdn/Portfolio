@@ -6,7 +6,8 @@
     "resume": "Resume",
     "toggleLightAria": "Switch to light mode",
     "toggleDarkAria": "Switch to dark mode",
-    "toggleLanguageAria": "Switch language",
+    "switchToMalayAria": "Switch to Bahasa Malaysia",
+    "switchToEnglishAria": "Switch to English",
     "menu": "Main",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
@@ -116,6 +117,8 @@
     "myCertsPre": "My",
     "myCertsHighlight": "Certifications",
     "viewCredential": "View credential",
+    "verifyOnCredly": "Verify on Credly",
+    "credlyProfile": "Badges on Credly",
     "credentialId": "Credential ID:",
     "byTheNumbersPre": "By The",
     "byTheNumbersHighlight": "Numbers",
@@ -158,7 +161,7 @@
     "currentRole_company": "Zen Computer Systems",
     "currentRole_post": "(since November 2025), maintaining the MyTax mobile app under LHDN. Previously a Mobile Application Developer at",
     "currentRole_prevCompany": "Bestinet Sdn Bhd",
-    "currentRole_end": "(July to November 2025), in their R&D department, where I fixed and finished the TOTP feature in an internal Flutter authenticator app.",
+    "currentRole_end": "(June to November 2025), in their R&D department, where I fixed and finished the TOTP feature in an internal Flutter authenticator app.",
     "hobbies": "Apart from coding, some other activities that I love to do!",
     "playingGames": "Playing Games",
     "workingOut": "Working Out",
@@ -184,7 +187,7 @@
     "bestinet": {
       "role": "Mobile Application Developer",
       "company": "Bestinet Sdn Bhd",
-      "period": "July 2025 to November 2025",
+      "period": "June 2025 to November 2025",
       "meta": "Research & Development · Cyberjaya, Selangor · Hybrid · Contract",
       "b1": "Took over a broken TOTP feature in an internal Flutter authenticator app where the one-time code never appeared on screen, and got it generating and displaying correctly.",
       "b2": "Traced the failure with a numbered step-by-step trace through the generation chain and found two defects: the controller's init routine was never called from the view layer, and an invalid type cast on a secure-storage read threw on any device that was already enrolled.",
@@ -193,25 +196,43 @@
     }
   },
   "education": {
+    "topicsLabel": "Subjects and topics",
     "peoplelogy": {
+      "period": "March 2024 to August 2024",
       "role": "Data Science Analyst Bootcamp Programme",
       "company": "PEOPLElogy Group",
-      "period": "March 2024 to August 2024",
-      "meta": "Data Science",
+      "meta": "",
       "b1": "Capstone project: movie genre prediction from plot summaries.",
-      "b2": "Covered Python programming, data wrangling, exploratory data analysis, machine learning, and natural language processing."
+      "b2": "Covered Python programming, data wrangling, exploratory data analysis, machine learning and natural language processing.",
+      "t1": "Python",
+      "t2": "Machine learning",
+      "t3": "NLP"
     },
     "uitm": {
+      "period": "October 2020 to December 2023",
       "role": "Bachelor of Computer Science (Hons.) Netcentric Computing",
       "company": "Universiti Teknologi MARA (UiTM)",
-      "period": "October 2020 to September 2023",
-      "meta": "CGPA: 3.32"
+      "meta": "CGPA: 3.32",
+      "b1": "Final year project: a fingerprint bag lock on an Arduino Uno that texts its GPS coordinates after three failed matches.",
+      "b2": "Covered networking, web development and security in one degree.",
+      "b3": "An advanced Netcentric course covered breaking a large system into loosely coupled remote components that communicate over web services and REST.",
+      "b4": "The seventh and last semester was the compulsory industrial attachment, spent at Pantai Hospital Klang: first-line IT support for staff, workstations and internal systems, and for departments taking up the hospital's own application.",
+      "t1": "Network programming",
+      "t2": "Web development",
+      "t3": "Network security",
+      "t4": "REST",
+      "t5": "Arduino"
     },
     "matrikulasi": {
+      "period": "May 2019 to March 2020",
       "role": "Module 2, Physical Sciences",
       "company": "Kolej Matrikulasi Selangor",
-      "period": "May 2019 to March 2020",
-      "meta": "CGPA: 3.04"
+      "meta": "CGPA: 3.04",
+      "b1": "Core subjects were Mathematics, Chemistry, Physics and Computer Science, because this is the science stream that takes Computer Science in place of Biology.",
+      "b2": "Computer Science ran across both semesters: computer systems, databases and the system development life cycle in the first, then problem solving, solution design and programming in Java in the second.",
+      "t1": "Computer Science",
+      "t2": "Java",
+      "t3": "Databases"
     }
   },
   "projects": {
@@ -234,7 +255,7 @@
     "silentsupport_title": "Silent Support",
     "silentsupport_desc": "A private emotional space for moments when feelings are heavy but words feel impossible. Instead of typing or explaining, you tap how you feel and receive a calm, validating response, with optional breathing and grounding exercises. The app quietly records your emotional patterns over time so you can look back gently. Built solo as an MVP with React Native (Expo), TypeScript, Supabase for auth and storage, and the OpenAI API for grounding responses.",
     "baglock_title": "Anti-theft fingerprint baglock",
-    "baglock_desc": "This project implements an anti-theft system using a fingerprint scanner, GPS module, and GSM module to protect a bag or backpack. The system allows authorized users to unlock the bag using their fingerprints while sending GPS coordinates to a predefined number in case of unauthorized access.",
+    "baglock_desc": "My final year project: a bag that opens to a fingerprint and calls for help when it does not. One enrolled finger toggles the servo, unlock on a touch and lock on the next, and with no screen the buzzer does all the talking, a different beep for boot, capture, match and refusal. Three failed matches in a row and it sounds the alarm, reads the GPS and texts a preset number twice, a plain warning then the coordinates to six decimal places. An Arduino Uno cannot listen on three software serial ports at once, so it opens each one in turn and brings the sensor back up afterwards.",
     "movie_title": "Movie ticket",
     "movie_desc": "The Movie Ticket Booking System is a web-based application that facilitates easy and convenient booking, cancellation, and management of movie tickets. With separate user and admin interfaces, the system offers a streamlined experience for both users and administrators.",
     "bookstore_title": "Bookstore",

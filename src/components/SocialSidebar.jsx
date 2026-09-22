@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
+import { FiAward } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 
 const links = [
@@ -13,6 +14,12 @@ const links = [
     href: "https://www.linkedin.com/in/zariffdanial/",
     label: "LinkedIn",
     Icon: FaLinkedinIn,
+    external: true,
+  },
+  {
+    href: "https://www.credly.com/users/zariff-danial-bin-zul-azhar",
+    label: "Credly",
+    Icon: FiAward,
     external: true,
   },
   {
@@ -37,11 +44,11 @@ function SocialSidebar() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icon />
+                <Icon aria-hidden="true" />
               </a>
             ) : (
               <a href={href} aria-label={label}>
-                <Icon />
+                <Icon aria-hidden="true" />
               </a>
             )}
           </li>

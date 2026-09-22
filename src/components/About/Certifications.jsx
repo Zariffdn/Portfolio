@@ -1,8 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUpRight, FiAward } from "react-icons/fi";
 import { Container, Section, SectionHeading, Stagger, StaggerItem } from "../ui";
 import { formatMonth } from "../../utils/formatMonth";
 import "../../styles/about-sections.css";
+
+// Zariff Danial holds verified badges on Credly alongside the Coursera
+// certificates. Any row whose credentialUrl points at credly.com is labelled
+// as a badge to verify rather than a certificate to view.
+const CREDLY_PROFILE =
+  "https://www.credly.com/users/zariff-danial-bin-zul-azhar";
 
 // To add a cert: append an object with title, issuer, date (ISO "YYYY-MM",
 // rendered in the active language), and optional credentialUrl +
@@ -74,6 +80,18 @@ function Certifications() {
       <Container>
         <SectionHeading
           title={t("about.myCertsPre") + " " + t("about.myCertsHighlight")}
+          aside={
+            <a
+              href={CREDLY_PROFILE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="certs__profile"
+            >
+              <FiAward aria-hidden="true" className="certs__profile-mark" />
+              {t("about.credlyProfile")}
+              <FiArrowUpRight aria-hidden="true" />
+            </a>
+          }
         />
         <Stagger as="ul" role="list" className="certs">
           {certifications.map((c) => (
@@ -101,7 +119,9 @@ function Certifications() {
                   rel="noopener noreferrer"
                   className="link-arrow certs__link"
                 >
-                  {t("about.viewCredential")}
+                  {c.credentialUrl.includes("credly.com")
+                    ? t("about.verifyOnCredly")
+                    : t("about.viewCredential")}
                   <FiArrowUpRight aria-hidden="true" />
                 </a>
               )}

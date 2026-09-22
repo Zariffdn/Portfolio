@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { FiGithub, FiLinkedin, FiMail, FiArrowUpRight } from "react-icons/fi";
+import {
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiAward,
+  FiArrowUpRight,
+} from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import Wordmark from "./ui/Wordmark";
 
@@ -40,6 +46,11 @@ function Footer() {
               <li>
                 <a href="https://www.linkedin.com/in/zariffdanial/" target="_blank" rel="noopener noreferrer">
                   <FiLinkedin aria-hidden="true" /> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.credly.com/users/zariff-danial-bin-zul-azhar" target="_blank" rel="noopener noreferrer">
+                  <FiAward aria-hidden="true" /> Credly
                 </a>
               </li>
               <li>

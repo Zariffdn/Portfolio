@@ -1,7 +1,7 @@
-import { Stagger, StaggerItem } from "../ui";
+import { Chip, Stagger, StaggerItem } from "../ui";
 
 // Shared rail-and-dot timeline used by Experience and Education.
-// entries: [{ id, period, role, company, meta, bullets: string[], extra }]
+// entries: [{ id, period, role, company, meta, bullets, tags, tagsLabel, extra }]
 function Timeline({ entries }) {
   return (
     <div className="tl">
@@ -16,6 +16,15 @@ function Timeline({ entries }) {
               <ul className="tl__bullets text-2">
                 {e.bullets.map((b, i) => (
                   <li key={i}>{b}</li>
+                ))}
+              </ul>
+            )}
+            {e.tags && e.tags.length > 0 && (
+              <ul className="chip-row tl__tags" role="list" aria-label={e.tagsLabel}>
+                {e.tags.map((tag) => (
+                  <li key={tag}>
+                    <Chip>{tag}</Chip>
+                  </li>
                 ))}
               </ul>
             )}
