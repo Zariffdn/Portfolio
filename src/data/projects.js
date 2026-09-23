@@ -45,7 +45,7 @@ export const projects = [
     img: bag,
     imgFit: "contain",
     tags: ["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"],
-    ghLink: "https://github.com/zazarip/Anti-theft-fingerprint-baglock",
+    ghLink: "https://github.com/Zariffdn/Anti-theft-fingerprint-baglock",
   },
   {
     id: "movie",
@@ -53,7 +53,7 @@ export const projects = [
     img: movie,
     imgFit: "contain",
     tags: ["JavaScript", "PHP", "CSS", "MySQL"],
-    ghLink: "https://github.com/zazarip/movie-ticket",
+    ghLink: "https://github.com/Zariffdn/movie-ticket",
   },
   {
     id: "bookstore",
@@ -61,7 +61,7 @@ export const projects = [
     img: bookstore,
     imgFit: "contain",
     tags: ["PHP", "HTML", "MySQL"],
-    ghLink: "https://github.com/zazarip/Bookstore",
+    ghLink: "https://github.com/Zariffdn/Bookstore",
   },
 ];
 
