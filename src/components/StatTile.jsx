@@ -5,7 +5,7 @@ import "../styles/stat-tile.css";
 
 // One stat tile. The numeral counts up once `started` flips; it stays
 // aria-hidden and a visually hidden span carries the final value so screen
-// readers get "80+" straight away instead of every intermediate frame.
+// readers get "100+" straight away instead of every intermediate frame.
 // Labels come from the locale files under stats.<label>.
 export function StatTile({ value, suffix = "", label, started }) {
   const { t } = useTranslation();
