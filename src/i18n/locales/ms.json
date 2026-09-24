@@ -188,7 +188,7 @@
       "role": "Mobile Application Developer",
       "company": "Bestinet Sdn Bhd",
       "period": "Jun 2025 hingga November 2025",
-      "meta": "Penyelidikan & Pembangunan · Cyberjaya, Selangor · Hibrid · Kontrak",
+      "meta": "Penyelidikan & Pembangunan · Cyberjaya, Selangor · Hibrid · Penempatan K-Youth Khazanah",
       "b1": "Mengambil alih ciri TOTP yang rosak dalam aplikasi pengesah Flutter dalaman: kod sekali guna tidak pernah muncul pada skrin, dan saya berjaya menjadikannya dijana serta dipaparkan dengan betul.",
       "b2": "Menjejaki kegagalan tersebut dengan surih berperingkat bernombor merentas rantaian penjanaan dan menemui dua kecacatan: rutin init pengawal tidak pernah dipanggil daripada lapisan paparan, dan hantaran jenis yang tidak sah pada bacaan storan selamat gagal pada mana-mana peranti yang sudah didaftarkan.",
       "b3": "Mengukuhkan laluan penjanaan TOTP dengan membalut penjanaan kod dalam pengendalian ralat dan menghentikan aliran lebih awal apabila kunci peranti atau kunci rahsia gagal diperoleh, dan bukannya menjana kod daripada kunci kosong.",

@@ -188,7 +188,7 @@
       "role": "Mobile Application Developer",
       "company": "Bestinet Sdn Bhd",
       "period": "June 2025 to November 2025",
-      "meta": "Research & Development · Cyberjaya, Selangor · Hybrid · Contract",
+      "meta": "Research & Development · Cyberjaya, Selangor · Hybrid · Khazanah K-Youth placement",
       "b1": "Took over a broken TOTP feature in an internal Flutter authenticator app where the one-time code never appeared on screen, and got it generating and displaying correctly.",
       "b2": "Traced the failure with a numbered step-by-step trace through the generation chain and found two defects: the controller's init routine was never called from the view layer, and an invalid type cast on a secure-storage read threw on any device that was already enrolled.",
       "b3": "Hardened the TOTP generation path by wrapping code generation in error handling and making a failed device or secret-key lookup return early instead of generating a code from an empty key.",

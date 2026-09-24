@@ -118,11 +118,15 @@ function BestinetCaseStudy() {
               </div>
               <div>
                 <dt>Role</dt>
-                <dd>Mobile Application Developer, contract</dd>
+                <dd>Mobile Application Developer</dd>
               </div>
               <div>
                 <dt>Period</dt>
                 <dd>June 2025 to November 2025</dd>
+              </div>
+              <div className="cs-meta__span">
+                <dt>Programme</dt>
+                <dd>Khazanah K-Youth Development Programme, through Aisling Group</dd>
               </div>
               <div className="cs-meta__span">
                 <dt>Stack</dt>
@@ -130,9 +134,9 @@ function BestinetCaseStudy() {
               </div>
             </dl>
             <p className="text-3 small cs-caption cs-rise">
-              Company work under contract. The app is internal and the code is
-              proprietary, so this page describes the work without screenshots
-              or a repository link.
+              Company work on a K-Youth placement. The app is internal and the
+              code is proprietary, so this page describes the work without
+              screenshots or a repository link.
             </p>
           </header>
         </Container>
@@ -189,11 +193,14 @@ function BestinetCaseStudy() {
                   stayed empty.
                 </p>
                 <p>
-                  I joined the department on a contract as a mobile
-                  application developer. The remit was narrow and clear: find
-                  out why the code never appeared, make it generate and
-                  display correctly, and then build the authenticator screen
-                  to a design that was supplied to me.
+                  I joined the department as a mobile application developer
+                  on a placement through the Khazanah K-Youth Development
+                  Programme. My agreement was with Aisling Group, its
+                  programme partner, and Bestinet hosted the placement. The
+                  remit was narrow and clear: find out why the code never
+                  appeared, make it generate and display correctly, and then
+                  build the authenticator screen to a design that was
+                  supplied to me.
                 </p>
               </div>
             </Block>
