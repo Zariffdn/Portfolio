@@ -147,6 +147,7 @@
     "daysICodePre": "Days I",
     "daysICodeHighlight": "Code",
     "stackLead": "Languages, frameworks and the tools around them.",
+    "calendarLead": "Almost all of my recent contributions are in private repositories, so the graph shows the activity but not the code.",
     "calendarError": "The contribution calendar could not be loaded."
   },
   "aboutCard": {

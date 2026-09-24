@@ -120,7 +120,10 @@ function Github() {
   return (
     <Section tight>
       <Container>
-        <SectionHeading title={calendarLabel} />
+        <SectionHeading
+          title={calendarLabel}
+          lead={t("about.calendarLead")}
+        />
         <Reveal>
           <div
             ref={surfaceRef}
