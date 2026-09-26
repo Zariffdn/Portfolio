@@ -19,9 +19,15 @@ import {
   SiGithub,
   SiGradle,
   SiPostman,
+  SiTypescript,
+  SiExpo,
+  SiSupabase,
+  SiFigma,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { FaDatabase, FaPhp } from "react-icons/fa";
+import { FiPackage } from "react-icons/fi";
+import Huawei from "../icons/Huawei";
 import {
   Container,
   Section,
@@ -32,18 +38,34 @@ import {
 } from "../ui";
 import "../../styles/about-sections.css";
 
-// Languages and frameworks. To add one, append { name, Icon }.
-const techs = [
+// Flutter and the packages the two case studies name (MyTax and Bestinet).
+// Packages without a mark of their own share the generic package glyph.
+const mobile = [
   { name: "Flutter", Icon: SiFlutter },
   { name: "Dart", Icon: SiDart },
-  { name: "C++", Icon: CgCPlusPlus },
+  { name: "Provider", Icon: FiPackage },
+  { name: "GetX", Icon: FiPackage },
+  { name: "Dio", Icon: FiPackage },
+  { name: "Firebase Messaging", Icon: SiFirebase },
+  { name: "Huawei Push Kit", Icon: Huawei },
+  { name: "flutter_secure_storage", Icon: FiPackage },
+  { name: "local_auth", Icon: FiPackage },
+];
+
+// Languages and frameworks. To add one, append { name, Icon }.
+const techs = [
+  { name: "TypeScript", Icon: SiTypescript },
   { name: "JavaScript", Icon: DiJavascript1 },
-  { name: "Node.js", Icon: DiNodejs },
   { name: "React", Icon: DiReact },
+  { name: "React Native", Icon: DiReact },
+  { name: "Expo", Icon: SiExpo },
+  { name: "Node.js", Icon: DiNodejs },
+  { name: "Supabase", Icon: SiSupabase },
+  { name: "Firebase", Icon: SiFirebase },
+  { name: "C++", Icon: CgCPlusPlus },
   { name: "PHP", Icon: FaPhp },
   { name: "MySQL", Icon: FaDatabase },
   { name: "Git", Icon: DiGit },
-  { name: "Firebase", Icon: SiFirebase },
   { name: "Bootstrap", Icon: SiBootstrap },
   { name: "Python", Icon: DiPython },
   { name: "Java", Icon: DiJava },
@@ -52,12 +74,13 @@ const techs = [
 // Editors, build tools and services used day to day.
 const tools = [
   { name: "VS Code", Icon: VscVscode },
-  { name: "npm", Icon: SiNpm },
-  { name: "GitHub", Icon: SiGithub },
-  { name: "Gradle", Icon: SiGradle },
   { name: "Android Studio", Icon: SiAndroidstudio },
-  { name: "Arduino", Icon: SiArduino },
+  { name: "GitHub", Icon: SiGithub },
   { name: "Postman", Icon: SiPostman },
+  { name: "Figma", Icon: SiFigma },
+  { name: "Gradle", Icon: SiGradle },
+  { name: "npm", Icon: SiNpm },
+  { name: "Arduino", Icon: SiArduino },
 ];
 
 function ChipGroup({ label, items }) {
@@ -90,6 +113,7 @@ function Stack() {
             "Languages, frameworks and the tools around them."
           )}
         />
+        <ChipGroup label={t("about.stackMobile")} items={mobile} />
         <ChipGroup label={t("uses.languages")} items={techs} />
         <ChipGroup label={t("about.toolsHighlight")} items={tools} />
       </Container>

@@ -79,8 +79,7 @@ function BestinetCaseStudy() {
 
   usePageMeta({
     title: t("meta.bestinet"),
-    description:
-      "Engineering case study on an internal TOTP authenticator app at Bestinet Sdn Bhd, where Zariff Danial traced a broken Flutter code generation path to two defects, fixed and hardened it, and built the authenticator screen to a supplied design.",
+    description: t("meta.bestinetDesc"),
   });
 
   return (

@@ -143,10 +143,9 @@
 <section>
   <h2>Summary</h2>
   <p>
-    Mobile developer shipping production Flutter apps to the App Store, Google Play and Huawei AppGallery. Sole mobile
-    developer on MyTax, the official income tax filing app of Malaysia's Inland Revenue Board (LHDN), with 2.8 million
-    lifetime installs across two Flutter codebases (GMS and HMS). Previously fixed and shipped a TOTP authentication
-    feature at Bestinet. Bachelor of Computer Science (Hons.) in Netcentric Computing from UiTM.
+    Mobile developer shipping a production Flutter app to three app stores. Sole mobile
+    developer on MyTax, the official tax filing app of Malaysia's Inland Revenue Board (LHDN), with over 3 million
+    lifetime installs. Previously fixed a broken TOTP feature in an internal authenticator app at Bestinet. Bachelor of Computer Science (Hons.) in Netcentric Computing from UiTM.
   </p>
 </section>
 
@@ -160,10 +159,10 @@
     </div>
     <p class="entry__where"><strong>Zen Computer Systems</strong>, Cyberjaya, Selangor. Contract, on-site.</p>
     <ul>
-      <li>Sole mobile developer for MyTax, LHDN's official tax filing app, live on the App Store, Google Play and Huawei AppGallery with 2.8M+ lifetime installs and roughly monthly releases.</li>
-      <li>Own the mobile surface end to end: bug fixes, feature work, platform-specific adaptations, localisation and store submissions across iOS, Android and Huawei builds.</li>
-      <li>Maintain a separate HMS codebase for Huawei devices, replacing Firebase Messaging and other Google-dependent plugins with Huawei Push Kit, and keep both codebases in sync on UX, API integration and localisation.</li>
-      <li>Integrate new REST endpoints as the backend team ships them, keep Bahasa Malaysia and English strings aligned with the web platform, and release conservatively through the March and April filing peak.</li>
+      <li><span>Sole mobile developer for <a class="project__link" href="https://zariffdanial.vercel.app/mytax">MyTax</a>, LHDN's official tax filing app, live on the App Store, Google Play and Huawei AppGallery with 3M+ lifetime installs. Own bug fixes, features, localisation and store submissions.</span></li>
+      <li>Maintain a Flutter codebase for iOS and Android and a separate HMS codebase for Huawei that uses Huawei Push Kit in place of Firebase Messaging, kept in sync on UX, API integration and localisation.</li>
+      <li>Fixed refund and audit status screens and login prompts across four iOS releases in ten days as 2026 filing opened. Moved server push to the FCM HTTP v1 API; added topic broadcasts and Android image notifications.</li>
+      <li>Cleared 200+ static analysis warnings in each codebase and added CI and pre-push checks to the iOS and Android one. Keep Bahasa Malaysia and English strings aligned with the web platform and wire in new REST endpoints as they ship.</li>
     </ul>
   </article>
 
@@ -174,10 +173,10 @@
     </div>
     <p class="entry__where"><strong>Bestinet Sdn Bhd</strong>, R&amp;D department, Cyberjaya, Selangor. Hybrid. Khazanah K-Youth placement via Aisling Group.</p>
     <ul>
-      <li>Took over a broken TOTP feature in an internal Flutter authenticator app and got one-time codes generating and displaying correctly.</li>
+      <li><span>Took over a broken <a class="project__link" href="https://zariffdanial.vercel.app/bestinet">TOTP feature</a> in an internal Flutter authenticator app and got one-time codes displaying correctly.</span></li>
       <li>Traced the failure to two defects: a controller init routine never called from the view layer, and an invalid type cast on a secure-storage read that threw on already-enrolled devices.</li>
       <li>Hardened the generation path with error handling and early returns on failed device or secret-key lookups, so a missing key never produces a code.</li>
-      <li>Built the authenticator screen in GetX to a supplied design (30-second countdown ring, digit-by-digit code, tap to copy) and applied the same branding to the app shell and login screen.</li>
+      <li>Built the authenticator screen in GetX to a supplied design (30-second countdown ring, digit-by-digit code), kept the existing tap to copy, and applied the same branding to the app shell and login screen.</li>
     </ul>
   </article>
 
@@ -199,9 +198,9 @@
   <article class="project">
     <div class="project__row">
       <h3 class="project__name">Silent Support</h3>
-      <span class="project__tech">React Native (Expo), TypeScript, Supabase, OpenAI API</span>
+      <span class="project__tech">React Native (Expo), TypeScript, Supabase, Groq</span>
     </div>
-    <p>Personal MVP: tap how you feel and get a calm response with breathing and grounding exercises; patterns are saved over time. Solo build with Supabase auth and storage. <a class="project__link" href="https://github.com/Zariffdn/Silent-Support-App">github.com/Zariffdn/Silent-Support-App</a></p>
+    <p>Personal MVP: tap how you feel and get a calm response at once; an AI reply replaces it only if it arrives within 2.5 seconds and passes a server-side tone filter. Local-first history with email-code sign-in, sync and server-side account deletion. Solo build. <a class="project__link" href="https://github.com/Zariffdn/Silent-Support-App">github.com/Zariffdn/Silent-Support-App</a></p>
   </article>
 
   <article class="project">
@@ -253,11 +252,13 @@
   <h2>Certifications</h2>
   <dl class="kv">
     <dt>IBM, 2025</dt>
-    <dd>Developing Mobile Apps with Flutter Specialization; Flutter and Dart: Developing iOS, Android, and Mobile Apps</dd>
+    <dd>Developing Mobile Apps with Flutter Specialization (3 courses)</dd>
     <dt>Meta, 2025</dt>
-    <dd>Front-End Developer Specialization; Advanced React; Principles of UX/UI Design</dd>
+    <dd>Front-End Developer Professional Certificate (9 courses, including Advanced React)</dd>
     <dt>CompTIA, 2025</dt>
     <dd>CompTIA Tech+</dd>
+    <dt>In total</dt>
+    <dd>101 certifications, all listed at <a class="project__link" href="https://www.linkedin.com/in/zariffdanial/details/certifications/">linkedin.com/in/zariffdanial</a></dd>
   </dl>
 </section>
 

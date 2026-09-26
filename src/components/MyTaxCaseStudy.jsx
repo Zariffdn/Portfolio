@@ -60,16 +60,16 @@ const techStack = [
   },
 ];
 
+// From the three store listings, September 2026.
 const facts = [
+  ["Live since", "January 2023"],
   ["Min OS", "iOS 15+ · Android 9 (API 28)+"],
   ["Distribution", "iOS · Android · Huawei AppGallery (HMS)"],
-  ["App size", "100 to 200 MB per platform"],
-  ["Current version", "1.0.48 (build 69)"],
-  ["Latest release", "May 2026"],
-  ["Update cadence", "Roughly monthly"],
+  ["App size", "About 190 MB on iOS, 290 MB on AppGallery"],
+  ["Current version", "1.0.52 (App Store, AppGallery) · 1.0.53 (Google Play)"],
+  ["Latest release", "September 2026"],
+  ["Release record", "13 App Store releases, February to September 2026"],
 ];
-
-const article = press[0];
 
 function BackLink({ className = "" }) {
   return (
@@ -95,8 +95,7 @@ function MyTaxCaseStudy() {
 
   usePageMeta({
     title: t("meta.mytax"),
-    description:
-      "Engineering case study on the MyTax mobile app, Malaysia's official tax filing application maintained by Zariff Danial at Zen Computer Systems and deployed across iOS, Android, and Huawei AppGallery.",
+    description: t("meta.mytaxDesc"),
   });
 
   return (
@@ -143,9 +142,9 @@ function MyTaxCaseStudy() {
               <StoreLinks />
             </div>
             <p className="text-3 small cs-caption cs-rise">
-              Install counts as of May 2026. App Store figure is from
-              App Store Connect analytics; Google Play and AppGallery
-              are publicly visible on each store listing.
+              The App Store figure is from App Store Connect analytics,
+              May 2026. Google Play and AppGallery figures are the ones
+              each store listing shows, September 2026.
             </p>
           </header>
         </Container>
@@ -183,7 +182,7 @@ function MyTaxCaseStudy() {
             <div
               className="cs-stat"
               role="figure"
-              aria-label="2.8 million plus lifetime installs across iOS, Android, and Huawei"
+              aria-label="3 million plus lifetime installs across iOS, Android, and Huawei"
             >
               <div className="cs-stat__value tabular">{lifetimeInstalls}</div>
               <span className="eyebrow eyebrow--plain cs-stat__label">
@@ -227,9 +226,9 @@ function MyTaxCaseStudy() {
                   and access tax services from their phone. The app ships to
                   three distinct mobile ecosystems: iOS via the Apple App
                   Store, Android via Google Play, and Huawei devices via
-                  Huawei AppGallery. It has been in continuous production
-                  since 2022 and is currently on version 1.0.48 (build 69),
-                  with over 894,000 active installs on Google Play alone.
+                  Huawei AppGallery. The current app went live in January
+                  2023, and as of September 2026 it is on version 1.0.52 on
+                  the App Store and AppGallery and 1.0.53 on Google Play.
                 </p>
               </div>
             </Block>
@@ -257,7 +256,31 @@ function MyTaxCaseStudy() {
               </div>
             </Block>
 
-            <Block index="04" title="Two codebases, one product">
+            <Block index="04" title="Shipped so far">
+              <ul className="cs-list text-2">
+                <li>
+                  <strong>Filing season 2026.</strong>{" "}
+                  e-Filing for the 2025 assessment year opened on 1 March
+                  2026. My fixes to the refund and audit status screens and
+                  login prompts went out in four iOS releases between 10 and
+                  19 March, 1.0.41 to 1.0.44.
+                </li>
+                <li>
+                  <strong>Push notifications.</strong>{" "}
+                  I moved the server&apos;s push sends to the Firebase Cloud
+                  Messaging HTTP v1 API, and added topic broadcasts and
+                  Android image notifications in the app.
+                </li>
+                <li>
+                  <strong>A cleaner, checked codebase.</strong>{" "}
+                  I cleared more than 200 static analysis warnings in each
+                  mobile codebase, and in September 2026 added a CI workflow
+                  and pre-push checks to the iOS and Android one.
+                </li>
+              </ul>
+            </Block>
+
+            <Block index="05" title="Two codebases, one product">
               <div className="prose">
                 <p>
                   The Huawei build runs in an environment without Google
@@ -280,7 +303,7 @@ function MyTaxCaseStudy() {
               </div>
             </Block>
 
-            <Block index="05" title="Technical stack">
+            <Block index="06" title="Technical stack">
               <div className="prose">
                 <p>
                   Both codebases are Flutter and Dart. Below is the core
@@ -307,7 +330,7 @@ function MyTaxCaseStudy() {
               </Stagger>
             </Block>
 
-            <Block index="06" title="Platform & release">
+            <Block index="07" title="Platform & release">
               <div className="surface cs-facts">
                 <dl className="meta-list">
                   {facts.map(([label, value]) => (
@@ -320,7 +343,7 @@ function MyTaxCaseStudy() {
               </div>
             </Block>
 
-            <Block index="07" title="Engineering challenges">
+            <Block index="08" title="Engineering challenges">
               <div className="prose">
                 <p>
                   The interesting work isn&apos;t just writing Flutter. It&apos;s the
@@ -360,49 +383,71 @@ function MyTaxCaseStudy() {
                 <li>
                   <strong>Production reliability during filing season.</strong>
                   {" "}
-                  Traffic spikes hard in March and April each year. Every
-                  regression has user impact at scale, so changes around
-                  that window are released cautiously with extra QA
-                  cycles.
+                  Traffic spikes hard from March, when e-Filing opens, to
+                  the May deadline. Every regression reaches taxpayers at
+                  scale, so fixes in that window have to go out quickly
+                  without breaking anything else: in March 2026 that meant
+                  four iOS releases in ten days.
                 </li>
               </ul>
             </Block>
 
-            <Block index="08" title="Press coverage">
+            <Block index="09" title="Press coverage">
               <div className="prose">
                 <p>
-                  MyTax was covered by BERNAMA in February 2026 when LHDN
-                  added e-KYC and digital onboarding for new taxpayers, a
-                  feature shipped through the mobile app.
+                  Malaysian press points taxpayers to the app by name:
+                  BERNAMA as a place to keep tax details up to date all
+                  year, and filing guides as the place to verify with e-KYC
+                  and activate a digital certificate, which checks a MyKad
+                  scan against a selfie on the phone.
                 </p>
               </div>
-              <a
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="surface surface--interactive cs-press"
-              >
-                <span className="cs-press__icon" aria-hidden="true">
-                  <FaNewspaper />
-                </span>
-                <span className="cs-press__body">
-                  <span className="mono cs-press__source">
-                    {article.publication} ·{" "}
-                    <time dateTime={article.date}>
-                      {formatMonth(article.date, "en")}
-                    </time>
-                  </span>
-                  <strong className="cs-press__title" lang="ms">
-                    {article.titleOriginal}
-                  </strong>
-                </span>
-                <span className="cs-press__arrow" aria-hidden="true">
-                  <FiArrowUpRight />
-                </span>
-              </a>
+              <div className="cs-press-list">
+                {press.map((article) => {
+                  // A Malay-only article shows its real headline and quote.
+                  const malayOnly = article.titleOriginal && !article.urlOriginal;
+                  const quote = article.quote ?? article.quoteOriginal;
+                  return (
+                    <a
+                      key={article.id}
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="surface surface--interactive cs-press"
+                    >
+                      <span className="cs-press__icon" aria-hidden="true">
+                        <FaNewspaper />
+                      </span>
+                      <span className="cs-press__body">
+                        <span className="mono cs-press__source">
+                          {article.publication} ·{" "}
+                          <time dateTime={article.date}>
+                            {formatMonth(article.date, "en")}
+                          </time>
+                        </span>
+                        <strong
+                          className="cs-press__title"
+                          lang={malayOnly ? "ms" : "en"}
+                        >
+                          {malayOnly ? article.titleOriginal : article.title}
+                        </strong>
+                        <span
+                          className="text-2 small"
+                          lang={article.quote ? "en" : "ms"}
+                        >
+                          “{quote}”
+                        </span>
+                      </span>
+                      <span className="cs-press__arrow" aria-hidden="true">
+                        <FiArrowUpRight />
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
             </Block>
 
-            <Block index="09" title="What I've learned so far">
+            <Block index="10" title="What I've learned so far">
               <ul className="cs-list text-2">
                 <li>
                   Cross-platform isn&apos;t free. Every plugin has to be

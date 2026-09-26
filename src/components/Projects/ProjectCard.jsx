@@ -25,6 +25,7 @@ function ProjectCard({ project, variant = "default", clamp = 0, priority = false
     personal,
     proprietary,
     production,
+    coursework,
   } = project;
 
   const title = t(`projects.${id}_title`);
@@ -35,6 +36,7 @@ function ProjectCard({ project, variant = "default", clamp = 0, priority = false
   if (production) badge = <Chip tone="accent">{t("projects.productionBadge")}</Chip>;
   else if (personal) badge = <Chip>{t("projects.personalBadge")}</Chip>;
   else if (proprietary) badge = <Chip>{t("projects.proprietaryBadge")}</Chip>;
+  else if (coursework) badge = <Chip>{t(`projects.${coursework}Badge`)}</Chip>;
 
   const media =
     imgKind === "phone" ? (

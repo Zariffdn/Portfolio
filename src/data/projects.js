@@ -1,5 +1,4 @@
 import bag from "../Assets/Projects/bag.png";
-import movie from "../Assets/Projects/movie.png";
 import bookstore from "../Assets/Projects/bookstore.png";
 import silentShot from "../Assets/featured/silent-1.jpeg";
 import bestinet from "../Assets/Projects/bestinet.svg";
@@ -10,6 +9,7 @@ import mytaxShot from "../Assets/featured/pic 2.jpeg";
 //
 // imgKind: "phone" renders the image inside a PhoneFrame (portrait shots).
 // imgFit:  "cover" for card art drawn at 16:10, "contain" for mockup PNGs.
+// coursework: "fyp" or "team" labels university work (projects.<kind>Badge).
 export const projects = [
   {
     id: "mytax",
@@ -27,7 +27,7 @@ export const projects = [
     img: silentShot,
     imgKind: "phone",
     personal: true,
-    tags: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
+    tags: ["React Native", "Expo", "TypeScript", "Supabase", "Groq"],
     ghLink: "https://github.com/Zariffdn/Silent-Support-App",
   },
   {
@@ -44,22 +44,16 @@ export const projects = [
     category: "embedded",
     img: bag,
     imgFit: "contain",
+    coursework: "fyp",
     tags: ["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"],
     ghLink: "https://github.com/Zariffdn/Anti-theft-fingerprint-baglock",
-  },
-  {
-    id: "movie",
-    category: "web",
-    img: movie,
-    imgFit: "contain",
-    tags: ["JavaScript", "PHP", "CSS", "MySQL"],
-    ghLink: "https://github.com/Zariffdn/movie-ticket",
   },
   {
     id: "bookstore",
     category: "web",
     img: bookstore,
     imgFit: "contain",
+    coursework: "team",
     tags: ["PHP", "HTML", "MySQL"],
     ghLink: "https://github.com/Zariffdn/Bookstore",
   },
