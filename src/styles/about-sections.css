@@ -5,6 +5,12 @@
    ========================================================================== */
 
 /* ---- Certifications: editorial list rows ------------------------------- */
+.certs__profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
 .certs__profile {
   display: inline-flex;
   align-items: center;

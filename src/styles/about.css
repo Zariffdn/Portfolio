@@ -279,6 +279,10 @@
   margin-top: var(--s-1);
 }
 
+.press-row__quote {
+  margin-top: var(--s-2);
+}
+
 .press-row__icon {
   font-size: 1.375rem;
   color: var(--text-3);
