@@ -1,6 +1,7 @@
 import bag from "../Assets/Projects/bag.png";
 import bookstore from "../Assets/Projects/bookstore.png";
 import silentShot from "../Assets/featured/silent-1.jpeg";
+import halalSajiShot from "../Assets/featured/halalsaji-1.jpeg";
 import bestinet from "../Assets/Projects/bestinet.svg";
 import mytaxShot from "../Assets/featured/pic 2.jpeg";
 
@@ -29,6 +30,15 @@ export const projects = [
     personal: true,
     tags: ["React Native", "Expo", "TypeScript", "Supabase", "Groq"],
     ghLink: "https://github.com/Zariffdn/Silent-Support-App",
+  },
+  {
+    // Private repository, so the card shows "No public repo".
+    id: "halalsaji",
+    category: "mobile",
+    img: halalSajiShot,
+    imgKind: "phone",
+    personal: true,
+    tags: ["Flutter", "Dart", "Provider", "Firestore", "Geolocator"],
   },
   {
     id: "bestinet",

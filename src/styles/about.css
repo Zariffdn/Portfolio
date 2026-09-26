@@ -31,6 +31,16 @@
   gap: var(--s-6);
 }
 
+.about-aside__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--bg-3);
+}
+
 .about-aside__block {
   display: grid;
   gap: var(--s-3);
@@ -69,6 +79,10 @@
   .about-intro__grid {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--s-10);
+  }
+
+  .about-aside__photo {
+    max-width: 400px;
   }
 }
 

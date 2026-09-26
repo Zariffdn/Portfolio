@@ -258,6 +258,11 @@ html {
   padding-block: var(--section-y);
 }
 
+/* Sections reached by a #hash link land below the fixed navbar. */
+.section[id] {
+  scroll-margin-top: calc(var(--nav-h) + var(--s-4));
+}
+
 .section--tight {
   padding-block: calc(var(--section-y) * 0.6);
 }

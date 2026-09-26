@@ -43,3 +43,6 @@ tools/qa/output
 docs/MATRICULATION.md
 docs/DEGREE.md
 docs/BOOTCAMP.md
+
+# The headshot original stays local; only the cropped JPEGs are committed.
+src/Assets/me.png
