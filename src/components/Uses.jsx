@@ -72,7 +72,7 @@ const sections = [
         Icon: FaLaptopCode,
         label: "ASUS ROG Zephyrus G14",
         noteKey: "zephyrus",
-        note: "Personal rig, where I built my early projects (baglock, bookstore, movie ticket). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
+        note: "Personal rig, where I built my early projects (baglock, bookstore). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
       },
       {
         Icon: FaLaptopCode,

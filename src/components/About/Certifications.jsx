@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { FiArrowUpRight, FiAward } from "react-icons/fi";
+import { FiArrowUpRight, FiAward, FiLinkedin } from "react-icons/fi";
 import { Container, Section, SectionHeading, Stagger, StaggerItem } from "../ui";
 import { formatMonth } from "../../utils/formatMonth";
 import "../../styles/about-sections.css";
@@ -9,6 +9,11 @@ import "../../styles/about-sections.css";
 // as a badge to verify rather than a certificate to view.
 const CREDLY_PROFILE =
   "https://www.credly.com/users/zariff-danial-bin-zul-azhar";
+
+// The full list (101 as of September 2026) lives on LinkedIn; the rows below
+// are the ones that matter most for a mobile role. It backs the 100+ stat.
+const LINKEDIN_CERTIFICATIONS =
+  "https://www.linkedin.com/in/zariffdanial/details/certifications/";
 
 // To add a cert: append an object with title, issuer, date (ISO "YYYY-MM",
 // rendered in the active language), and optional credentialUrl +
@@ -43,7 +48,7 @@ const certifications = [
   },
   {
     id: "meta-frontend-spec",
-    title: "Meta Front-End Developer Specialization",
+    title: "Meta Front-End Developer Professional Certificate",
     issuer: "Meta",
     date: "2025-10",
     credentialUrl:
@@ -81,16 +86,28 @@ function Certifications() {
         <SectionHeading
           title={t("about.myCertsPre") + " " + t("about.myCertsHighlight")}
           aside={
-            <a
-              href={CREDLY_PROFILE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="certs__profile"
-            >
-              <FiAward aria-hidden="true" className="certs__profile-mark" />
-              {t("about.credlyProfile")}
-              <FiArrowUpRight aria-hidden="true" />
-            </a>
+            <div className="certs__profiles">
+              <a
+                href={LINKEDIN_CERTIFICATIONS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="certs__profile"
+              >
+                <FiLinkedin aria-hidden="true" className="certs__profile-mark" />
+                {t("about.allCertifications")}
+                <FiArrowUpRight aria-hidden="true" />
+              </a>
+              <a
+                href={CREDLY_PROFILE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="certs__profile"
+              >
+                <FiAward aria-hidden="true" className="certs__profile-mark" />
+                {t("about.credlyProfile")}
+                <FiArrowUpRight aria-hidden="true" />
+              </a>
+            </div>
           }
         />
         <Stagger as="ul" role="list" className="certs">

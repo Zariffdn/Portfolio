@@ -196,8 +196,14 @@
   margin-bottom: var(--s-6);
 }
 
+.cs-press-list {
+  display: grid;
+  gap: var(--s-3);
+}
+
 .cs-block .prose + .cs-tech,
 .cs-block .prose + .cs-list,
+.cs-block .prose + .cs-press-list,
 .cs-block .prose + .cs-press,
 .cs-block .prose + .cs-trace,
 .cs-block .prose + .cs-block__cta,

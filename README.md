@@ -36,4 +36,4 @@ Node 22 or newer.
 
 ## Credit
 
-The site is my own design and code. If you fork it, a link back to [Zariffdn/Portfolio](https://github.com/Zariffdn/Portfolio) is appreciated.
+The design direction, the content and the decisions are mine. Much of the code was written with Claude Code as a pair programmer, which the co-author lines in the commit history record. If you fork it, a link back to [Zariffdn/Portfolio](https://github.com/Zariffdn/Portfolio) is appreciated.
