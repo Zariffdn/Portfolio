@@ -261,10 +261,7 @@
 }
 
 /* ---- Contact: intro column + form -------------------------------------- */
-.contact-section {
-  scroll-margin-top: var(--nav-h);
-}
-
+/* The #contact scroll offset comes from .section[id] in base.css. */
 .contact {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);

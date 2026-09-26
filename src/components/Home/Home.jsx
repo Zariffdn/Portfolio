@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FiArrowRight } from "react-icons/fi";
 import {
@@ -24,11 +25,12 @@ import "../../styles/home.css";
 
 const EASE = [0.22, 1, 0.36, 1];
 
-// Locale key pairs for the proof strip under the hero copy.
+// Locale key pairs for the proof strip under the hero copy. A third entry
+// links the tile: the press tile opens the full press list on About.
 const PROOF = [
   ["proofInstallsValue", "proofInstallsLabel"],
   ["proofStoresValue", "proofStoresLabel"],
-  ["proofPressValue", "proofPressLabel"],
+  ["proofPressValue", "proofPressLabel", "/about#press"],
   ["proofSinceValue", "proofSinceLabel"],
 ];
 
@@ -94,12 +96,25 @@ function Home() {
 
               <Reveal delay={0.5}>
                 <ul className="home-proof">
-                  {PROOF.map(([valueKey, labelKey]) => (
-                    <li className="home-proof__item" key={valueKey}>
-                      <span className="home-proof__value">{t(`home.${valueKey}`)}</span>
-                      <span className="eyebrow eyebrow--plain">{t(`home.${labelKey}`)}</span>
-                    </li>
-                  ))}
+                  {PROOF.map(([valueKey, labelKey, to]) => {
+                    const body = (
+                      <>
+                        <span className="home-proof__value">{t(`home.${valueKey}`)}</span>
+                        <span className="eyebrow eyebrow--plain">{t(`home.${labelKey}`)}</span>
+                      </>
+                    );
+                    return (
+                      <li className="home-proof__item" key={valueKey}>
+                        {to ? (
+                          <Link to={to} className="home-proof__link">
+                            {body}
+                          </Link>
+                        ) : (
+                          body
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </Reveal>
             </div>
