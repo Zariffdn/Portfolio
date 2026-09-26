@@ -155,6 +155,31 @@ html[lang|="ms"] .home-hero__title {
   color: var(--text-1);
 }
 
+.home-proof__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-proof__link:hover,
+.home-proof__link:focus-visible {
+  text-decoration: none;
+}
+
+.home-proof__link .home-proof__value {
+  text-decoration: underline;
+  text-decoration-color: var(--text-3);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color var(--dur) ease, text-decoration-color var(--dur) ease;
+}
+
+.home-proof__link:hover .home-proof__value,
+.home-proof__link:focus-visible .home-proof__value {
+  color: var(--accent-text);
+  text-decoration-color: currentColor;
+}
+
 .home-proof .eyebrow {
   display: block;
   margin-top: var(--s-2);

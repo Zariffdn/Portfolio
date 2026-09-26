@@ -10,6 +10,8 @@ import silent3 from "../Assets/featured/silent-3.jpeg";
 import silent1Small from "../Assets/featured/silent-1-300.jpeg";
 import silent2Small from "../Assets/featured/silent-2-300.jpeg";
 import silent3Small from "../Assets/featured/silent-3-300.jpeg";
+import halalsaji1 from "../Assets/featured/halalsaji-1.jpeg";
+import halalsaji1Small from "../Assets/featured/halalsaji-1-300.jpeg";
 
 // Every phone screenshot the site renders, paired with the 300px rendition
 // PhoneFrame offers to 1x screens. Originals are 589x1280; the small ones are
@@ -61,6 +63,7 @@ register(mytax3, mytax3Small);
 register(silent1, silent1Small);
 register(silent2, silent2Small);
 register(silent3, silent3Small);
+register(halalsaji1, halalsaji1Small);
 
 // The MyTax shots, in the order the home hero and case study show them.
 export const mytaxScreens = [mytax1, mytax2, mytax3];
@@ -68,3 +71,7 @@ export const mytaxScreens = [mytax1, mytax2, mytax3];
 // Silent Support: the emotional check-in, the "Looking back" history, and the
 // response screen. The check-in is the one the project card shows.
 export const silentSupportScreens = [silent1, silent2, silent3];
+
+// HalalSaji: the Nearby list, captured from a web build of the app at 1pm
+// Malaysia time on its sample data (no certificate numbers on screen).
+export const halalSajiScreens = [halalsaji1];
