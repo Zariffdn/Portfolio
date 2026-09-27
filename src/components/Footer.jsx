@@ -32,6 +32,7 @@ function Footer() {
               <li><Link to="/uses">{t("footer.uses")}</Link></li>
               <li><Link to="/mytax">MyTax</Link></li>
               <li><Link to="/bestinet">{t("footer.bestinet")}</Link></li>
+              <li><Link to="/baglock">{t("footer.baglock")}</Link></li>
             </ul>
           </div>
 

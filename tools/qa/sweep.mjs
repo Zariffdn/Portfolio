@@ -56,6 +56,7 @@ const ROUTES = [
   { name: "uses", path: "/uses" },
   { name: "mytax", path: "/mytax" },
   { name: "bestinet", path: "/bestinet" },
+  { name: "baglock", path: "/baglock" },
   { name: "404", path: "/this-route-does-not-exist" },
 ];
 

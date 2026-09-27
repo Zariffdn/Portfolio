@@ -251,6 +251,9 @@ function NavBar() {
               <Link to="/bestinet" onClick={close}>
                 {t("footer.bestinet")}
               </Link>
+              <Link to="/baglock" onClick={close}>
+                {t("footer.baglock")}
+              </Link>
               <a href="https://github.com/Zariffdn/Portfolio" target="_blank" rel="noopener noreferrer">
                 {t("footer.viewSource")}
               </a>
