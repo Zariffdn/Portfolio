@@ -11,6 +11,7 @@ import Timeline from "./Timeline";
 const keys = [
   { key: "zen", bullets: ["b1", "b2", "b3", "b4", "b5"], links: true },
   { key: "bestinet", bullets: ["b1", "b2", "b3", "b4"], caseStudy: "/bestinet" },
+  { key: "pantai", bullets: ["b1", "b2", "b3", "b4"] },
 ];
 
 function Experience() {

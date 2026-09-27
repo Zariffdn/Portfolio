@@ -198,6 +198,16 @@
       "b2": "Traced the failure with a numbered step-by-step trace through the generation chain and found two defects: the controller's init routine was never called from the view layer, and an invalid type cast on a secure-storage read threw on any device that was already enrolled.",
       "b3": "Hardened the TOTP generation path by wrapping code generation in error handling and making a failed device or secret-key lookup return early instead of generating a code from an empty key.",
       "b4": "Built the authenticator screen to the design I was given, with a countdown ring tied to the 30-second refresh window and the code rendered digit by digit, then applied the same supplied branding to the app shell and login screen."
+    },
+    "pantai": {
+      "role": "IT Support Intern (Industrial Training)",
+      "company": "Pantai Hospital Klang",
+      "period": "September 2023 to December 2023",
+      "meta": "IT department · Klang, Selangor · Industrial training",
+      "b1": "Resolved hardware and software problems for doctors and staff across most departments as they came up, from a desktop that would not start while patients waited to a frozen browser, a printer jam and a patient queue display that had gone offline.",
+      "b2": "Monitored the hospital information system and supported staff and doctors who ran into problems with it or with other hospital systems.",
+      "b3": "Set up desktop workstations end to end, from peripherals, display and desktop settings to passwords, antivirus and performance checks, with setup notes for whoever maintains them next. Prepared a meeting room for a conference, checking the laptop, projector, camera, audio, battery and network beforehand.",
+      "b4": "Trained new staff to use MyHealth360, Pantai's patient app newly launched in September 2023, and promoted it with the IT team at a booth in the hospital, encouraging patients to use it to book appointments and view their health records online."
     }
   },
   "education": {
@@ -221,7 +231,7 @@
       "b1": "Final year project: a fingerprint bag lock on an Arduino Uno that texts its GPS coordinates after three failed matches.",
       "b2": "Covered networking, web development and security in one degree.",
       "b3": "An advanced Netcentric course covered breaking a large system into loosely coupled remote components that communicate over web services and REST.",
-      "b4": "The seventh and last semester was the compulsory industrial attachment, spent at Pantai Hospital Klang: first-line IT support for staff, workstations and internal systems, and for departments taking up the hospital's own application.",
+      "b4": "The seventh and last semester was the compulsory industrial attachment, spent in the IT department at Pantai Hospital Klang.",
       "t1": "Network programming",
       "t2": "Web development",
       "t3": "Network security",
@@ -263,7 +273,7 @@
     "silentsupport_desc": "A private place to check in when feelings are heavy and words are hard. Tap one of eight feelings and a calm, pre-written response appears at once. A Supabase Edge Function asks a Llama model on Groq for a freshly written reply at the same depth, which takes its place only if it arrives within 2.5 seconds and passes a server-side tone filter that rejects questions, exclamation marks and stock phrases. History stays on the phone unless you sign in with an emailed code; sync merges both sides without dropping a check-in, row-level security scopes every row to its owner, and account deletion runs on the server. Built solo as an MVP with React Native (Expo), TypeScript and Supabase.",
     "halalsaji_title": "HalalSaji",
     "halalsaji_desc": "A Flutter app for finding halal food nearby and seeing how each place was verified. Halal Certified and Muslim Owned are separate badges, because one does not imply the other, and expired certificates and places pending review are flagged too. You can search, filter by halal status, cuisine, meat type or opening hours, save favourites on the phone and open a place in Google Maps. The forms to suggest a restaurant or report wrong details are built so they can never change a halal status on their own. Built solo in June 2026 with Flutter and Provider, with a read-only Firestore data layer ready; for now it runs on sample data.",
-    "baglock_title": "Anti-theft fingerprint baglock",
+    "baglock_title": "Anti-theft fingerprint bag lock",
     "baglock_desc": "My final year project: a bag that opens to a fingerprint and calls for help when it does not. One enrolled finger toggles the servo, unlock on a touch and lock on the next, and with no screen the buzzer does all the talking, a different beep for boot, capture, match and refusal. Three failed matches in a row and it sounds the alarm, reads the GPS and texts a preset number twice, a plain warning then the coordinates to six decimal places. An Arduino Uno cannot listen on three software serial ports at once, so it opens each one in turn and brings the sensor back up afterwards.",
     "bookstore_title": "Bookstore",
     "bookstore_desc": "A PHP and MySQL bookstore with separate customer, seller and admin logins. Customers browse books, pay by card or cash, get a receipt and leave feedback. Sellers manage their listings and a pickup schedule for completed orders, which they can reschedule, and the admin side lists every purchase.",
@@ -291,7 +301,8 @@
     "nav": "Navigate",
     "elsewhere": "Elsewhere",
     "builtWith": "Built with React, deployed on Vercel.",
-    "bestinet": "TOTP authenticator"
+    "bestinet": "TOTP authenticator",
+    "baglock": "Fingerprint bag lock"
   },
   "uses": {
     "headingPre": "What I",
@@ -364,6 +375,8 @@
     "mytaxDesc": "Case study: MyTax, Malaysia's official tax filing app, where Zariff Danial is the sole mobile developer at Zen Computer Systems, shipping to iOS, Android and Huawei AppGallery.",
     "bestinet": "TOTP Authenticator Case Study · Zariff Danial",
     "bestinetDesc": "Engineering case study on an internal TOTP authenticator app at Bestinet Sdn Bhd, where Zariff Danial traced a broken Flutter code generation path to two defects, fixed and hardened it, and built the authenticator screen to a supplied design.",
+    "baglock": "Fingerprint Bag Lock Case Study · Zariff Danial",
+    "baglockDesc": "Case study of Zariff Danial's final year project: an Arduino fingerprint bag lock that texts its owner a theft alert and GPS coordinates after three failed matches, covering the hardware, the firmware logic, testing and a look back at the code.",
     "notFound": "404 · Zariff Danial",
     "notFoundDesc": "The page you are looking for does not exist."
   }

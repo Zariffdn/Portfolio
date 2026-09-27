@@ -1,4 +1,4 @@
-import bag from "../Assets/Projects/bag.png";
+import baglock from "../Assets/Projects/baglock.jpg";
 import bookstore from "../Assets/Projects/bookstore.png";
 import silentShot from "../Assets/featured/silent-1.jpeg";
 import halalSajiShot from "../Assets/featured/halalsaji-1.jpeg";
@@ -52,9 +52,9 @@ export const projects = [
   {
     id: "baglock",
     category: "embedded",
-    img: bag,
-    imgFit: "contain",
+    img: baglock,
     coursework: "fyp",
+    caseStudy: "/baglock",
     tags: ["C++", "Arduino", "Fingerprint Sensor", "GPS", "GSM"],
     ghLink: "https://github.com/Zariffdn/Anti-theft-fingerprint-baglock",
   },

@@ -2,7 +2,7 @@
 
 Live at [zariffdanial.vercel.app](https://zariffdanial.vercel.app/).
 
-A personal site for a Flutter developer: the MyTax case study, a second case study on the Bestinet TOTP work, selected projects, a one-page resume, and an about page with experience, education, certifications and a contact form. Dark and light themes, English and Bahasa Malaysia.
+A personal site for a Flutter developer: the MyTax case study, case studies on the Bestinet TOTP work and the fingerprint bag lock final year project, selected projects, a one-page resume, and an about page with experience, education, certifications and a contact form. Dark and light themes, English and Bahasa Malaysia.
 
 ## Stack
 

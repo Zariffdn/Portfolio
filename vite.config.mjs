@@ -19,6 +19,7 @@ const ROUTE_META = [
   ["uses", "uses", "usesDesc"],
   ["mytax", "mytax", "mytaxDesc"],
   ["bestinet", "bestinet", "bestinetDesc"],
+  ["baglock", "baglock", "baglockDesc"],
 ];
 
 const attr = (s) =>

@@ -36,6 +36,7 @@ const loaders = {
   uses: () => import("./components/Uses"),
   mytax: () => import("./components/MyTaxCaseStudy"),
   bestinet: () => import("./components/BestinetCaseStudy"),
+  baglock: () => import("./components/BaglockCaseStudy"),
   notFound: () => import("./components/NotFound"),
 };
 const About = lazy(loaders.about);
@@ -44,6 +45,7 @@ const Resume = lazy(loaders.resume);
 const Uses = lazy(loaders.uses);
 const MyTaxCaseStudy = lazy(loaders.mytax);
 const BestinetCaseStudy = lazy(loaders.bestinet);
+const BaglockCaseStudy = lazy(loaders.baglock);
 const NotFound = lazy(loaders.notFound);
 
 function warmRoutes() {
@@ -93,6 +95,7 @@ function AnimatedRoutes() {
           <Route path="/uses" element={<PageWrap><Uses /></PageWrap>} />
           <Route path="/mytax" element={<PageWrap><MyTaxCaseStudy /></PageWrap>} />
           <Route path="/bestinet" element={<PageWrap><BestinetCaseStudy /></PageWrap>} />
+          <Route path="/baglock" element={<PageWrap><BaglockCaseStudy /></PageWrap>} />
           <Route path="*" element={<PageWrap><NotFound /></PageWrap>} />
         </Routes>
       </AnimatePresence>

@@ -49,3 +49,7 @@ docs/BOOTCAMP.md
 
 # The headshot original stays local; only the cropped JPEGs are committed.
 src/Assets/me.png
+
+# The bag lock exhibition photo shows the FYP poster with a student photo and
+# names; only the crop in src/Assets/Projects/baglock.jpg is committed.
+src/Assets/Baglock.jpg

@@ -8,6 +8,7 @@
     { "source": "/uses", "destination": "/uses.html" },
     { "source": "/mytax", "destination": "/mytax.html" },
     { "source": "/bestinet", "destination": "/bestinet.html" },
+    { "source": "/baglock", "destination": "/baglock.html" },
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ],
   "headers": [
