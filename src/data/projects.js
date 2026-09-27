@@ -1,4 +1,4 @@
-import baglock from "../Assets/Projects/baglock.jpg";
+import baglock from "../Assets/Projects/baglock.svg";
 import bookstore from "../Assets/Projects/bookstore.png";
 import silentShot from "../Assets/featured/silent-1.jpeg";
 import halalSajiShot from "../Assets/featured/halalsaji-1.jpeg";

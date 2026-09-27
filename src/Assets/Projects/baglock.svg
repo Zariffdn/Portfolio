@@ -1,0 +1,64 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='800' viewBox='0 0 1280 800' role='img' aria-label='A black backpack with a fingerprint sensor on its front, a closed lock symbol above the sensor and sound waves beside it for the buzzer alarm'>
+  <defs>
+    <linearGradient id='panel' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#23263E'/>
+      <stop offset='100%' stop-color='#12141F'/>
+    </linearGradient>
+    <linearGradient id='arc' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#c770f0'/>
+      <stop offset='100%' stop-color='#7b4dff'/>
+    </linearGradient>
+    <linearGradient id='chip' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#2C2F4A'/>
+      <stop offset='100%' stop-color='#1A1C2C'/>
+    </linearGradient>
+  </defs>
+
+  <rect width='1280' height='800' fill='none'/>
+
+  <ellipse cx='640' cy='742' rx='232' ry='24' fill='#000000' opacity='0.20'/>
+
+  <!-- handle and shoulder straps -->
+  <g fill='none' stroke-linecap='round'>
+    <path d='M 598 165 V 125 Q 598 97 626 97 H 654 Q 682 97 682 125 V 165' stroke='#3A3E5C' stroke-width='30'/>
+    <path d='M 598 165 V 125 Q 598 97 626 97 H 654 Q 682 97 682 125 V 165' stroke='url(#chip)' stroke-width='19'/>
+    <path d='M 532 188 C 436 230 386 330 387 427 C 388 521 406 597 423 661' stroke='#3A3E5C' stroke-width='46'/>
+    <path d='M 532 188 C 436 230 386 330 387 427 C 388 521 406 597 423 661' stroke='url(#chip)' stroke-width='34'/>
+    <path d='M 748 188 C 844 230 894 330 893 427 C 892 521 874 597 857 661' stroke='#3A3E5C' stroke-width='46'/>
+    <path d='M 748 188 C 844 230 894 330 893 427 C 892 521 874 597 857 661' stroke='url(#chip)' stroke-width='34'/>
+  </g>
+
+  <!-- body and main zip -->
+  <path d='M 414 681 L 426 314 C 430 206 510 150 640 150 C 770 150 850 206 854 314 L 866 681 Q 866 704 843 704 L 437 704 Q 414 704 414 681 Z' fill='url(#panel)' stroke='#3A3E5C' stroke-width='5'/>
+  <path d='M 448 505 L 457 316 C 461 222 531 180 640 180 C 749 180 819 222 823 316 L 832 505' fill='none' stroke='#3A3E5C' stroke-width='7' stroke-linecap='round'/>
+
+  <!-- lock symbol: the latch the enrolled finger opens and closes -->
+  <g transform='translate(640 240)' fill='none' stroke='#c770f0' stroke-width='7' stroke-linecap='round'>
+    <rect x='-25' y='-6' width='50' height='36' rx='9'/>
+    <path d='M -14 -6 V -16 A 14 14 0 0 1 14 -16 V -6'/>
+  </g>
+
+  <!-- fingerprint sensor -->
+  <g transform='translate(640 400)'>
+    <circle r='110' fill='url(#chip)' stroke='#3A3E5C' stroke-width='3'/>
+    <circle r='92' fill='#12141F' stroke='url(#arc)' stroke-width='13'/>
+    <g transform='translate(0 9) scale(0.91)' fill='none' stroke='#EDE9F7' stroke-width='10' stroke-linecap='round'>
+      <path d='M -12 50 V 0 A 12 12 0 0 1 12 0 V 64'/>
+      <path d='M -36 64 V 0 A 36 36 0 0 1 36 0 V 36'/>
+      <path d='M -60 34 V 0 A 60 60 0 0 1 60 0 V 48'/>
+      <path d='M -80 -24 A 84 84 0 0 1 80 -24'/>
+    </g>
+  </g>
+
+  <!-- buzzer: the alarm after three failed matches -->
+  <g fill='none' stroke='#8E93B8' stroke-width='8' stroke-linecap='round'>
+    <path d='M 524 333 A 134 134 0 0 0 524 467 M 756 333 A 134 134 0 0 1 756 467'/>
+    <path d='M 501 320 A 160 160 0 0 0 501 480 M 779 320 A 160 160 0 0 1 779 480' opacity='0.6'/>
+  </g>
+
+  <!-- front pocket and zip -->
+  <rect x='467' y='526' width='346' height='148' rx='42' fill='url(#chip)' stroke='#3A3E5C' stroke-width='4'/>
+  <path d='M 504 560 H 776' stroke='#3A3E5C' stroke-width='7' stroke-linecap='round'/>
+  <rect x='626' y='550' width='28' height='20' rx='5' fill='#3A3E5C'/>
+  <rect x='633' y='562' width='14' height='22' rx='7' fill='#3A3E5C'/>
+</svg>

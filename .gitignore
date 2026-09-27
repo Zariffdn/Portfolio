@@ -51,5 +51,7 @@ docs/BOOTCAMP.md
 src/Assets/me.png
 
 # The bag lock exhibition photo shows the FYP poster with a student photo and
-# names; only the crop in src/Assets/Projects/baglock.jpg is committed.
+# names and a filled-in marking form; only the crop in
+# src/Assets/Projects/baglock.jpg is committed.
 src/Assets/Baglock.jpg
+src/Assets/prototype.jpg
