@@ -9,12 +9,17 @@ import {
 import { useTranslation } from "react-i18next";
 import Wordmark from "./ui/Wordmark";
 
-function Footer() {
+// `inert` is set while the mobile menu covers the page. onResumeIntent warms
+// the resume chunk when a pointer or focus reaches its link.
+function Footer({ inert = false, onResumeIntent }) {
   const { t } = useTranslation();
+  const resumeIntent = onResumeIntent
+    ? { onPointerEnter: onResumeIntent, onFocus: onResumeIntent }
+    : {};
   const year = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <footer className="footer" inert={inert}>
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
@@ -28,10 +33,11 @@ function Footer() {
               <li><Link to="/">{t("navbar.home")}</Link></li>
               <li><Link to="/about">{t("navbar.about")}</Link></li>
               <li><Link to="/project">{t("navbar.projects")}</Link></li>
-              <li><Link to="/resume">{t("navbar.resume")}</Link></li>
+              <li><Link to="/resume" {...resumeIntent}>{t("navbar.resume")}</Link></li>
               <li><Link to="/uses">{t("footer.uses")}</Link></li>
               <li><Link to="/mytax">MyTax</Link></li>
               <li><Link to="/bestinet">{t("footer.bestinet")}</Link></li>
+              <li><Link to="/silent-support">{t("footer.silentSupport")}</Link></li>
               <li><Link to="/baglock">{t("footer.baglock")}</Link></li>
             </ul>
           </div>

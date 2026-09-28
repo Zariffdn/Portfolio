@@ -1,0 +1,22 @@
+# Monthly dependency updates. npm minor and patch releases arrive together in
+# one pull request; each major version gets its own, since those are the ones
+# that need reading (see the peer-range note on .npmrc in CLAUDE.md). The
+# Quality workflow runs on every one of them.
+
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

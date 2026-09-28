@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 // Counts from 0 to `target` with an ease-out curve once `started` is true.
+// Under prefers-reduced-motion the numeral shows the target straight away.
 export default function useCountUp(target, started, duration = 1600) {
+  const reduce = useReducedMotion();
   const [count, setCount] = useState(0);
   // When `started` flips back to false the numeral resets to 0. Adjusting
   // state during render (rather than in the effect) avoids an extra pass.
@@ -12,7 +15,7 @@ export default function useCountUp(target, started, duration = 1600) {
   }
 
   useEffect(() => {
-    if (!started) return undefined;
+    if (!started || reduce) return undefined;
     let frame;
     let start;
     const tick = (ts) => {
@@ -24,7 +27,8 @@ export default function useCountUp(target, started, duration = 1600) {
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [target, started, duration]);
+  }, [target, started, duration, reduce]);
 
+  if (reduce && started) return target;
   return count;
 }

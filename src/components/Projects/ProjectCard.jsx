@@ -8,6 +8,13 @@ import "../../styles/project-card.css";
 
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
+// Rendered width of a card's screenshot: project-card.css caps the frame at
+// 150px (230px in the wide card above 767px), less the small frame's 8px
+// padding on each side. Hints this exact let a 2x screen take the 300w file
+// for the regular cards instead of the full one.
+const PHONE_SIZES = "134px";
+const PHONE_SIZES_WIDE = "(max-width: 767px) 134px, 214px";
+
 // One project, from src/data/projects.js.
 // variant: "default" | "wide" (media beside body; use for the featured entry)
 // clamp:   number of description lines to show, 0 shows everything
@@ -41,7 +48,13 @@ function ProjectCard({ project, variant = "default", clamp = 0, priority = false
   const media =
     imgKind === "phone" ? (
       <div className="pcard__media pcard__media--phone">
-        <PhoneFrame src={img} alt="" size="sm" priority={priority} />
+        <PhoneFrame
+          src={img}
+          alt=""
+          size="sm"
+          sizes={wide ? PHONE_SIZES_WIDE : PHONE_SIZES}
+          priority={priority}
+        />
       </div>
     ) : (
       <div className={`pcard__media pcard__media--${imgFit}`}>

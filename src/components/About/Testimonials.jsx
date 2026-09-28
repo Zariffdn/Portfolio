@@ -38,12 +38,10 @@ function Testimonials() {
   if (testimonials.length === 0) return null;
 
   return (
-    <Section tone="alt" hairline>
+    <Section tone="alt" hairline id="recommendations">
       <Container>
         <SectionHeading
-          title={
-            t("about.testimonialsPre") + " " + t("about.testimonialsHighlight")
-          }
+          title={t("about.recommendationsTitle")}
         />
         {testimonials.map((tst, i) => (
           <Reveal key={tst.id} delay={i * 0.08}>
@@ -51,7 +49,8 @@ function Testimonials() {
               <span className="testimonial__mark" aria-hidden="true">
                 &ldquo;
               </span>
-              <blockquote className="testimonial__quote">
+              {/* Quoted as written on LinkedIn, in English in both languages. */}
+              <blockquote className="testimonial__quote" lang="en">
                 <p>{tst.quote}</p>
               </blockquote>
               <figcaption className="testimonial__author">

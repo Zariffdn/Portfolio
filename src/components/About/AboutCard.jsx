@@ -1,10 +1,22 @@
 import { useTranslation } from "react-i18next";
-import { FiActivity, FiMusic } from "react-icons/fi";
-import { IoGameControllerOutline } from "react-icons/io5";
 import { Container, Section, Chip, Reveal } from "../ui";
 
-// Intro: the page's single h1, the bio prose, and an aside with location,
-// languages, off-the-clock chips and the quote.
+// Jump links under the intro. Each id is the id of a <Section> further down
+// About (see About.jsx); the label keys live under about.toc*.
+const TOC = [
+  ["experience", "about.tocExperience"],
+  ["education", "about.tocEducation"],
+  ["certifications", "about.tocCertifications"],
+  ["skills", "about.tocSkills"],
+  ["faq", "about.tocFaq"],
+  ["contact", "about.tocContact"],
+];
+
+// Work setups listed under "Looking for", as aboutCard.<key>.
+const SETUPS = ["workRemote", "workHybrid", "workOnsite"];
+
+// Intro: the page's single h1, the bio prose, the "On this page" jump links,
+// and an aside with location, languages and the kind of role he is after.
 function AboutCard() {
   const { t } = useTranslation();
 
@@ -31,6 +43,24 @@ function AboutCard() {
                 {t("aboutCard.currentRole_end")}
               </p>
             </div>
+
+            <nav className="about-toc" aria-labelledby="about-toc-label">
+              <span
+                id="about-toc-label"
+                className="eyebrow eyebrow--plain about-toc__label"
+              >
+                {t("about.tocLabel")}
+              </span>
+              <ul className="chip-row about-toc__list" role="list">
+                {TOC.map(([id, key]) => (
+                  <li key={id}>
+                    <a href={`#${id}`} className="chip about-toc__link">
+                      {t(key)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </Reveal>
 
           <Reveal delay={0.12} className="surface about-aside">
@@ -41,25 +71,20 @@ function AboutCard() {
               <dd>{t("aboutCard.metaLanguagesValue")}</dd>
             </dl>
 
-            <div className="about-aside__block">
-              <span className="eyebrow eyebrow--plain about-aside__label">
-                {t("aboutCard.hobbiesLabel", "Off the clock")}
-              </span>
-              <div className="chip-row">
-                <Chip icon={<IoGameControllerOutline />}>
-                  {t("aboutCard.playingGames")}
-                </Chip>
-                <Chip icon={<FiActivity />}>{t("aboutCard.workingOut")}</Chip>
-                <Chip icon={<FiMusic />}>{t("aboutCard.listeningMusic")}</Chip>
-              </div>
+            <div className="about-aside__block about-aside__looking">
+              <h2 className="eyebrow eyebrow--plain about-aside__label">
+                {t("aboutCard.lookingForLabel")}
+              </h2>
+              <p className="about-aside__role">{t("aboutCard.lookingForRole")}</p>
+              <ul className="chip-row" role="list">
+                {SETUPS.map((key) => (
+                  <li key={key}>
+                    <Chip>{t(`aboutCard.${key}`)}</Chip>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-3 small">{t("aboutCard.lookingForNotice")}</p>
             </div>
-
-            <figure className="about-aside__quote">
-              <blockquote>
-                <p>{t("aboutCard.quote")}</p>
-              </blockquote>
-              <figcaption className="about-aside__cite">Zariff</figcaption>
-            </figure>
           </Reveal>
         </div>
       </Container>

@@ -1,5 +1,6 @@
 import {
   srcSetFor,
+  dimensionsFor,
   screenshotSizes,
   screenshotSizesSmall,
 } from "../../data/screenshots";
@@ -23,6 +24,13 @@ function PhoneFrame({ src, alt, size = "md", priority = false, sizes, className 
   if (responsive) {
     imgProps.srcSet = responsive.srcSet;
     imgProps.sizes = sizes || SIZES[size] || SIZES.md;
+  }
+  // The intrinsic size lets the browser reserve the screenshot's box before the
+  // file arrives; CSS still scales it to the frame.
+  const dims = dimensionsFor(src);
+  if (dims) {
+    imgProps.width = dims.width;
+    imgProps.height = dims.height;
   }
   if (priority) imgProps.fetchPriority = "high";
   return (

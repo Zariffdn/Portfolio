@@ -81,10 +81,10 @@ function Certifications() {
   if (certifications.length === 0) return null;
 
   return (
-    <Section hairline>
+    <Section hairline id="certifications">
       <Container>
         <SectionHeading
-          title={t("about.myCertsPre") + " " + t("about.myCertsHighlight")}
+          title={t("about.certsTitle")}
           aside={
             <div className="certs__profiles">
               <a
@@ -114,7 +114,10 @@ function Certifications() {
           {certifications.map((c) => (
             <StaggerItem as="li" className="certs__row" key={c.id}>
               <div>
-                <h3 className="certs__title">{c.title}</h3>
+                {/* Certificate titles are English in both languages. */}
+                <h3 className="certs__title" lang="en">
+                  {c.title}
+                </h3>
                 {c.credentialId && (
                   <p className="certs__id mono text-3 small">
                     {t("about.credentialId") + " " + c.credentialId}

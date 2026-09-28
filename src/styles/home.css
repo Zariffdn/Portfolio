@@ -1,5 +1,6 @@
 /* ==========================================================================
-   Home page: hero, selected work, about teaser, CTA band.
+   Home page: hero, selected work, about teaser. The closing CTA band is
+   shared with /project and lives in cta-band.css.
    Builds only on tokens.css and base.css primitives.
    Also styles the AvailableForHire pill (this page is its only consumer).
    ========================================================================== */
@@ -24,6 +25,15 @@
   text-transform: uppercase;
   line-height: 1.3;
   transition: border-color var(--dur) ease, background-color var(--dur) ease;
+}
+
+/* The two halves wrap as whole units (AvailableForHire.jsx). */
+.available-badge__part {
+  display: inline-block;
+}
+
+.available-badge__notice::before {
+  content: "· ";
 }
 
 .available-badge:hover,
@@ -323,52 +333,4 @@ html[lang|="ms"] .home-hero__title {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--s-8);
   }
-}
-
-/* ---- CTA band ------------------------------------------------------------ */
-.surface.home-cta {
-  position: relative;
-  overflow: hidden;
-  max-width: 760px;
-  margin-inline: auto;
-  padding: clamp(2.5rem, 6vw, 4rem);
-  text-align: center;
-  box-shadow: var(--shadow-glow);
-}
-
-.home-cta::before {
-  content: "";
-  position: absolute;
-  top: -35%;
-  right: -20%;
-  width: 55%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-glow), transparent 65%);
-  filter: blur(30px);
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.home-cta > * {
-  position: relative;
-}
-
-.home-cta h2 {
-  margin-top: var(--s-4);
-}
-
-.home-cta .lead {
-  max-width: 44ch;
-  margin-top: var(--s-4);
-  margin-inline: auto;
-}
-
-.home-cta__actions {
-  margin-top: var(--s-8);
-}
-
-.home-cta__email {
-  display: block;
-  margin-top: var(--s-5);
 }

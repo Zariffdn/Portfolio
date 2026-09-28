@@ -6,10 +6,16 @@ import "../styles/store-links.css";
 // Labels and counts come from the locale files under store.<kind>.*;
 // the values in data/mytax.js are the English fallbacks.
 // compact: shorter buttons, no count chips.
-function StoreLinks({ compact = false, className = "" }) {
-  const { t } = useTranslation();
+// lng:     render in this language whatever the site language is, for a page
+//          that is written in one language only (the English case studies).
+function StoreLinks({ compact = false, className = "", lng }) {
+  const { t: activeT, i18n } = useTranslation();
+  const t = lng ? i18n.getFixedT(lng) : activeT;
   return (
-    <div className={`store-links ${compact ? "store-links--compact" : ""} ${className}`.trim()}>
+    <div
+      className={`store-links ${compact ? "store-links--compact" : ""} ${className}`.trim()}
+      lang={lng}
+    >
       {storeLinks.map(({ kind, url, Icon, small, big, aria, count }) => {
         const smallText = t(`store.${kind}.small`, small);
         const ariaText = t(`store.${kind}.aria`, aria);

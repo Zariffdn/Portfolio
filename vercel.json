@@ -1,6 +1,11 @@
 {
   "framework": "vite",
   "outputDirectory": "dist",
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/resume.pdf", "destination": "/Zariff-Danial-Resume.pdf", "permanent": false },
+    { "source": "/assets/Zariff-Danial-Resume-:hash.pdf", "destination": "/Zariff-Danial-Resume.pdf", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
     { "source": "/project", "destination": "/project.html" },
@@ -8,13 +13,26 @@
     { "source": "/uses", "destination": "/uses.html" },
     { "source": "/mytax", "destination": "/mytax.html" },
     { "source": "/bestinet", "destination": "/bestinet.html" },
-    { "source": "/baglock", "destination": "/baglock.html" },
-    { "source": "/((?!assets/).*)", "destination": "/index.html" }
+    { "source": "/silent-support", "destination": "/silent-support.html" },
+    { "source": "/baglock", "destination": "/baglock.html" }
   ],
   "headers": [
     {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
+        { "key": "X-Frame-Options", "value": "DENY" }
+      ]
+    },
+    {
       "source": "/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/Zariff-Danial-Resume.pdf",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
     }
   ]
 }

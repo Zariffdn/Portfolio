@@ -1,14 +1,16 @@
 /*
- * Renders tools/resume/resume.html to src/Assets/Zariff-Danial-Resume.pdf
- * with headless Chrome, and writes tools/resume/preview.png for a quick look.
+ * Renders tools/resume/resume.html to public/Zariff-Danial-Resume.pdf with
+ * headless Chrome, fills in the PDF metadata with pdf-lib, and writes
+ * tools/resume/preview.png for a quick look. The PDF lives in public/ so it
+ * keeps one stable URL, /Zariff-Danial-Resume.pdf, across every rebuild.
  *
  * Usage:  node tools/resume/build.js
  *
- * Needs playwright (a devDependency; npm install) and optionally pdf-lib for
- * the metadata step, which is not a project dependency: run with NODE_PATH
- * pointing at a folder that has pdf-lib installed, or skip it. It drives the
- * Chrome already on the machine (channel "chrome"), so no browser download
- * is needed.
+ * Needs playwright and pdf-lib, both devDependencies (npm install). It drives
+ * the Chrome already on the machine (channel "chrome"), so no browser
+ * download is needed. The PDF is tagged (a structure tree built from the
+ * HTML, so screen readers and parsers get headings, lists and links) and has
+ * a bookmark outline built from the headings.
  */
 const path = require("path");
 const fs = require("fs");
@@ -21,10 +23,44 @@ try {
   process.exit(1);
 }
 
+// Metadata is not optional: Chrome leaves Author, Subject, Keywords and the
+// document language empty, and recruiters and applicant tracking systems
+// read them. Stop here rather than ship a PDF without them.
+let PDFDocument;
+try {
+  ({ PDFDocument } = require("pdf-lib"));
+} catch (e) {
+  console.error("pdf-lib is not installed. Run: npm install");
+  process.exit(1);
+}
+
 const here = __dirname;
 const htmlPath = path.resolve(here, "resume.html");
-const pdfPath = path.resolve(here, "../../src/Assets/Zariff-Danial-Resume.pdf");
+const pdfPath = path.resolve(here, "../../public/Zariff-Danial-Resume.pdf");
 const previewPath = path.resolve(here, "preview.png");
+
+const META = {
+  title: "Zariff Danial, Mobile Developer (Flutter and Dart)",
+  author: "Zariff Danial",
+  subject: "Resume of Zariff Danial, a Flutter and Dart mobile developer in Klang, Selangor, Malaysia",
+  keywords: [
+    "Zariff Danial",
+    "resume",
+    "Flutter",
+    "Dart",
+    "mobile developer",
+    "Flutter developer",
+    "iOS",
+    "Android",
+    "Huawei HMS",
+    "Firebase Cloud Messaging",
+    "MyTax",
+    "LHDN",
+    "Selangor",
+    "Malaysia",
+  ],
+  language: "en",
+};
 
 (async () => {
   const browser = await chromium
@@ -37,12 +73,13 @@ const previewPath = path.resolve(here, "preview.png");
   await page.waitForTimeout(150);
 
   await page.emulateMedia({ media: "print" });
-  await page.pdf({
-    path: pdfPath,
+  const raw = await page.pdf({
     format: "A4",
     printBackground: true,
     preferCSSPageSize: true,
     margin: { top: 0, right: 0, bottom: 0, left: 0 },
+    tagged: true,
+    outline: true,
   });
 
   // Preview at A4 width (96 dpi) so layout can be eyeballed without a PDF viewer.
@@ -52,25 +89,22 @@ const previewPath = path.resolve(here, "preview.png");
   await page.screenshot({ path: previewPath, fullPage: true });
   await browser.close();
 
-  // Chrome leaves the PDF metadata empty; recruiters and parsers read it.
-  try {
-    const { PDFDocument } = require("pdf-lib");
-    const doc = await PDFDocument.load(fs.readFileSync(pdfPath));
-    doc.setTitle("Zariff Danial, Mobile Developer (Flutter and Dart)");
-    doc.setAuthor("Zariff Danial");
-    doc.setSubject("Resume");
-    doc.setKeywords(["Flutter", "Dart", "mobile developer", "iOS", "Android", "Huawei HMS", "Malaysia"]);
-    doc.setProducer("tools/resume/build.js");
-    doc.setCreator("tools/resume/resume.html");
-    fs.writeFileSync(pdfPath, await doc.save());
-  } catch (e) {
-    console.warn("pdf-lib not available; metadata left as Chrome wrote it (set NODE_PATH to a folder with pdf-lib to fill it)");
-  }
+  const doc = await PDFDocument.load(raw);
+  doc.setTitle(META.title, { showInWindowTitleBar: true });
+  doc.setAuthor(META.author);
+  doc.setSubject(META.subject);
+  // pdf-lib joins an array with spaces, which runs multi-word keywords together.
+  doc.setKeywords([META.keywords.join(", ")]);
+  doc.setLanguage(META.language);
+  doc.setProducer("tools/resume/build.js");
+  doc.setCreator("tools/resume/resume.html");
+  fs.writeFileSync(pdfPath, await doc.save());
 
   const bytes = fs.statSync(pdfPath).size;
-  console.log(`wrote ${path.relative(process.cwd(), pdfPath)} (${(bytes / 1024).toFixed(1)} KB)`);
+  console.log(`wrote ${path.relative(process.cwd(), pdfPath)} (${(bytes / 1024).toFixed(1)} KB, ${doc.getPageCount()} page${doc.getPageCount() === 1 ? "" : "s"})`);
   console.log(`content height ${height}px of 1123px per A4 page (${(height / 1123).toFixed(2)} pages)`);
   console.log(`preview: ${path.relative(process.cwd(), previewPath)}`);
+  if (doc.getPageCount() > 1) console.warn(`WARNING: ${doc.getPageCount()} pages; one is the target`);
 })().catch((e) => {
   console.error(e);
   process.exit(1);

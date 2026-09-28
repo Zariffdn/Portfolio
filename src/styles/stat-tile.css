@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Stat tile and grid (components/StatTile.js).
-   Used on Home (about teaser) and About (By the numbers). Tokens only.
+   Stat tile and grid (components/StatTile.jsx).
+   Used on Home (about teaser). Tokens only.
    ========================================================================== */
 
 /* Four columns on desktop, two under 768px. Every row shares one height so

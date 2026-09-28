@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { FiArrowLeft, FiArrowRight, FiGithub } from "react-icons/fi";
+import { FiGithub } from "react-icons/fi";
 import { Container, Section, Chip, Reveal } from "./ui";
+import { Block, CaseStudyEnd, CaseStudyTop } from "./CaseStudy";
 import photo from "../Assets/Projects/baglock.jpg";
 import schematic from "../Assets/Projects/baglock-schematic.jpg";
 import usePageMeta from "../hooks/usePageMeta";
@@ -154,25 +154,6 @@ const trigger = `} else if (p == FINGERPRINT_NOTFOUND) {
   return p;
 }`;
 
-function BackLink({ className = "" }) {
-  return (
-    <Link to="/project" className={`link-arrow cs-back ${className}`.trim()}>
-      <FiArrowLeft aria-hidden="true" /> Back to Projects
-    </Link>
-  );
-}
-
-// Two-digit mono index + hairline above every body block.
-function Block({ index, title, children }) {
-  return (
-    <Reveal as="section" className="cs-block">
-      <span className="eyebrow eyebrow--plain cs-block__index">{index}</span>
-      <h2>{title}</h2>
-      {children}
-    </Reveal>
-  );
-}
-
 function Code({ label, children }) {
   return (
     <figure className="cs-code">
@@ -193,15 +174,9 @@ function BaglockCaseStudy() {
   });
 
   return (
-    <div className="cs-page">
+    <div className="cs-page" lang="en">
       {/* 1. Top bar */}
-      <Section tight>
-        <Container narrow>
-          <div className="cs-rise">
-            <BackLink />
-          </div>
-        </Container>
-      </Section>
+      <CaseStudyTop />
 
       {/* 2. Hero */}
       <Section flushTop>
@@ -419,12 +394,6 @@ function BaglockCaseStudy() {
             <Block index="05" title="How the pieces fit together">
               <ul className="cs-list text-2">
                 <li>
-                  <strong>Three strikes.</strong> The alarm fires on the third
-                  confirmed no-match; unreadable images do not count, and any
-                  successful match clears the counter. My proposal slides said
-                  five attempts; the final design and the build use three.
-                </li>
-                <li>
                   <strong>Three serial devices on one Uno.</strong> The
                   Uno&apos;s only hardware serial port is used for USB
                   debugging, so the fingerprint sensor, GSM modem and GPS all
@@ -441,19 +410,9 @@ function BaglockCaseStudy() {
                   alerts only work on the local GSM network.
                 </li>
                 <li>
-                  <strong>Two messages per alert.</strong> The first says what
-                  happened in plain words. The second is just lat,long to six
-                  decimal places, so it copies in one go.
-                </li>
-                <li>
                   <strong>Raw AT commands.</strong> AT+CMGF=1 puts the modem in
                   text mode, AT+CMGS addresses the owner&apos;s number, and 0x1A
                   (Ctrl+Z) sends the message.
-                </li>
-                <li>
-                  <strong>Matching stays on the sensor.</strong> The AS608
-                  stores the template and runs the search itself, so the Uno
-                  only receives an ID and a confidence score.
                 </li>
               </ul>
               <Code label="The theft trigger, lines 134 to 157 of the sketch (trimmed, comments added)">{trigger}</Code>
@@ -503,35 +462,21 @@ function BaglockCaseStudy() {
                   places in Shah Alam, and that is the first thing I would
                   change.
                 </p>
-              </div>
-              <ul className="cs-list text-2">
-                <li>
-                  <strong>Integration.</strong> Uno, fingerprint sensor, GSM and
-                  GPS built as one circuit; no separate result recorded.
-                </li>
-                <li>
-                  <strong>Fingerprint.</strong> Enrolling and matching the
-                  owner&apos;s finger is covered only by the report&apos;s
-                  statement that the prototype met its objectives; no test run,
-                  false-accept or false-reject rate recorded.
-                </li>
-                <li>
-                  <strong>SMS alert.</strong> The report describes the alert
-                  reaching the owner&apos;s phone but logs no test run; delivery
-                  time not measured.
-                </li>
-                <li>
-                  <strong>GPS.</strong> Checked at three places in Shah Alam:
-                  needs open space and is unreliable indoors; accuracy not
-                  recorded.
-                </li>
-              </ul>
-              <div className="prose">
+                <p>
+                  The record for each part is thin too: the Uno, fingerprint
+                  sensor, GSM and GPS were built as one circuit with no separate
+                  result; enrolling and matching the owner&apos;s finger rests on
+                  the report&apos;s statement that the prototype met its
+                  objectives, with no test run or false-accept or false-reject
+                  rate; the SMS alert is described reaching the owner&apos;s
+                  phone, with no test run or delivery time; and the GPS checks
+                  note only that it needs open space and is unreliable indoors
+                  or in enclosed spaces.
+                </p>
                 <p>The limits I would flag now:</p>
               </div>
               <ul className="cs-list text-2">
                 <li>Alerts only work inside the country, because they go over the local GSM network.</li>
-                <li>GPS needs open sky and is unreliable indoors or in enclosed spaces.</li>
                 <li>The unit was a little too big for a backpack, and it never moved off perfboard onto a PCB.</li>
                 <li>The owner has to copy the coordinates into Google Maps by hand.</li>
                 <li>
@@ -606,7 +551,7 @@ function BaglockCaseStudy() {
                   before uploading.
                 </p>
               </div>
-              <div className="cs-block__cta cs-links">
+              <div className="cs-block__cta">
                 <a
                   href={REPO}
                   target="_blank"
@@ -615,17 +560,12 @@ function BaglockCaseStudy() {
                 >
                   <FiGithub aria-hidden="true" /> View the code on GitHub
                 </a>
-                <Link to="/project" className="link-arrow">
-                  See all projects <FiArrowRight aria-hidden="true" />
-                </Link>
               </div>
             </Block>
           </div>
 
-          {/* 6. Bottom back link */}
-          <Reveal>
-            <BackLink className="cs-back--bottom" />
-          </Reveal>
+          {/* 6. Contact, next case study and the way back */}
+          <CaseStudyEnd current="/baglock" />
         </Container>
       </Section>
     </div>

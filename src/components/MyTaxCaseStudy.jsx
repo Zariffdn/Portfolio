@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { FiArrowLeft, FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 import { FaNewspaper } from "react-icons/fa";
 import {
   Container,
@@ -12,20 +11,27 @@ import {
   StaggerItem,
   PhoneFrame,
 } from "./ui";
+import { Block, CaseStudyEnd, CaseStudyTop } from "./CaseStudy";
 import StoreLinks from "./StoreLinks";
 import { screenshots, lifetimeInstalls, press } from "../data/mytax";
 import usePageMeta from "../hooks/usePageMeta";
 import { formatMonth } from "../utils/formatMonth";
 import "../styles/casestudy.css";
 
+// What each screenshot in data/mytax.js shows, in the same order. Neither
+// the alt nor the caption transcribes a value from the screen.
+const screenLabels = [
+  { alt: "Login screen in Bahasa Malaysia", caption: "Login" },
+  { alt: "Tax balance, refund and e-Filing status", caption: "Balance and status" },
+  { alt: "ezHASiL services home", caption: "ezHASiL services" },
+];
+
 const techStack = [
   { group: "Core", items: ["Flutter", "Dart"] },
   { group: "State Management", items: ["Provider"] },
   { group: "Networking", items: ["Dio", "Retry", "HTTP"] },
-  {
-    group: "Authentication",
-    items: ["local_auth (biometric)", "Shared Preferences"],
-  },
+  { group: "Authentication", items: ["local_auth (biometric)"] },
+  { group: "Storage", items: ["Shared Preferences"] },
   {
     group: "PDF & Documents",
     items: ["Syncfusion PDF Viewer", "pdf"],
@@ -60,7 +66,8 @@ const techStack = [
   },
 ];
 
-// From the three store listings, September 2026.
+// From the three store listings, September 2026 (the caption under the list
+// says so; update both together).
 const facts = [
   ["Live since", "January 2023"],
   ["Min OS", "iOS 15+ · Android 9 (API 28)+"],
@@ -71,22 +78,166 @@ const facts = [
   ["Release record", "13 App Store releases, February to September 2026"],
 ];
 
-function BackLink({ className = "" }) {
-  return (
-    <Link to="/about" className={`link-arrow cs-back ${className}`.trim()}>
-      <FiArrowLeft aria-hidden="true" /> Back to About
-    </Link>
-  );
-}
+// One notification from the server to the phone, before and after the move
+// to FCM HTTP v1 (August 2026). High level only: approved facts, no code,
+// endpoints, keys or configuration.
+const pushTrace = [
+  {
+    title: "Legacy send",
+    text:
+      "The server sent its iOS and Android messages through Firebase's " +
+      "legacy send API, which Google had already retired in 2024, and a bare " +
+      "catch around the call meant a failed send left no trace.",
+    fixed: true,
+  },
+  {
+    title: "HTTP v1",
+    text:
+      "I moved the sends to FCM HTTP v1 through the Firebase Admin SDK and a " +
+      "service account.",
+    fixed: false,
+  },
+  {
+    title: "Both kinds of send",
+    text:
+      "Messages to one taxpayer's device and broadcasts to every install " +
+      "through a topic both moved to v1. The Google send is isolated, so a " +
+      "failure there can no longer stop the Huawei broadcast that follows it.",
+    fixed: false,
+  },
+  {
+    title: "Android channel",
+    text:
+      "Direct messages named an Android notification channel the app never " +
+      "registered. I pointed them at the channel the app creates, so Android " +
+      "shows them the way the app intends.",
+    fixed: true,
+  },
+  {
+    title: "Visible failures",
+    text:
+      "Send errors are logged instead of swallowed, so a problem shows up in " +
+      "the server logs.",
+    fixed: false,
+  },
+  {
+    title: "In the app",
+    text:
+      "The app subscribes to the broadcast topic, and on Android a " +
+      "notification can carry an image.",
+    fixed: false,
+  },
+];
 
-// Two-digit mono index + hairline above every body block.
-function Block({ index, title, children }) {
+// The two codebases, drawn from the facts on this page. The viewBox is sized
+// so the text stays readable at 390px, and the figure is capped on desktop.
+const diagramLabel =
+  "One Flutter codebase ships to the App Store and Google Play and uses " +
+  "Firebase Cloud Messaging for push. A separate HMS codebase ships to " +
+  "Huawei AppGallery and uses Huawei Push Kit. Both apps talk to one backend.";
+
+const codebases = [
+  {
+    x: 0,
+    title: "iOS and Android",
+    ships: ["App Store", "Google Play"],
+    push: ["Firebase Cloud", "Messaging"],
+  },
+  {
+    x: 188,
+    title: "Huawei (HMS)",
+    ships: ["AppGallery"],
+    push: ["Huawei Push Kit"],
+  },
+];
+
+function CodebaseDiagram() {
+  const cardW = 172;
+  const cardH = 198;
+  const hubY = cardH + 44;
   return (
-    <Reveal as="section" className="cs-block">
-      <span className="eyebrow eyebrow--plain cs-block__index">{index}</span>
-      <h2>{title}</h2>
-      {children}
-    </Reveal>
+    <figure className="cs-diagram">
+      <svg
+        className="cs-diagram__svg"
+        viewBox={`0 0 360 ${hubY + 48}`}
+        role="img"
+        aria-label={diagramLabel}
+      >
+        {codebases.map((cb) => {
+          const left = cb.x + 14;
+          const mid = cb.x + cardW / 2;
+          return (
+            <g key={cb.title}>
+              <rect
+                className="cs-diagram__card"
+                x={cb.x + 0.5}
+                y="0.5"
+                width={cardW - 1}
+                height={cardH}
+                rx="12"
+              />
+              <text className="cs-diagram__title" x={left} y="30">
+                {cb.title}
+              </text>
+              <text className="cs-diagram__sub" x={left} y="50">
+                Flutter codebase
+              </text>
+              <line
+                className="cs-diagram__rule"
+                x1={left}
+                x2={cb.x + cardW - 14}
+                y1="64"
+                y2="64"
+              />
+              <text className="cs-diagram__label" x={left} y="86">
+                SHIPS TO
+              </text>
+              {cb.ships.map((line, i) => (
+                <text
+                  key={line}
+                  className="cs-diagram__value"
+                  x={left}
+                  y={104 + i * 17}
+                >
+                  {line}
+                </text>
+              ))}
+              <text className="cs-diagram__label" x={left} y="146">
+                PUSH
+              </text>
+              {cb.push.map((line, i) => (
+                <text
+                  key={line}
+                  className="cs-diagram__value"
+                  x={left}
+                  y={164 + i * 17}
+                >
+                  {line}
+                </text>
+              ))}
+              <path
+                className="cs-diagram__link"
+                d={`M${mid} ${cardH + 1} V${cardH + 22} H${cb.x === 0 ? 150 : 210} V${hubY}`}
+              />
+            </g>
+          );
+        })}
+        <rect
+          className="cs-diagram__hub"
+          x="60.5"
+          y={hubY + 0.5}
+          width="239"
+          height="46"
+          rx="12"
+        />
+        <text className="cs-diagram__hub-text" x="180" y={hubY + 29} textAnchor="middle">
+          One backend
+        </text>
+      </svg>
+      <figcaption className="mono cs-art__caption">
+        Two codebases, one backend
+      </figcaption>
+    </figure>
   );
 }
 
@@ -99,15 +250,9 @@ function MyTaxCaseStudy() {
   });
 
   return (
-    <div className="cs-page">
+    <div className="cs-page" lang="en">
       {/* 1. Top bar */}
-      <Section tight>
-        <Container narrow>
-          <div className="cs-rise">
-            <BackLink />
-          </div>
-        </Container>
-      </Section>
+      <CaseStudyTop />
 
       {/* 2. Hero */}
       <Section flushTop>
@@ -117,8 +262,10 @@ function MyTaxCaseStudy() {
             <h1 className="display cs-rise">MyTax</h1>
             <p className="lead cs-rise">
               Malaysia&apos;s official income tax filing app, used by taxpayers
-              nationwide. Maintained at Zen Computer Systems for the Inland
-              Revenue Board (LHDN), live across three mobile ecosystems.
+              nationwide and maintained at Zen Computer Systems for the Inland
+              Revenue Board (LHDN). As the 2026 filing season opened, my fixes
+              went out in four iOS releases in ten days. In August I moved
+              the server&apos;s push sends to Firebase Cloud Messaging HTTP v1.
             </p>
             <dl className="meta-list cs-meta cs-rise">
               <div>
@@ -139,7 +286,7 @@ function MyTaxCaseStudy() {
               </div>
             </dl>
             <div className="cs-stores cs-rise">
-              <StoreLinks />
+              <StoreLinks lng="en" />
             </div>
             <p className="text-3 small cs-caption cs-rise">
               The App Store figure is from App Store Connect analytics,
@@ -163,12 +310,18 @@ function MyTaxCaseStudy() {
             aria-label="MyTax app screenshots"
           >
             {screenshots.map((src, i) => (
-              <StaggerItem key={src} className="cs-screens__item">
+              <StaggerItem key={src} as="figure" className="cs-screens__item">
                 <PhoneFrame
                   src={src}
-                  alt={`MyTax mobile app screenshot ${i + 1}`}
+                  alt={screenLabels[i]?.alt ?? `MyTax app screen ${i + 1}`}
+                  sizes="(max-width: 880px) 138px, 220px"
                   priority={i === 1}
                 />
+                {screenLabels[i] && (
+                  <figcaption className="mono cs-art__caption cs-screens__caption">
+                    {screenLabels[i].caption}
+                  </figcaption>
+                )}
               </StaggerItem>
             ))}
           </Stagger>
@@ -197,66 +350,7 @@ function MyTaxCaseStudy() {
       <Section hairline>
         <Container narrow>
           <div className="cs-blocks">
-            <Block index="01" title="Problem">
-              <div className="prose">
-                <p>
-                  Filing income tax in Malaysia traditionally meant queuing
-                  at LHDN branches, navigating a desktop portal, or
-                  completing paper forms. That friction landed hardest on
-                  working taxpayers and on anyone without easy desktop
-                  access.
-                </p>
-                <p>
-                  MyTax brings the full LHDN filing surface to the device
-                  most Malaysians already carry. It handles e-Filing,
-                  payment and refund history, e-KYC onboarding for new
-                  taxpayers, and biometric login, shipped across iOS,
-                  Android, and Huawei AppGallery so no major handset
-                  segment is locked out.
-                </p>
-              </div>
-            </Block>
-
-            <Block index="02" title="Overview">
-              <div className="prose">
-                <p>
-                  MyTax is the official mobile companion to the LHDN tax
-                  filing platform. It lets Malaysian taxpayers file returns,
-                  view payment and refund history, manage authentication,
-                  and access tax services from their phone. The app ships to
-                  three distinct mobile ecosystems: iOS via the Apple App
-                  Store, Android via Google Play, and Huawei devices via
-                  Huawei AppGallery. The current app went live in January
-                  2023, and as of September 2026 it is on version 1.0.52 on
-                  the App Store and AppGallery and 1.0.53 on Google Play.
-                </p>
-              </div>
-            </Block>
-
-            <Block index="03" title="My role">
-              <div className="prose">
-                <p>
-                  I&apos;m the sole mobile developer assigned to MyTax. The rest
-                  of the team on this product focuses on the web platform,
-                  so anything that ships to phones for MyTax runs through
-                  me. I own the MyTax mobile surface end-to-end: bug
-                  fixes, releases, platform-specific adaptations,
-                  localization, and feature shipping across iOS, Android,
-                  and Huawei builds.
-                </p>
-                <p>
-                  In practice, in any given week I might be investigating
-                  a user-reported issue, adapting a feature for the
-                  Huawei build (which runs in the HMS environment without
-                  Google Mobile Services), keeping Bahasa Malaysia and
-                  English strings aligned with the web platform&apos;s copy,
-                  or integrating a new API endpoint the backend team has
-                  just shipped on the web side.
-                </p>
-              </div>
-            </Block>
-
-            <Block index="04" title="Shipped so far">
+            <Block index="01" title="Shipped so far">
               <ul className="cs-list text-2">
                 <li>
                   <strong>Filing season 2026.</strong>{" "}
@@ -274,41 +368,121 @@ function MyTaxCaseStudy() {
                 <li>
                   <strong>A cleaner, checked codebase.</strong>{" "}
                   I cleared more than 200 static analysis warnings in each
-                  mobile codebase, and in September 2026 added a CI workflow
-                  and pre-push checks to the iOS and Android one.
+                  mobile codebase, and in September 2026 added a CI workflow,
+                  a pre-push check and the first unit tests to both of them.
                 </li>
               </ul>
             </Block>
 
-            <Block index="05" title="Two codebases, one product">
+            <Block index="02" title="Deep dive: push notifications">
               <div className="prose">
                 <p>
-                  The Huawei build runs in an environment without Google
-                  Mobile Services, which means Firebase Messaging,
-                  Google-dependent SDKs, and several Google-tied plugins
-                  simply aren&apos;t available. Rather than ship a half-working
-                  Huawei version, I maintain a separate Flutter codebase
-                  for Huawei that swaps in HMS-native equivalents,
-                  including the Huawei Push Kit (huawei_push) in place of
-                  Firebase Messaging.
+                  When I joined, the MyTax server still sent every iOS and
+                  Android push through Firebase&apos;s legacy send API. In
+                  August 2026 I moved it to Firebase Cloud Messaging HTTP v1.
+                  This is the path of one notification, from the server to
+                  the phone.
                 </p>
+              </div>
+              <ol className="cs-trace">
+                {pushTrace.map((step, i) => (
+                  <li
+                    key={step.title}
+                    className={`cs-trace__step ${step.fixed ? "cs-trace__step--fixed" : ""}`.trim()}
+                  >
+                    <span className="cs-trace__index" aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="cs-trace__body">
+                      <div className="cs-trace__head">
+                        <h3 className="cs-trace__title">{step.title}</h3>
+                        {step.fixed && (
+                          <Chip className="cs-trace__flag cs-trace__flag--ok">
+                            Fixed
+                          </Chip>
+                        )}
+                      </div>
+                      <p className="cs-trace__text text-2">{step.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </Block>
+
+            <Block index="03" title="How a change ships">
+              <ul className="cs-list text-2">
+                <li>
+                  <strong>Checked twice.</strong>{" "}
+                  Before code leaves my machine, a Git pre-push hook runs
+                  static analysis and the unit tests and stops the upload if
+                  either fails. GitHub Actions then runs both again and
+                  builds a debug APK for pull requests. Both codebases have
+                  the same checks.
+                </li>
+                <li>
+                  <strong>Tests are a start, not a suite.</strong>{" "}
+                  The unit tests cover small pure functions such as the
+                  nearby-branch distance formula and email masking. Before a
+                  release I test the build on a device myself.
+                </li>
+                <li>
+                  <strong>I submit every release.</strong>{" "}
+                  Once a build passes on the device, I submit it to the
+                  App Store, Google Play and AppGallery.
+                </li>
+              </ul>
+            </Block>
+
+            <Block index="04" title="Context">
+              <div className="prose">
                 <p>
-                  In practice this means features land in the iOS and
-                  Android codebase first, then get ported to the Huawei
-                  codebase with the right HMS adaptations. Both codebases
-                  need to stay in sync on UX, API integration, and
-                  localization so users on every platform get the same
-                  tax-filing experience.
+                  MyTax puts LHDN&apos;s e-Filing, payment and refund history,
+                  e-KYC onboarding for new taxpayers and biometric login on
+                  taxpayers&apos; phones, across iOS, Android and Huawei
+                  AppGallery.
                 </p>
               </div>
             </Block>
 
-            <Block index="06" title="Technical stack">
+            <Block index="05" title="My role">
               <div className="prose">
                 <p>
-                  Both codebases are Flutter and Dart. Below is the core
-                  stack I work with day-to-day. The Push category is split
-                  because the two codebases use different services:
+                  I&apos;m the sole mobile developer assigned to MyTax. The rest
+                  of the team on this product focuses on the web platform,
+                  so anything that ships to phones for MyTax runs through
+                  me. I own the MyTax mobile surface end-to-end: bug
+                  fixes, releases, platform-specific adaptations,
+                  localization, and feature shipping across iOS, Android,
+                  and Huawei builds.
+                </p>
+              </div>
+            </Block>
+
+            <Block index="06" title="Two codebases, one product">
+              <div className="prose">
+                <p>
+                  The Huawei build runs without Google Mobile Services, so
+                  Firebase Messaging and other Google-dependent plugins are
+                  not available there. The app has a separate Flutter
+                  codebase for Huawei, which predates me, that swaps in HMS
+                  equivalents such as Huawei Push Kit (huawei_push) in place
+                  of Firebase Messaging.
+                </p>
+                <p>
+                  Fixes land in the iOS and Android codebase first, and I
+                  carry them across to the Huawei one, keeping the two in
+                  step on UX, API integration and localization so users on
+                  every platform get the same tax-filing experience.
+                </p>
+              </div>
+              <CodebaseDiagram />
+            </Block>
+
+            <Block index="07" title="Technical stack">
+              <div className="prose">
+                <p>
+                  Both codebases are Flutter and Dart. Push is split because
+                  the two codebases use different services.
                 </p>
               </div>
               <Stagger className="cs-tech" gap={0.05}>
@@ -330,38 +504,26 @@ function MyTaxCaseStudy() {
               </Stagger>
             </Block>
 
-            <Block index="07" title="Platform & release">
-              <div className="surface cs-facts">
-                <dl className="meta-list">
-                  {facts.map(([label, value]) => (
-                    <Fragment key={label}>
-                      <dt>{label}</dt>
-                      <dd>{value}</dd>
-                    </Fragment>
-                  ))}
-                </dl>
-              </div>
+            <Block index="08" title="Platform & release">
+              <figure className="cs-facts-figure">
+                <div className="surface cs-facts">
+                  <dl className="meta-list">
+                    {facts.map(([label, value]) => (
+                      <Fragment key={label}>
+                        <dt>{label}</dt>
+                        <dd>{value}</dd>
+                      </Fragment>
+                    ))}
+                  </dl>
+                </div>
+                <figcaption className="mono cs-art__caption">
+                  Store listings as of September 2026
+                </figcaption>
+              </figure>
             </Block>
 
-            <Block index="08" title="Engineering challenges">
-              <div className="prose">
-                <p>
-                  The interesting work isn&apos;t just writing Flutter. It&apos;s the
-                  cross-platform and production constraints that come with
-                  a government-grade app at scale.
-                </p>
-              </div>
+            <Block index="09" title="Engineering challenges">
               <ul className="cs-list text-2">
-                <li>
-                  <strong>Huawei without Google Mobile Services.</strong>
-                  {" "}
-                  HMS is a parallel ecosystem to GMS. Firebase Messaging,
-                  Google Maps, and any Google-dependent plugin needs a
-                  Huawei-native replacement (huawei_push for messaging,
-                  different geocoding, different in-app purchases). The
-                  separate Huawei codebase exists specifically to handle
-                  this without compromising the iOS/Android build.
-                </li>
                 <li>
                   <strong>Solo ownership of the mobile surface.</strong>
                   {" "}
@@ -377,22 +539,18 @@ function MyTaxCaseStudy() {
                   </strong>{" "}
                   Mobile localization strings stay consistent with the
                   web platform&apos;s Bahasa Malaysia and English copy.
-                  Changes to translations go through a shared review
-                  process rather than mobile owning them independently.
                 </li>
                 <li>
                   <strong>Production reliability during filing season.</strong>
                   {" "}
                   Traffic spikes hard from March, when e-Filing opens, to
-                  the May deadline. Every regression reaches taxpayers at
-                  scale, so fixes in that window have to go out quickly
-                  without breaking anything else: in March 2026 that meant
-                  four iOS releases in ten days.
+                  the May deadline, and every regression reaches taxpayers
+                  at scale.
                 </li>
               </ul>
             </Block>
 
-            <Block index="09" title="Press coverage">
+            <Block index="10" title="Press coverage" id="press">
               <div className="prose">
                 <p>
                   Malaysian press points taxpayers to the app by name:
@@ -447,25 +605,27 @@ function MyTaxCaseStudy() {
               </div>
             </Block>
 
-            <Block index="10" title="What I've learned so far">
+            <Block index="11" title="What I've learned so far">
               <ul className="cs-list text-2">
                 <li>
-                  Cross-platform isn&apos;t free. Every plugin has to be
-                  validated on Huawei, not just iOS and Android, and
-                  sometimes the answer is a second codebase rather than
-                  a clever runtime check.
+                  <strong>Filing season sets the pace.</strong> Four iOS releases in ten days
+                  in March 2026 showed me that once e-Filing opens, how
+                  quickly a fix reaches taxpayers matters as much as the fix
+                  itself.
                 </li>
                 <li>
-                  Production Flutter at scale rewards careful version
-                  pinning and conservative dependency upgrades.
+                  <strong>Read what old code actually does.</strong> The push code compiled
+                  and ran without an error, yet it was calling an API
+                  Google had already retired, and a bare catch kept that
+                  quiet. Failures now get logged.
                 </li>
                 <li>
-                  Being the sole mobile developer means owning the
-                  boring stuff too: release pipelines, store metadata,
-                  and keeping two codebases in sync.
+                  <strong>Cross-platform isn&apos;t free.</strong> Every plugin has to be
+                  validated on Huawei, not just iOS and Android, and every
+                  fix has to be carried across to the second codebase.
                 </li>
                 <li>
-                  The Android ecosystem is broader than I first thought.
+                  <strong>The Android ecosystem is broader than I first thought.</strong>
                   Different device makers behave differently under the
                   hood, and that&apos;s an area I want to invest more
                   structured testing in as the app evolves.
@@ -474,10 +634,8 @@ function MyTaxCaseStudy() {
             </Block>
           </div>
 
-          {/* 6. Bottom back link */}
-          <Reveal>
-            <BackLink className="cs-back--bottom" />
-          </Reveal>
+          {/* 6. Contact, next case study and the way back */}
+          <CaseStudyEnd current="/mytax" />
         </Container>
       </Section>
     </div>
