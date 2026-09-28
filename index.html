@@ -20,26 +20,32 @@
       } catch (e) {}
     })();
   </script>
-  <meta name="description" content="Zariff Danial, Mobile Developer (Flutter and Dart) from Klang, Selangor. Sole mobile developer on MyTax, Malaysia's official tax filing app, with 3M+ lifetime installs.">
+  <!-- Titles and descriptions below are rewritten at build time from meta.* in
+       src/i18n/locales/en.json by the route-html plugin in vite.config.mjs,
+       which also writes one copy of this file per route. Keep every tag it
+       swaps: the build fails if one is missing. -->
+  <meta name="description" content="Zariff Danial, Flutter and Dart developer in Klang, Selangor. Sole mobile developer on MyTax, Malaysia's official tax filing app, with 3M+ lifetime installs.">
   <meta name="author" content="Zariff Danial">
   <link rel="canonical" href="https://zariffdanial.vercel.app/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- The fonts are self-hosted (src/styles/fonts.css). The hero heading's
+       face is fetched at once rather than after the stylesheet is parsed;
+       Vite rewrites this href to the fingerprinted file at build time. -->
+  <link rel="preload" href="/src/Assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="manifest" href="/manifest.json" />
   <title>Zariff Danial · Mobile Developer (Flutter)</title>
 
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="Zariff Danial · Mobile Developer (Flutter)">
-  <meta itemprop="description" content="Sole mobile developer on MyTax, Malaysia's official tax filing app. Flutter and Dart, shipping to iOS, Android, and Huawei AppGallery.">
-  <meta itemprop="image" content="/preview.jpg">
+  <meta itemprop="description" content="Zariff Danial, Flutter and Dart developer in Klang, Selangor. Sole mobile developer on MyTax, Malaysia's official tax filing app, with 3M+ lifetime installs.">
+  <meta itemprop="image" content="https://zariffdanial.vercel.app/og/home.jpg">
 
   <!-- Facebook / Open Graph Meta Tags -->
+  <meta property="og:site_name" content="Zariff Danial">
   <meta property="og:url" content="https://zariffdanial.vercel.app/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Zariff Danial · Mobile Developer (Flutter)">
-  <meta property="og:description" content="Sole mobile developer on MyTax, Malaysia's official tax filing app. Flutter and Dart, shipping to iOS, Android, and Huawei AppGallery. 3M+ lifetime installs.">
-  <meta property="og:image" content="https://zariffdanial.vercel.app/preview.jpg">
+  <meta property="og:description" content="Zariff Danial, Flutter and Dart developer in Klang, Selangor. Sole mobile developer on MyTax, Malaysia's official tax filing app, with 3M+ lifetime installs.">
+  <meta property="og:image" content="https://zariffdanial.vercel.app/og/home.jpg">
   <meta property="og:image:width" content="2400">
   <meta property="og:image:height" content="1260">
   <meta property="og:image:alt" content="Malaysia files its taxes on an app I ship. Zariff Danial, Flutter developer.">
@@ -47,46 +53,61 @@
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Zariff Danial · Mobile Developer (Flutter)">
-  <meta name="twitter:description" content="Sole mobile developer on MyTax, Malaysia's official tax filing app. Flutter and Dart, shipping to iOS, Android, and Huawei AppGallery. 3M+ lifetime installs.">
-  <meta name="twitter:image" content="https://zariffdanial.vercel.app/preview.jpg">
+  <meta name="twitter:description" content="Zariff Danial, Flutter and Dart developer in Klang, Selangor. Sole mobile developer on MyTax, Malaysia's official tax filing app, with 3M+ lifetime installs.">
+  <meta name="twitter:image" content="https://zariffdanial.vercel.app/og/home.jpg">
+  <meta name="twitter:image:alt" content="Malaysia files its taxes on an app I ship. Zariff Danial, Flutter developer.">
 
   <!-- Structured Data (JSON-LD) for Google rich results -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Zariff Danial",
-    "url": "https://zariffdanial.vercel.app/",
-    "image": "https://zariffdanial.vercel.app/preview.jpg",
-    "jobTitle": "Solutions Developer (Mobile App Developer)",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Zen Computer Systems"
-    },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Universiti Teknologi MARA",
-      "sameAs": "https://uitm.edu.my/"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Klang",
-      "addressRegion": "Selangor",
-      "addressCountry": "Malaysia"
-    },
-    "email": "mailto:zariffdanial.zul@gmail.com",
-    "knowsAbout": ["Flutter", "Dart", "Mobile Development", "iOS", "Android", "Front-End", "TOTP", "Mobile Authentication"],
-    "sameAs": [
-      "https://github.com/Zariffdn",
-      "https://www.linkedin.com/in/zariffdanial/",
-      "https://www.credly.com/users/zariff-danial-bin-zul-azhar"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://zariffdanial.vercel.app/#website",
+        "name": "Zariff Danial",
+        "url": "https://zariffdanial.vercel.app/"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://zariffdanial.vercel.app/#person",
+        "name": "Zariff Danial",
+        "url": "https://zariffdanial.vercel.app/",
+        "jobTitle": "Solutions Developer (Mobile App Developer)",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Zen Computer Systems"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Universiti Teknologi MARA",
+          "sameAs": "https://uitm.edu.my/"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Klang",
+          "addressRegion": "Selangor",
+          "addressCountry": "Malaysia"
+        },
+        "email": "mailto:zariffdanial.zul@gmail.com",
+        "knowsAbout": ["Flutter", "Dart", "Mobile Development", "iOS", "Android", "Front-End", "TOTP", "Mobile Authentication"],
+        "sameAs": [
+          "https://github.com/Zariffdn",
+          "https://www.linkedin.com/in/zariffdanial/",
+          "https://www.credly.com/users/zariff-danial-bin-zul-azhar"
+        ]
+      }
     ]
   }
   </script>
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <noscript>
+    <p style="max-width: calc(var(--container-narrow) + 2 * var(--gutter)); margin: 0 auto; padding: var(--s-12) var(--gutter); color: var(--text-2)">
+      Zariff Danial is a Solutions Developer (Flutter) at Zen Computer Systems and the sole mobile developer on MyTax, Malaysia's official tax filing app (3M+ lifetime installs). This site needs JavaScript to run. You can email him at <a href="mailto:zariffdanial.zul@gmail.com" style="text-decoration: underline">zariffdanial.zul@gmail.com</a>, find him on <a href="https://www.linkedin.com/in/zariffdanial/" style="text-decoration: underline">linkedin.com/in/zariffdanial</a> and <a href="https://github.com/Zariffdn" style="text-decoration: underline">github.com/Zariffdn</a>, or download his <a href="/Zariff-Danial-Resume.pdf" style="text-decoration: underline">resume (PDF)</a>.
+    </p>
+  </noscript>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -32,6 +32,18 @@ const MOUNT_MARGIN = "400px 0px";
 const SVG_POLL_MS = 100;
 const SVG_POLL_LIMIT_MS = 6000;
 
+// Month names for the calendar header in the active language. A fixed
+// mid-month UTC date per month keeps every time zone on the same month.
+function monthLabels(locale) {
+  const format = new Intl.DateTimeFormat(locale, {
+    month: "short",
+    timeZone: "UTC",
+  });
+  return Array.from({ length: 12 }, (_, month) =>
+    format.format(new Date(Date.UTC(2024, month, 15)))
+  );
+}
+
 function isCompactViewport() {
   return (
     typeof window !== "undefined" &&
@@ -42,15 +54,31 @@ function isCompactViewport() {
 
 function Github() {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.resolvedLanguage;
   const surfaceRef = useRef(null);
   // Without IntersectionObserver there is nothing to wait for.
   const [shouldMount, setShouldMount] = useState(
     () => typeof IntersectionObserver === "undefined"
   );
   const [compact, setCompact] = useState(isCompactViewport);
-  const calendarLabel =
-    t("about.daysICodePre") + " " + t("about.daysICodeHighlight");
+  const calendarLabel = t("about.githubTitle");
+
+  // The calendar fills in {{count}} itself once its data arrives. i18next
+  // would otherwise interpolate that placeholder, so it is handed back as a
+  // string (a string count also skips plural resolution).
+  const labels = useMemo(
+    () => ({
+      // en-US: en-GB abbreviates September as "Sept".
+      months: monthLabels(lang === "ms" ? "ms-MY" : "en-US"),
+      totalCount: t("about.calendarTotal", { count: "{{count}}" }),
+      legend: {
+        less: t("about.calendarLess"),
+        more: t("about.calendarMore"),
+      },
+    }),
+    [lang, t]
+  );
 
   // The surface renders at once (its min-height keeps the page stable) but
   // the calendar itself waits until the surface is near the viewport.
@@ -118,7 +146,7 @@ function Github() {
   }, [shouldMount]);
 
   return (
-    <Section tight>
+    <Section tight id="github">
       <Container>
         <SectionHeading
           title={calendarLabel}
@@ -142,6 +170,7 @@ function Github() {
                 blockMargin={compact ? 3 : 4}
                 theme={palette}
                 colorScheme={theme === "light" ? "light" : "dark"}
+                labels={labels}
                 errorMessage={t("about.calendarError")}
                 fontSize={14}
               />

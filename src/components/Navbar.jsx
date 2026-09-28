@@ -17,7 +17,7 @@ const LINKS = [
 const SOCIALS = [
   { href: "https://github.com/Zariffdn", label: "GitHub", Icon: FiGithub },
   { href: "https://www.linkedin.com/in/zariffdanial/", label: "LinkedIn", Icon: FiLinkedin },
-  { href: "mailto:zariffdanial.zul@gmail.com", label: "Email", Icon: FiMail },
+  { href: "mailto:zariffdanial.zul@gmail.com", label: "Email", ariaKey: "navbar.emailAria", Icon: FiMail },
 ];
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -28,7 +28,10 @@ const FOCUSABLE = "a[href], button:not([disabled])";
 
 const isRendered = (el) => el.getClientRects().length > 0;
 
-function NavBar() {
+// onMenuChange(open) tells App when the overlay opens and closes, so it can
+// make the page behind it inert. onResumeIntent warms the resume chunk when a
+// pointer reaches, or focus lands on, a Resume link.
+function NavBar({ onMenuChange, onResumeIntent }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   // Mirrors `open` synchronously so close() knows whether the overlay was
@@ -66,18 +69,35 @@ function NavBar() {
   const openMenu = useCallback(() => {
     openRef.current = true;
     setOpen(true);
-  }, []);
+    if (onMenuChange) onMenuChange(true);
+  }, [onMenuChange]);
 
   // Every close path (Escape, link activation, the burger, route change)
   // goes through here so focus returns to the burger that opened the menu.
   // Route changes that happen while the menu is shut leave focus alone, so
-  // ScrollToTop can hand it to <main> as usual.
+  // the new page can take it (usePageEntry in ScrollToTop).
   const close = useCallback(() => {
     const wasOpen = openRef.current;
     openRef.current = false;
     setOpen(false);
-    if (wasOpen && burgerRef.current) burgerRef.current.focus();
-  }, []);
+    if (onMenuChange) onMenuChange(false);
+    if (wasOpen && burgerRef.current && isRendered(burgerRef.current)) {
+      burgerRef.current.focus();
+    }
+  }, [onMenuChange]);
+
+  // Rotating a phone to landscape, or widening the window, hides the burger
+  // (chrome.css, 768px and up); the overlay closes with it rather than stay
+  // up with no visible way out.
+  useEffect(() => {
+    if (!open || !window.matchMedia) return undefined;
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onChange = () => {
+      if (!mq.matches) close();
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [open, close]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -138,6 +158,12 @@ function NavBar() {
     };
   }, [open, close]);
 
+  // Only the resume is warmed on intent; App warms the other routes at idle.
+  const intentProps = (to) =>
+    to === "/resume" && onResumeIntent
+      ? { onPointerEnter: onResumeIntent, onFocus: onResumeIntent }
+      : {};
+
   const themeButton = (
     <button
       type="button"
@@ -178,7 +204,7 @@ function NavBar() {
           <ul className="nav__links">
             {LINKS.map(({ to, key, end }) => (
               <li key={key}>
-                <NavLink to={to} end={end} className="nav__link">
+                <NavLink to={to} end={end} className="nav__link" {...intentProps(to)}>
                   {t(`navbar.${key}`)}
                 </NavLink>
               </li>
@@ -205,6 +231,9 @@ function NavBar() {
         </nav>
       </header>
 
+      {/* Not aria-modal: its close control (the burger) lives in the header,
+          outside the dialog. App makes everything behind it inert instead, and
+          the key handler above keeps Tab on the header actions and the menu. */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -212,7 +241,6 @@ function NavBar() {
             id="mobile-menu"
             className="menu"
             role="dialog"
-            aria-modal="true"
             aria-label={t("navbar.menu", "Main")}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -233,7 +261,13 @@ function NavBar() {
                     show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
                   }}
                 >
-                  <NavLink to={to} end={end} className="menu__link" onClick={close}>
+                  <NavLink
+                    to={to}
+                    end={end}
+                    className="menu__link"
+                    onClick={close}
+                    {...intentProps(to)}
+                  >
                     <span>{t(`navbar.${key}`)}</span>
                     <span className="menu__index">0{i + 1}</span>
                   </NavLink>
@@ -251,6 +285,9 @@ function NavBar() {
               <Link to="/bestinet" onClick={close}>
                 {t("footer.bestinet")}
               </Link>
+              <Link to="/silent-support" onClick={close}>
+                {t("footer.silentSupport")}
+              </Link>
               <Link to="/baglock" onClick={close}>
                 {t("footer.baglock")}
               </Link>
@@ -261,12 +298,12 @@ function NavBar() {
 
             <div className="menu__footer">
               <div className="menu__socials">
-                {SOCIALS.map(({ href, label, Icon }) => (
+                {SOCIALS.map(({ href, label, ariaKey, Icon }) => (
                   <a
                     key={label}
                     href={href}
                     className="icon-btn"
-                    aria-label={label}
+                    aria-label={ariaKey ? t(ariaKey) : label}
                     {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   >
                     <Icon />

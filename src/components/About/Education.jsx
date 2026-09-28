@@ -36,7 +36,7 @@ function Education() {
     <Section hairline id="education">
       <Container>
         <SectionHeading
-          title={`${t("about.myEducationPre")} ${t("about.myEducationHighlight")}`}
+          title={t("about.educationTitle")}
         />
         <Timeline entries={entries} />
       </Container>

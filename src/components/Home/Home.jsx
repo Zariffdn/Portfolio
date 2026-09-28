@@ -15,6 +15,7 @@ import {
 } from "../ui";
 import ProjectCard from "../Projects/ProjectCard";
 import AvailableForHire from "../AvailableForHire";
+import CtaBand from "../CtaBand";
 import StatTile, { StatGrid } from "../StatTile";
 import usePageMeta from "../../hooks/usePageMeta";
 import useInViewOnce from "../../hooks/useInViewOnce";
@@ -26,11 +27,11 @@ import "../../styles/home.css";
 const EASE = [0.22, 1, 0.36, 1];
 
 // Locale key pairs for the proof strip under the hero copy. A third entry
-// links the tile: the press tile opens the full press list on About.
+// links the tile: the press tile opens the press list on the MyTax case study.
 const PROOF = [
   ["proofInstallsValue", "proofInstallsLabel"],
   ["proofStoresValue", "proofStoresLabel"],
-  ["proofPressValue", "proofPressLabel", "/about#press"],
+  ["proofPressValue", "proofPressLabel", "/mytax#press"],
   ["proofSinceValue", "proofSinceLabel"],
 ];
 
@@ -137,7 +138,7 @@ function Home() {
                   glareEnable={false}
                   transitionSpeed={1800}
                 >
-                  <PhoneFrame src={screenshots[1]} priority alt={t("home.phoneAlt")} />
+                  <PhoneFrame src={screenshots[1]} priority alt={t("home.phoneAlt2")} />
                 </Tilt>
                 <div className="home-hero__side home-hero__side--right" aria-hidden="true">
                   <PhoneFrame src={screenshots[2]} alt="" size="sm" />
@@ -233,28 +234,7 @@ function Home() {
       </Section>
 
       {/* 4. CTA band */}
-      <Section aria-labelledby="home-cta-title">
-        <Container>
-          <Reveal>
-            <div className="surface home-cta">
-              <span className="eyebrow eyebrow--plain">{t("home.ctaEyebrow")}</span>
-              <h2 id="home-cta-title">{t("home.ctaTitle")}</h2>
-              <p className="lead">{t("home.ctaBody")}</p>
-              <div className="home-cta__actions">
-                <Button to="/about#contact" variant="accent" size="lg">
-                  {t("home.ctaButton")}
-                </Button>
-              </div>
-              <a
-                href="mailto:zariffdanial.zul@gmail.com"
-                className="home-cta__email mono small text-3"
-              >
-                {t("home.ctaEmail")}
-              </a>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      <CtaBand resume />
     </div>
   );
 }

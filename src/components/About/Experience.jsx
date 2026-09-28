@@ -42,7 +42,7 @@ function Experience() {
     <Section hairline id="experience">
       <Container>
         <SectionHeading
-          title={`${t("about.myExperiencePre")} ${t("about.myExperienceHighlight")}`}
+          title={t("about.experienceTitle")}
         />
         <Timeline entries={entries} />
       </Container>

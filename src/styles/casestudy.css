@@ -34,8 +34,29 @@
   transform: translateX(-3px);
 }
 
-.cs-back--bottom {
-  margin-top: var(--s-12);
+/* ---- Top bar: the Malay-only note, then the back link ------------------- */
+.cs-top {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-4);
+}
+
+.cs-lang-note {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  max-width: 100%;
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.cs-lang-note svg {
+  flex-shrink: 0;
+  color: var(--accent-text);
 }
 
 /* ---- Hero ---------------------------------------------------------------- */
@@ -63,6 +84,13 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s-6) var(--s-8);
   align-items: start;
+}
+
+/* Large default text: one column, so labels do not break mid-word. */
+@media (max-width: 20em) {
+  .cs-hero .cs-meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .cs-meta > div {
@@ -102,12 +130,24 @@
   max-width: 240px;
 }
 
-.cs-screens__item:nth-child(2) {
+/* The middle of three phones sits raised; its caption stays on the same
+   baseline as the others, and a band of two is not raised at all. */
+.cs-screens__item:nth-child(2):not(:last-child) .phone {
   margin-bottom: 20px;
 }
 
 .cs-screens .phone {
   max-width: 240px;
+}
+
+.cs-screens__item {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+}
+
+.cs-screens__caption {
+  line-height: 1.4;
 }
 
 /* Reserve the screenshot's box before the lazy image arrives (no layout shift). */
@@ -135,6 +175,11 @@
     width: 150px;
     max-width: 150px;
     scroll-snap-align: start;
+  }
+
+  /* A band of two fits without scrolling; centre it. */
+  .cs-screens:not(:has(> :nth-child(3))) {
+    justify-content: center;
   }
 
   .cs-screens .phone {
@@ -186,6 +231,19 @@
 .cs-block {
   border-top: 1px solid var(--line);
   padding-top: var(--s-8);
+}
+
+/* The section above already draws a hairline where the body starts. */
+.cs-blocks > .cs-block:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* A block reached by a #hash link (/mytax#press). The scroll-padding-top on
+   html (base.css) already clears the fixed navbar; this adds room for the
+   distance the block's reveal still rises after the scroll has landed. */
+.cs-block[id] {
+  scroll-margin-top: var(--s-8);
 }
 
 .cs-block__index {
@@ -241,7 +299,16 @@
   text-align: left;
 }
 
-/* Platform and release facts */
+/* Platform and release facts, with the date they were read under them */
+.cs-facts-figure {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.cs-facts-figure .cs-art__caption {
+  text-align: left;
+}
+
 .cs-facts {
   padding: var(--s-6);
 }
@@ -506,6 +573,24 @@
   }
 }
 
+/* Silent Support's two-sentence moment line: one sentence per line. */
+.cs-moment__line > span {
+  display: block;
+}
+
+/* A step that describes something that was broken and has been fixed:
+   the same marker in the ok tones (MyTax push trace). */
+.cs-trace__step--fixed .cs-trace__index {
+  border-color: var(--ok-line);
+  color: var(--ok-text);
+}
+
+.cs-trace__flag.cs-trace__flag--ok {
+  color: var(--ok-text);
+  border-color: var(--ok-line);
+  background: var(--ok-soft);
+}
+
 /* ==========================================================================
    Bag lock additions
    ========================================================================== */
@@ -643,9 +728,157 @@ ul.cs-tech .eyebrow {
   }
 }
 
-/* Repository and projects links side by side, wrapping on narrow screens. */
-.cs-links {
+/* ==========================================================================
+   MyTax: the two codebases diagram
+   The SVG draws with tokens only, so it follows the theme. Its viewBox is
+   360 wide so the text stays readable at 390px; on desktop it is capped so
+   the text never grows past body size.
+   ========================================================================== */
+.cs-diagram {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  margin-top: var(--s-8);
+}
+
+.cs-diagram__svg {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  overflow: visible;
+  font-family: var(--font-body);
+}
+
+.cs-diagram__card {
+  fill: var(--bg-2);
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.cs-diagram__title {
+  fill: var(--text-1);
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.cs-diagram__sub {
+  fill: var(--text-2);
+  font-size: 12.5px;
+}
+
+.cs-diagram__rule {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.cs-diagram__label {
+  fill: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+}
+
+.cs-diagram__value {
+  fill: var(--text-1);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.cs-diagram__link {
+  fill: none;
+  stroke: var(--text-3);
+  stroke-width: 1.25;
+}
+
+.cs-diagram__hub {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1;
+}
+
+.cs-diagram__hub-text {
+  fill: var(--accent-text);
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   End of every case study: contact line, next study card, back link
+   ========================================================================== */
+.cs-end {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-8);
+  margin-top: var(--s-16);
+  padding-top: var(--s-8);
+  border-top: 1px solid var(--line);
+}
+
+.cs-contact {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-4) var(--s-8);
+  align-items: baseline;
+  gap: var(--s-2) var(--s-3);
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-1);
+}
+
+.cs-next {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4);
+  width: 100%;
+  padding: var(--s-6);
+  color: var(--text-1);
+}
+
+.cs-next:hover,
+.cs-next:focus-visible {
+  text-decoration: none;
+  color: var(--text-1);
+}
+
+.cs-next__body {
+  display: grid;
+  gap: var(--s-2);
+  min-width: 0;
+}
+
+.cs-next__eyebrow {
+  margin-bottom: var(--s-1);
+}
+
+.cs-next__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: var(--track-heading);
+  line-height: var(--lh-snug);
+}
+
+.cs-next__teaser {
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+.cs-next__arrow {
+  display: inline-flex;
+  color: var(--accent-text);
+  font-size: 1.5rem;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.cs-next:hover .cs-next__arrow,
+.cs-next:focus-visible .cs-next__arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 480px) {
+  .cs-next {
+    padding: var(--s-5);
+  }
 }

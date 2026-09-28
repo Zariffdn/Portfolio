@@ -1,9 +1,9 @@
 import baglock from "../Assets/Projects/baglock.svg";
-import bookstore from "../Assets/Projects/bookstore.png";
-import silentShot from "../Assets/featured/silent-1.jpeg";
-import halalSajiShot from "../Assets/featured/halalsaji-1.jpeg";
+import bookstore from "../Assets/Projects/bookstore.webp";
+import silentShot from "../Assets/featured/silent-1.webp";
+import halalSajiShot from "../Assets/featured/halalsaji-1.webp";
 import bestinet from "../Assets/Projects/bestinet.svg";
-import mytaxShot from "../Assets/featured/pic 2.jpeg";
+import mytaxShot from "../Assets/featured/pic 2.webp";
 
 // Single source of truth for the project list. Copy lives in the locale
 // files as projects.<id>_title and projects.<id>_desc.
@@ -28,6 +28,7 @@ export const projects = [
     img: silentShot,
     imgKind: "phone",
     personal: true,
+    caseStudy: "/silent-support",
     tags: ["React Native", "Expo", "TypeScript", "Supabase", "Groq"],
     ghLink: "https://github.com/Zariffdn/Silent-Support-App",
   },

@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { Container, Section, Chip, Reveal } from "./ui";
+import { Block, CaseStudyEnd, CaseStudyTop } from "./CaseStudy";
 import cardArt from "../Assets/Projects/bestinet.svg";
 import usePageMeta from "../hooks/usePageMeta";
 import "../styles/casestudy.css";
@@ -55,25 +54,6 @@ const trace = [
   },
 ];
 
-function BackLink({ className = "" }) {
-  return (
-    <Link to="/project" className={`link-arrow cs-back ${className}`.trim()}>
-      <FiArrowLeft aria-hidden="true" /> Back to Projects
-    </Link>
-  );
-}
-
-// Two-digit mono index + hairline above every body block.
-function Block({ index, title, children }) {
-  return (
-    <Reveal as="section" className="cs-block">
-      <span className="eyebrow eyebrow--plain cs-block__index">{index}</span>
-      <h2>{title}</h2>
-      {children}
-    </Reveal>
-  );
-}
-
 function BestinetCaseStudy() {
   const { t } = useTranslation();
 
@@ -83,15 +63,9 @@ function BestinetCaseStudy() {
   });
 
   return (
-    <div className="cs-page">
+    <div className="cs-page" lang="en">
       {/* 1. Top bar */}
-      <Section tight>
-        <Container narrow>
-          <div className="cs-rise">
-            <BackLink />
-          </div>
-        </Container>
-      </Section>
+      <CaseStudyTop />
 
       {/* 2. Hero */}
       <Section flushTop>
@@ -312,28 +286,10 @@ function BestinetCaseStudy() {
                 </li>
               </ul>
             </Block>
-
-            <Block index="06" title="No repository">
-              <div className="prose">
-                <p>
-                  The code belongs to Bestinet, so there is no repository to
-                  link and no real screenshots on this page; the card art
-                  above stands in for the screen. The rest of my work is on
-                  the Projects page.
-                </p>
-              </div>
-              <div className="cs-block__cta">
-                <Link to="/project" className="link-arrow">
-                  See all projects <FiArrowRight aria-hidden="true" />
-                </Link>
-              </div>
-            </Block>
           </div>
 
-          {/* 6. Bottom back link */}
-          <Reveal>
-            <BackLink className="cs-back--bottom" />
-          </Reveal>
+          {/* 6. Contact, next case study and the way back */}
+          <CaseStudyEnd current="/bestinet" />
         </Container>
       </Section>
     </div>

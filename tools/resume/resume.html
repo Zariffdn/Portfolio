@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   /* ------------------------------------------------------------------
-     Source of truth for src/Assets/Zariff-Danial-Resume.pdf.
+     Source of truth for public/Zariff-Danial-Resume.pdf.
      Rebuild with: node tools/resume/build.js   Check with: node tools/resume/check.js
 
      Written to parse cleanly in applicant tracking systems:
@@ -117,7 +117,8 @@
   .project__name { font-family: var(--display); font-weight: 700; font-size: 9.8pt; letter-spacing: -0.01em; }
   .project__tech { font-size: 8.4pt; color: var(--muted); flex-shrink: 0; }
   .project p { margin-top: 0.3mm; }
-  .project__link { color: var(--accent); }
+  /* nowrap: a URL split over two lines becomes two link annotations */
+  .project__link { color: var(--accent); white-space: nowrap; }
 
   /* ---- Key/value lists (skills, certifications) ------------------ */
   .kv { display: grid; grid-template-columns: 24mm 1fr; column-gap: 3mm; row-gap: 0.6mm; }
@@ -145,7 +146,7 @@
   <p>
     Mobile developer shipping a production Flutter app to three app stores. Sole mobile
     developer on MyTax, the official tax filing app of Malaysia's Inland Revenue Board (LHDN), with over 3 million
-    lifetime installs. Previously fixed a broken TOTP feature in an internal authenticator app at Bestinet. Bachelor of Computer Science (Hons.) in Netcentric Computing from UiTM.
+    lifetime installs. Previously fixed a broken TOTP feature in an internal authenticator app at Bestinet. Open to full-time Flutter or mobile developer roles in Malaysia.
   </p>
 </section>
 
@@ -162,7 +163,7 @@
       <li><span>Sole mobile developer for <a class="project__link" href="https://zariffdanial.vercel.app/mytax">MyTax</a>, LHDN's official tax filing app, live on the App Store, Google Play and Huawei AppGallery with 3M+ lifetime installs. Own bug fixes, features, localisation and store submissions.</span></li>
       <li>Maintain a Flutter codebase for iOS and Android and a separate HMS codebase for Huawei that uses Huawei Push Kit in place of Firebase Messaging, kept in sync on UX, API integration and localisation.</li>
       <li>Fixed refund and audit status screens and login prompts across four iOS releases in ten days as 2026 filing opened. Moved server push to the FCM HTTP v1 API; added topic broadcasts and Android image notifications.</li>
-      <li>Cleared 200+ static analysis warnings in each codebase and added CI and pre-push checks to the iOS and Android one. Keep Bahasa Malaysia and English strings aligned with the web platform and wire in new REST endpoints as they ship.</li>
+      <li>Cleared 200+ static analysis warnings in each codebase and added CI, pre-push checks and the first unit tests to both. Keep Bahasa Malaysia and English strings aligned with the web platform and wire in new REST endpoints as they ship.</li>
     </ul>
   </article>
 
@@ -175,7 +176,7 @@
     <ul>
       <li><span>Took over a broken <a class="project__link" href="https://zariffdanial.vercel.app/bestinet">TOTP feature</a> in an internal Flutter authenticator app and got one-time codes displaying correctly.</span></li>
       <li>Traced the failure to two defects: a controller init routine never called from the view layer, and an invalid type cast on a secure-storage read that threw on already-enrolled devices.</li>
-      <li>Hardened the generation path with error handling and early returns on failed device or secret-key lookups, so a missing key never produces a code.</li>
+      <li>Added error handling and early returns on failed device or secret-key lookups, so a missing key never produces a code.</li>
       <li>Built the authenticator screen in GetX to a supplied design (30-second countdown ring, digit-by-digit code), kept the existing tap to copy, and applied the same branding to the app shell and login screen.</li>
     </ul>
   </article>
@@ -198,10 +199,18 @@
 
   <article class="project">
     <div class="project__row">
+      <h3 class="project__name">HalalSaji</h3>
+      <span class="project__tech">Flutter, Dart, Provider, Firestore</span>
+    </div>
+    <p>Personal app for finding halal food nearby, built solo in June 2026: separate Halal Certified and Muslim Owned badges, filters by halal status and cuisine, and favourites. Read-only Firestore data layer ready; runs on sample data for now.</p>
+  </article>
+
+  <article class="project">
+    <div class="project__row">
       <h3 class="project__name">Silent Support</h3>
       <span class="project__tech">React Native (Expo), TypeScript, Supabase, Groq</span>
     </div>
-    <p>Personal MVP: tap how you feel and get a calm response at once; an AI reply replaces it only if it arrives within 2.5 seconds and passes a server-side tone filter. Local-first history with email-code sign-in, sync and server-side account deletion. Solo build. <a class="project__link" href="https://github.com/Zariffdn/Silent-Support-App">github.com/Zariffdn/Silent-Support-App</a></p>
+    <p>Personal MVP, built solo: tap a feeling for an instant calm response, swapped for an AI reply only if it arrives within 2.5 seconds and passes a server-side tone filter. Local-first history with opt-in sync. <a class="project__link" href="https://github.com/Zariffdn/Silent-Support-App">github.com/Zariffdn/Silent-Support-App</a></p>
   </article>
 
   <article class="project">
@@ -245,7 +254,7 @@
       <h3 class="entry__title">Data Science Analyst Bootcamp</h3>
       <span class="entry__when">Mar 2024 to Aug 2024</span>
     </div>
-    <p class="entry__where"><strong>PEOPLElogy Group</strong>. Python, data wrangling, machine learning and NLP. Capstone: movie genre prediction from plot summaries (<a class="project__link" href="https://github.com/Zariffdn/Movie-Genre-Capstone-Project">github.com/Zariffdn/Movie-Genre-Capstone-Project</a>).</p>
+    <p class="entry__where"><strong>PEOPLElogy Group</strong>. Python, data wrangling, machine learning and NLP. Capstone: movie genre prediction from plot summaries.</p>
   </article>
 </section>
 
@@ -256,10 +265,8 @@
     <dd>Developing Mobile Apps with Flutter Specialization (3 courses)</dd>
     <dt>Meta, 2025</dt>
     <dd>Front-End Developer Professional Certificate (9 courses, including Advanced React)</dd>
-    <dt>CompTIA, 2025</dt>
-    <dd>CompTIA Tech+</dd>
     <dt>In total</dt>
-    <dd>101 certifications, all listed at <a class="project__link" href="https://www.linkedin.com/in/zariffdanial/details/certifications/">linkedin.com/in/zariffdanial</a></dd>
+    <dd>101 certifications, including CompTIA Tech+ (2025), all listed at <a class="project__link" href="https://www.linkedin.com/in/zariffdanial/details/certifications/">linkedin.com/in/zariffdanial</a></dd>
   </dl>
 </section>
 

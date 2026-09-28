@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { FiArrowRight } from "react-icons/fi";
 import { Container, Section, Button, Reveal, PhoneFrame } from "../ui";
-import StoreLinks from "../StoreLinks";
 import { screenshots } from "../../data/mytax";
 
 const STATS = [1, 2, 3];
 
-// The MyTax panel: label, title, three stats, store links, case study CTA,
-// and three real screenshots in small phone frames.
+// The MyTax panel: label, title, three stats, the case study CTA, and three
+// real screenshots in small phone frames. The store buttons sit on the Zen
+// entry in Experience, just above, so they are not repeated here. Each
+// screenshot's alt text is home.phoneAlt<N>, in data/mytax.js order.
 function FeaturedWork() {
   const { t } = useTranslation();
 
@@ -36,6 +37,15 @@ function FeaturedWork() {
                   ))}
                 </div>
 
+                <Button
+                  to="/mytax"
+                  variant="primary"
+                  icon={<FiArrowRight />}
+                  iconArrow
+                  className="fw-cta"
+                >
+                  {t("about.readCaseStudy")}
+                </Button>
               </div>
 
               <div className="fw-visual">
@@ -44,21 +54,10 @@ function FeaturedWork() {
                     key={src}
                     src={src}
                     size="sm"
-                    alt={`${t("home.phoneAlt")} ${i + 1}`}
+                    sizes="(max-width: 767px) 80px, 140px"
+                    alt={t(`home.phoneAlt${i + 1}`)}
                   />
                 ))}
-              </div>
-
-              <div className="fw-footer">
-                <StoreLinks />
-                <Button
-                  to="/mytax"
-                  variant="primary"
-                  icon={<FiArrowRight />}
-                  iconArrow
-                >
-                  {t("about.readCaseStudy")}
-                </Button>
               </div>
             </div>
           </article>

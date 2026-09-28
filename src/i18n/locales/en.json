@@ -13,10 +13,11 @@
     "closeMenu": "Close menu",
     "locationLine": "Klang, MY · GMT+8",
     "wordmarkAria": "Zariff Danial, home",
-    "socialAria": "Social links"
+    "socialAria": "Social links",
+    "emailAria": "Email"
   },
   "home": {
-    "availableForHire": "Available for hire · 3-month notice",
+    "availableForHire": "Open to full-time roles",
     "heroLine1": "Malaysia files its taxes",
     "heroLine2": "on an app I ship.",
     "heroLead": "I am Zariff Danial, a Flutter developer at Zen Computer Systems and the sole mobile developer on LHDN’s MyTax, live on iOS, Android and Huawei AppGallery.",
@@ -29,9 +30,7 @@
     "proofPressValue": "BERNAMA",
     "proofPressLabel": "press coverage",
     "proofSinceValue": "2023",
-    "proofSinceLabel": "in production since",
-    "phoneAlt": "MyTax app screenshot",
-    "featuredEyebrow": "Currently shipping",
+    "proofSinceLabel": "app live since",
     "workEyebrow": "Selected work",
     "workTitle": "Things I have built and fixed",
     "workLead": "MyTax in production, a personal MVP, and a TOTP fix from Bestinet's R&D department.",
@@ -41,10 +40,14 @@
     "aboutBody": "Day to day I work in Flutter and Dart, maintaining and extending MyTax for Malaysian taxpayers. Before that I fixed a broken TOTP feature in Bestinet’s R&D department. From earlier projects I am comfortable with C++, Python, JavaScript and PHP, with a side interest in front-end web.",
     "aboutMore": "More about me",
     "ctaEyebrow": "Get in touch",
-    "ctaTitle": "Have a role or a project in mind?",
-    "ctaBody": "I am open to remote, hybrid or on-site work in Malaysia. Three-month notice.",
+    "ctaTitle": "Hiring a Flutter or mobile developer?",
+    "ctaBody": "I am open to full-time roles in Malaysia: remote, hybrid or on-site. Three months' notice.",
     "ctaButton": "Start a conversation",
-    "ctaEmail": "or email zariffdanial.zul@gmail.com"
+    "ctaEmail": "or email zariffdanial.zul@gmail.com",
+    "phoneAlt1": "MyTax login screen in Bahasa Malaysia",
+    "phoneAlt2": "MyTax screen showing the tax balance, the refund total and the e-Filing status",
+    "phoneAlt3": "MyTax ezHASiL services home screen",
+    "availableNotice": "3-month notice"
   },
   "backToTop": "Back to top",
   "toast": {
@@ -58,12 +61,10 @@
     "subtitle": "Thanks for poking around. ↑↑↓↓←→←→ B A"
   },
   "faq": {
-    "headingPre": "Frequently",
-    "headingHighlight": "Asked",
     "subtitle": "Quick answers to the questions recruiters ask most often.",
     "remote": {
       "q": "Are you open to remote work?",
-      "a": "Yes. Remote, hybrid, or on-site, whichever fits the role best."
+      "a": "Yes. I am open to remote, hybrid or on-site roles in Malaysia."
     },
     "visa": {
       "q": "Visa or work authorization?",
@@ -80,26 +81,25 @@
     "tech": {
       "q": "Tech you'd love to work with next?",
       "a": "Server-side Dart, native iOS development, or anything that pushes mobile architecture forward."
-    }
+    },
+    "title": "Frequently asked questions"
   },
   "contact": {
-    "headingPre": "Get In",
-    "headingHighlight": "Touch",
-    "subtitle": "Have a project, a role, or just want to chat? Drop me a line and I'll get back within a day or two.",
+    "subtitle": "Hiring for a role, or just want to chat? Drop me a line and I'll get back within a day or two.",
     "nameLabel": "Your name",
     "namePlaceholder": "Jane Doe",
     "emailLabel": "Email",
     "emailPlaceholder": "jane@example.com",
     "subjectLabel": "Subject (optional)",
-    "subjectPlaceholder": "Let's build something",
+    "subjectPlaceholder": "Flutter developer role",
     "messageLabel": "Message",
     "messagePlaceholder": "Tell me a bit about what you have in mind…",
     "send": "Send message",
     "sending": "Sending…",
     "sent": "Message sent, thanks!",
     "success": "Message sent! I'll get back to you soon.",
-    "error": "Couldn't send. Try emailing me at zariffdanial.zul@gmail.com",
-    "notConfigured": "Contact form not set up yet. Email me directly!"
+    "error": "Couldn't send your message. Please email me at",
+    "title": "Get in touch"
   },
   "stats": {
     "certifications": "Certifications",
@@ -108,30 +108,14 @@
     "yearsCoding": "Years coding"
   },
   "about": {
-    "knowMePre": "Know Who",
-    "knowMeHighlight": "I'M",
-    "myExperiencePre": "My",
-    "myExperienceHighlight": "Experience",
-    "myEducationPre": "My",
-    "myEducationHighlight": "Education",
-    "myCertsPre": "My",
-    "myCertsHighlight": "Certifications",
     "viewCredential": "View credential",
     "allCertifications": "All certifications on LinkedIn",
     "verifyOnCredly": "Verify on Credly",
     "credlyProfile": "Badges on Credly",
     "credentialId": "Credential ID:",
-    "byTheNumbersPre": "By The",
-    "byTheNumbersHighlight": "Numbers",
     "availableOn": "Available on:",
-    "testimonialsPre": "What People",
-    "testimonialsHighlight": "Say",
     "seeAllRecommendations": "See all recommendations on LinkedIn",
-    "pressPre": "MyTax in the",
-    "pressHighlight": "Press",
-    "pressLead": "Articles that point taxpayers to the MyTax app.",
-    "readArticle": "Read article",
-    "featuredLabel": "Currently Building",
+    "featuredLabel": "Currently maintaining",
     "featuredTitle": "MyTax",
     "featuredSubtitle": "Malaysia's official income tax filing app",
     "featuredDescription": "I am the sole mobile developer on MyTax at Zen Computer Systems, shipping fixes and updates for Malaysian taxpayers across iOS, Android and Huawei devices.",
@@ -141,17 +125,28 @@
     "featuredStat2Value": "Since 2023",
     "featuredStat2Label": "Live in production",
     "featuredStat3Value": "LHDN",
-    "featuredStat3Label": "Government-grade work",
-    "skillsetPre": "Professional",
-    "skillsetHighlight": "Skillset",
+    "featuredStat3Label": "Client",
     "toolsHighlight": "Tools",
-    "toolsPost": "I use",
-    "daysICodePre": "Days I",
-    "daysICodeHighlight": "Code",
     "stackLead": "Languages, frameworks and the tools around them.",
     "stackMobile": "Mobile",
     "calendarLead": "Almost all of my recent contributions are in private repositories, so the graph shows the activity but not the code.",
-    "calendarError": "The contribution calendar could not be loaded."
+    "calendarError": "The contribution calendar could not be loaded.",
+    "tocLabel": "On this page",
+    "tocExperience": "Experience",
+    "tocEducation": "Education",
+    "tocCertifications": "Certifications",
+    "tocSkills": "Skills",
+    "tocFaq": "FAQ",
+    "tocContact": "Contact",
+    "experienceTitle": "Experience",
+    "educationTitle": "Education",
+    "certsTitle": "Certifications",
+    "recommendationsTitle": "Recommendations",
+    "stackTitle": "Tools and languages",
+    "githubTitle": "GitHub activity",
+    "calendarTotal": "{{count}} contributions in the last year",
+    "calendarLess": "Less",
+    "calendarMore": "More"
   },
   "aboutCard": {
     "intro_pre": "I am",
@@ -166,16 +161,16 @@
     "currentRole_post": "(since November 2025), maintaining the MyTax mobile app under LHDN. Previously a Mobile Application Developer at",
     "currentRole_prevCompany": "Bestinet Sdn Bhd",
     "currentRole_end": "(June to November 2025), in their R&D department, where I fixed and finished the TOTP feature in an internal Flutter authenticator app.",
-    "hobbies": "Apart from coding, some other activities that I love to do!",
-    "playingGames": "Playing Games",
-    "workingOut": "Working Out",
-    "listeningMusic": "Listening To Music",
-    "quote": "\"Turning ideas into executable magic!\"",
     "metaLocationLabel": "Based in",
-    "metaLocationValue": "Klang, Malaysia · GMT+8 · Open to remote, hybrid, or on-site",
+    "metaLocationValue": "Klang, Malaysia · GMT+8",
     "metaLanguagesLabel": "Languages",
     "metaLanguagesValue": "Bahasa Malaysia and English",
-    "hobbiesLabel": "Off the clock"
+    "lookingForLabel": "Looking for",
+    "lookingForRole": "Full-time Flutter or mobile developer roles in Malaysia.",
+    "workRemote": "Remote",
+    "workHybrid": "Hybrid",
+    "workOnsite": "On-site",
+    "lookingForNotice": "Three months' notice."
   },
   "experience": {
     "zen": {
@@ -186,7 +181,7 @@
       "b1": "Sole mobile developer on MyTax, LHDN's official tax filing app, maintaining one Flutter codebase for iOS and Android and a separate HMS codebase for Huawei AppGallery, which runs without Google Mobile Services.",
       "b2": "Fixed the refund and audit status screens and login prompts across four iOS releases in ten days as the 2026 filing season opened.",
       "b3": "Moved the server's push sends to the Firebase Cloud Messaging HTTP v1 API, and added topic broadcasts and Android image notifications in the app.",
-      "b4": "Cleared more than 200 static analysis warnings in each mobile codebase, and added a CI workflow and pre-push checks to the main one.",
+      "b4": "Cleared more than 200 static analysis warnings in each mobile codebase, and added a CI workflow, pre-push checks and the first unit tests to both.",
       "b5": "Kept Bahasa Malaysia and English strings aligned with the web platform, and integrated new REST endpoints as the backend team shipped them."
     },
     "bestinet": {
@@ -251,26 +246,21 @@
     }
   },
   "projects": {
-    "headingPre": "My Recent",
-    "headingHighlight": "Works",
-    "intro": "Production work, a personal MVP and the university projects that got me started.",
+    "intro": "Production work, company work, two personal apps and the university projects that got me started.",
     "filterAll": "All",
     "filterWeb": "Web",
     "filterMobile": "Mobile",
     "filterEmbedded": "Embedded",
     "emptyTitle": "Nothing here yet",
     "emptyDesc": "No projects in this category yet. Stay tuned!",
-    "github": "GitHub",
-    "demo": "Demo",
-    "blog": "Blog",
     "personalBadge": "Personal project",
     "proprietaryBadge": "Company work · code proprietary",
     "fypBadge": "Final year project",
     "teamBadge": "University team project",
-    "bestinet_title": "TOTP authenticator (company work)",
+    "bestinet_title": "TOTP authenticator",
     "bestinet_desc": "An internal authenticator app at Bestinet that shows a new one-time code every 30 seconds. The TOTP feature was already written but never put a code on screen, and my job was to find out why and make it work. I traced the generation chain and found two faults: the view never called the controller's init routine, and a bad type cast on a secure-storage read threw on already enrolled devices, where a catch block swallowed the error. I fixed both and made a failed key lookup return early, so a code is never generated from an empty key. Then I built the screen to the design I was given, with a countdown ring and the code laid out digit by digit.",
     "silentsupport_title": "Silent Support",
-    "silentsupport_desc": "A private place to check in when feelings are heavy and words are hard. Tap one of eight feelings and a calm, pre-written response appears at once. A Supabase Edge Function asks a Llama model on Groq for a freshly written reply at the same depth, which takes its place only if it arrives within 2.5 seconds and passes a server-side tone filter that rejects questions, exclamation marks and stock phrases. History stays on the phone unless you sign in with an emailed code; sync merges both sides without dropping a check-in, row-level security scopes every row to its owner, and account deletion runs on the server. Built solo as an MVP with React Native (Expo), TypeScript and Supabase.",
+    "silentsupport_desc": "A private place to check in when feelings are heavy and words are hard. Tap one of eight feelings and a calm, pre-written reply appears at once; a freshly written AI reply at the same depth replaces it only if it arrives within 2.5 seconds and passes a server-side tone filter.",
     "halalsaji_title": "HalalSaji",
     "halalsaji_desc": "An app for finding halal food nearby and seeing how each place was verified. Halal Certified and Muslim Owned are separate badges, because one does not imply the other, and expired certificates and places pending review are flagged too. You can search, filter by halal status, cuisine, meat type or opening hours, save favourites on the phone and open a place in Google Maps. The forms to suggest a restaurant or report wrong details are built so they can never change a halal status on their own. Built solo in June 2026 with Flutter and Provider, with a read-only Firestore data layer ready; for now it runs on sample data.",
     "baglock_title": "Anti-theft fingerprint bag lock",
@@ -278,13 +268,12 @@
     "bookstore_title": "Bookstore",
     "bookstore_desc": "A bookstore website with separate logins for customers, sellers and admins. Customers browse books, pay by card or cash, get a receipt and leave feedback. Sellers update book details and see the pickup schedule for completed orders, and the admin side lists every purchase.",
     "eyebrow": "Projects",
-    "featuredEyebrow": "Featured",
     "featuredCta": "Read the case study",
     "viewCode": "View code",
     "noRepo": "No public repo",
     "productionBadge": "In production",
     "mytax_title": "MyTax",
-    "mytax_desc": "Malaysia’s official income tax filing app, used by taxpayers nationwide. I am the sole mobile developer, shipping fixes and features across iOS, Android and Huawei AppGallery for LHDN, including a separate HMS codebase for Huawei devices."
+    "mytax_desc": "Malaysia’s official income tax filing app, used by taxpayers nationwide. I am its sole mobile developer, across iOS, Android and a separate HMS codebase for Huawei AppGallery. My fixes went out in four iOS releases in ten days in the 2026 filing season, and I moved the server’s push sends to FCM HTTP v1 and added topic broadcasts and Android image notifications in the app."
   },
   "resume": {
     "download": "Download CV",
@@ -293,8 +282,6 @@
     "loadError": "The resume could not be displayed here. Use the download button to open it."
   },
   "footer": {
-    "developedBy": "Developed by Zariff Danial",
-    "copyright": "Copyright",
     "uses": "Uses",
     "viewSource": "View source",
     "tagline": "Mobile developer, Flutter and Dart. Klang, Malaysia.",
@@ -302,7 +289,8 @@
     "elsewhere": "Elsewhere",
     "builtWith": "Built with React, deployed on Vercel.",
     "bestinet": "TOTP authenticator",
-    "baglock": "Fingerprint bag lock"
+    "baglock": "Fingerprint bag lock",
+    "silentSupport": "Silent Support"
   },
   "uses": {
     "headingPre": "What I",
@@ -362,22 +350,34 @@
   },
   "meta": {
     "home": "Zariff Danial · Mobile Developer (Flutter)",
-    "homeDesc": "Zariff Danial, mobile developer in Klang, Selangor. Flutter and Dart. Sole mobile developer on MyTax, Malaysia’s official tax filing app.",
+    "homeDesc": "Zariff Danial, Flutter and Dart developer in Klang, Selangor. Sole mobile developer on MyTax, Malaysia's official tax filing app, with 3M+ lifetime installs.",
     "about": "About · Zariff Danial",
-    "aboutDesc": "Mobile developer at Zen Computer Systems. Flutter and Dart, currently working on the MyTax mobile app under LHDN.",
+    "aboutDesc": "Zariff Danial, mobile developer at Zen Computer Systems. Flutter and Dart, currently working on the MyTax mobile app under LHDN.",
     "projects": "Projects · Zariff Danial",
     "projectsDesc": "A selection of projects by Zariff Danial: mobile apps, embedded systems, and web applications.",
     "resume": "Resume · Zariff Danial",
-    "resumeDesc": "Download or view the resume of Zariff Danial.",
+    "resumeDesc": "One-page resume of Zariff Danial, Flutter and Dart mobile developer on MyTax at Zen Computer Systems. Read it here or download the PDF.",
     "uses": "Uses · Zariff Danial",
     "usesDesc": "The hardware, editor, languages, and tools Zariff Danial uses day to day for mobile development.",
     "mytax": "MyTax Case Study · Zariff Danial",
-    "mytaxDesc": "Case study: MyTax, Malaysia's official tax filing app, where Zariff Danial is the sole mobile developer at Zen Computer Systems, shipping to iOS, Android and Huawei AppGallery.",
+    "mytaxDesc": "MyTax case study: Zariff Danial is sole mobile developer on Malaysia's official tax filing app at Zen Computer Systems, shipping to iOS, Android and AppGallery.",
     "bestinet": "TOTP Authenticator Case Study · Zariff Danial",
-    "bestinetDesc": "Engineering case study on an internal TOTP authenticator app at Bestinet Sdn Bhd, where Zariff Danial traced a broken Flutter code generation path to two defects, fixed and hardened it, and built the authenticator screen to a supplied design.",
+    "bestinetDesc": "Bestinet case study: Zariff Danial traced a broken TOTP code generation path to two defects, fixed and hardened it, and built the Flutter authenticator screen.",
     "baglock": "Fingerprint Bag Lock Case Study · Zariff Danial",
-    "baglockDesc": "Case study of Zariff Danial's final year project: an Arduino fingerprint bag lock that texts its owner a theft alert and GPS coordinates after three failed matches, covering the hardware, the firmware logic, testing and a look back at the code.",
+    "baglockDesc": "Case study: Zariff Danial's final year project, an Arduino fingerprint bag lock texting its owner a theft alert and GPS coordinates after three failed matches.",
     "notFound": "404 · Zariff Danial",
-    "notFoundDesc": "The page you are looking for does not exist."
+    "notFoundDesc": "The page you are looking for does not exist.",
+    "silentSupport": "Silent Support Case Study · Zariff Danial",
+    "silentSupportDesc": "Case study of Silent Support, Zariff Danial's React Native app: a calm reply at 0 ms, AI only within 2.5 s, a server-side tone filter and local-first sync."
+  },
+  "caseStudy": {
+    "englishOnly": "This case study is available in English only."
+  },
+  "errorBoundary": {
+    "eyebrow": "Error",
+    "title": "This page did not load",
+    "body": "Something went wrong while loading it, usually a dropped connection or a fresh update to the site. Reloading almost always fixes it.",
+    "reload": "Reload page",
+    "home": "Back to home"
   }
 }

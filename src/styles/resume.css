@@ -11,11 +11,29 @@
 .resume__doc {
   position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* One A4 sheet (595 x 842 pt). The width comes inline from the measured
+   container, capped by max-width; the height follows from the ratio, so the
+   placeholder and the page it becomes take exactly the same box and nothing
+   shifts when the canvas paints. The frame is a ring drawn outside the box
+   so it does not change the size the canvas has to match. overflow: hidden
+   also lets aspect-ratio hold even if the canvas is a subpixel taller. */
+.resume__sheet {
+  position: relative;
+  max-width: 100%;
+  aspect-ratio: 595 / 842;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow-2);
 }
 
 /* Shown until react-pdf reports how many pages there are */
 .resume__placeholder {
-  min-height: 60vh;
   display: grid;
   place-items: center;
   padding: var(--s-6);
@@ -32,14 +50,11 @@
   flex-direction: column;
   align-items: center;
   gap: var(--s-6);
+  width: 100%;
 }
 
 .resume__pages .react-pdf__Page {
   max-width: 100%;
-  border-radius: var(--r-md);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-2);
 }
 
 .resume__pages .react-pdf__Page canvas {
