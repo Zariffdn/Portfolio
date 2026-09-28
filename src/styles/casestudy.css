@@ -510,13 +510,14 @@
    Bag lock additions
    ========================================================================== */
 
-/* The exhibition photo is 492px wide; never stretch it past that. */
+/* The exhibition photo is 544px wide; never stretch it past that. The extra
+   2px is the panel's border, so the image itself tops out at 544. */
 .cs-art--photo {
-  max-width: 492px;
+  max-width: 546px;
 }
 
 .cs-art--photo .cs-art__panel img {
-  aspect-ratio: 492 / 308;
+  aspect-ratio: 544 / 402;
 }
 
 /* Which of lock, detect, alert and locate a firmware step serves. */

@@ -251,8 +251,8 @@ function BaglockCaseStudy() {
               <img
                 src={photo}
                 alt="The prototype mounted on a black backpack: an Arduino Uno with a perfboard shield, GSM and GPS modules, a battery pack, the fingerprint sensor and the servo latch"
-                width="492"
-                height="308"
+                width="544"
+                height="402"
                 loading="lazy"
                 decoding="async"
               />
