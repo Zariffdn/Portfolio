@@ -1,21 +1,24 @@
 // Quality sweep for the built site.
 //
-// Opens every route in headless Chromium, in both themes and both viewports
-// in English, plus Bahasa Malaysia at desktop dark and mobile dark, and checks
-// what the site was reviewed against: no console or page errors, no horizontal
-// overflow, exactly one h1, the html lang the pass asked for, the three web
-// fonts loaded, and no serious or critical axe violation (WCAG 2.0 A and AA,
+// Opens every route in routes.mjs, plus a 404, in headless Chromium, in both
+// themes and both viewports in English, plus Bahasa Malaysia at desktop dark
+// and mobile dark, and checks what the site was reviewed against: no console
+// or page errors, no Content-Security-Policy violation, no horizontal
+// overflow, exactly one h1, the html lang the pass asked for, the document
+// title from meta.* in that language's locale file, the canonical (or, on the
+// 404, robots noindex), lang="en" on the English-only case studies, the three
+// self-hosted web fonts loaded, the contribution calendar on /about drawn
+// from its data, and no serious or critical axe violation (WCAG 2.0 A and AA,
 // WCAG 2.1 AA). A full-page screenshot and the complete axe result for every
 // page land in tools/qa/output/ next to report.json, so a red run can be
 // inspected without re-running it.
 //
-// Google Fonts (fonts.googleapis.com and fonts.gstatic.com) can fail for
-// reasons outside the site. Those failures are printed but do not fail the
-// page, so a CDN hiccup cannot turn the gate red. A failed load of anything
-// else, whether the site's own files or another third party, and any script
-// error still does. A page whose web fonts never arrive is retried once and
-// then reported inconclusive rather than ok, because its layout was measured
-// in fallback fonts.
+// Everything the site loads is its own, fonts included, so any failed load or
+// script error fails the page. The one exception is the contribution
+// calendar's third-party API on /about, which is rate limited and sometimes
+// down: an HTTP error or network failure there is reported without failing,
+// and the calendar must then show its error text. A request the CSP refused
+// is never excused.
 //
 // The script builds nothing. It expects `dist/` to exist and a server to be
 // serving it:
@@ -43,22 +46,21 @@ import { fileURLToPath } from "node:url";
 import { stripVTControlCharacters } from "node:util";
 import { chromium } from "playwright";
 import { AxeBuilder } from "@axe-core/playwright";
+import { ORIGIN, ROUTES as SITE_ROUTES, NOT_FOUND } from "../../routes.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..", "..");
 const OUT = path.join(HERE, "output");
 
-const ROUTES = [
-  { name: "home", path: "/" },
-  { name: "about", path: "/about" },
-  { name: "projects", path: "/project" },
-  { name: "resume", path: "/resume" },
-  { name: "uses", path: "/uses" },
-  { name: "mytax", path: "/mytax" },
-  { name: "bestinet", path: "/bestinet" },
-  { name: "baglock", path: "/baglock" },
-  { name: "404", path: "/this-route-does-not-exist" },
-];
+const ROUTES = [...SITE_ROUTES, { ...NOT_FOUND, notFound: true }];
+
+// The locale files the build read, for the title each page must end up with.
+const LOCALES = Object.fromEntries(
+  ["en", "ms"].map((lang) => [
+    lang,
+    JSON.parse(fs.readFileSync(path.join(ROOT, "src", "i18n", "locales", `${lang}.json`), "utf8")),
+  ])
+);
 
 const VIEWPORTS = {
   desktop: { width: 1440, height: 900 },
@@ -79,18 +81,20 @@ for (const viewport of Object.keys(VIEWPORTS)) PASSES.push({ viewport, theme: "d
 const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21aa"];
 const BLOCKING_IMPACTS = new Set(["serious", "critical"]);
 
-// The families index.html pulls from Google Fonts. Each must have a loaded
-// face before the page is measured, or the numbers describe fallback fonts.
+// The self-hosted families in src/styles/fonts.css. Each must have a loaded
+// face before the page is measured, or the numbers describe fallback fonts;
+// with the files on the site's own origin, a missing one is a failure.
 const FONT_FAMILIES = ["Bricolage Grotesque", "Inter", "JetBrains Mono"];
 
-// The only foreign origins whose failed loads are reported without failing
-// the page. A failing script or fetch from any other origin still counts.
-const FONT_HOSTS = new Set(["fonts.googleapis.com", "fonts.gstatic.com"]);
+// The contribution calendar on /about fetches from this third-party API, which
+// is rate limited and sometimes down. The component renders its own error
+// text then, so a failed request there says nothing about the site. A request
+// the Content-Security-Policy refused says something, and is never excused.
+const CALENDAR_API = "https://github-contributions-api.jogruber.de/";
 
-// The contribution calendar on /about fetches from a third-party API that is
-// rate limited and sometimes down. The component renders its own error state,
-// so a failed request there says nothing about the site.
-const IGNORED_SOURCES = [/github-contributions-api/i];
+// Present once the calendar has drawn real data: the loading skeleton is an
+// svg too, but has neither the total count nor the month labels.
+const CALENDAR_DATA = ".gh__surface :is(.react-activity-calendar__count, .react-activity-calendar__legend-month)";
 
 // Vercel injects its analytics and speed-insights scripts at the edge. The
 // preview server has none and its SPA fallback answers those paths with
@@ -154,19 +158,7 @@ function originOf(url) {
   }
 }
 
-function hostOf(url) {
-  try {
-    return new URL(url).hostname;
-  } catch {
-    return null;
-  }
-}
-
-function isIgnoredSource(text) {
-  return IGNORED_SOURCES.some((pattern) => pattern.test(text));
-}
-
-// Chrome quotes the failing url in its CORS messages ("Access to font at
+// Chrome quotes the failing url in its CORS messages ("Access to fetch at
 // 'https://...' from origin ... has been blocked by CORS policy"), where the
 // message location is the document rather than the resource.
 function quotedUrl(text) {
@@ -174,19 +166,14 @@ function quotedUrl(text) {
   return match ? match[0] : null;
 }
 
-// A failed load of a Google Fonts stylesheet or font file, whether Chrome
-// reports it as "Failed to load resource" (the url is then the message
-// location) or as a CORS failure (the url is quoted in the text), is outside
-// the site's control and must not fail the gate. The exemption is limited to
-// the two font hosts on a foreign origin; anything else still fails.
-function isExternalResourceFailure(text, source) {
-  if (!/failed to load|blocked by CORS|net::ERR_/i.test(text)) return false;
-  const base = originOf(BASE);
-  return [source, quotedUrl(text)].some((url) => {
-    if (!url) return false;
-    const host = hostOf(url);
-    return host !== null && FONT_HOSTS.has(host) && originOf(url) !== base;
-  });
+// A failed request to the calendar API, reported by Chrome as "Failed to load
+// resource" (the url is then the message location) or as a CORS or network
+// failure (the url is quoted in the text). Anything mentioning the
+// Content-Security-Policy, or a refusal, is not one of these.
+function isCalendarApiFailure(text, source) {
+  if (/content[- ]security[- ]policy|refused to/i.test(text)) return false;
+  if (!/failed to load|failed to fetch|blocked by CORS|net::ERR_/i.test(text)) return false;
+  return [source, quotedUrl(text)].some((url) => Boolean(url) && url.startsWith(CALENDAR_API));
 }
 
 // ---------------------------------------------------------------------------
@@ -321,14 +308,76 @@ async function waitForFonts(page) {
 }
 
 // Navigate, wait for the app to mount and for the fonts. "domcontentloaded"
-// rather than "load" so a stalled font stylesheet cannot turn into a 60s
-// navigation timeout; the preloader wait below is what proves the app is up.
+// rather than "load" so a stalled request cannot turn into a 60s navigation
+// timeout; the wait below is what proves the app is up: <main> is rendered
+// and the wordmark preloader, which only the first page of a browser session
+// shows, is gone or finished.
 async function openPage(page, url, notes) {
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: NAVIGATION_TIMEOUT });
-  await page.waitForSelector(".preloader--done", { state: "attached", timeout: PRELOADER_TIMEOUT });
+  await page.waitForFunction(
+    () => document.querySelector("#main") && !document.querySelector(".preloader:not(.preloader--done)"),
+    null,
+    { timeout: PRELOADER_TIMEOUT }
+  );
   const fonts = await waitForFonts(page);
   if (fonts.timedOut) notes.push(`web fonts did not settle within ${FONTS_TIMEOUT / 1000}s`);
   return fonts;
+}
+
+// What the contribution calendar on /about ended up showing: "data" once it
+// has drawn the contributions, "error" for its error text, "none" otherwise.
+async function calendarState(page) {
+  return page
+    .waitForFunction(
+      (dataSelector) => {
+        const surface = document.querySelector(".gh__surface");
+        if (!surface) return null;
+        if (surface.querySelector(dataSelector)) return "data";
+        if (!surface.querySelector("svg") && surface.textContent.trim()) return "error";
+        return null;
+      },
+      CALENDAR_DATA,
+      { timeout: CALENDAR_TIMEOUT }
+    )
+    .then((handle) => handle.jsonValue(), (error) => (timedOut(error), "none"));
+}
+
+// The title, canonical and robots tags, and the lang of the case study body.
+async function pageMeta(page) {
+  return page.evaluate(() => {
+    const canonical = document.head.querySelector('link[rel="canonical"]');
+    const robots = document.head.querySelector('meta[name="robots"]');
+    const caseStudy = document.querySelector(".cs-page");
+    return {
+      title: document.title,
+      canonical: canonical ? canonical.getAttribute("href") : null,
+      robots: robots ? robots.getAttribute("content") : null,
+      caseStudyLang: caseStudy ? caseStudy.getAttribute("lang") : null,
+    };
+  });
+}
+
+// Everything the page's own metadata must say for this route and language.
+function metaFailures(route, pass, meta) {
+  const failures = [];
+  const expected = LOCALES[pass.lang].meta && LOCALES[pass.lang].meta[route.titleKey];
+  if (typeof expected !== "string") {
+    failures.push(`meta.${route.titleKey} is missing from ${pass.lang}.json`);
+  } else if (meta.title !== expected) {
+    failures.push(`title is "${meta.title}", expected "${expected}"`);
+  }
+  if (route.notFound) {
+    if (!/\bnoindex\b/i.test(meta.robots || "")) failures.push("the 404 page has no robots noindex");
+    if (meta.canonical !== null) failures.push(`the 404 page has a canonical (${meta.canonical})`);
+  } else {
+    if (/\bnoindex\b/i.test(meta.robots || "")) failures.push("robots noindex on an indexable page");
+    const canonical = ORIGIN + route.path;
+    if (meta.canonical !== canonical) failures.push(`canonical is ${meta.canonical}, expected ${canonical}`);
+  }
+  if (route.englishOnly && meta.caseStudyLang !== "en") {
+    failures.push(`.cs-page lang is ${meta.caseStudyLang === null ? "missing" : `"${meta.caseStudyLang}"`}, expected "en"`);
+  }
+  return failures;
 }
 
 // Scroll the whole page in steps so every whileInView reveal and every
@@ -365,8 +414,11 @@ function emptyResult(route, pass) {
     h1: null,
     overflowX: null,
     htmlLang: null,
+    title: null,
+    calendar: null,
     fontsMissing: [],
     errors: [],
+    cspViolations: [],
     external: [],
     axeBlocking: [],
     notes: [],
@@ -381,28 +433,33 @@ async function sweepPage(context, route, pass) {
   const started = Date.now();
   let page = null;
 
+  // The calendar API's answer on /about: an HTTP status, or the network error.
+  const calendarApi = { status: null, failure: null };
+
   try {
     page = await context.newPage();
     page.on("console", (message) => {
       if (message.type() !== "error") return;
       const text = message.text();
       const source = (message.location() && message.location().url) || "";
-      if (isIgnoredSource(source) || isIgnoredSource(text)) return;
       const entry = `console: ${text.slice(0, 300)}${source ? ` [${source.slice(0, 200)}]` : ""}`;
-      (isExternalResourceFailure(text, source) ? external : errors).push(entry);
+      (isCalendarApiFailure(text, source) ? external : errors).push(entry);
     });
     page.on("pageerror", (error) => {
       errors.push(`pageerror: ${String((error && error.message) || error).slice(0, 400)}`);
+    });
+    page.on("response", (response) => {
+      if (response.url().startsWith(CALENDAR_API)) calendarApi.status = response.status();
+    });
+    page.on("requestfailed", (request) => {
+      if (!request.url().startsWith(CALENDAR_API)) return;
+      calendarApi.failure = (request.failure() && request.failure().errorText) || "failed";
     });
     await page.route(STUBBED_REQUESTS, (handler) =>
       handler.fulfill({ status: 200, contentType: "application/javascript", body: "" })
     );
 
-    let fonts = await openPage(page, BASE + route.path, notes);
-    if (fonts.missing.length) {
-      notes.push(`web fonts missing on the first load (${fonts.missing.join(", ")}); the page was retried`);
-      fonts = await openPage(page, BASE + route.path, notes);
-    }
+    const fonts = await openPage(page, BASE + route.path, notes);
     result.fontsMissing = fonts.missing;
 
     if (route.name === "resume") {
@@ -415,13 +472,10 @@ async function sweepPage(context, route, pass) {
     await primeReveals(page);
 
     if (route.name === "about") {
-      // The calendar mounts once its surface scrolls near and renders either
-      // its svg or, when the contributions API fails, a plain div holding the
+      // The calendar mounts once its surface scrolls near and draws either
+      // the contributions or, when the API fails, a plain div holding the
       // error text. Wait for either so the screenshot shows the settled page.
-      const appeared = await page
-        .waitForSelector(".gh__surface :is(svg, div:not(:empty))", { timeout: CALENDAR_TIMEOUT })
-        .then(() => true, timedOut);
-      if (!appeared) notes.push(`contribution calendar rendered nothing within ${CALENDAR_TIMEOUT / 1000}s`);
+      result.calendar = await calendarState(page);
       await sleep(300);
     }
 
@@ -433,6 +487,8 @@ async function sweepPage(context, route, pass) {
     result.h1 = metrics.h1;
     result.overflowX = metrics.overflowX;
     result.htmlLang = metrics.lang;
+    const meta = await pageMeta(page);
+    result.title = meta.title;
 
     const stem = fileStem(route, pass);
     result.screenshot = `${stem}.png`;
@@ -451,14 +507,36 @@ async function sweepPage(context, route, pass) {
         count: violation.nodes.length,
       }));
 
+    // Collected by the listener the context's init script adds to every page.
+    result.cspViolations = await page.evaluate(() => window.__qaCspViolations || []);
+
     if (fonts.missing.length) {
-      result.failures.push(
-        `inconclusive: no loaded face for ${fonts.missing.join(", ")} after a retry, measured in fallback fonts`
-      );
+      result.failures.push(`no loaded face for ${fonts.missing.join(", ")}, measured in fallback fonts`);
     }
     if (metrics.lang !== pass.lang) result.failures.push(`html lang is "${metrics.lang}", expected "${pass.lang}"`);
     if (metrics.overflowX) result.failures.push("horizontal overflow");
     if (metrics.h1 !== 1) result.failures.push(`${metrics.h1} h1 elements`);
+    result.failures.push(...metaFailures(route, pass, meta));
+    if (result.cspViolations.length) {
+      result.failures.push(`${result.cspViolations.length} Content-Security-Policy violation(s)`);
+    }
+    // The calendar must draw its data unless its API failed on its own; a
+    // request the CSP (or anything else in the browser) blocked is not that.
+    if (route.name === "about" && result.calendar !== "data") {
+      const apiDown =
+        calendarApi.failure !== null || (calendarApi.status !== null && (calendarApi.status < 200 || calendarApi.status > 299));
+      if (apiDown && !/ERR_BLOCKED/i.test(calendarApi.failure || "")) {
+        const why = calendarApi.failure || `HTTP ${calendarApi.status}`;
+        notes.push(`contribution calendar API unavailable (${why}); the calendar showed ${result.calendar === "error" ? "its error text" : "nothing"}`);
+        if (result.calendar !== "error") result.failures.push("the calendar showed neither its data nor its error text");
+      } else if (calendarApi.status !== null) {
+        result.failures.push(`the calendar API answered HTTP ${calendarApi.status} but the calendar did not draw its data`);
+      } else {
+        result.failures.push(
+          `the calendar never got its data (${calendarApi.failure || "no request reached the network"}); blocked by the Content-Security-Policy or never mounted`
+        );
+      }
+    }
     if (errors.length) result.failures.push(`${errors.length} console/page error(s)`);
     if (result.axeBlocking.length) {
       result.failures.push(`${result.axeBlocking.length} serious/critical axe violation(s)`);
@@ -501,6 +579,15 @@ async function sweepPass(browser, pass, routes, results) {
         } catch {
           // storage blocked; the app falls back to its defaults
         }
+        // Every Content-Security-Policy violation on the page, whether or not
+        // Chrome also logs it to the console.
+        window.__qaCspViolations = [];
+        document.addEventListener("securitypolicyviolation", (event) => {
+          window.__qaCspViolations.push(
+            `${event.effectiveDirective || event.violatedDirective} blocked ${event.blockedURI || "(inline)"}` +
+              (event.sourceFile ? ` in ${event.sourceFile}:${event.lineNumber}` : "")
+          );
+        });
       },
       [pass.theme, pass.lang]
     );
@@ -577,6 +664,7 @@ function printDetails(results) {
   for (const r of failed) {
     console.log(`${label(r)}  (${r.screenshot || "no screenshot"})`);
     for (const failure of r.failures) console.log(`  ${failure}`);
+    for (const violation of r.cspViolations) console.log(`  csp: ${violation}`);
     for (const error of r.errors) console.log(`  ${error}`);
     for (const v of r.axeBlocking) {
       console.log(`  axe ${v.impact} ${v.id}: ${v.help} (${v.count} node${v.count === 1 ? "" : "s"})`);
@@ -596,7 +684,7 @@ function printDetails(results) {
   const flaky = results.filter((r) => r.external.length);
   if (flaky.length) {
     console.log("");
-    console.log("External resource failures (reported, not failing):");
+    console.log("Contribution calendar API failures (reported, not failing):");
     for (const r of flaky) {
       for (const entry of r.external) console.log(`  ${label(r)}: ${entry}`);
     }

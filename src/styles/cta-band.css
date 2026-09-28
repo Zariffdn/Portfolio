@@ -1,0 +1,63 @@
+/* ==========================================================================
+   CTA band: the closing call to action on Home and /project
+   (components/CtaBand.jsx, which imports this file). Tokens only.
+   ========================================================================== */
+
+.surface.cta-band {
+  position: relative;
+  overflow: hidden;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+  box-shadow: var(--shadow-glow);
+}
+
+.cta-band::before {
+  content: "";
+  position: absolute;
+  top: -35%;
+  right: -20%;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow), transparent 65%);
+  filter: blur(30px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.cta-band > * {
+  position: relative;
+}
+
+.cta-band h2 {
+  margin-top: var(--s-4);
+}
+
+.cta-band .lead {
+  max-width: 44ch;
+  margin-top: var(--s-4);
+  margin-inline: auto;
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  margin-top: var(--s-8);
+}
+
+.cta-band__email {
+  display: block;
+  margin-top: var(--s-5);
+}
+
+/* Two large buttons do not fit side by side on a phone; stack them at full
+   width so both keep the same size. */
+@media (max-width: 480px) {
+  .cta-band__actions .btn {
+    width: 100%;
+  }
+}

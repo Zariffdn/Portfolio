@@ -25,29 +25,35 @@ const links = [
   {
     href: "mailto:zariffdanial.zul@gmail.com",
     label: "Email",
+    ariaKey: "navbar.emailAria",
     Icon: AiOutlineMail,
     external: false,
   },
 ];
 
-function SocialSidebar() {
+// `inert` is set while the mobile menu covers the page.
+function SocialSidebar({ inert = false }) {
   const { t } = useTranslation();
   return (
-    <aside className="social-sidebar" aria-label={t("navbar.socialAria")}>
+    <aside
+      className="social-sidebar"
+      aria-label={t("navbar.socialAria")}
+      inert={inert}
+    >
       <ul>
-        {links.map(({ href, label, Icon, external }) => (
+        {links.map(({ href, label, ariaKey, Icon, external }) => (
           <li key={label}>
             {external ? (
               <a
                 href={href}
-                aria-label={label}
+                aria-label={ariaKey ? t(ariaKey) : label}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Icon aria-hidden="true" />
               </a>
             ) : (
-              <a href={href} aria-label={label}>
+              <a href={href} aria-label={ariaKey ? t(ariaKey) : label}>
                 <Icon aria-hidden="true" />
               </a>
             )}

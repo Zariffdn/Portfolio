@@ -1,8 +1,8 @@
 /* ==========================================================================
    About page
-   Imported by components/About/About.js. Rules here cover the intro,
-   featured work, press and the shared timeline (experience and
-   education). Stat tiles live in stat-tile.css. Tokens only.
+   Imported by components/About/About.jsx. Rules here cover the intro
+   (with its "On this page" links and the aside), the MyTax panel and the
+   shared timeline (experience and education). Tokens only.
    ========================================================================== */
 
 /* ---- Intro ------------------------------------------------------------- */
@@ -17,7 +17,7 @@
   align-items: start;
 }
 
-.about-intro__copy .eyebrow {
+.about-intro__copy > .eyebrow {
   margin-bottom: var(--s-5);
 }
 
@@ -41,12 +41,13 @@
   color: var(--text-3);
 }
 
-.about-aside__quote {
+/* "Looking for": the role he is after, the work setups and the notice. */
+.about-aside__looking {
   border-top: 1px solid var(--line);
   padding-top: var(--s-5);
 }
 
-.about-aside__quote p {
+.about-aside__role {
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 500;
@@ -55,14 +56,32 @@
   color: var(--text-1);
 }
 
-.about-aside__cite {
-  display: block;
-  margin-top: var(--s-3);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* ---- On this page ------------------------------------------------------ */
+.about-toc {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-8);
+}
+
+.about-toc__label {
   color: var(--text-3);
+}
+
+/* The chips are links here, so they get a larger target and a hover state. */
+.about-toc__link {
+  height: 32px;
+  padding: 0 var(--s-3);
+  color: var(--text-2);
+  transition: color var(--dur) ease, border-color var(--dur) ease,
+    background-color var(--dur) ease;
+}
+
+.about-toc__link:hover,
+.about-toc__link:focus-visible {
+  color: var(--text-1);
+  border-color: var(--line-strong);
+  background: var(--bg-3);
+  text-decoration: none;
 }
 
 @media (max-width: 899px) {
@@ -136,6 +155,10 @@
   margin-top: var(--s-8);
 }
 
+.fw-text .fw-cta {
+  margin-top: var(--s-8);
+}
+
 .fw-stats {
   display: flex;
   align-items: stretch;
@@ -178,8 +201,13 @@
   justify-self: end;
 }
 
+/* A definite width rather than only a flex basis: the column and the frames
+   then have their size (and the aspect-ratio screen its height) before the
+   lazy screenshots load, so the panel does not grow under a reader who is
+   scrolling past it, or jumping to a section below it. */
 .fw-visual .phone {
-  flex: 0 1 clamp(110px, 11vw, 150px);
+  flex: 0 1 auto;
+  width: clamp(110px, 11vw, 150px);
   min-width: 0;
   padding: 6px;
   border-radius: 26px;
@@ -205,12 +233,14 @@
     gap: var(--s-8);
   }
 
+  /* Capped at the panel width so the three frames shrink to fit a phone. */
   .fw-visual {
     justify-self: start;
+    max-width: 100%;
   }
 
   .fw-visual .phone {
-    flex-basis: 110px;
+    width: 110px;
     max-width: 110px;
     padding: 5px;
     border-radius: 22px;
@@ -243,63 +273,6 @@
     border-left: 0;
     padding-top: var(--s-3);
     border-top: 1px solid var(--line);
-  }
-}
-
-/* ---- Press ------------------------------------------------------------- */
-.press-list {
-  display: grid;
-  gap: var(--s-4);
-}
-
-.press-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--s-6);
-  align-items: center;
-  padding: var(--s-5) var(--s-6);
-  color: var(--text-1);
-}
-
-.press-row:hover,
-.press-row:focus-visible {
-  text-decoration: none;
-  color: var(--text-1);
-}
-
-.press-row__meta {
-  color: var(--accent-text);
-}
-
-.press-row h3 {
-  margin-top: var(--s-2);
-}
-
-.press-row__orig {
-  margin-top: var(--s-1);
-}
-
-.press-row__quote {
-  margin-top: var(--s-2);
-}
-
-.press-row__icon {
-  font-size: 1.375rem;
-  color: var(--text-3);
-  transition: transform var(--dur) var(--ease-out), color var(--dur) ease;
-}
-
-.press-row:hover .press-row__icon,
-.press-row:focus-visible .press-row__icon {
-  color: var(--accent-text);
-  transform: translate(2px, -2px);
-}
-
-@media (max-width: 480px) {
-  .press-row {
-    padding: var(--s-5);
-    gap: var(--s-4);
-    align-items: start;
   }
 }
 
@@ -389,21 +362,7 @@
   }
 }
 
-
-/* Featured panel footer: store links and CTA span the full panel width */
-.fw-footer {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-4);
-  margin-top: var(--s-2);
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--line);
-}
-
-/* About stacks twelve sections; trim the shared section rhythm here only */
+/* About stacks ten sections; trim the shared section rhythm here only */
 .about-page {
   --section-y: clamp(3.25rem, 6.5vw, 5.5rem);
 }

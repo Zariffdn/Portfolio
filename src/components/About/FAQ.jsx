@@ -15,10 +15,10 @@ function FAQ() {
   const { t } = useTranslation();
 
   return (
-    <Section hairline>
+    <Section hairline id="faq">
       <Container>
         <SectionHeading
-          title={t("faq.headingPre") + " " + t("faq.headingHighlight")}
+          title={t("faq.title")}
           lead={t("faq.subtitle")}
         />
         <Stagger as="ul" role="list" className="faq">

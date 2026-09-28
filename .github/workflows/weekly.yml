@@ -1,0 +1,45 @@
+# Weekly checks on what can break without a commit: links to other sites
+# going dead (tools/qa/links.mjs over src/, index.html and the resume source)
+# and the deployed site drifting from the repository (tools/qa/production.mjs:
+# every route's status, title and canonical as crawlers see them, the 404,
+# the trailing-slash and resume redirects, the security headers). Both steps
+# run even when the other fails. Also runnable by hand from the Actions tab.
+
+name: Weekly checks
+
+on:
+  schedule:
+    # Mondays 01:17 UTC, 09:17 in Malaysia.
+    - cron: "17 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  weekly:
+    name: Links and production
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      # Both scripts use only Node built-ins, so there is nothing to install.
+      - name: Check out
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: External links
+        run: node tools/qa/links.mjs
+
+      - name: Production routes
+        if: ${{ !cancelled() }}
+        run: node tools/qa/production.mjs

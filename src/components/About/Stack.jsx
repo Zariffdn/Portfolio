@@ -90,7 +90,7 @@ function ChipGroup({ label, items }) {
       <Stagger className="chip-row" gap={0.035}>
         {items.map(({ name, Icon }) => (
           <StaggerItem key={name} y={10}>
-            <Chip icon={<Icon />} tabIndex={0} aria-label={name}>
+            <Chip icon={<Icon />}>
               {name}
             </Chip>
           </StaggerItem>
@@ -104,10 +104,10 @@ function Stack() {
   const { t } = useTranslation();
 
   return (
-    <Section hairline className="stack">
+    <Section hairline className="stack" id="skills">
       <Container>
         <SectionHeading
-          title={`${t("about.skillsetPre")} ${t("about.skillsetHighlight")}`}
+          title={t("about.stackTitle")}
           lead={t(
             "about.stackLead",
             "Languages, frameworks and the tools around them."

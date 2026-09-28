@@ -13,12 +13,13 @@
     "closeMenu": "Tutup menu",
     "locationLine": "Klang, Malaysia · GMT+8",
     "wordmarkAria": "Zariff Danial, laman utama",
-    "socialAria": "Pautan sosial"
+    "socialAria": "Pautan sosial",
+    "emailAria": "E-mel"
   },
   "home": {
-    "availableForHire": "Terbuka untuk peluang baharu · Notis 3 bulan",
+    "availableForHire": "Terbuka untuk jawatan sepenuh masa",
     "heroLine1": "Malaysia memfailkan cukai",
-    "heroLine2": "melalui aplikasi saya.",
+    "heroLine2": "dengan aplikasi yang saya urus.",
     "heroLead": "Saya Zariff Danial, pembangun Flutter di Zen Computer Systems dan satu-satunya pembangun mudah alih untuk MyTax LHDN, yang kini beroperasi di iOS, Android dan Huawei AppGallery.",
     "ctaWork": "Lihat hasil kerja",
     "ctaContact": "Hubungi saya",
@@ -29,22 +30,24 @@
     "proofPressValue": "BERNAMA",
     "proofPressLabel": "liputan media",
     "proofSinceValue": "2023",
-    "proofSinceLabel": "beroperasi sejak",
-    "phoneAlt": "Tangkapan skrin aplikasi MyTax",
-    "featuredEyebrow": "Sedang dibangunkan",
+    "proofSinceLabel": "aplikasi beroperasi sejak",
     "workEyebrow": "Kerja terpilih",
     "workTitle": "Apa yang saya bina dan baiki",
     "workLead": "MyTax yang sedang beroperasi, sebuah MVP peribadi, dan pembaikan TOTP di jabatan R&D Bestinet.",
     "workAll": "Semua projek",
     "aboutEyebrow": "Tentang",
-    "aboutTitle": "Pembangun mudah alih dari Klang, melancarkan ke tiga gedung aplikasi.",
+    "aboutTitle": "Pembangun mudah alih dari Klang yang mengeluarkan kemas kini ke tiga gedung aplikasi.",
     "aboutBody": "Setiap hari saya bekerja dengan Flutter dan Dart, menyelenggara dan mengembangkan MyTax untuk pembayar cukai Malaysia. Sebelum itu saya membaiki ciri TOTP yang rosak di jabatan R&D Bestinet. Daripada projek-projek terdahulu, saya selesa dengan C++, Python, JavaScript dan PHP, dan mempunyai minat sampingan dalam pembangunan web front-end.",
     "aboutMore": "Lebih lanjut tentang saya",
     "ctaEyebrow": "Hubungi saya",
-    "ctaTitle": "Ada jawatan atau projek dalam fikiran?",
-    "ctaBody": "Saya terbuka untuk kerja jarak jauh, hibrid atau di pejabat, di mana-mana di Malaysia. Tempoh notis tiga bulan.",
+    "ctaTitle": "Mencari pembangun Flutter atau mudah alih?",
+    "ctaBody": "Saya terbuka untuk jawatan sepenuh masa di Malaysia, sama ada jarak jauh, hibrid atau di pejabat. Tempoh notis tiga bulan.",
     "ctaButton": "Mulakan perbualan",
-    "ctaEmail": "atau e-mel saya di zariffdanial.zul@gmail.com"
+    "ctaEmail": "atau e-mel saya di zariffdanial.zul@gmail.com",
+    "phoneAlt1": "Skrin log masuk MyTax dalam Bahasa Malaysia",
+    "phoneAlt2": "Skrin MyTax yang memaparkan baki cukai, jumlah bayaran balik dan status e-Filing",
+    "phoneAlt3": "Skrin utama Perkhidmatan ezHASiL dalam MyTax",
+    "availableNotice": "Notis 3 bulan"
   },
   "backToTop": "Kembali ke atas",
   "toast": {
@@ -58,12 +61,10 @@
     "subtitle": "Terima kasih kerana meneroka. ↑↑↓↓←→←→ B A"
   },
   "faq": {
-    "headingPre": "Soalan",
-    "headingHighlight": "Lazim",
-    "subtitle": "Jawapan ringkas untuk soalan yang sering ditanya oleh recruiter.",
+    "subtitle": "Jawapan ringkas untuk soalan yang paling kerap ditanya oleh perekrut.",
     "remote": {
       "q": "Adakah anda terbuka untuk kerja jarak jauh?",
-      "a": "Ya, sama ada jarak jauh, hibrid, atau di pejabat, mengikut keperluan."
+      "a": "Ya. Saya terbuka untuk jawatan jarak jauh, hibrid atau di pejabat di Malaysia."
     },
     "visa": {
       "q": "Visa atau kebenaran kerja?",
@@ -79,27 +80,26 @@
     },
     "tech": {
       "q": "Teknologi yang anda ingin gunakan seterusnya?",
-      "a": "Server-side Dart, pembangunan iOS native, atau apa-apa yang memacu seni bina mudah alih ke hadapan."
-    }
+      "a": "Dart di sisi pelayan, pembangunan iOS natif, atau apa-apa yang memacu seni bina mudah alih ke hadapan."
+    },
+    "title": "Soalan lazim"
   },
   "contact": {
-    "headingPre": "Hubungi",
-    "headingHighlight": "Saya",
-    "subtitle": "Ada projek, jawatan, atau sekadar mahu berbual? Tinggalkan mesej dan saya akan balas dalam sehari dua.",
+    "subtitle": "Ada jawatan kosong, atau sekadar mahu berbual? Tinggalkan mesej dan saya akan balas dalam sehari dua.",
     "nameLabel": "Nama anda",
     "namePlaceholder": "Ahmad bin Ali",
     "emailLabel": "E-mel",
     "emailPlaceholder": "ahmad@example.com",
     "subjectLabel": "Subjek (pilihan)",
-    "subjectPlaceholder": "Mari bina sesuatu",
+    "subjectPlaceholder": "Jawatan pembangun Flutter",
     "messageLabel": "Mesej",
     "messagePlaceholder": "Ceritakan sedikit tentang apa yang anda fikirkan…",
     "send": "Hantar mesej",
     "sending": "Menghantar…",
     "sent": "Mesej dihantar, terima kasih!",
     "success": "Mesej dihantar! Saya akan balas tidak lama lagi.",
-    "error": "Tidak dapat hantar. Sila e-mel saya di zariffdanial.zul@gmail.com",
-    "notConfigured": "Borang hubungan belum disediakan. E-mel saya terus!"
+    "error": "Mesej tidak dapat dihantar. Sila e-mel saya di",
+    "title": "Hubungi saya"
   },
   "stats": {
     "certifications": "Sijil",
@@ -108,50 +108,45 @@
     "yearsCoding": "Tahun mengekod"
   },
   "about": {
-    "knowMePre": "Kenali Siapa",
-    "knowMeHighlight": "SAYA",
-    "myExperiencePre": "Pengalaman",
-    "myExperienceHighlight": "Saya",
-    "myEducationPre": "Pendidikan",
-    "myEducationHighlight": "Saya",
-    "myCertsPre": "Sijil",
-    "myCertsHighlight": "Saya",
-    "viewCredential": "Lihat kelayakan",
+    "viewCredential": "Lihat sijil",
     "allCertifications": "Semua sijil di LinkedIn",
     "verifyOnCredly": "Sahkan di Credly",
     "credlyProfile": "Lencana di Credly",
     "credentialId": "ID Sijil:",
-    "byTheNumbersPre": "Dalam",
-    "byTheNumbersHighlight": "Angka",
     "availableOn": "Tersedia di:",
-    "testimonialsPre": "Apa Yang Orang",
-    "testimonialsHighlight": "Kata",
     "seeAllRecommendations": "Lihat semua syor di LinkedIn",
-    "pressPre": "MyTax dalam",
-    "pressHighlight": "Media",
-    "pressLead": "Artikel yang merujuk pembayar cukai kepada aplikasi MyTax.",
-    "readArticle": "Baca artikel",
-    "featuredLabel": "Sedang dibangunkan",
+    "featuredLabel": "Kerja semasa",
     "featuredTitle": "MyTax",
     "featuredSubtitle": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia",
-    "featuredDescription": "Saya satu-satunya pembangun mudah alih untuk MyTax di Zen Computer Systems, menghantar pembetulan dan kemas kini untuk pembayar cukai Malaysia di peranti iOS, Android dan Huawei.",
+    "featuredDescription": "Saya satu-satunya pembangun mudah alih untuk MyTax di Zen Computer Systems, mengeluarkan pembetulan dan kemas kini untuk pembayar cukai Malaysia di peranti iOS, Android dan Huawei.",
     "readCaseStudy": "Baca kajian kes",
     "featuredStat1Value": "3",
-    "featuredStat1Label": "Platform dilancarkan",
+    "featuredStat1Label": "Platform disokong",
     "featuredStat2Value": "Sejak 2023",
     "featuredStat2Label": "Beroperasi dalam produksi",
     "featuredStat3Value": "LHDN",
-    "featuredStat3Label": "Projek untuk kerajaan",
-    "skillsetPre": "Kemahiran",
-    "skillsetHighlight": "Profesional",
+    "featuredStat3Label": "Pelanggan",
     "toolsHighlight": "Alat",
-    "toolsPost": "yang saya guna",
-    "daysICodePre": "Hari Saya",
-    "daysICodeHighlight": "Mengekod",
     "stackLead": "Bahasa, rangka kerja dan alatan yang berkaitan.",
     "stackMobile": "Mudah alih",
     "calendarLead": "Hampir semua sumbangan terkini saya berada dalam repositori tertutup, jadi graf ini menunjukkan aktivitinya tetapi bukan kodnya.",
-    "calendarError": "Kalendar sumbangan tidak dapat dimuatkan."
+    "calendarError": "Kalendar sumbangan tidak dapat dimuatkan.",
+    "tocLabel": "Di halaman ini",
+    "tocExperience": "Pengalaman",
+    "tocEducation": "Pendidikan",
+    "tocCertifications": "Sijil",
+    "tocSkills": "Kemahiran",
+    "tocFaq": "Soalan lazim",
+    "tocContact": "Hubungi",
+    "experienceTitle": "Pengalaman",
+    "educationTitle": "Pendidikan",
+    "certsTitle": "Sijil",
+    "recommendationsTitle": "Syor",
+    "stackTitle": "Alatan dan bahasa",
+    "githubTitle": "Aktiviti GitHub",
+    "calendarTotal": "{{count}} sumbangan dalam setahun lalu",
+    "calendarLess": "Kurang",
+    "calendarMore": "Lebih"
   },
   "aboutCard": {
     "intro_pre": "Saya",
@@ -166,16 +161,16 @@
     "currentRole_post": "(sejak November 2025), menyelenggara aplikasi mudah alih MyTax di bawah LHDN. Sebelum ini sebagai Mobile Application Developer di",
     "currentRole_prevCompany": "Bestinet Sdn Bhd",
     "currentRole_end": "(Jun hingga November 2025), dalam jabatan R&D mereka. Di sana saya membaiki dan menyiapkan ciri TOTP dalam aplikasi pengesah Flutter dalaman.",
-    "hobbies": "Selain daripada mengekod, beberapa aktiviti lain yang saya gemari!",
-    "playingGames": "Bermain Permainan",
-    "workingOut": "Bersenam",
-    "listeningMusic": "Mendengar Muzik",
-    "quote": "\"Idea memang senang. Yang seronoknya bila ia mula jalan.\"",
     "metaLocationLabel": "Berpangkalan di",
-    "metaLocationValue": "Klang, Malaysia · GMT+8 · Terbuka untuk kerja jarak jauh, hibrid, atau di pejabat",
+    "metaLocationValue": "Klang, Malaysia · GMT+8",
     "metaLanguagesLabel": "Bahasa",
     "metaLanguagesValue": "Bahasa Malaysia dan Bahasa Inggeris",
-    "hobbiesLabel": "Di luar waktu kerja"
+    "lookingForLabel": "Sedang mencari",
+    "lookingForRole": "Jawatan sepenuh masa sebagai pembangun Flutter atau mudah alih di Malaysia.",
+    "workRemote": "Jarak jauh",
+    "workHybrid": "Hibrid",
+    "workOnsite": "Di pejabat",
+    "lookingForNotice": "Tempoh notis tiga bulan."
   },
   "experience": {
     "zen": {
@@ -184,9 +179,9 @@
       "period": "November 2025 hingga Kini",
       "meta": "Cyberjaya, Selangor · Di pejabat · Kontrak",
       "b1": "Satu-satunya pembangun mudah alih untuk MyTax, aplikasi rasmi pemfailan cukai LHDN, menyelenggara satu pangkalan kod Flutter untuk iOS dan Android serta pangkalan kod HMS berasingan untuk Huawei AppGallery, yang berjalan tanpa Google Mobile Services.",
-      "b2": "Membaiki skrin status bayaran balik dan audit serta gesaan log masuk merentas empat keluaran iOS dalam masa sepuluh hari ketika musim pemfailan 2026 dibuka.",
+      "b2": "Membaiki skrin status bayaran balik dan audit serta gesaan log masuk dalam empat keluaran iOS sepanjang sepuluh hari ketika musim pemfailan 2026 dibuka.",
       "b3": "Memindahkan penghantaran pemberitahuan tolak di pelayan ke API HTTP v1 Firebase Cloud Messaging, serta menambah siaran mengikut topik dalam aplikasi dan pemberitahuan bergambar untuk Android.",
-      "b4": "Membersihkan lebih 200 amaran analisis statik dalam setiap pangkalan kod mudah alih, dan menambah aliran kerja CI serta semakan pra-push pada pangkalan kod utama.",
+      "b4": "Membersihkan lebih 200 amaran analisis statik dalam setiap pangkalan kod mudah alih, dan menambah aliran kerja CI, semakan pra-push serta ujian unit pertama pada kedua-duanya.",
       "b5": "Memastikan teks Bahasa Malaysia dan Bahasa Inggeris selaras dengan platform web, dan mengintegrasikan endpoint REST baharu sebaik sahaja pasukan backend melancarkannya."
     },
     "bestinet": {
@@ -194,10 +189,10 @@
       "company": "Bestinet Sdn Bhd",
       "period": "Jun 2025 hingga November 2025",
       "meta": "Penyelidikan & Pembangunan · Cyberjaya, Selangor · Hibrid · Penempatan K-Youth Khazanah",
-      "b1": "Mengambil alih ciri TOTP yang rosak dalam aplikasi pengesah Flutter dalaman: kod sekali guna tidak pernah muncul pada skrin, dan saya berjaya menjadikannya dijana serta dipaparkan dengan betul.",
-      "b2": "Menjejaki kegagalan tersebut dengan surih berperingkat bernombor merentas rantaian penjanaan dan menemui dua kecacatan: rutin init pengawal tidak pernah dipanggil daripada lapisan paparan, dan hantaran jenis yang tidak sah pada bacaan storan selamat gagal pada mana-mana peranti yang sudah didaftarkan.",
+      "b1": "Mengambil alih ciri TOTP yang rosak dalam aplikasi pengesah Flutter dalaman, yang tidak pernah memaparkan kod sekali guna pada skrin, lalu membaikinya sehingga ciri itu menjana dan memaparkan kod dengan betul.",
+      "b2": "Menjejaki kegagalan itu langkah demi langkah, dengan setiap langkah bernombor, merentas rantaian penjanaan dan menemui dua kecacatan: rutin init pengawal tidak pernah dipanggil daripada lapisan paparan, dan penukaran jenis (type cast) yang tidak sah pada bacaan storan selamat mencetuskan ralat pada mana-mana peranti yang sudah didaftarkan.",
       "b3": "Mengukuhkan laluan penjanaan TOTP dengan membalut penjanaan kod dalam pengendalian ralat dan menghentikan aliran lebih awal apabila kunci peranti atau kunci rahsia gagal diperoleh, dan bukannya menjana kod daripada kunci kosong.",
-      "b4": "Membina skrin pengesah mengikut reka bentuk yang diberikan, dengan gelang kira detik terikat pada tetingkap penyegaran 30 saat dan kod dipaparkan digit demi digit, serta menggunakan penjenamaan yang sama pada cangkerang aplikasi dan skrin log masuk."
+      "b4": "Membina skrin pengesah mengikut reka bentuk yang diberikan, dengan bulatan kira detik yang terikat pada tetingkap penyegaran 30 saat dan kod dipaparkan digit demi digit, serta menggunakan penjenamaan yang sama pada rangka aplikasi (app shell) dan skrin log masuk."
     },
     "pantai": {
       "role": "IT Support Intern (Industrial Training)",
@@ -251,26 +246,21 @@
     }
   },
   "projects": {
-    "headingPre": "Kerja Terkini",
-    "headingHighlight": "Saya",
-    "intro": "Aplikasi dalam produksi, sebuah MVP peribadi dan projek universiti yang menjadi titik permulaan saya.",
+    "intro": "Aplikasi dalam produksi, kerja syarikat, dua aplikasi peribadi dan projek universiti yang menjadi titik permulaan saya.",
     "filterAll": "Semua",
     "filterWeb": "Web",
     "filterMobile": "Mudah Alih",
     "filterEmbedded": "Terbenam",
     "emptyTitle": "Tiada apa-apa di sini",
     "emptyDesc": "Tiada projek dalam kategori ini lagi. Nantikan!",
-    "github": "GitHub",
-    "demo": "Demo",
-    "blog": "Blog",
     "personalBadge": "Projek peribadi",
     "proprietaryBadge": "Kerja syarikat · kod milik syarikat",
     "fypBadge": "Projek tahun akhir",
     "teamBadge": "Projek berkumpulan universiti",
-    "bestinet_title": "Pengesah TOTP (kerja syarikat)",
-    "bestinet_desc": "Aplikasi pengesah dalaman di Bestinet yang memaparkan kod sekali guna baharu setiap 30 saat. Ciri TOTP sudah pun ditulis tetapi kod tidak pernah muncul pada skrin, dan tugas saya ialah mencari puncanya dan menjadikannya berfungsi. Saya menjejaki rantaian penjanaan dan menemui dua kesilapan: lapisan paparan tidak pernah memanggil rutin init pengawal, dan hantaran jenis yang salah pada bacaan storan selamat gagal secara senyap pada peranti yang sudah didaftarkan kerana pengecualiannya ditelan oleh pengendali ralat. Saya membetulkan kedua-duanya dan memastikan aliran berhenti awal apabila kunci gagal diperoleh, supaya kod tidak pernah dijana daripada kunci kosong. Kemudian saya membina skrin mengikut reka bentuk yang diberikan, dengan gelang kira detik dan kod disusun digit demi digit.",
+    "bestinet_title": "Pengesah TOTP",
+    "bestinet_desc": "Aplikasi pengesah dalaman di Bestinet yang memaparkan kod sekali guna baharu setiap 30 saat. Ciri TOTP sudah pun ditulis tetapi kod tidak pernah muncul pada skrin, dan tugas saya ialah mencari puncanya dan menjadikannya berfungsi. Saya menjejaki rantaian penjanaan dan menemui dua kesilapan: lapisan paparan tidak pernah memanggil rutin init pengawal, dan penukaran jenis (type cast) yang salah pada bacaan storan selamat gagal secara senyap pada peranti yang sudah didaftarkan kerana pengecualiannya ditelan oleh pengendali ralat. Saya membetulkan kedua-duanya dan memastikan aliran berhenti awal apabila kunci gagal diperoleh, supaya kod tidak pernah dijana daripada kunci kosong. Kemudian saya membina skrin mengikut reka bentuk yang diberikan, dengan bulatan kira detik dan kod disusun digit demi digit.",
     "silentsupport_title": "Silent Support",
-    "silentsupport_desc": "Ruang peribadi untuk meluahkan rasa apabila hati terasa berat dan kata-kata sukar dicari. Ketik salah satu daripada lapan perasaan dan respons tenang yang telah disediakan muncul serta-merta. Sebuah Supabase Edge Function meminta model Llama di Groq untuk balasan baharu pada tahap yang sama, dan balasan itu hanya menggantikan respons asal jika tiba dalam masa 2.5 saat dan lulus penapis nada di pelayan yang menolak soalan, tanda seru dan frasa klise. Sejarah kekal di telefon melainkan anda log masuk dengan kod yang dihantar melalui e-mel; penyegerakan menggabungkan data di telefon dan di pelayan tanpa menghilangkan sebarang rekod, row-level security mengehadkan setiap baris kepada pemiliknya, dan pemadaman akaun dijalankan di pelayan. Dibina secara solo sebagai MVP dengan React Native (Expo), TypeScript dan Supabase.",
+    "silentsupport_desc": "Ruang peribadi untuk meluahkan rasa apabila hati terasa berat dan kata-kata sukar dicari. Ketik salah satu daripada lapan perasaan, dan respons tenang yang telah disediakan akan muncul serta-merta; balasan AI baharu pada tahap yang sama hanya menggantikannya jika balasan itu tiba dalam masa 2.5 saat dan lulus penapis nada di pelayan.",
     "halalsaji_title": "HalalSaji",
     "halalsaji_desc": "Aplikasi untuk mencari makanan halal berdekatan dan melihat bagaimana setiap tempat disahkan. Bersijil Halal dan Milik Muslim dipaparkan sebagai dua lencana berasingan, kerana yang satu tidak menjamin yang satu lagi, dan sijil yang telah tamat tempoh serta tempat yang masih menunggu semakan turut ditandakan. Anda boleh mencari, menapis mengikut status halal, masakan, jenis daging atau waktu operasi, menyimpan kegemaran di telefon dan membuka lokasi di Google Maps. Borang untuk mencadangkan restoran atau melaporkan maklumat yang salah dibina supaya tidak boleh mengubah status halal dengan sendirinya. Dibina secara solo pada Jun 2026 dengan Flutter dan Provider, bersama lapisan data Firestore baca sahaja yang sudah sedia; buat masa ini ia menggunakan data contoh.",
     "baglock_title": "Kunci Beg Cap Jari Anti-Kecurian",
@@ -278,13 +268,12 @@
     "bookstore_title": "Kedai Buku",
     "bookstore_desc": "Sistem kedai buku berasaskan web dengan log masuk berasingan untuk pelanggan, penjual dan admin. Pelanggan melayari senarai buku, membayar dengan kad atau tunai, menerima resit dan memberi maklum balas. Penjual mengemas kini butiran buku dan melihat jadual pengambilan bagi pesanan yang selesai, manakala bahagian admin menyenaraikan setiap pembelian.",
     "eyebrow": "Projek",
-    "featuredEyebrow": "Pilihan",
     "featuredCta": "Baca kajian kes",
     "viewCode": "Lihat kod",
     "noRepo": "Tiada repositori awam",
     "productionBadge": "Sedang beroperasi",
     "mytax_title": "MyTax",
-    "mytax_desc": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia, digunakan oleh pembayar cukai di seluruh negara. Saya merupakan satu-satunya pembangun mudah alih, menghantar pembetulan dan ciri baharu merentas iOS, Android dan Huawei AppGallery untuk LHDN, termasuk pangkalan kod HMS berasingan untuk peranti Huawei."
+    "mytax_desc": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia, digunakan oleh pembayar cukai di seluruh negara. Saya merupakan satu-satunya pembangun mudah alih aplikasi ini, merentas iOS, Android dan pangkalan kod HMS berasingan untuk Huawei AppGallery. Pembetulan saya disertakan dalam empat keluaran iOS sepanjang sepuluh hari ketika musim pemfailan 2026 dibuka, dan saya memindahkan penghantaran pemberitahuan tolak di pelayan ke API HTTP v1 Firebase Cloud Messaging, serta menambah siaran mengikut topik dalam aplikasi dan pemberitahuan bergambar untuk Android."
   },
   "resume": {
     "download": "Muat Turun CV",
@@ -293,8 +282,6 @@
     "loadError": "Resume tidak dapat dipaparkan di sini. Gunakan butang muat turun untuk membukanya."
   },
   "footer": {
-    "developedBy": "Dibangunkan oleh Zariff Danial",
-    "copyright": "Hak Cipta",
     "uses": "Peralatan saya",
     "viewSource": "Lihat kod sumber",
     "tagline": "Pembangun mudah alih, Flutter dan Dart. Klang, Malaysia.",
@@ -302,7 +289,8 @@
     "elsewhere": "Pautan lain",
     "builtWith": "Dibina dengan React, dihoskan di Vercel.",
     "bestinet": "Pengesah TOTP",
-    "baglock": "Kunci beg cap jari"
+    "baglock": "Kunci beg cap jari",
+    "silentSupport": "Silent Support"
   },
   "uses": {
     "headingPre": "Apa Yang Saya",
@@ -362,22 +350,34 @@
   },
   "meta": {
     "home": "Zariff Danial · Pembangun Mudah Alih (Flutter)",
-    "homeDesc": "Zariff Danial, pembangun mudah alih dari Klang, Selangor. Flutter dan Dart. Satu-satunya pembangun mudah alih untuk MyTax, aplikasi rasmi pemfailan cukai Malaysia.",
+    "homeDesc": "Zariff Danial, pembangun Flutter dan Dart di Klang, Selangor. Satu-satunya pembangun mudah alih untuk MyTax, aplikasi rasmi pemfailan cukai Malaysia, dengan jumlah pemasangan 3M+.",
     "about": "Tentang · Zariff Danial",
-    "aboutDesc": "Pembangun mudah alih di Zen Computer Systems. Flutter dan Dart, kini mengusahakan aplikasi mudah alih MyTax di bawah LHDN.",
+    "aboutDesc": "Zariff Danial, pembangun mudah alih di Zen Computer Systems. Flutter dan Dart, kini mengusahakan aplikasi mudah alih MyTax di bawah LHDN.",
     "projects": "Projek · Zariff Danial",
     "projectsDesc": "Pilihan projek oleh Zariff Danial: aplikasi mudah alih, sistem terbenam, dan aplikasi web.",
     "resume": "Resume · Zariff Danial",
-    "resumeDesc": "Muat turun atau lihat resume Zariff Danial.",
+    "resumeDesc": "Resume satu halaman Zariff Danial, pembangun mudah alih Flutter dan Dart untuk MyTax di Zen Computer Systems. Baca di sini atau muat turun PDF.",
     "uses": "Peralatan · Zariff Danial",
     "usesDesc": "Perkakasan, editor, bahasa, dan alatan yang Zariff Danial gunakan setiap hari untuk pembangunan mudah alih.",
     "mytax": "Kajian Kes MyTax · Zariff Danial",
     "mytaxDesc": "Kajian kes MyTax, aplikasi rasmi pemfailan cukai Malaysia. Zariff Danial ialah satu-satunya pembangun mudah alihnya di Zen Computer Systems dan melancarkan keluaran untuk iOS, Android dan Huawei AppGallery.",
     "bestinet": "Kajian Kes Pengesah TOTP · Zariff Danial",
-    "bestinetDesc": "Kajian kes kejuruteraan tentang aplikasi pengesah TOTP dalaman di Bestinet Sdn Bhd. Zariff Danial menjejaki laluan penjanaan kod Flutter yang rosak dan menemui dua kecacatan, membaiki serta mengukuhkannya, dan membina skrin pengesah mengikut reka bentuk yang diberikan.",
+    "bestinetDesc": "Kajian kes Bestinet: Zariff Danial menjejaki laluan penjanaan kod TOTP yang rosak hingga menemui dua kecacatan, membaiki serta mengukuhkannya, dan membina skrin pengesah Flutter.",
     "baglock": "Kajian Kes Kunci Beg Cap Jari · Zariff Danial",
-    "baglockDesc": "Kajian kes projek tahun akhir Zariff Danial: kunci beg cap jari berasaskan Arduino yang menghantar amaran kecurian dan koordinat GPS melalui SMS kepada pemiliknya selepas tiga padanan gagal. Kajian ini merangkumi perkakasan, logik perisian tegar, pengujian dan tinjauan semula kodnya.",
+    "baglockDesc": "Kajian kes projek tahun akhir Zariff Danial: kunci beg cap jari Arduino yang menghantar SMS amaran kecurian dan koordinat GPS kepada pemiliknya selepas tiga padanan gagal.",
     "notFound": "404 · Zariff Danial",
-    "notFoundDesc": "Halaman yang anda cari tidak wujud."
+    "notFoundDesc": "Halaman yang anda cari tidak wujud.",
+    "silentSupport": "Kajian Kes Silent Support · Zariff Danial",
+    "silentSupportDesc": "Kajian kes Silent Support, aplikasi React Native oleh Zariff Danial: respons tenang dalam 0 ms, balasan AI hanya jika tiba dalam 2.5 saat, penapis nada di pelayan, dan sejarah yang disimpan di telefon dahulu dengan penyegerakan pilihan."
+  },
+  "caseStudy": {
+    "englishOnly": "Kajian kes ini hanya tersedia dalam Bahasa Inggeris."
+  },
+  "errorBoundary": {
+    "eyebrow": "Ralat",
+    "title": "Halaman ini gagal dimuatkan",
+    "body": "Berlaku masalah semasa memuatkan halaman ini, biasanya kerana sambungan terputus atau laman ini baru dikemas kini. Memuat semula halaman hampir pasti dapat menyelesaikannya.",
+    "reload": "Muat semula halaman",
+    "home": "Kembali ke laman utama"
   }
 }

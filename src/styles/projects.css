@@ -87,6 +87,23 @@
   opacity: 0.6;
 }
 
+/* Windows contrast themes paint every background as Canvas, so the pill
+   vanishes and the selected tab looks like the others. Fill it with the
+   system Highlight pair instead. */
+@media (forced-colors: active) {
+  .projects-filter__pill {
+    forced-color-adjust: none;
+    background: Highlight;
+  }
+
+  .projects-filter[aria-selected="true"],
+  .projects-filter[aria-selected="true"] .projects-filter__count {
+    forced-color-adjust: none;
+    color: HighlightText;
+    opacity: 1;
+  }
+}
+
 /* ---- Grid ----------------------------------------------------------- */
 .projects-grid {
   /* popLayout pins exiting cards absolutely; they anchor to the grid */
