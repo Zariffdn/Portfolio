@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { readFileSync, statSync, writeFileSync } from "node:fs";
+import { resolve, sep } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { ORIGIN, ROUTES, NOT_FOUND, htmlFileFor } from "./routes.mjs";
@@ -15,9 +15,12 @@ const DESC_MAX = 160;
 // the same ones, so the QA sweep runs against what production serves.
 const vercel = JSON.parse(readFileSync(new URL("./vercel.json", import.meta.url), "utf8"));
 const siteHeaders = (vercel.headers || []).find((rule) => rule.source === "/(.*)");
-const SITE_HEADERS = Object.fromEntries(
-  (siteHeaders ? siteHeaders.headers : []).map(({ key, value }) => [key, value])
-);
+if (!siteHeaders) {
+  throw new Error(
+    'vercel.json has no headers rule for "/(.*)"; every response on Vercel, and in vite preview, takes its security headers from it'
+  );
+}
+const SITE_HEADERS = Object.fromEntries(siteHeaders.headers.map(({ key, value }) => [key, value]));
 
 // Content-Security-Policy, delivered as a <meta> tag in every page the build
 // writes (the dev server has none: Vite's client injects inline scripts and
@@ -244,8 +247,65 @@ function routeHtml() {
   };
 }
 
+// Makes `vite preview` answer the two things Vercel answers differently from
+// Vite's own static server, so the QA sweep sees the 404 page the way
+// production serves it: a path with a trailing slash is a 308 to the path
+// without it (trailingSlash: false in vercel.json), and a path that is neither
+// a file in dist/ nor a route shell gets dist/404.html with status 404 instead
+// of the home shell with 200. Files and the route shells (the rewrite
+// sources in vercel.json, matched exactly, as Vercel does) fall through to
+// Vite, which already serves /about from about.html. Both answers carry the
+// same headers as every other preview response.
+function previewLikeVercel() {
+  const shells = new Set((vercel.rewrites || []).map((rule) => rule.source));
+  return {
+    name: "preview-like-vercel",
+    configurePreviewServer(server) {
+      const distDir = resolve(server.config.root, server.config.build.outDir);
+      const headers = Object.entries(server.config.preview.headers || {});
+      const isFile = (file) => {
+        try {
+          return statSync(file).isFile();
+        } catch {
+          return false;
+        }
+      };
+      server.middlewares.use((req, res, next) => {
+        if (req.method !== "GET" && req.method !== "HEAD") return next();
+        const url = new URL(req.url, "http://localhost");
+        // The redirect is built from the path as sent (still percent-encoded),
+        // so an encoded slash or control character never becomes a real one
+        // in the Location header; the decoded form is for the file lookup only.
+        if (url.pathname.length > 1 && url.pathname.endsWith("/")) {
+          for (const [name, value] of headers) res.setHeader(name, value);
+          res.statusCode = 308;
+          res.setHeader("Location", url.pathname.replace(/\/+$/, "") + url.search);
+          res.end();
+          return;
+        }
+        let pathname;
+        try {
+          pathname = decodeURIComponent(url.pathname);
+        } catch {
+          return next();
+        }
+        const file = resolve(distDir, `.${pathname}`);
+        const inDist = file === distDir || file.startsWith(distDir + sep);
+        if (pathname === "/" || shells.has(pathname) || (inDist && isFile(file))) return next();
+        const notFound = resolve(distDir, "404.html");
+        if (!isFile(notFound)) return next();
+        for (const [name, value] of headers) res.setHeader(name, value);
+        res.statusCode = 404;
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        res.setHeader("Cache-Control", "no-cache");
+        res.end(req.method === "HEAD" ? undefined : readFileSync(notFound));
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), routeHtml()],
+  plugins: [react(), routeHtml(), previewLikeVercel()],
   server: {
     port: 3000,
     strictPort: true,
@@ -271,6 +331,9 @@ export default defineConfig({
     },
   },
   test: {
+    // Only the source tree holds tests; a stray *.test file elsewhere (a
+    // scratch script, something under tools/) is never picked up.
+    include: ["src/**/*.test.{js,jsx}"],
     environment: "jsdom",
     globals: true,
     setupFiles: "./src/setupTests.js",

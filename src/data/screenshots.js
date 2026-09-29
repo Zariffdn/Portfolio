@@ -78,10 +78,9 @@ register(halalsaji1, halalsaji1Small);
 // The MyTax shots, in the order the home hero and case study show them.
 export const mytaxScreens = [mytax1, mytax2, mytax3];
 
-// Silent Support: the emotional check-in, the "Looking back" history, and the
-// response screen. The check-in is the one the project card shows.
-// Check-in, history ("Looking back") and response. The history screen shows
-// test data, confirmed by Zariff.
+// Silent Support: the emotional check-in, the "Looking back" history and the
+// response screen. The check-in is the one the project card shows; the
+// history screen shows test data, confirmed by Zariff.
 export const silentSupportScreens = [silent1, silent2, silent3];
 
 // HalalSaji: the Nearby list, captured from a web build of the app at 1pm

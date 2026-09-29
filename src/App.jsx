@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import Preloader from "./components/Pre";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ScrollToTop, { usePageEntry } from "./components/ScrollToTop";
+import ScrollToTop, { usePageEntry, focusQuietly } from "./components/ScrollToTop";
 import { RouteErrorBoundary } from "./components/ErrorBoundary";
 import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
@@ -47,7 +47,7 @@ const NotFound = lazyPreload(() => import("./components/NotFound"));
 // Fetched while the browser is idle so the first click on a link does not
 // wait on the network between exit and enter. Left out: the resume, whose
 // chunk carries react-pdf and pdf.js and is fetched on intent instead (a
-// pointer over, or focus on, a link to it), and the 404 page.
+// pointer over a link to it, or focus resting on one), and the 404 page.
 const IDLE_ROUTES = [
   About,
   Projects,
@@ -63,17 +63,38 @@ function warmRoutes() {
 }
 
 function warmResume() {
+  if (conserveData()) return;
   Resume.preload().catch(() => {});
 }
 
-// Data Saver (navigator.connection.saveData) turns the idle warm-up off.
-function saveData() {
+// Data Saver (navigator.connection.saveData), or a connection the browser
+// rates as 2G or slower, turns every warm-up off.
+function conserveData() {
   try {
-    return Boolean(navigator.connection && navigator.connection.saveData);
+    const { connection } = navigator;
+    if (!connection) return false;
+    return Boolean(connection.saveData) || /^(slow-)?2g$/.test(connection.effectiveType || "");
   } catch {
     return false;
   }
 }
+
+// The Resume links (navbar, footer) warm the resume chunk on intent. A
+// pointer over a link is intent at once; focus counts only once it has
+// rested for a moment, so tabbing through the nav does not fetch react-pdf
+// in passing.
+const RESUME_INTENT_DWELL_MS = 300;
+let resumeIntentTimer;
+const resumeIntent = {
+  onPointerEnter: warmResume,
+  onFocus() {
+    window.clearTimeout(resumeIntentTimer);
+    resumeIntentTimer = window.setTimeout(warmResume, RESUME_INTENT_DWELL_MS);
+  },
+  onBlur() {
+    window.clearTimeout(resumeIntentTimer);
+  },
+};
 
 // The wordmark preloader shows on the first page of a browser session only,
 // and never under reduced motion (it is a motion flourish). Storage that
@@ -109,6 +130,22 @@ function PageWrap({ children }) {
   );
 }
 
+// The skip link moves focus itself instead of letting the browser follow
+// #main: a native fragment jump pushes a keyless history entry that React
+// Router reports as a POP to the first entry of the visit, which ScrollToTop
+// would read as Back to that page and restore its offset (under reduced
+// motion the reader would end up there instead of at the content). No
+// history entry is added, so Back still leaves the page. The href stays for
+// the link's semantics. scrollIntoView follows the CSS scroll-behavior:
+// smooth normally, instant under reduced motion (base.css).
+function skipToMain(event) {
+  const main = document.getElementById("main");
+  if (!main) return;
+  event.preventDefault();
+  main.scrollIntoView({ block: "start" });
+  focusQuietly(main);
+}
+
 // Fills the viewport so nothing below it (the footer) paints above the fold
 // while a route chunk loads, which would otherwise register as layout shift.
 function RouteFallback() {
@@ -117,11 +154,13 @@ function RouteFallback() {
 
 // Suspense sits outside AnimatePresence so the keyed <Routes> is its direct
 // child; AnimatePresence only runs exit animations on keyed direct children.
-// The error boundary resets itself whenever the pathname changes.
+// The error boundary resets itself on every navigation (the location key,
+// not the pathname, so a second click on a failed page's own link tries the
+// page again).
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    <RouteErrorBoundary resetKey={location.pathname}>
+    <RouteErrorBoundary resetKey={location.key}>
       <Suspense fallback={<RouteFallback />}>
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
@@ -163,12 +202,22 @@ function App() {
     if (preloader) writeStorage("sessionStorage", PRELOADER_KEY, "1");
   }, [preloader]);
 
+  // The warm-up waits for the window's load event, so on a slow link it
+  // never competes with the hero image and the fonts; from there the browser
+  // picks an idle moment, or 4 s at most.
   useEffect(() => {
-    if (saveData()) return undefined;
-    const idle = window.requestIdleCallback
-      ? window.requestIdleCallback(warmRoutes, { timeout: 4000 })
-      : setTimeout(warmRoutes, 1500);
+    if (conserveData()) return undefined;
+    let idle;
+    const schedule = () => {
+      idle = window.requestIdleCallback
+        ? window.requestIdleCallback(warmRoutes, { timeout: 4000 })
+        : setTimeout(warmRoutes, 1500);
+    };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
     return () => {
+      window.removeEventListener("load", schedule);
+      if (idle === undefined) return;
       if (window.requestIdleCallback) window.cancelIdleCallback(idle);
       else clearTimeout(idle);
     };
@@ -184,20 +233,20 @@ function App() {
             <HtmlLang />
             {preloader && <Preloader onDone={hidePreloader} />}
             <Backdrop />
-            <a href="#main" className="skip-link" inert={menuOpen}>
+            <a href="#main" className="skip-link" inert={menuOpen} onClick={skipToMain}>
               {t("skipToContent", "Skip to content")}
             </a>
             <div className="App">
               <CustomCursor />
               <ScrollProgress />
-              <Navbar onMenuChange={setMenuOpen} onResumeIntent={warmResume} />
+              <Navbar onMenuChange={setMenuOpen} resumeIntent={resumeIntent} />
               <ScrollToTop />
               <SocialSidebar inert={menuOpen} />
               <main id="main" tabIndex={-1} inert={menuOpen}>
                 <AnimatedRoutes />
               </main>
               <BackToTop inert={menuOpen} />
-              <Footer inert={menuOpen} onResumeIntent={warmResume} />
+              <Footer inert={menuOpen} resumeIntent={resumeIntent} />
             </div>
             <ToastContainer />
             <KonamiEgg />

@@ -62,6 +62,9 @@ function Github() {
     () => typeof IntersectionObserver === "undefined"
   );
   const [compact, setCompact] = useState(isCompactViewport);
+  // Whether the calendar is wider than the surface, which decides if the
+  // surface is a Tab stop (see the measuring effect below).
+  const [scrolls, setScrolls] = useState(false);
   const calendarLabel = t("about.githubTitle");
 
   // The calendar fills in {{count}} itself once its data arrives. i18next
@@ -105,9 +108,12 @@ function Github() {
   }, []);
 
   // Once the calendar has drawn its svg, scroll the surface to its end so the
-  // most recent weeks are the ones visible on narrow screens. The library
+  // most recent weeks are the ones visible on narrow screens, and note
+  // whether it scrolls at all: only then is the surface a Tab stop, since a
+  // keyboard user needs to focus a scroller to reach the older weeks (WCAG
+  // 2.1.1), while a calendar that fits would make it a dead stop. The library
   // swaps its loading skeleton for the real svg when data arrives, so each
-  // new svg node snaps again; the wrapper's ResizeObserver covers later
+  // new svg node is measured again; the wrapper's ResizeObserver covers later
   // viewport changes (rotation, block size switch, error text).
   useEffect(() => {
     if (!shouldMount) return undefined;
@@ -116,6 +122,7 @@ function Github() {
 
     const snapToEnd = () => {
       node.scrollLeft = node.scrollWidth;
+      setScrolls(node.scrollWidth - node.clientWidth > 1);
     };
 
     const started = Date.now();
@@ -152,30 +159,28 @@ function Github() {
           title={calendarLabel}
           lead={t("about.calendarLead")}
         />
-        <Reveal>
-          <div
-            ref={surfaceRef}
-            className="surface gh__surface"
-            // The surface scrolls horizontally, so keyboard users need to be
-            // able to focus it to reach the older weeks (WCAG 2.1.1).
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            tabIndex={0}
-            role="region"
-            aria-label={calendarLabel}
-          >
-            {shouldMount ? (
-              <GitHubCalendar
-                username="Zariffdn"
-                blockSize={compact ? 10 : 13}
-                blockMargin={compact ? 3 : 4}
-                theme={palette}
-                colorScheme={theme === "light" ? "light" : "dark"}
-                labels={labels}
-                errorMessage={t("about.calendarError")}
-                fontSize={14}
-              />
-            ) : null}
-          </div>
+        {/* The Reveal is the surface itself: one box that fades in, holds
+            the calendar and, while the calendar is wider than it, scrolls
+            and is a Tab stop (the same shape as CaseStudy/ScreensBand). */}
+        <Reveal
+          ref={surfaceRef}
+          className="surface gh__surface"
+          role="region"
+          aria-label={calendarLabel}
+          tabIndex={scrolls ? 0 : undefined}
+        >
+          {shouldMount ? (
+            <GitHubCalendar
+              username="Zariffdn"
+              blockSize={compact ? 10 : 13}
+              blockMargin={compact ? 3 : 4}
+              theme={palette}
+              colorScheme={theme === "light" ? "light" : "dark"}
+              labels={labels}
+              errorMessage={t("about.calendarError")}
+              fontSize={14}
+            />
+          ) : null}
         </Reveal>
       </Container>
     </Section>

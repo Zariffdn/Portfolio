@@ -20,7 +20,7 @@
     "availableForHire": "Open to full-time roles",
     "heroLine1": "Malaysia files its taxes",
     "heroLine2": "on an app I ship.",
-    "heroLead": "I am Zariff Danial, a Flutter developer at Zen Computer Systems and the sole mobile developer on LHDN’s MyTax, live on iOS, Android and Huawei AppGallery.",
+    "heroLead": "I am Zariff Danial, a Flutter developer at Zen Computer Systems and the sole mobile developer on LHDN's MyTax, live on iOS, Android and Huawei AppGallery.",
     "ctaWork": "See the work",
     "ctaContact": "Get in touch",
     "proofInstallsValue": "3M+",
@@ -37,7 +37,7 @@
     "workAll": "All projects",
     "aboutEyebrow": "About",
     "aboutTitle": "Mobile developer from Klang, shipping to three app stores.",
-    "aboutBody": "Day to day I work in Flutter and Dart, maintaining and extending MyTax for Malaysian taxpayers. Before that I fixed a broken TOTP feature in Bestinet’s R&D department. From earlier projects I am comfortable with C++, Python, JavaScript and PHP, with a side interest in front-end web.",
+    "aboutBody": "Day to day I work in Flutter and Dart, maintaining and extending MyTax for Malaysian taxpayers. Before that I fixed a broken TOTP feature in Bestinet's R&D department. From earlier projects I am comfortable with C++, Python, JavaScript and PHP, with a side interest in front-end web.",
     "aboutMore": "More about me",
     "ctaEyebrow": "Get in touch",
     "ctaTitle": "Hiring a Flutter or mobile developer?",
@@ -46,8 +46,7 @@
     "ctaEmail": "or email zariffdanial.zul@gmail.com",
     "phoneAlt1": "MyTax login screen in Bahasa Malaysia",
     "phoneAlt2": "MyTax screen showing the tax balance, the refund total and the e-Filing status",
-    "phoneAlt3": "MyTax ezHASiL services home screen",
-    "availableNotice": "3-month notice"
+    "phoneAlt3": "MyTax ezHASiL services home screen"
   },
   "backToTop": "Back to top",
   "toast": {
@@ -67,7 +66,7 @@
       "a": "Yes. I am open to remote, hybrid or on-site roles in Malaysia."
     },
     "visa": {
-      "q": "Visa or work authorization?",
+      "q": "Visa or work authorisation?",
       "a": "Malaysian citizen. No sponsorship needed for Malaysia-based roles."
     },
     "notice": {
@@ -96,7 +95,7 @@
     "messagePlaceholder": "Tell me a bit about what you have in mind…",
     "send": "Send message",
     "sending": "Sending…",
-    "sent": "Message sent, thanks!",
+    "sent": "Sent",
     "success": "Message sent! I'll get back to you soon.",
     "error": "Couldn't send your message. Please email me at",
     "title": "Get in touch"
@@ -135,7 +134,7 @@
     "tocExperience": "Experience",
     "tocEducation": "Education",
     "tocCertifications": "Certifications",
-    "tocSkills": "Skills",
+    "tocSkills": "Tools and languages",
     "tocFaq": "FAQ",
     "tocContact": "Contact",
     "experienceTitle": "Experience",
@@ -160,7 +159,7 @@
     "currentRole_company": "Zen Computer Systems",
     "currentRole_post": "(since November 2025), maintaining the MyTax mobile app under LHDN. Previously a Mobile Application Developer at",
     "currentRole_prevCompany": "Bestinet Sdn Bhd",
-    "currentRole_end": "(June to November 2025), in their R&D department, where I fixed and finished the TOTP feature in an internal Flutter authenticator app.",
+    "currentRole_end": "(June to November 2025), in their R&D department, where I fixed the TOTP feature in an internal Flutter authenticator app.",
     "metaLocationLabel": "Based in",
     "metaLocationValue": "Klang, Malaysia · GMT+8",
     "metaLanguagesLabel": "Languages",
@@ -273,7 +272,7 @@
     "noRepo": "No public repo",
     "productionBadge": "In production",
     "mytax_title": "MyTax",
-    "mytax_desc": "Malaysia’s official income tax filing app, used by taxpayers nationwide. I am its sole mobile developer, across iOS, Android and a separate HMS codebase for Huawei AppGallery. My fixes went out in four iOS releases in ten days in the 2026 filing season, and I moved the server’s push sends to FCM HTTP v1 and added topic broadcasts and Android image notifications in the app."
+    "mytax_desc": "Malaysia's official income tax filing app, used by taxpayers nationwide. I am its sole mobile developer on iOS and Android, and on the separate HMS codebase that ships to Huawei AppGallery. My fixes went out in four iOS releases in ten days in the 2026 filing season, and I moved the server's push sends to FCM HTTP v1 and added topic broadcasts and Android image notifications in the app."
   },
   "resume": {
     "download": "Download CV",
@@ -320,8 +319,9 @@
       "windows": "Daily driver OS",
       "powershell": "Default terminal",
       "chrome": "Primary browser",
-      "zephyrus": "Personal rig, where I built my early projects (baglock, bookstore). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
-      "ideapad": "Work daily driver at Zen for MyTax mobile dev. Ryzen 5 7520U · 16 GB RAM · Windows 11"
+      "zephyrus": "Personal rig, where I built my early projects (the bag lock, the bookstore). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
+      "ideapad": "Work daily driver at Zen for MyTax mobile dev. Ryzen 5 7520U · 16 GB RAM · Windows 11",
+      "macmini": "Shared office machine I use to ship the MyTax iOS releases to the App Store."
     }
   },
   "notFound": {
@@ -354,13 +354,13 @@
     "about": "About · Zariff Danial",
     "aboutDesc": "Zariff Danial, mobile developer at Zen Computer Systems. Flutter and Dart, currently working on the MyTax mobile app under LHDN.",
     "projects": "Projects · Zariff Danial",
-    "projectsDesc": "A selection of projects by Zariff Danial: mobile apps, embedded systems, and web applications.",
+    "projectsDesc": "A selection of projects by Zariff Danial: mobile apps, an embedded project and a web app.",
     "resume": "Resume · Zariff Danial",
     "resumeDesc": "One-page resume of Zariff Danial, Flutter and Dart mobile developer on MyTax at Zen Computer Systems. Read it here or download the PDF.",
     "uses": "Uses · Zariff Danial",
     "usesDesc": "The hardware, editor, languages, and tools Zariff Danial uses day to day for mobile development.",
     "mytax": "MyTax Case Study · Zariff Danial",
-    "mytaxDesc": "MyTax case study: Zariff Danial is sole mobile developer on Malaysia's official tax filing app at Zen Computer Systems, shipping to iOS, Android and AppGallery.",
+    "mytaxDesc": "MyTax case study: Zariff Danial is the sole mobile developer on Malaysia's official tax filing app at Zen Computer Systems, for iOS, Android and AppGallery.",
     "bestinet": "TOTP Authenticator Case Study · Zariff Danial",
     "bestinetDesc": "Bestinet case study: Zariff Danial traced a broken TOTP code generation path to two defects, fixed and hardened it, and built the Flutter authenticator screen.",
     "baglock": "Fingerprint Bag Lock Case Study · Zariff Danial",
@@ -371,7 +371,9 @@
     "silentSupportDesc": "Case study of Silent Support, Zariff Danial's React Native app: a calm reply at 0 ms, AI only within 2.5 s, a server-side tone filter and local-first sync."
   },
   "caseStudy": {
-    "englishOnly": "This case study is available in English only."
+    "englishOnly": "This case study is available in English only.",
+    "back": "Back to Projects",
+    "next": "Next case study"
   },
   "errorBoundary": {
     "eyebrow": "Error",

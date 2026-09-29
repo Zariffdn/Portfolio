@@ -1,8 +1,14 @@
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Container, Section, Chip, Reveal } from "../ui";
 
 // Jump links under the intro. Each id is the id of a <Section> further down
-// About (see About.jsx); the label keys live under about.toc*.
+// About (see About.jsx); the label keys live under about.toc*. Rendered as
+// <Link to="#id">, never as a native anchor: a native fragment jump pushes a
+// keyless history entry that React Router reports as a POP to the first entry
+// of the visit, which ScrollToTop would read as Back to that page and restore
+// its offset. A Link is a keyed PUSH, so ScrollToTop glides to the section,
+// focuses it, and Back returns to the chips.
 const TOC = [
   ["experience", "about.tocExperience"],
   ["education", "about.tocEducation"],
@@ -54,9 +60,9 @@ function AboutCard() {
               <ul className="chip-row about-toc__list" role="list">
                 {TOC.map(([id, key]) => (
                   <li key={id}>
-                    <a href={`#${id}`} className="chip about-toc__link">
+                    <Link to={`#${id}`} className="chip about-toc__link">
                       {t(key)}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -54,9 +54,11 @@ const NOT_LINKS = [
 
 const args = new Set(process.argv.slice(2));
 
+// A SOURCES entry that has gone missing is a mistake in this script, not a
+// site with fewer links, so it stops the run rather than shrinking it.
 function walk(entry) {
   const full = path.join(ROOT, entry);
-  if (!fs.existsSync(full)) return [];
+  if (!fs.existsSync(full)) throw new Error(`${entry} does not exist; update SOURCES in tools/qa/links.mjs`);
   if (fs.statSync(full).isFile()) return [entry];
   return fs
     .readdirSync(full, { withFileTypes: true })
@@ -182,6 +184,11 @@ async function main() {
     console.log(`\n${urls.length} external URLs`);
     return;
   }
+
+  // The site links out to dozens of places; collecting none means the
+  // pattern or the sources broke, and a run that checked nothing must not
+  // pass.
+  if (!urls.length) throw new Error(`no external URLs found in ${SOURCES.join(", ")}`);
 
   console.log(`Checking ${urls.length} external URLs from ${SOURCES.join(", ")}`);
   const results = new Map();

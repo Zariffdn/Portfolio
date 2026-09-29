@@ -11,13 +11,47 @@ import { readStorage, writeStorage } from "../utils/storage";
 //
 // { pathname, initial, restoreY }: `initial` marks the first page of the
 // visit, which keeps its natural focus (the skip link stays the first Tab
-// stop); `restoreY` is set on Back and Forward to a page the reader had
-// scrolled.
+// stop); `restoreY` is set on Back, Forward or a reload to a page the reader
+// had scrolled.
 let pendingEntry = null;
 
+// The pages currently mounted, each with a run() that takes the pending
+// entry when it is theirs. A page does that from its own mount effect;
+// setPending() also calls it, for the one case where no page mounts: a Back
+// (or a link to the page itself) that lands inside the old page's exit
+// animation. AnimatePresence then cancels the exit and keeps that page, with
+// the location it was rendered with, so no effect of its own would re-run,
+// and an entry left pending would stop its scroll positions being saved.
+const mountedPages = new Set();
+
+function setPending(entry) {
+  pendingEntry = entry;
+  for (const page of mountedPages) {
+    if (page.pathname === entry.pathname) page.run();
+  }
+}
+
+// True once the page for this entry has mounted and taken its scroll
+// position (usePageEntry clears the pending entry when its work is done).
+// Until then the window still shows the page before it, so the offset is not
+// this entry's and is not saved as such: a chunk that fails after a redeploy
+// reloads the page while the new entry is still pending, and a reader can
+// click a second link before the first page has mounted.
+function entered(entry) {
+  return !(pendingEntry && pendingEntry.pathname === entry.pathname);
+}
+
 // Where each history entry was scrolled to when the reader left it, keyed by
-// React Router's location.key and mirrored to sessionStorage so a reload keeps
-// them. main.jsx switches the browser's own restoration off.
+// React Router's location.key and mirrored to sessionStorage so a reload
+// keeps them. main.jsx switches the browser's own restoration off.
+//
+// The router keys only the entries it creates. Every other entry reports the
+// key "default": the first page of each document (a typed URL, a link from
+// another site, a reload) and any entry a native fragment anchor adds, which
+// is why every same-page anchor in the app is a <Link to="#x">. A position is
+// saved with its pathname, and the first page of a document takes a saved
+// position only when the browser brought the document back, so two "default"
+// entries never open at the other one's offset.
 const POSITIONS_KEY = "scroll-positions";
 const MAX_POSITIONS = 50;
 
@@ -32,12 +66,32 @@ function loadPositions() {
 
 const positions = new Map(loadPositions());
 
-function savePosition(key, y) {
+function savePosition(key, pathname, y) {
   if (!key) return;
   positions.delete(key);
-  positions.set(key, Math.round(y));
+  positions.set(key, [pathname, Math.round(y)]);
   while (positions.size > MAX_POSITIONS) positions.delete(positions.keys().next().value);
   writeStorage("sessionStorage", POSITIONS_KEY, JSON.stringify([...positions]));
+}
+
+// The position saved for this entry, if it was saved on this pathname. An
+// entry saved before positions carried a pathname is a bare number; ignored.
+function savedPosition(key, pathname) {
+  const saved = positions.get(key);
+  return Array.isArray(saved) && saved[0] === pathname ? saved[1] : undefined;
+}
+
+// True when the browser brought this document back (a reload, or Back or
+// Forward from another site): the one case where its first entry is a page
+// the reader had already scrolled. A typed URL, a link from elsewhere or a
+// duplicated tab is a new entry, although it reports the same key.
+function documentRestored() {
+  try {
+    const [nav] = window.performance.getEntriesByType("navigation");
+    return Boolean(nav) && (nav.type === "reload" || nav.type === "back_forward");
+  } catch {
+    return false;
+  }
 }
 
 const HASH_POLL_MS = 80;
@@ -122,45 +176,75 @@ function scrollToHash(hash, behavior, done) {
   };
 }
 
-// Called by the page wrapper of every route. Runs once the page has mounted;
-// does nothing unless ScrollToTop recorded a visit to this pathname. The
-// pending entry is cleared only when the work is done, so StrictMode's
-// simulated unmount (which cancels the hash polling) simply starts it again.
+// Takes the pending entry for this page, if there is one: the scroll and
+// focus of a page that has just mounted (or was kept, see setPending).
+// Returns a cancel function while the hash target is still being polled for.
+// The pending entry is cleared only when the work is done, so StrictMode's
+// simulated unmount (which cancels the polling) simply starts it again.
+function takeEntry(pathname, hash) {
+  const entry = pendingEntry;
+  if (!entry || entry.pathname !== pathname) return undefined;
+
+  const finish = () => {
+    if (pendingEntry === entry) pendingEntry = null;
+  };
+
+  // Back, Forward or a reload to an entry the reader had scrolled: put it
+  // back where it was, hash or not. The hash target only matters the first
+  // time the entry is reached, as ScrollToTop already does for a same-page
+  // hash.
+  if (entry.restoreY != null) {
+    restore(entry.restoreY, !entry.initial);
+    finish();
+    return undefined;
+  }
+
+  if (!hash) {
+    if (entry.initial) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    else enterAtTop();
+    finish();
+    return undefined;
+  }
+
+  // A deep link into another page: start from the top so the page never
+  // shows at the old page's offset while the target mounts, then jump.
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  return scrollToHash(hash, "instant", (found) => {
+    if (!found && !entry.initial) enterAtTop();
+    finish();
+  });
+}
+
+// Called by the page wrapper of every route. Registers the page while it is
+// mounted and takes its entry at once; setPending() runs it again should an
+// entry for this pathname be recorded while the page is still up. pathname
+// never changes for a mounted page (its <Routes> is keyed on it); a later
+// hash change on the same page finds no pending entry and is left to
+// ScrollToTop.
 export function usePageEntry() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
 
   useEffect(() => {
-    const entry = pendingEntry;
-    if (!entry || entry.pathname !== pathname) return undefined;
-
-    const finish = () => {
-      if (pendingEntry === entry) pendingEntry = null;
+    let cancel = null;
+    const page = {
+      pathname,
+      run() {
+        if (cancel) cancel();
+        cancel = takeEntry(pathname, hash) || null;
+      },
     };
-
-    if (!hash) {
-      if (entry.restoreY != null) restore(entry.restoreY, !entry.initial);
-      else if (entry.initial) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      else enterAtTop();
-      finish();
-      return undefined;
-    }
-
-    // A deep link into another page: start from the top so the page never
-    // shows at the old page's offset while the target mounts, then jump.
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    return scrollToHash(hash, "instant", (found) => {
-      if (!found && !entry.initial) enterAtTop();
-      finish();
-    });
-    // pathname never changes for a mounted page (its <Routes> is keyed on
-    // it). A later hash change on the same page finds no pending entry and
-    // is left to ScrollToTop.
-  }, [pathname, hash]);
+    mountedPages.add(page);
+    page.run();
+    return () => {
+      mountedPages.delete(page);
+      if (cancel) cancel();
+    };
+  }, [pathname, hash, key]);
 }
 
 // Watches the location. A new pathname (or the first load) is handed to the
-// incoming page through pendingEntry. A #hash change within the same page
-// scrolls to the target here, gliding unless reduced motion is on.
+// incoming page through pendingEntry. A #hash on the same page, new or
+// repeated, scrolls to the target here, gliding unless reduced motion is on.
 function ScrollToTop() {
   const { pathname, hash, key } = useLocation();
   const navigationType = useNavigationType();
@@ -173,7 +257,8 @@ function ScrollToTop() {
   // Remember where the current page is when the tab is left or reloaded.
   useEffect(() => {
     const onHide = () => {
-      if (last.current) savePosition(last.current.key, window.scrollY);
+      const entry = last.current;
+      if (entry && entered(entry)) savePosition(entry.key, entry.pathname, window.scrollY);
     };
     window.addEventListener("pagehide", onHide);
     return () => window.removeEventListener("pagehide", onHide);
@@ -184,20 +269,25 @@ function ScrollToTop() {
     if (!last.current || last.current.key !== key) {
       // Nothing has scrolled yet (restoration is manual and the old page is
       // still on screen), so this is where the reader left that entry.
-      if (last.current) savePosition(last.current.key, window.scrollY);
+      const left = last.current;
+      if (left && entered(left)) savePosition(left.key, left.pathname, window.scrollY);
       from.current = last.current;
       last.current = current;
     }
     const previous = from.current;
-    const restoreY = navigationType === "POP" ? positions.get(key) : undefined;
+    const restoreY = navigationType === "POP" ? savedPosition(key, pathname) : undefined;
 
     if (!previous) {
-      pendingEntry = { pathname, initial: true, restoreY };
+      setPending({
+        pathname,
+        initial: true,
+        restoreY: documentRestored() ? restoreY : undefined,
+      });
       return undefined;
     }
 
     if (previous.pathname !== pathname) {
-      pendingEntry = { pathname, initial: false, restoreY };
+      setPending({ pathname, initial: false, restoreY });
       return undefined;
     }
 
@@ -206,12 +296,14 @@ function ScrollToTop() {
       return undefined;
     }
 
-    if (previous.hash === hash) return undefined;
-
     if (!hash) {
+      // A Link to the page the reader is already on, no hash: nothing to do.
+      if (previous.hash === hash) return undefined;
       enterAtTop();
       return undefined;
     }
+    // A new or repeated #hash on the same page (a chip clicked again after
+    // scrolling away) scrolls to the target, as a native anchor would.
     return scrollToHash(hash, scrollBehavior(), () => {});
   }, [pathname, hash, key, navigationType]);
 

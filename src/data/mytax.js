@@ -51,11 +51,13 @@ export const storeLinks = [
 
 // Press that names the MyTax mobile app itself, not only the MyTax web portal,
 // from November 2025 on (each was checked for an app sentence in September
-// 2026). `quote` is that sentence as published. For an article with an
-// English and a Malay edition, titleOriginal, urlOriginal and quoteOriginal
-// are the Malay one, shown when the site is in Bahasa Malaysia. For a
-// Malay-only article, `title` is an English gloss, titleOriginal the real
-// headline, and quoteOriginal is shown in both languages.
+// 2026). `quote` is that sentence as published. The case study is English
+// only, so for an article with an English and a Malay edition, titleOriginal,
+// urlOriginal and quoteOriginal record the Malay one for provenance and are
+// not rendered; a urlOriginal is also how the page tells that the article has
+// an English edition. For a Malay-only article (no urlOriginal), the page
+// shows titleOriginal as the headline with `title`, an English gloss, under
+// it, and quoteOriginal as the quote.
 export const press = [
   {
     id: "bernama-kemas-kini-2026",

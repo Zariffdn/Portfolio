@@ -232,9 +232,13 @@
   color: var(--accent-text);
 }
 
+/* The index is a label, not part of the link's bold display text: 500 is
+   the heaviest weight fonts.css declares for the mono face, and a heavier
+   request would have the browser embolden it itself. */
 .menu__index {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
+  font-weight: 500;
   color: var(--text-3);
   letter-spacing: 0.08em;
 }

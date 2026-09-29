@@ -45,10 +45,11 @@ function RouteErrorFallback() {
   );
 }
 
-// Wraps the routes inside <main>. `resetKey` is the pathname: navigating
-// anywhere clears the error and renders the routes again. It resets through
-// state rather than a React key, so a normal navigation does not remount
-// the routes and cut off the page exit animation.
+// Wraps the routes inside <main>. `resetKey` is the location key: any
+// navigation, even to the pathname that failed, clears the error and renders
+// the routes again. It resets through state rather than a React key, so a
+// normal navigation does not remount the routes and cut off the page exit
+// animation.
 export class RouteErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -59,17 +60,17 @@ export class RouteErrorBoundary extends Component {
     return { failed: true };
   }
 
+  // On a navigation, a route whose chunk failed earlier gets a fresh lazy
+  // here, before the routes render, so the visit asks for the chunk (and a
+  // reload) again instead of reading the rejected result. This runs after
+  // the failed render is over, which is what lazyPreload requires, and it is
+  // idempotent, so React repeating it costs nothing.
   static getDerivedStateFromProps(props, state) {
     if (props.resetKey !== state.resetKey) {
+      retryFailedRoutes();
       return { failed: false, resetKey: props.resetKey };
     }
     return null;
-  }
-
-  // After a navigation, a route whose chunk failed earlier gets a fresh lazy,
-  // so a later visit to it asks for the chunk (and a reload) again.
-  componentDidUpdate(prevProps) {
-    if (prevProps.resetKey !== this.props.resetKey) retryFailedRoutes();
   }
 
   render() {
@@ -95,7 +96,7 @@ export class RootErrorBoundary extends Component {
   render() {
     if (!this.state.failed) return this.props.children;
     return (
-      <main className="fatal">
+      <main className="fatal" lang="en">
         <h1>Something went wrong</h1>
         <p>
           This page hit an error it could not recover from. Reloading usually

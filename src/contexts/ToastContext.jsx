@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 
 const ToastContext = createContext({ showToast: () => {} });
 
@@ -20,11 +20,11 @@ export function ToastProvider({ children }) {
     [dismiss]
   );
 
-  return (
-    <ToastContext.Provider value={{ showToast, toasts, dismiss }}>
-      {children}
-    </ToastContext.Provider>
-  );
+  // Memoised for the same reason as the theme value: the object changes only
+  // when a toast comes or goes.
+  const value = useMemo(() => ({ showToast, toasts, dismiss }), [showToast, toasts, dismiss]);
+
+  return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
 }
 
 export const useToast = () => useContext(ToastContext);

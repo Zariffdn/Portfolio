@@ -28,11 +28,12 @@ export default [
       // comments and exercised by the app-level test.
       "react/prop-types": "off",
 
-      // WebKit strips list semantics from any ul with list-style: none, so an
-      // unbulleted list has to say role="list" to stay a list in VoiceOver.
-      // base.css carries a ul[role="list"] reset for exactly this, and every
-      // unbulleted list in src opts in. The default rule calls that redundant.
-      "jsx-a11y/no-redundant-roles": ["error", { ul: ["list"] }],
+      // WebKit strips list semantics from a ul or ol whose markers are hidden,
+      // so an unbulleted list has to say role="list" to stay a list in
+      // VoiceOver. base.css carries a [role="list"] reset for both elements,
+      // and the About and case study lists opt in. The default rule calls
+      // that redundant.
+      "jsx-a11y/no-redundant-roles": ["error", { ul: ["list"], ol: ["list"] }],
     },
     settings: {
       // Pinned rather than "detect": the plugin's detector calls a context

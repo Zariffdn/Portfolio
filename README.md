@@ -6,7 +6,7 @@ Live at [zariffdanial.vercel.app](https://zariffdanial.vercel.app/).
 
 ![The home page hero: "Malaysia files its taxes on an app I ship." beside MyTax screens in phone frames](public/og/home.jpg)
 
-A personal site for a Flutter developer: the MyTax case study, case studies on the Bestinet TOTP work, Silent Support and the fingerprint bag lock final year project, selected projects, a one-page resume, and an about page with experience, education, certifications and a contact form. Dark and light themes, English and Bahasa Malaysia (the four case studies are English only).
+A personal site for a Flutter developer: four case studies (MyTax, the Bestinet TOTP work, Silent Support and the fingerprint bag lock final year project), selected projects, a one-page resume, and an about page with experience, education, certifications and a contact form. Dark and light themes, English and Bahasa Malaysia (the four case studies are English only).
 
 ## Stack
 
@@ -26,14 +26,14 @@ npm run build      # production build to dist/
 npm run preview    # serve dist/ locally
 npm run lint
 npm test           # unit tests and the contract checks in src/contract.test.js
-npm run qa         # build first; screenshots every route in both themes, both viewports and both languages, then runs axe
+npm run qa         # build first; screenshots every route in both themes and both viewports in English, plus Bahasa Malaysia on the dark theme, then runs axe
 ```
 
 Node 22 or newer.
 
 ## Checks
 
-- Every push and pull request runs lint, tests, the build and the browser sweep ([quality.yml](.github/workflows/quality.yml)).
+- Every push to `main` and every pull request runs lint, tests, the build and the browser sweep ([quality.yml](.github/workflows/quality.yml)).
 - Every Monday, [weekly.yml](.github/workflows/weekly.yml) checks every external link (`node tools/qa/links.mjs`) and what the live site serves for each route (`node tools/qa/production.mjs`).
 - Dependabot opens dependency updates monthly.
 

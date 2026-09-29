@@ -4,7 +4,8 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/resume.pdf", "destination": "/Zariff-Danial-Resume.pdf", "permanent": false },
-    { "source": "/assets/Zariff-Danial-Resume-:hash.pdf", "destination": "/Zariff-Danial-Resume.pdf", "permanent": true }
+    { "source": "/assets/Zariff-Danial-Resume-:hash.pdf", "destination": "/Zariff-Danial-Resume.pdf", "permanent": true },
+    { "source": "/preview.jpg", "destination": "/og/home.jpg", "permanent": true }
   ],
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },

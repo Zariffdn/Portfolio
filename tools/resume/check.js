@@ -86,7 +86,9 @@ function linesFromItems(items) {
   if (!String(info.Language || "").trim()) problems.push("PDF has no document language");
   if (!markInfo || !markInfo.Marked) problems.push("PDF is not tagged (no MarkInfo Marked true)");
   if (!structured) problems.push("a page has no structure tree");
-  if (/[–—]/.test(all)) problems.push("contains an em or en dash");
+  // Built from char codes so this file never carries the characters itself.
+  const dashes = new RegExp("[" + String.fromCharCode(0x2013, 0x2014) + "]");
+  if (dashes.test(all)) problems.push("contains an em or en dash");
   const spaced = all.match(/\b(?:[A-Z] ){3,}[A-Z]\b/g);
   if (spaced) problems.push(`letter-spaced words extracted with gaps: ${[...new Set(spaced)].join(", ")}`);
   // Each heading on its own line, and in reading order.

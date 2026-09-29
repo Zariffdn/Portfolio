@@ -11,13 +11,19 @@
   <meta name="theme-color" content="#faf8fd" media="(prefers-color-scheme: light)" />
   <script>
     (function () {
-      try {
-        var stored = window.localStorage.getItem("theme");
-        var theme = (stored === "light" || stored === "dark")
-          ? stored
-          : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-        document.documentElement.dataset.theme = theme;
-      } catch (e) {}
+      // Same order as ThemeContext: the stored choice, else the OS preference.
+      // A browser that blocks site data throws on localStorage itself, and
+      // that must not skip the OS check, or the first paint would be dark
+      // and React would flip it to light a moment later.
+      var stored = null;
+      try { stored = window.localStorage.getItem("theme"); } catch (e) {}
+      var theme = (stored === "light" || stored === "dark") ? stored : null;
+      if (!theme) {
+        try {
+          theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        } catch (e) { theme = "dark"; }
+      }
+      document.documentElement.dataset.theme = theme;
     })();
   </script>
   <!-- Titles and descriptions below are rewritten at build time from meta.* in
@@ -27,10 +33,14 @@
   <meta name="description" content="Zariff Danial, Flutter and Dart developer in Klang, Selangor. Sole mobile developer on MyTax, Malaysia's official tax filing app, with 3M+ lifetime installs.">
   <meta name="author" content="Zariff Danial">
   <link rel="canonical" href="https://zariffdanial.vercel.app/">
-  <!-- The fonts are self-hosted (src/styles/fonts.css). The hero heading's
-       face is fetched at once rather than after the stylesheet is parsed;
-       Vite rewrites this href to the fingerprinted file at build time. -->
+  <!-- The fonts are self-hosted (src/styles/fonts.css). The three latin
+       faces every page paints with (display, body, labels) are fetched at
+       once rather than after the stylesheet is parsed and React has
+       committed; Vite rewrites these hrefs to the fingerprinted files at
+       build time. -->
   <link rel="preload" href="/src/Assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/src/Assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/src/Assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="manifest" href="/manifest.json" />
   <title>Zariff Danial · Mobile Developer (Flutter)</title>
 
@@ -105,7 +115,7 @@
 <body>
   <noscript>
     <p style="max-width: calc(var(--container-narrow) + 2 * var(--gutter)); margin: 0 auto; padding: var(--s-12) var(--gutter); color: var(--text-2)">
-      Zariff Danial is a Solutions Developer (Flutter) at Zen Computer Systems and the sole mobile developer on MyTax, Malaysia's official tax filing app (3M+ lifetime installs). This site needs JavaScript to run. You can email him at <a href="mailto:zariffdanial.zul@gmail.com" style="text-decoration: underline">zariffdanial.zul@gmail.com</a>, find him on <a href="https://www.linkedin.com/in/zariffdanial/" style="text-decoration: underline">linkedin.com/in/zariffdanial</a> and <a href="https://github.com/Zariffdn" style="text-decoration: underline">github.com/Zariffdn</a>, or download his <a href="/Zariff-Danial-Resume.pdf" style="text-decoration: underline">resume (PDF)</a>.
+      Zariff Danial is a Solutions Developer (Mobile App Developer) at Zen Computer Systems, working in Flutter and Dart, and the sole mobile developer on MyTax, Malaysia's official tax filing app (3M+ lifetime installs). This site needs JavaScript to run. You can email him at <a href="mailto:zariffdanial.zul@gmail.com" style="text-decoration: underline">zariffdanial.zul@gmail.com</a>, find him on <a href="https://www.linkedin.com/in/zariffdanial/" style="text-decoration: underline">linkedin.com/in/zariffdanial</a> and <a href="https://github.com/Zariffdn" style="text-decoration: underline">github.com/Zariffdn</a>, or download his <a href="/Zariff-Danial-Resume.pdf" style="text-decoration: underline">resume (PDF)</a>.
     </p>
   </noscript>
   <div id="root"></div>

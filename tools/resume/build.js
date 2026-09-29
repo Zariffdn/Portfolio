@@ -69,7 +69,29 @@ const META = {
   const page = await browser.newPage();
   await page.goto("file://" + htmlPath, { waitUntil: "load" });
   // Web fonts must be in before the PDF is rasterised, or Chrome falls back.
+  // resume.html takes them from Google Fonts with display=swap, so offline the
+  // page renders in Arial and fonts.ready still resolves; ask for each face
+  // the resume uses and require one that actually loaded (document.fonts
+  // .check() is no test: it answers true when no face matches at all).
   await page.evaluate(() => document.fonts.ready);
+  const missing = await page.evaluate(async () => {
+    const wanted = [
+      '800 1em "Bricolage Grotesque"',
+      '700 1em "Bricolage Grotesque"',
+      '400 1em "Inter"',
+      '500 1em "Inter"',
+      '600 1em "Inter"',
+    ];
+    const lost = [];
+    for (const font of wanted) {
+      const faces = await document.fonts.load(font).catch(() => []);
+      if (!faces.some((face) => face.status === "loaded")) lost.push(font);
+    }
+    return lost;
+  });
+  if (missing.length) {
+    throw new Error(`fonts did not load (network?), so the PDF would be in a fallback font: ${missing.join(", ")}`);
+  }
   await page.waitForTimeout(150);
 
   await page.emulateMedia({ media: "print" });

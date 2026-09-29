@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { Container, Section, Chip, Reveal } from "./ui";
-import { Block, CaseStudyEnd, CaseStudyTop } from "./CaseStudy";
+import { Container, Section, Reveal } from "./ui";
+import { Block, CaseStudyEnd, CaseStudyTop, Moment, Trace } from "./CaseStudy";
 import cardArt from "../Assets/Projects/bestinet.svg";
 import usePageMeta from "../hooks/usePageMeta";
 import "../styles/casestudy.css";
 
 // The generation chain, top to bottom, in the order the trace walked it.
-// `defect` marks the two steps that were actually broken.
+// `flag: "defect"` marks the two steps that were actually broken.
 const trace = [
   {
     title: "View layer",
@@ -14,7 +14,7 @@ const trace = [
       "The authenticator screen mounts and binds to its GetX controller, " +
       "expecting the controller to hold a code it can show. It never called " +
       "the controller's init routine, so nothing below this line ever ran.",
-    defect: true,
+    flag: "defect",
   },
   {
     title: "Controller init",
@@ -22,7 +22,6 @@ const trace = [
       "The init routine is where the key lookup and code generation are " +
       "started. Once the view actually called it, it ran, and the trace " +
       "moved on to the next failure.",
-    defect: false,
   },
   {
     title: "Secure-storage read",
@@ -30,14 +29,13 @@ const trace = [
       "The routine reads the device key and the secret key from " +
       "flutter_secure_storage. An invalid type cast on that read threw on " +
       "any device that was already enrolled.",
-    defect: true,
+    flag: "defect",
   },
   {
     title: "Error handler",
     text:
       "The throw landed in a catch block that swallowed it. No crash, no " +
       "message, just an empty space where the code should have been.",
-    defect: false,
   },
   {
     title: "Code generation",
@@ -45,12 +43,10 @@ const trace = [
       "The generator computes the time-based code from the secret and the " +
       "current 30-second window. A failed lookup could still reach it and " +
       "generate from an empty key.",
-    defect: false,
   },
   {
     title: "Displayed code",
     text: "The screen renders whatever the controller holds. Nothing in, nothing out.",
-    defect: false,
   },
 ];
 
@@ -98,6 +94,10 @@ function BestinetCaseStudy() {
                 <dd>June 2025 to November 2025</dd>
               </div>
               <div className="cs-meta__span">
+                <dt>Status</dt>
+                <dd>Still in development when my placement ended</dd>
+              </div>
+              <div className="cs-meta__span">
                 <dt>Programme</dt>
                 <dd>Khazanah K-Youth Development Programme, through Aisling Group</dd>
               </div>
@@ -137,18 +137,7 @@ function BestinetCaseStudy() {
       </Section>
 
       {/* 4. Headline moment */}
-      <Section tight>
-        <Container>
-          <Reveal>
-            <div className="cs-moment">
-              <p className="cs-moment__line">Two defects, one silent failure.</p>
-              <span className="eyebrow eyebrow--plain cs-moment__label">
-                What the trace found
-              </span>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      <Moment label="What the trace found">Two defects, one silent failure.</Moment>
 
       {/* 5. Body */}
       <Section hairline>
@@ -169,11 +158,7 @@ function BestinetCaseStudy() {
                   I joined the department as a mobile application developer
                   on a placement through the Khazanah K-Youth Development
                   Programme. My agreement was with Aisling Group, its
-                  programme partner, and Bestinet hosted the placement. The
-                  remit was narrow and clear: find out why the code never
-                  appeared, make it generate and display correctly, and then
-                  build the authenticator screen to a design that was
-                  supplied to me.
+                  programme partner, and Bestinet hosted the placement.
                 </p>
               </div>
             </Block>
@@ -187,27 +172,7 @@ function BestinetCaseStudy() {
                   checked each step in turn. Two of them were broken.
                 </p>
               </div>
-              <ol className="cs-trace">
-                {trace.map((step, i) => (
-                  <li
-                    key={step.title}
-                    className={`cs-trace__step ${step.defect ? "cs-trace__step--defect" : ""}`.trim()}
-                  >
-                    <span className="cs-trace__index" aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="cs-trace__body">
-                      <div className="cs-trace__head">
-                        <h3 className="cs-trace__title">{step.title}</h3>
-                        {step.defect && (
-                          <Chip className="cs-trace__flag">Defect</Chip>
-                        )}
-                      </div>
-                      <p className="cs-trace__text text-2">{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <Trace steps={trace} />
             </Block>
 
             <Block index="03" title="The fixes">
