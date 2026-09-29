@@ -6,7 +6,8 @@ import reloadOnce from "./reload";
 // route that failed once would show its error on every later visit without
 // asking for another reload. The swap must not happen while React is still
 // rendering the failure (a fresh lazy there is retried at once, forever), so
-// RouteErrorBoundary calls retryFailedRoutes() after a navigation instead.
+// RouteErrorBoundary calls retryFailedRoutes() when a navigation resets it,
+// before the routes render again.
 const failedRoutes = new Set();
 
 export function retryFailedRoutes() {
@@ -22,8 +23,23 @@ export function retryFailedRoutes() {
 // When a chunk request fails, the warm-ups (App.jsx) simply swallow the
 // error. A render that needs the chunk asks reloadOnce() to reload the page
 // (usually a tab left open across a redeploy) and keeps the fallback up until
-// the reload lands. If it cannot reload, the error reaches the route's error
-// boundary.
+// the reload lands. If it cannot reload, or the module itself threw, the
+// error reaches the route's error boundary.
+
+// A chunk that could not be fetched (a name gone stale after a redeploy, a
+// lost connection) rejects with a TypeError in every engine, and a stylesheet
+// chunk that failed rejects with Vite's own message. Anything else is the
+// module throwing as it runs, which a reload would not fix: that error goes
+// to the boundary at once, with its message intact.
+function isChunkLoadError(error) {
+  if (error instanceof TypeError) return true;
+  return (
+    Boolean(error) &&
+    typeof error.message === "string" &&
+    error.message.startsWith("Unable to preload CSS")
+  );
+}
+
 export default function lazyPreload(load) {
   let Loaded = null;
   let pending = null;
@@ -47,7 +63,7 @@ export default function lazyPreload(load) {
 
   const renderLoad = () =>
     preload().catch((error) => {
-      if (reloadOnce()) return new Promise(() => {});
+      if (isChunkLoadError(error) && reloadOnce()) return new Promise(() => {});
       failedRoutes.add(reset);
       throw error;
     });

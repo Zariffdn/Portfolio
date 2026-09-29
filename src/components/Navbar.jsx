@@ -29,15 +29,16 @@ const FOCUSABLE = "a[href], button:not([disabled])";
 const isRendered = (el) => el.getClientRects().length > 0;
 
 // onMenuChange(open) tells App when the overlay opens and closes, so it can
-// make the page behind it inert. onResumeIntent warms the resume chunk when a
-// pointer reaches, or focus lands on, a Resume link.
-function NavBar({ onMenuChange, onResumeIntent }) {
+// make the page behind it inert. resumeIntent holds the pointer and focus
+// handlers App gives the Resume links, which warm the resume chunk on intent.
+function NavBar({ onMenuChange, resumeIntent }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   // Mirrors `open` synchronously so close() knows whether the overlay was
   // actually showing when it is called from a route-change effect.
   const openRef = useRef(false);
   const burgerRef = useRef(null);
+  const navRef = useRef(null);
   const actionsRef = useRef(null);
   const menuRef = useRef(null);
   const { theme, toggleTheme } = useTheme();
@@ -74,16 +75,27 @@ function NavBar({ onMenuChange, onResumeIntent }) {
 
   // Every close path (Escape, link activation, the burger, route change)
   // goes through here so focus returns to the burger that opened the menu.
-  // Route changes that happen while the menu is shut leave focus alone, so
-  // the new page can take it (usePageEntry in ScrollToTop).
+  // When the burger is not on screen (the window grew past the 768px
+  // breakpoint, or a phone turned to landscape, which is what closed the
+  // menu), focus goes to the current page's link in the desktop nav, or to
+  // the wordmark, rather than falling to the body with the menu link it was
+  // on. Route changes that happen while the menu is shut leave focus alone,
+  // so the new page can take it (usePageEntry in ScrollToTop).
   const close = useCallback(() => {
     const wasOpen = openRef.current;
     openRef.current = false;
     setOpen(false);
     if (onMenuChange) onMenuChange(false);
-    if (wasOpen && burgerRef.current && isRendered(burgerRef.current)) {
-      burgerRef.current.focus();
+    if (!wasOpen) return;
+    const burger = burgerRef.current;
+    const nav = navRef.current;
+    let target = burger && isRendered(burger) ? burger : null;
+    if (!target && nav) {
+      target =
+        nav.querySelector('.nav__link[aria-current="page"]') ||
+        nav.querySelector(".wordmark");
     }
+    if (target) target.focus();
   }, [onMenuChange]);
 
   // Rotating a phone to landscape, or widening the window, hides the burger
@@ -159,10 +171,7 @@ function NavBar({ onMenuChange, onResumeIntent }) {
   }, [open, close]);
 
   // Only the resume is warmed on intent; App warms the other routes at idle.
-  const intentProps = (to) =>
-    to === "/resume" && onResumeIntent
-      ? { onPointerEnter: onResumeIntent, onFocus: onResumeIntent }
-      : {};
+  const intentProps = (to) => (to === "/resume" && resumeIntent ? resumeIntent : {});
 
   const themeButton = (
     <button
@@ -198,7 +207,7 @@ function NavBar({ onMenuChange, onResumeIntent }) {
   return (
     <>
       <header className={`nav ${scrolled ? "nav--scrolled" : ""} ${open ? "nav--menu-open" : ""}`.trim()}>
-        <nav className="container nav__inner" aria-label={t("navbar.menu", "Main")}>
+        <nav className="container nav__inner" aria-label={t("navbar.menu", "Main")} ref={navRef}>
           <Wordmark aria-label={t("navbar.wordmarkAria")} />
 
           <ul className="nav__links">

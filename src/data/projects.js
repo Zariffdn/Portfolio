@@ -1,12 +1,14 @@
 import baglock from "../Assets/Projects/baglock.svg";
 import bookstore from "../Assets/Projects/bookstore.webp";
-import silentShot from "../Assets/featured/silent-1.webp";
-import halalSajiShot from "../Assets/featured/halalsaji-1.webp";
 import bestinet from "../Assets/Projects/bestinet.svg";
-import mytaxShot from "../Assets/featured/pic 2.webp";
+import { mytaxScreens, silentSupportScreens, halalSajiScreens } from "./screenshots";
 
 // Single source of truth for the project list. Copy lives in the locale
 // files as projects.<id>_title and projects.<id>_desc.
+//
+// Phone shots come from the screenshot registry (data/screenshots.js), so a
+// card's image is the same fingerprinted file the case study shows and
+// PhoneFrame finds its 300px rendition through srcSetFor().
 //
 // imgKind: "phone" renders the image inside a PhoneFrame (portrait shots).
 // imgFit:  "cover" for card art drawn at 16:10, "contain" for mockup PNGs.
@@ -15,7 +17,7 @@ export const projects = [
   {
     id: "mytax",
     category: "mobile",
-    img: mytaxShot,
+    img: mytaxScreens[1],
     imgKind: "phone",
     featured: true,
     production: true,
@@ -25,7 +27,7 @@ export const projects = [
   {
     id: "silentsupport",
     category: "mobile",
-    img: silentShot,
+    img: silentSupportScreens[0],
     imgKind: "phone",
     personal: true,
     caseStudy: "/silent-support",
@@ -36,7 +38,7 @@ export const projects = [
     // Private repository, so the card shows "No public repo".
     id: "halalsaji",
     category: "mobile",
-    img: halalSajiShot,
+    img: halalSajiScreens[0],
     imgKind: "phone",
     personal: true,
     tags: ["Flutter", "Dart", "Provider", "Firestore", "Geolocator"],

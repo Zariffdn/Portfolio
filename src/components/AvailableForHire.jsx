@@ -2,24 +2,15 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 // Green "open to work" pill shown at the top of the home hero.
-// Styled in styles/home.css, which the Home route imports.
+// Styled in styles/home.css, which the Home route imports. The notice period
+// is left to the About aside, the FAQ and the closing CTA band, so the first
+// line a visitor reads is the offer itself.
 function AvailableForHire() {
   const { t } = useTranslation();
   return (
-    <Link
-      to="/about#contact"
-      className="available-badge"
-      aria-label={`${t("home.availableForHire")}, ${t("home.availableNotice")}`}
-    >
+    <Link to="/about#contact" className="available-badge">
       <span className="available-dot" aria-hidden="true" />
-      {/* Two parts that wrap as units, so a narrow screen breaks the badge
-          between them rather than inside either. */}
-      <span className="available-badge__text">
-        <span className="available-badge__part">{t("home.availableForHire")}</span>{" "}
-        <span className="available-badge__part available-badge__notice">
-          {t("home.availableNotice")}
-        </span>
-      </span>
+      {t("home.availableForHire")}
     </Link>
   );
 }

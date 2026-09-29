@@ -1,7 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { FiGithub } from "react-icons/fi";
-import { Container, Section, Chip, Reveal } from "./ui";
-import { Block, CaseStudyEnd, CaseStudyTop } from "./CaseStudy";
+import { Container, Section, Reveal } from "./ui";
+import {
+  Block,
+  CaseStudyEnd,
+  CaseStudyTop,
+  CodeFigure,
+  Moment,
+  Trace,
+} from "./CaseStudy";
 import photo from "../Assets/Projects/baglock.jpg";
 import schematic from "../Assets/Projects/baglock-schematic.jpg";
 import usePageMeta from "../hooks/usePageMeta";
@@ -10,18 +17,18 @@ import "../styles/casestudy.css";
 const REPO = "https://github.com/Zariffdn/Anti-theft-fingerprint-baglock";
 
 // The firmware's path from power-on to the owner's phone, in order.
-// `beat` is which of the four jobs (lock, detect, alert, locate) a step serves.
+// `chip` is which of the four jobs (lock, detect, alert, locate) a step serves.
 const flow = [
   {
     title: "Power on",
-    beat: "Lock",
+    chip: "Lock",
     text:
       "The servo moves to 0° (locked). The Uno checks the fingerprint " +
       "sensor's password and halts if the sensor is missing, then beeps once.",
   },
   {
     title: "Scan",
-    beat: "Lock",
+    chip: "Lock",
     text:
       "With a 50 ms pause between polls, the Uno asks the AS608 for an " +
       "image; when a finger is there, it converts the image to a template " +
@@ -29,46 +36,45 @@ const flow = [
   },
   {
     title: "Match: toggle the latch",
-    beat: "Lock",
+    chip: "Lock",
     text:
       "The enrolled finger (ID #1) unlocks the latch (servo to 90°), and the " +
       "same finger locks it again (0°). Two beeps, and the strike count resets.",
   },
   {
     title: "No match: add a strike",
-    beat: "Detect",
+    chip: "Detect",
     text:
       "A confirmed no-match adds one strike and two short beeps. Smudged or " +
       "unreadable scans do not count.",
   },
   {
     title: "Third strike: raise the alarm",
-    beat: "Detect",
+    chip: "Detect",
     text:
       "Three rapid beeps, then the alert routine starts. Strikes count " +
       "whether the bag is locked or unlocked.",
   },
   {
     title: "Read the location",
-    beat: "Locate",
+    chip: "Locate",
     text:
       "The Uno puts the GSM modem into SMS text mode, then opens the GPS link " +
       "and feeds its NMEA data to TinyGPS++ for latitude and longitude.",
   },
   {
     title: "Text the owner",
-    beat: "Alert",
+    chip: "Alert",
     text:
-      "Two texts, a few seconds apart. The first reads “Theft alert! " +
-      "Please copy lat/long and paste to google to know latest location of " +
-      "bagpack.” The second is just lat,long to six decimal places.",
+      "Two texts, a few seconds apart. The first reads, as written in the " +
+      "sketch, “Theft alert! Please copy lat/long and paste to google to " +
+      "know latest location of bagpack.” The second is just lat,long to six " +
+      "decimal places.",
   },
   {
-    title: "Re-arm and locate",
-    beat: "Locate",
-    text:
-      "The fingerprint sensor restarts and scanning resumes. The owner pastes " +
-      "the coordinates into Google Maps to see where the bag is.",
+    title: "Re-arm",
+    chip: "Lock",
+    text: "The fingerprint sensor restarts and scanning resumes.",
   },
 ];
 
@@ -139,7 +145,7 @@ const compare = [
   },
 ];
 
-// Every line stays within 38 characters so the excerpt does not wrap at 390px.
+// Every line stays within 39 characters so the excerpt does not wrap at 390px.
 const trigger = `} else if (p == FINGERPRINT_NOTFOUND) {
   // one strike: two short beeps
   count++;
@@ -153,17 +159,6 @@ const trigger = `} else if (p == FINGERPRINT_NOTFOUND) {
   }
   return p;
 }`;
-
-function Code({ label, children }) {
-  return (
-    <figure className="cs-code">
-      <pre>
-        <code>{children}</code>
-      </pre>
-      <figcaption className="mono cs-art__caption">{label}</figcaption>
-    </figure>
-  );
-}
 
 function BaglockCaseStudy() {
   const { t } = useTranslation();
@@ -240,18 +235,9 @@ function BaglockCaseStudy() {
       </Section>
 
       {/* 4. Headline moment */}
-      <Section tight>
-        <Container>
-          <Reveal>
-            <div className="cs-moment">
-              <p className="cs-moment__line">Three failed matches, two texts.</p>
-              <span className="eyebrow eyebrow--plain cs-moment__label">
-                What a stranger at the lock sets off
-              </span>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      <Moment label="What a stranger at the lock sets off">
+        Three failed matches, two texts.
+      </Moment>
 
       {/* 5. Body */}
       <Section hairline>
@@ -319,22 +305,7 @@ function BaglockCaseStudy() {
                   follows from what the sensor reports.
                 </p>
               </div>
-              <ol className="cs-trace">
-                {flow.map((step, i) => (
-                  <li key={step.title} className="cs-trace__step">
-                    <span className="cs-trace__index" aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="cs-trace__body">
-                      <div className="cs-trace__head">
-                        <h3 className="cs-trace__title">{step.title}</h3>
-                        <Chip className="cs-trace__beat">{step.beat}</Chip>
-                      </div>
-                      <p className="cs-trace__text text-2">{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <Trace steps={flow} />
               <div className="prose">
                 <p>There is no screen, so each event has its own sound:</p>
               </div>
@@ -353,9 +324,7 @@ function BaglockCaseStudy() {
                   Everything runs from one 7.4 V battery through a switch and a
                   step-down module. The Arduino Uno reads the fingerprint
                   sensor, drives the servo latch and buzzer, and talks to the
-                  GSM modem and GPS receiver. My early research sketched an
-                  electromagnet lock switched by a relay; I built the latch with
-                  a servo instead.
+                  GSM modem and GPS receiver.
                 </p>
               </div>
               <ul className="cs-tech" role="list">
@@ -373,6 +342,7 @@ function BaglockCaseStudy() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="surface cs-figure__panel"
+                  aria-describedby="baglock-schematic-note"
                 >
                   <img
                     src={schematic}
@@ -385,8 +355,10 @@ function BaglockCaseStudy() {
                 </a>
                 <figcaption className="mono cs-art__caption">
                   Full wiring from the report. It draws the GPS on D11 and D12;
-                  the sketch reads it on D10 and D12. Opens the schematic at
-                  full size
+                  the sketch reads it on D10 and D12.{" "}
+                  <span id="baglock-schematic-note">
+                    Opens the schematic at full size in a new tab.
+                  </span>
                 </figcaption>
               </figure>
             </Block>
@@ -405,9 +377,7 @@ function BaglockCaseStudy() {
                 <li>
                   <strong>SMS now, app later.</strong> A text reaches any phone
                   with no internet, app or server, so the alert works without
-                  the planned app, which moved to future work. The cost is that
-                  the owner copies the coordinates into Google Maps by hand, and
-                  alerts only work on the local GSM network.
+                  the planned app, which moved to future work.
                 </li>
                 <li>
                   <strong>Raw AT commands.</strong> AT+CMGF=1 puts the modem in
@@ -415,7 +385,9 @@ function BaglockCaseStudy() {
                   (Ctrl+Z) sends the message.
                 </li>
               </ul>
-              <Code label="The theft trigger, lines 134 to 157 of the sketch (trimmed, comments added)">{trigger}</Code>
+              <CodeFigure caption="The theft trigger, lines 134 to 157 of the sketch (trimmed, comments added)">
+                {trigger}
+              </CodeFigure>
             </Block>
 
             <Block index="06" title="Designed against built">
@@ -457,21 +429,13 @@ function BaglockCaseStudy() {
                 <p>
                   My final report describes a working, battery-powered prototype
                   in which the fingerprint lock, failed-attempt alert and SMS
-                  location work together. It records no accuracy, speed or
-                  false-rejection figures, even for the GPS checks at three
-                  places in Shah Alam, and that is the first thing I would
-                  change.
-                </p>
-                <p>
-                  The record for each part is thin too: the Uno, fingerprint
-                  sensor, GSM and GPS were built as one circuit with no separate
-                  result; enrolling and matching the owner&apos;s finger rests on
-                  the report&apos;s statement that the prototype met its
-                  objectives, with no test run or false-accept or false-reject
-                  rate; the SMS alert is described reaching the owner&apos;s
-                  phone, with no test run or delivery time; and the GPS checks
-                  note only that it needs open space and is unreliable indoors
-                  or in enclosed spaces.
+                  location work together, built as one circuit with no separate
+                  result for any part. It records no test runs or figures: no
+                  false-accept or false-reject rate for matching the owner&apos;s
+                  finger, no delivery time for the alert, and for the GPS checks
+                  at three places in Shah Alam only that it needs open space and
+                  is unreliable indoors or in enclosed spaces. That is the first
+                  thing I would change.
                 </p>
                 <p>The limits I would flag now:</p>
               </div>

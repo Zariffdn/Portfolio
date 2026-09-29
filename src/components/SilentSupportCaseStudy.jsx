@@ -1,15 +1,16 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { FiGithub } from "react-icons/fi";
+import { Container, Section, StaggerItem, PhoneFrame } from "./ui";
 import {
-  Container,
-  Section,
-  Chip,
-  Reveal,
-  Stagger,
-  StaggerItem,
-  PhoneFrame,
-} from "./ui";
-import { Block, CaseStudyEnd, CaseStudyTop } from "./CaseStudy";
+  Block,
+  CaseStudyEnd,
+  CaseStudyTop,
+  CodeFigure,
+  Moment,
+  ScreensBand,
+  Trace,
+} from "./CaseStudy";
 import { silentSupportScreens } from "../data/screenshots";
 import usePageMeta from "../hooks/usePageMeta";
 import "../styles/casestudy.css";
@@ -20,7 +21,9 @@ import "../styles/casestudy.css";
 const REPO = "https://github.com/Zariffdn/Silent-Support-App";
 
 // silentSupportScreens is [check-in, history, response]; the band shows them
-// in the order a visit runs. No alt transcribes a time or a count.
+// in the order a visit runs. No alt transcribes a time or a count. The
+// history screen was captured on test check-ins, and its caption and alt say
+// so, so a week of logged moods is never read as anyone's own.
 const [checkIn, history, response] = silentSupportScreens;
 const screens = [
   {
@@ -35,8 +38,10 @@ const screens = [
   },
   {
     src: history,
-    alt: "Looking back screen: two gentle reflections, a count of each feeling over the past seven days, and the day's check-ins",
-    caption: "Looking back",
+    alt: "Looking back screen: two gentle reflections, a count of each feeling over the past seven days, and the day's check-ins, all sample data",
+    // A no-break space keeps "(sample data)" whole when the caption wraps
+    // under the narrow phone frame on small screens.
+    caption: "Looking back (sample data)",
   },
 ];
 
@@ -44,16 +49,16 @@ const screens = [
 // (casestudy.css), so a 2x phone can still take the 300w file.
 const SCREEN_SIZES = "(max-width: 880px) 138px, 220px";
 
-// What one tap sets off, in order. `where` is the side each step runs on.
+// What one tap sets off, in order. `chip` is the side each step runs on.
 const flow = [
   {
     title: "Tap a feeling",
-    where: "Phone",
+    chip: "Phone",
     text: "The grid locks on the first tap, so a double tap cannot open two replies.",
   },
   {
     title: "Pick a depth",
-    where: "Phone",
+    chip: "Phone",
     text:
       "The last seven days of history on the phone set a level: 1 for a " +
       "passing feeling, 2 when it keeps returning or hard days cluster, 3 " +
@@ -61,49 +66,52 @@ const flow = [
   },
   {
     title: "Show a written reply",
-    where: "Phone",
+    chip: "Phone",
     text:
       "One of two written replies for that feeling and level is on screen " +
       "from the first frame. No spinner.",
   },
   {
     title: "Ask in the background",
-    where: "Phone",
+    chip: "Phone",
     text:
       "The app posts the feeling's id and the level to a Supabase Edge " +
       "Function, and aborts the request at 2,500 ms.",
   },
   {
     title: "Build the prompt",
-    where: "Edge Function",
+    chip: "Edge Function",
     text:
       "The id maps to a label and tone notes from an allowlist, and the " +
       "level must be 1, 2 or 3, so no client text reaches the prompt.",
   },
   {
     title: "Write a new reply",
-    where: "Groq",
+    chip: "Groq",
     text:
       "A Llama model on Groq writes a fresh reply at the same depth, within " +
       "a four-second timeout.",
   },
   {
     title: "Filter it",
-    where: "Edge Function",
-    text:
-      "The tone filter (block 05) runs. A rejected or failed reply becomes " +
-      "the function's own written one.",
+    chip: "Edge Function",
+    text: (
+      <>
+        The <Link to="#tone-filter">tone filter</Link>, described below, runs.
+        A rejected or failed reply becomes the function&apos;s own written one.
+      </>
+    ),
   },
   {
     title: "Swap or keep",
-    where: "Phone",
+    chip: "Phone",
     text:
       "Only an AI reply that arrived inside the window fades in. Otherwise " +
       "the written reply stays.",
   },
 ];
 
-// sanitizeAi() as written, rewrapped so no line passes 36 characters and the
+// sanitizeAi() as written, rewrapped so no line passes 37 characters and the
 // excerpt does not wrap at 390px.
 const sanitizer = String.raw`function sanitizeAi(
   raw: string | null,
@@ -127,17 +135,6 @@ const sanitizer = String.raw`function sanitizeAi(
     t.length > 800) return null;
   return t;
 }`;
-
-function Code({ label, children }) {
-  return (
-    <figure className="cs-code">
-      <pre>
-        <code>{children}</code>
-      </pre>
-      <figcaption className="mono cs-art__caption">{label}</figcaption>
-    </figure>
-  );
-}
 
 function SilentSupportCaseStudy() {
   const { t } = useTranslation();
@@ -200,15 +197,7 @@ function SilentSupportCaseStudy() {
       {/* 3. Screens band */}
       <Section tone="alt" hairline tight>
         <Container>
-          {/* Under 880px the band scrolls sideways, so keyboard users need to
-              be able to focus it to reach the other screens (WCAG 2.1.1). */}
-          <Stagger
-            className="cs-screens"
-            gap={0.1}
-            tabIndex={0}
-            role="region"
-            aria-label="Silent Support app screenshots"
-          >
+          <ScreensBand label="Silent Support app screenshots">
             {screens.map((screen) => (
               <StaggerItem key={screen.src} as="figure" className="cs-screens__item">
                 <PhoneFrame src={screen.src} alt={screen.alt} sizes={SCREEN_SIZES} />
@@ -217,26 +206,15 @@ function SilentSupportCaseStudy() {
                 </figcaption>
               </StaggerItem>
             ))}
-          </Stagger>
+          </ScreensBand>
         </Container>
       </Section>
 
       {/* 4. Headline moment */}
-      <Section tight>
-        <Container>
-          <Reveal>
-            <div className="cs-moment">
-              <p className="cs-moment__line">
-                <span>A reply at 0&nbsp;ms.</span>{" "}
-                <span>AI only inside 2.5&nbsp;s.</span>
-              </p>
-              <span className="eyebrow eyebrow--plain cs-moment__label">
-                The rule behind every tap
-              </span>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      <Moment label="The rule behind every tap">
+        <span>A reply at 0&nbsp;ms.</span>{" "}
+        <span>AI only inside 2.5&nbsp;s.</span>
+      </Moment>
 
       {/* 5. Body */}
       <Section hairline>
@@ -264,22 +242,7 @@ function SilentSupportCaseStudy() {
               <div className="prose">
                 <p>The first three steps finish before anything touches the network.</p>
               </div>
-              <ol className="cs-trace">
-                {flow.map((step, i) => (
-                  <li key={step.title} className="cs-trace__step">
-                    <span className="cs-trace__index" aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="cs-trace__body">
-                      <div className="cs-trace__head">
-                        <h3 className="cs-trace__title">{step.title}</h3>
-                        <Chip className="cs-trace__beat">{step.where}</Chip>
-                      </div>
-                      <p className="cs-trace__text text-2">{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <Trace steps={flow} />
             </Block>
 
             <Block index="03" title="What the server never sees">
@@ -351,7 +314,7 @@ function SilentSupportCaseStudy() {
               </ul>
             </Block>
 
-            <Block index="05" title="The tone filter">
+            <Block index="05" title="The tone filter" id="tone-filter">
               <div className="prose">
                 <p>
                   The prompt asks for calm, complete sentences with no emojis,
@@ -360,14 +323,14 @@ function SilentSupportCaseStudy() {
                 </p>
               </div>
               <ul className="cs-list text-2">
-                <li>Emoji are stripped, keeping the blank lines between parts.</li>
+                <li>Emojis are stripped, keeping the blank lines between parts.</li>
                 <li>A question or exclamation mark rejects the reply.</li>
                 <li>So does one of eleven stock phrases, such as &ldquo;chin up&rdquo;.</li>
                 <li>So does anything under 10 or over 800 characters.</li>
               </ul>
-              <Code label="sanitizeAi() in supabase/functions/generate-support/index.ts, lines 155 to 170 (rewrapped)">
+              <CodeFigure caption="sanitizeAi() in supabase/functions/generate-support/index.ts, lines 155 to 170 (rewrapped)">
                 {sanitizer}
-              </Code>
+              </CodeFigure>
             </Block>
 
             <Block index="06" title="Limits and what is not there yet">
@@ -395,12 +358,6 @@ function SilentSupportCaseStudy() {
                   of crisis lines in Malaysia and an international directory.
                 </li>
               </ul>
-              <div className="prose">
-                <p>
-                  The code is public: the app, both Edge Functions and the
-                  migrations.
-                </p>
-              </div>
               <div className="cs-block__cta">
                 <a
                   href={REPO}

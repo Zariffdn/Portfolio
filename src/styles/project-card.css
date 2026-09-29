@@ -159,4 +159,14 @@
   .pcard--wide .pcard__body {
     padding: var(--s-6);
   }
+
+  /* Stacked, the featured card sits in the grid like the others, so its
+     description is clamped too: five lines rather than three, as the lead
+     entry. The wide layout above shows the whole paragraph. */
+  .pcard--wide .pcard__desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+  }
 }

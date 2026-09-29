@@ -27,7 +27,11 @@
   margin-inline: auto;
 }
 
-.notfound__cta {
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
   margin-top: var(--s-8);
 }
 

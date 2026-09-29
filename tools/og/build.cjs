@@ -252,13 +252,23 @@ ${artMarkup(card)}
     await tab.setContent(page(card, tokens), { waitUntil: "networkidle" });
     await tab.evaluate(() => document.fonts.ready);
     // A card in a fallback font is worse than no card: stop instead.
-    const missing = await tab.evaluate(() =>
-      [
+    // document.fonts.check() answers true when no face matches at all, which
+    // is exactly the state when the Google Fonts stylesheet never loaded, so
+    // ask for each face and require one that actually loaded (as the sweep's
+    // waitForFonts does).
+    const missing = await tab.evaluate(async () => {
+      const wanted = [
         '800 72px "Bricolage Grotesque"',
         '600 26px "Inter"',
         '500 17px "JetBrains Mono"',
-      ].filter((font) => !document.fonts.check(font))
-    );
+      ];
+      const lost = [];
+      for (const font of wanted) {
+        const faces = await document.fonts.load(font).catch(() => []);
+        if (!faces.some((face) => face.status === "loaded")) lost.push(font);
+      }
+      return lost;
+    });
     if (missing.length) {
       throw new Error(`fonts did not load (network?): ${missing.join(", ")}`);
     }

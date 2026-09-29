@@ -770,6 +770,12 @@ html[data-theme="light"] .site-backdrop__grain {
   color: var(--text-2);
 }
 
+/* Links inside a sentence: the accent colour is only about 1.2:1 against
+   --text-2, so the underline is what marks them as links (WCAG 1.4.1). */
+.fatal a {
+  text-decoration-line: underline;
+}
+
 /* ---- Large text ---------------------------------------------------------
    Breakpoints in em follow the reader's default font size, not the page's:
    20em is 320px at the usual 16px, but already 480px at 24px and 640px at
@@ -824,9 +830,12 @@ html[data-theme="light"] .site-backdrop__grain {
    Always the light palette, whatever the theme on screen: dark ink on white
    paper, and nothing that only makes sense on a screen (the fixed chrome,
    the backdrop, the footer). utils/printReveal.js shows the blocks still
-   waiting to reveal on scroll. */
+   waiting to reveal on scroll. The light selector is listed as well because
+   tokens.css declares the light palette on html[data-theme="light"], which
+   outranks :root whatever the order. */
 @media print {
-  :root {
+  :root,
+  html[data-theme="light"] {
     --bg-0: #ffffff;
     --bg-1: #ffffff;
     --bg-2: #ffffff;
@@ -850,8 +859,11 @@ html[data-theme="light"] .site-backdrop__grain {
     --ok-soft: rgba(22, 163, 74, 0.1);
     --ok-line: rgba(22, 163, 74, 0.3);
     --danger: #b91c1c;
-    --shadow-1: none;
-    --shadow-2: none;
+    /* Zero shadows rather than none: resume.css lists --shadow-2 after a
+       ring in one box-shadow, and none inside a list voids the whole
+       declaration, ring included. */
+    --shadow-1: 0 0 0 0 transparent;
+    --shadow-2: 0 0 0 0 transparent;
     --shadow-glow: 0 0 0 1px var(--line-strong);
     --nav-h: 0px;
     color-scheme: light;
@@ -866,8 +878,11 @@ html[data-theme="light"] .site-backdrop__grain {
     color: var(--text-1);
   }
 
-  /* The html prefix outranks chrome.css, which loads after this file and
-     gives most of these a display value of their own. */
+  /* The html prefix outranks chrome.css and the route stylesheets, which
+     load after this file and give most of these a display value of their
+     own. The second group is navigation only: the case-study top bar and
+     back link, the Next case study card, About's jump chips and the resume
+     page's second download button. */
   html .nav,
   html .menu,
   html .skip-link,
@@ -879,7 +894,12 @@ html[data-theme="light"] .site-backdrop__grain {
   html .toast-stack,
   html .konami-overlay,
   html .custom-cursor,
-  html .footer {
+  html .footer,
+  html .cs-top,
+  html .cs-end .cs-back,
+  html .cs-next,
+  html .about-toc,
+  html .resume__foot {
     display: none;
   }
 
@@ -898,12 +918,19 @@ html[data-theme="light"] .site-backdrop__grain {
     break-after: avoid;
   }
 
+  /* A case-study block is a whole numbered section, often taller than a
+     page, so it is allowed to break; its index sits in its own line box
+     above the h2, and this keeps the two together so a page never ends
+     on a bare "07". */
+  .cs-block > h2 {
+    break-before: avoid;
+  }
+
   figure,
   img,
   .phone,
   .stat-tile,
   .surface,
-  .cs-block,
   .cs-figure,
   .cs-facts,
   .cs-stat,
@@ -918,5 +945,30 @@ html[data-theme="light"] .site-backdrop__grain {
   html[data-theme] .phone,
   html .phone {
     box-shadow: 0 0 0 1px var(--line-strong), 0 0 0 5px var(--text-1);
+  }
+
+  /* The contribution calendar scrolls sideways on screen (about-sections.css
+     gives its surface a max-content track and lets the svg keep its natural
+     width). Paper cannot scroll, so the surface takes the page width and the
+     svg, which has a viewBox, scales down to fit. */
+  html .gh__surface {
+    overflow: visible;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  html .gh__surface svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Press rows link to the articles; on paper the address is the link. It
+     takes a row of its own under the icon and the title. */
+  .cs-press::after {
+    content: attr(href);
+    grid-column: 1 / -1;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-3);
+    overflow-wrap: anywhere;
   }
 }

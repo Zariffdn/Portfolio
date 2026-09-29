@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { readStorage, writeStorage } from "../utils/storage";
 
 const ThemeContext = createContext({ theme: "dark", toggleTheme: () => {} });
@@ -34,14 +34,17 @@ export function ThemeProvider({ children }) {
       .forEach((m) => m.setAttribute("content", THEME_COLOR[theme]));
   }, [theme]);
 
-  const toggleTheme = () =>
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+  const toggleTheme = useCallback(
+    () => setTheme((current) => (current === "dark" ? "light" : "dark")),
+    []
   );
+
+  // One value object per theme, so consumers re-render on a theme change and
+  // not on every render of the provider's parent (App renders again whenever
+  // the mobile menu opens or closes).
+  const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
 export const useTheme = () => useContext(ThemeContext);

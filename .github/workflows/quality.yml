@@ -1,12 +1,16 @@
 # Quality gate: the standard the site was reviewed against, enforced on every
 # push to main and every pull request. Lint, unit tests (including the
-# contracts in src/contract.test.js), production build, then the browser sweep
-# in tools/qa/sweep.mjs: both themes and both viewports in English, plus
+# contracts in src/contract.test.js), the committed resume PDF (metadata,
+# tagging, page count, reading order), production build, then the browser
+# sweep in tools/qa/sweep.mjs: both themes and both viewports in English, plus
 # Bahasa Malaysia at desktop dark and mobile dark (console errors, CSP
 # violations, horizontal overflow, one h1, html lang, titles, canonicals and
 # noindex, web fonts loaded, axe WCAG 2.1 AA). Screenshots, axe reports and
 # report.json are uploaded even when a step fails so a red run can be
 # inspected without re-running it.
+#
+# Actions are pinned to commit SHAs (the version is the comment after each);
+# Dependabot keeps the pins current.
 
 name: Quality
 
@@ -18,9 +22,12 @@ on:
 permissions:
   contents: read
 
+# A newer push to the same pull request supersedes the run in progress. Pushes
+# to main each keep their run, so every commit there gets a verdict and its
+# screenshots.
 concurrency:
   group: quality-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   quality:
@@ -30,11 +37,15 @@ jobs:
     env:
       CI: true
     steps:
+      # Nothing after the checkout needs the token, so it is not left in
+      # .git/config while npm ci and the browser install run.
       - name: Check out
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up Node 22
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22
           cache: npm
@@ -48,18 +59,40 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Check the resume PDF
+        run: node tools/resume/check.js
+
       - name: Build
         run: npm run build
 
+      # The browser is cached per Playwright version, so a run downloads it
+      # only after a Playwright update. The apt packages it needs are not in
+      # the cache, so they are installed either way.
+      - name: Read the Playwright version
+        id: playwright
+        run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/playwright'].version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright Chromium
+        id: playwright-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
       - name: Install Playwright Chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright system libraries
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Quality sweep
         run: npm run qa
 
       - name: Upload screenshots and axe reports
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: qa-screenshots
           path: tools/qa/output

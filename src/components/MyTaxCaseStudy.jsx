@@ -11,7 +11,7 @@ import {
   StaggerItem,
   PhoneFrame,
 } from "./ui";
-import { Block, CaseStudyEnd, CaseStudyTop } from "./CaseStudy";
+import { Block, CaseStudyEnd, CaseStudyTop, ScreensBand, Trace } from "./CaseStudy";
 import StoreLinks from "./StoreLinks";
 import { screenshots, lifetimeInstalls, press } from "../data/mytax";
 import usePageMeta from "../hooks/usePageMeta";
@@ -61,7 +61,7 @@ const techStack = [
     items: ["Geolocator", "Geocoding", "Map Launcher"],
   },
   {
-    group: "Localization",
+    group: "Localisation",
     items: ["flutter_localizations", "intl (EN / Bahasa Malaysia)"],
   },
 ];
@@ -79,8 +79,9 @@ const facts = [
 ];
 
 // One notification from the server to the phone, before and after the move
-// to FCM HTTP v1 (August 2026). High level only: approved facts, no code,
-// endpoints, keys or configuration.
+// to FCM HTTP v1 (August 2026). `flag: "fixed"` marks the steps where the old
+// path went wrong. High level only: approved facts, no code, endpoints, keys
+// or configuration.
 const pushTrace = [
   {
     title: "Legacy send",
@@ -88,14 +89,13 @@ const pushTrace = [
       "The server sent its iOS and Android messages through Firebase's " +
       "legacy send API, which Google had already retired in 2024, and a bare " +
       "catch around the call meant a failed send left no trace.",
-    fixed: true,
+    flag: "fixed",
   },
   {
     title: "HTTP v1",
     text:
       "I moved the sends to FCM HTTP v1 through the Firebase Admin SDK and a " +
       "service account.",
-    fixed: false,
   },
   {
     title: "Both kinds of send",
@@ -103,7 +103,6 @@ const pushTrace = [
       "Messages to one taxpayer's device and broadcasts to every install " +
       "through a topic both moved to v1. The Google send is isolated, so a " +
       "failure there can no longer stop the Huawei broadcast that follows it.",
-    fixed: false,
   },
   {
     title: "Android channel",
@@ -111,21 +110,19 @@ const pushTrace = [
       "Direct messages named an Android notification channel the app never " +
       "registered. I pointed them at the channel the app creates, so Android " +
       "shows them the way the app intends.",
-    fixed: true,
+    flag: "fixed",
   },
   {
     title: "Visible failures",
     text:
       "Send errors are logged instead of swallowed, so a problem shows up in " +
       "the server logs.",
-    fixed: false,
   },
   {
     title: "In the app",
     text:
       "The app subscribes to the broadcast topic, and on Android a " +
       "notification can carry an image.",
-    fixed: false,
   },
 ];
 
@@ -264,8 +261,9 @@ function MyTaxCaseStudy() {
               Malaysia&apos;s official income tax filing app, used by taxpayers
               nationwide and maintained at Zen Computer Systems for the Inland
               Revenue Board (LHDN). As the 2026 filing season opened, my fixes
-              went out in four iOS releases in ten days. In August I moved
-              the server&apos;s push sends to Firebase Cloud Messaging HTTP v1.
+              went out in four iOS releases in ten days. This study covers
+              those fixes, the server&apos;s push notification path and the
+              checks I added to both mobile codebases.
             </p>
             <dl className="meta-list cs-meta cs-rise">
               <div>
@@ -282,7 +280,7 @@ function MyTaxCaseStudy() {
               </div>
               <div>
                 <dt>Period</dt>
-                <dd>Nov 2025 to Present</dd>
+                <dd>November 2025 to Present</dd>
               </div>
             </dl>
             <div className="cs-stores cs-rise">
@@ -300,22 +298,13 @@ function MyTaxCaseStudy() {
       {/* 3. Screens band */}
       <Section tone="alt" hairline tight>
         <Container>
-          {/* Under 880px the band scrolls sideways, so keyboard users need to
-              be able to focus it to reach the other screens (WCAG 2.1.1). */}
-          <Stagger
-            className="cs-screens"
-            gap={0.1}
-            tabIndex={0}
-            role="region"
-            aria-label="MyTax app screenshots"
-          >
+          <ScreensBand label="MyTax app screenshots">
             {screenshots.map((src, i) => (
               <StaggerItem key={src} as="figure" className="cs-screens__item">
                 <PhoneFrame
                   src={src}
                   alt={screenLabels[i]?.alt ?? `MyTax app screen ${i + 1}`}
                   sizes="(max-width: 880px) 138px, 220px"
-                  priority={i === 1}
                 />
                 {screenLabels[i] && (
                   <figcaption className="mono cs-art__caption cs-screens__caption">
@@ -324,7 +313,7 @@ function MyTaxCaseStudy() {
                 )}
               </StaggerItem>
             ))}
-          </Stagger>
+          </ScreensBand>
         </Container>
       </Section>
 
@@ -377,36 +366,13 @@ function MyTaxCaseStudy() {
             <Block index="02" title="Deep dive: push notifications">
               <div className="prose">
                 <p>
-                  When I joined, the MyTax server still sent every iOS and
-                  Android push through Firebase&apos;s legacy send API. In
-                  August 2026 I moved it to Firebase Cloud Messaging HTTP v1.
-                  This is the path of one notification, from the server to
-                  the phone.
+                  The path of one notification from the MyTax server to a
+                  taxpayer&apos;s phone, as I found it and as it works since
+                  August 2026. The steps marked Fixed are where the old path
+                  went wrong.
                 </p>
               </div>
-              <ol className="cs-trace">
-                {pushTrace.map((step, i) => (
-                  <li
-                    key={step.title}
-                    className={`cs-trace__step ${step.fixed ? "cs-trace__step--fixed" : ""}`.trim()}
-                  >
-                    <span className="cs-trace__index" aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="cs-trace__body">
-                      <div className="cs-trace__head">
-                        <h3 className="cs-trace__title">{step.title}</h3>
-                        {step.fixed && (
-                          <Chip className="cs-trace__flag cs-trace__flag--ok">
-                            Fixed
-                          </Chip>
-                        )}
-                      </div>
-                      <p className="cs-trace__text text-2">{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <Trace steps={pushTrace} />
             </Block>
 
             <Block index="03" title="How a change ships">
@@ -428,7 +394,8 @@ function MyTaxCaseStudy() {
                 <li>
                   <strong>I submit every release.</strong>{" "}
                   Once a build passes on the device, I submit it to the
-                  App Store, Google Play and AppGallery.
+                  App Store, Google Play and AppGallery. The iOS builds go
+                  out from a shared Mac mini in the office.
                 </li>
               </ul>
             </Block>
@@ -450,10 +417,11 @@ function MyTaxCaseStudy() {
                   I&apos;m the sole mobile developer assigned to MyTax. The rest
                   of the team on this product focuses on the web platform,
                   so anything that ships to phones for MyTax runs through
-                  me. I own the MyTax mobile surface end-to-end: bug
-                  fixes, releases, platform-specific adaptations,
-                  localization, and feature shipping across iOS, Android,
-                  and Huawei builds.
+                  me: bug fixes, platform-specific adaptations, localisation
+                  and feature work, and every release and every store
+                  submission across the iOS, Android and Huawei builds. On a
+                  multi-platform production app, time management and
+                  prioritisation matter as much as the code itself.
                 </p>
               </div>
             </Block>
@@ -471,7 +439,7 @@ function MyTaxCaseStudy() {
                 <p>
                   Fixes land in the iOS and Android codebase first, and I
                   carry them across to the Huawei one, keeping the two in
-                  step on UX, API integration and localization so users on
+                  step on UX, API integration and localisation so users on
                   every platform get the same tax-filing experience.
                 </p>
               </div>
@@ -525,20 +493,10 @@ function MyTaxCaseStudy() {
             <Block index="09" title="Engineering challenges">
               <ul className="cs-list text-2">
                 <li>
-                  <strong>Solo ownership of the mobile surface.</strong>
-                  {" "}
-                  Being the only mobile developer on a multi-platform
-                  production app means every release, every store
-                  submission, every fix routes through one person. Time
-                  management and prioritisation matter as much as the
-                  code itself.
-                </li>
-                <li>
-                  <strong>
-                    Localization aligned with the web platform.
-                  </strong>{" "}
-                  Mobile localization strings stay consistent with the
-                  web platform&apos;s Bahasa Malaysia and English copy.
+                  <strong>Localisation aligned with the web platform.</strong>{" "}
+                  The Bahasa Malaysia and English strings have to match the
+                  web platform&apos;s copy, and every change is carried across
+                  both mobile codebases.
                 </li>
                 <li>
                   <strong>Production reliability during filing season.</strong>
@@ -562,7 +520,8 @@ function MyTaxCaseStudy() {
               </div>
               <div className="cs-press-list">
                 {press.map((article) => {
-                  // A Malay-only article shows its real headline and quote.
+                  // A Malay-only article shows its real headline, the English
+                  // gloss under it, and its quote.
                   const malayOnly = article.titleOriginal && !article.urlOriginal;
                   const quote = article.quote ?? article.quoteOriginal;
                   return (
@@ -589,6 +548,9 @@ function MyTaxCaseStudy() {
                         >
                           {malayOnly ? article.titleOriginal : article.title}
                         </strong>
+                        {malayOnly && (
+                          <span className="text-3 small">{article.title}</span>
+                        )}
                         <span
                           className="text-2 small"
                           lang={article.quote ? "en" : "ms"}
@@ -608,16 +570,15 @@ function MyTaxCaseStudy() {
             <Block index="11" title="What I've learned so far">
               <ul className="cs-list text-2">
                 <li>
-                  <strong>Filing season sets the pace.</strong> Four iOS releases in ten days
-                  in March 2026 showed me that once e-Filing opens, how
-                  quickly a fix reaches taxpayers matters as much as the fix
-                  itself.
+                  <strong>Filing season sets the pace.</strong> Once e-Filing
+                  opens, how quickly a fix reaches taxpayers matters as much
+                  as the fix itself.
                 </li>
                 <li>
-                  <strong>Read what old code actually does.</strong> The push code compiled
-                  and ran without an error, yet it was calling an API
-                  Google had already retired, and a bare catch kept that
-                  quiet. Failures now get logged.
+                  <strong>Read what old code actually does.</strong> The push
+                  path compiled and ran without an error, and it was still
+                  wrong. A build that passes says nothing about the API it
+                  calls or the errors it hides.
                 </li>
                 <li>
                   <strong>Cross-platform isn&apos;t free.</strong> Every plugin has to be
@@ -625,7 +586,7 @@ function MyTaxCaseStudy() {
                   fix has to be carried across to the second codebase.
                 </li>
                 <li>
-                  <strong>The Android ecosystem is broader than I first thought.</strong>
+                  <strong>The Android ecosystem is broader than I first thought.</strong>{" "}
                   Different device makers behave differently under the
                   hood, and that&apos;s an area I want to invest more
                   structured testing in as the app evolves.

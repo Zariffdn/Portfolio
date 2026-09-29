@@ -30,7 +30,7 @@
     "proofPressValue": "BERNAMA",
     "proofPressLabel": "liputan media",
     "proofSinceValue": "2023",
-    "proofSinceLabel": "aplikasi beroperasi sejak",
+    "proofSinceLabel": "beroperasi sejak",
     "workEyebrow": "Kerja terpilih",
     "workTitle": "Apa yang saya bina dan baiki",
     "workLead": "MyTax yang sedang beroperasi, sebuah MVP peribadi, dan pembaikan TOTP di jabatan R&D Bestinet.",
@@ -46,8 +46,7 @@
     "ctaEmail": "atau e-mel saya di zariffdanial.zul@gmail.com",
     "phoneAlt1": "Skrin log masuk MyTax dalam Bahasa Malaysia",
     "phoneAlt2": "Skrin MyTax yang memaparkan baki cukai, jumlah bayaran balik dan status e-Filing",
-    "phoneAlt3": "Skrin utama Perkhidmatan ezHASiL dalam MyTax",
-    "availableNotice": "Notis 3 bulan"
+    "phoneAlt3": "Skrin utama Perkhidmatan ezHASiL dalam MyTax"
   },
   "backToTop": "Kembali ke atas",
   "toast": {
@@ -96,7 +95,7 @@
     "messagePlaceholder": "Ceritakan sedikit tentang apa yang anda fikirkan…",
     "send": "Hantar mesej",
     "sending": "Menghantar…",
-    "sent": "Mesej dihantar, terima kasih!",
+    "sent": "Dihantar",
     "success": "Mesej dihantar! Saya akan balas tidak lama lagi.",
     "error": "Mesej tidak dapat dihantar. Sila e-mel saya di",
     "title": "Hubungi saya"
@@ -114,7 +113,7 @@
     "credlyProfile": "Lencana di Credly",
     "credentialId": "ID Sijil:",
     "availableOn": "Tersedia di:",
-    "seeAllRecommendations": "Lihat semua syor di LinkedIn",
+    "seeAllRecommendations": "Lihat semua testimoni di LinkedIn",
     "featuredLabel": "Kerja semasa",
     "featuredTitle": "MyTax",
     "featuredSubtitle": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia",
@@ -123,7 +122,7 @@
     "featuredStat1Value": "3",
     "featuredStat1Label": "Platform disokong",
     "featuredStat2Value": "Sejak 2023",
-    "featuredStat2Label": "Beroperasi dalam produksi",
+    "featuredStat2Label": "Sedang beroperasi",
     "featuredStat3Value": "LHDN",
     "featuredStat3Label": "Pelanggan",
     "toolsHighlight": "Alat",
@@ -135,16 +134,16 @@
     "tocExperience": "Pengalaman",
     "tocEducation": "Pendidikan",
     "tocCertifications": "Sijil",
-    "tocSkills": "Kemahiran",
+    "tocSkills": "Alatan dan bahasa",
     "tocFaq": "Soalan lazim",
     "tocContact": "Hubungi",
     "experienceTitle": "Pengalaman",
     "educationTitle": "Pendidikan",
     "certsTitle": "Sijil",
-    "recommendationsTitle": "Syor",
+    "recommendationsTitle": "Testimoni",
     "stackTitle": "Alatan dan bahasa",
     "githubTitle": "Aktiviti GitHub",
-    "calendarTotal": "{{count}} sumbangan dalam setahun lalu",
+    "calendarTotal": "{{count}} sumbangan sepanjang setahun lalu",
     "calendarLess": "Kurang",
     "calendarMore": "Lebih"
   },
@@ -160,7 +159,7 @@
     "currentRole_company": "Zen Computer Systems",
     "currentRole_post": "(sejak November 2025), menyelenggara aplikasi mudah alih MyTax di bawah LHDN. Sebelum ini sebagai Mobile Application Developer di",
     "currentRole_prevCompany": "Bestinet Sdn Bhd",
-    "currentRole_end": "(Jun hingga November 2025), dalam jabatan R&D mereka. Di sana saya membaiki dan menyiapkan ciri TOTP dalam aplikasi pengesah Flutter dalaman.",
+    "currentRole_end": "(Jun hingga November 2025), dalam jabatan R&D mereka. Di sana saya membaiki ciri TOTP dalam aplikasi pengesah Flutter dalaman.",
     "metaLocationLabel": "Berpangkalan di",
     "metaLocationValue": "Klang, Malaysia · GMT+8",
     "metaLanguagesLabel": "Bahasa",
@@ -225,7 +224,7 @@
       "meta": "PNGK: 3.32 · Anugerah Dekan, semester keempat",
       "b1": "Projek tahun akhir: kunci beg cap jari pada Arduino Uno yang menghantar koordinat GPS melalui SMS selepas tiga padanan gagal.",
       "b2": "Merangkumi rangkaian komputer, pembangunan web dan keselamatan rangkaian dalam satu ijazah.",
-      "b3": "Kursus netsentrik lanjutan mengajar cara memecah sistem besar kepada komponen jauh yang tidak terikat rapat, berhubung melalui web service dan REST.",
+      "b3": "Kursus netsentrik lanjutan mengajar cara memecah sistem besar kepada komponen jauh yang tidak terikat rapat, berhubung melalui perkhidmatan web dan REST.",
       "b4": "Semester ketujuh dan terakhir ialah Latihan Industri wajib, dijalani di Jabatan IT Pantai Hospital Klang.",
       "t1": "Pengaturcaraan rangkaian",
       "t2": "Pembangunan web",
@@ -246,7 +245,7 @@
     }
   },
   "projects": {
-    "intro": "Aplikasi dalam produksi, kerja syarikat, dua aplikasi peribadi dan projek universiti yang menjadi titik permulaan saya.",
+    "intro": "Aplikasi yang sedang beroperasi, kerja syarikat, dua aplikasi peribadi dan projek universiti yang menjadi titik permulaan saya.",
     "filterAll": "Semua",
     "filterWeb": "Web",
     "filterMobile": "Mudah Alih",
@@ -273,7 +272,7 @@
     "noRepo": "Tiada repositori awam",
     "productionBadge": "Sedang beroperasi",
     "mytax_title": "MyTax",
-    "mytax_desc": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia, digunakan oleh pembayar cukai di seluruh negara. Saya merupakan satu-satunya pembangun mudah alih aplikasi ini, merentas iOS, Android dan pangkalan kod HMS berasingan untuk Huawei AppGallery. Pembetulan saya disertakan dalam empat keluaran iOS sepanjang sepuluh hari ketika musim pemfailan 2026 dibuka, dan saya memindahkan penghantaran pemberitahuan tolak di pelayan ke API HTTP v1 Firebase Cloud Messaging, serta menambah siaran mengikut topik dalam aplikasi dan pemberitahuan bergambar untuk Android."
+    "mytax_desc": "Aplikasi rasmi pemfailan cukai pendapatan Malaysia, digunakan oleh pembayar cukai di seluruh negara. Saya merupakan satu-satunya pembangun mudah alih aplikasi ini untuk iOS dan Android, serta untuk pangkalan kod HMS berasingan yang diterbitkan di Huawei AppGallery. Pembetulan saya disertakan dalam empat keluaran iOS sepanjang sepuluh hari ketika musim pemfailan 2026 dibuka, dan saya memindahkan penghantaran pemberitahuan tolak di pelayan ke API HTTP v1 Firebase Cloud Messaging, serta menambah siaran mengikut topik dalam aplikasi dan pemberitahuan bergambar untuk Android."
   },
   "resume": {
     "download": "Muat Turun CV",
@@ -320,8 +319,9 @@
       "windows": "OS harian",
       "powershell": "Terminal lalai",
       "chrome": "Pelayar utama",
-      "zephyrus": "Komputer riba peribadi, tempat saya membina projek awal saya (baglock, bookstore). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
-      "ideapad": "Komputer kerja harian di Zen untuk pembangunan mudah alih MyTax. Ryzen 5 7520U · 16 GB RAM · Windows 11"
+      "zephyrus": "Komputer riba peribadi, tempat saya membina projek awal saya (kunci beg, kedai buku). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
+      "ideapad": "Komputer kerja harian di Zen untuk pembangunan mudah alih MyTax. Ryzen 5 7520U · 16 GB RAM · Windows 11",
+      "macmini": "Komputer pejabat yang dikongsi, yang saya gunakan untuk menghantar keluaran iOS MyTax ke App Store."
     }
   },
   "notFound": {
@@ -350,28 +350,30 @@
   },
   "meta": {
     "home": "Zariff Danial · Pembangun Mudah Alih (Flutter)",
-    "homeDesc": "Zariff Danial, pembangun Flutter dan Dart di Klang, Selangor. Satu-satunya pembangun mudah alih untuk MyTax, aplikasi rasmi pemfailan cukai Malaysia, dengan jumlah pemasangan 3M+.",
+    "homeDesc": "Zariff Danial, pembangun Flutter dan Dart di Klang, Selangor. Satu-satunya pembangun mudah alih MyTax, aplikasi rasmi pemfailan cukai Malaysia (3M+ pemasangan).",
     "about": "Tentang · Zariff Danial",
     "aboutDesc": "Zariff Danial, pembangun mudah alih di Zen Computer Systems. Flutter dan Dart, kini mengusahakan aplikasi mudah alih MyTax di bawah LHDN.",
     "projects": "Projek · Zariff Danial",
-    "projectsDesc": "Pilihan projek oleh Zariff Danial: aplikasi mudah alih, sistem terbenam, dan aplikasi web.",
+    "projectsDesc": "Pilihan projek oleh Zariff Danial: aplikasi mudah alih, satu projek terbenam dan satu aplikasi web.",
     "resume": "Resume · Zariff Danial",
     "resumeDesc": "Resume satu halaman Zariff Danial, pembangun mudah alih Flutter dan Dart untuk MyTax di Zen Computer Systems. Baca di sini atau muat turun PDF.",
     "uses": "Peralatan · Zariff Danial",
     "usesDesc": "Perkakasan, editor, bahasa, dan alatan yang Zariff Danial gunakan setiap hari untuk pembangunan mudah alih.",
     "mytax": "Kajian Kes MyTax · Zariff Danial",
-    "mytaxDesc": "Kajian kes MyTax, aplikasi rasmi pemfailan cukai Malaysia. Zariff Danial ialah satu-satunya pembangun mudah alihnya di Zen Computer Systems dan melancarkan keluaran untuk iOS, Android dan Huawei AppGallery.",
+    "mytaxDesc": "Kajian kes MyTax: Zariff Danial, satu-satunya pembangun mudah alih aplikasi cukai rasmi Malaysia di Zen Computer Systems, untuk iOS, Android dan AppGallery.",
     "bestinet": "Kajian Kes Pengesah TOTP · Zariff Danial",
-    "bestinetDesc": "Kajian kes Bestinet: Zariff Danial menjejaki laluan penjanaan kod TOTP yang rosak hingga menemui dua kecacatan, membaiki serta mengukuhkannya, dan membina skrin pengesah Flutter.",
+    "bestinetDesc": "Kajian kes Bestinet: Zariff Danial menjejaki kod TOTP yang rosak hingga menemui dua kecacatan, membaiki dan mengukuhkannya, lalu membina skrin pengesah Flutter.",
     "baglock": "Kajian Kes Kunci Beg Cap Jari · Zariff Danial",
-    "baglockDesc": "Kajian kes projek tahun akhir Zariff Danial: kunci beg cap jari Arduino yang menghantar SMS amaran kecurian dan koordinat GPS kepada pemiliknya selepas tiga padanan gagal.",
+    "baglockDesc": "Kajian kes projek tahun akhir Zariff Danial: kunci beg cap jari Arduino yang menghantar SMS amaran kecurian dan koordinat GPS selepas tiga padanan gagal.",
     "notFound": "404 · Zariff Danial",
     "notFoundDesc": "Halaman yang anda cari tidak wujud.",
     "silentSupport": "Kajian Kes Silent Support · Zariff Danial",
-    "silentSupportDesc": "Kajian kes Silent Support, aplikasi React Native oleh Zariff Danial: respons tenang dalam 0 ms, balasan AI hanya jika tiba dalam 2.5 saat, penapis nada di pelayan, dan sejarah yang disimpan di telefon dahulu dengan penyegerakan pilihan."
+    "silentSupportDesc": "Kajian kes Silent Support, aplikasi React Native Zariff Danial: respons tenang 0 ms, AI hanya dalam 2.5 s, penapis nada di pelayan, sejarah di telefon dahulu."
   },
   "caseStudy": {
-    "englishOnly": "Kajian kes ini hanya tersedia dalam Bahasa Inggeris."
+    "englishOnly": "Kajian kes ini hanya tersedia dalam Bahasa Inggeris.",
+    "back": "Kembali ke Projek",
+    "next": "Kajian kes seterusnya"
   },
   "errorBoundary": {
     "eyebrow": "Ralat",

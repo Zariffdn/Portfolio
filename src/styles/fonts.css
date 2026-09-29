@@ -9,6 +9,12 @@
    every character as before. latin-ext comes first because overlapping
    ranges are checked last rule first, which is the order Google uses.
 
+   The files carry wider weight axes than the descriptors declare (Inter 100
+   to 900, JetBrains Mono 400 to 800, Bricolage 200 to 800); the descriptors
+   keep to the weights the site uses. A heavier request is clamped to the top
+   of its range, and for the mono face, which stops at 500, the browser also
+   emboldens the glyphs itself, so mono text stays at 400 or 500.
+
    Vite fingerprints each file into /assets/, which vercel.json serves as
    immutable. index.html preloads the Bricolage latin file, which the hero
    heading needs before first paint. All three families are under the SIL

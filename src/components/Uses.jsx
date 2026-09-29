@@ -19,7 +19,7 @@ import {
   SiArduino,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-import { FaWindows, FaJava, FaTerminal, FaLaptopCode } from "react-icons/fa";
+import { FaWindows, FaJava, FaTerminal, FaLaptopCode, FaApple } from "react-icons/fa";
 import { CgCPlusPlus } from "react-icons/cg";
 
 // Labels are product names and stay as written. Notes are looked up under
@@ -72,13 +72,19 @@ const sections = [
         Icon: FaLaptopCode,
         label: "ASUS ROG Zephyrus G14",
         noteKey: "zephyrus",
-        note: "Personal rig, where I built my early projects (baglock, bookstore). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
+        note: "Personal rig, where I built my early projects (the bag lock, the bookstore). Ryzen 9 4900HS · 16 GB RAM · RTX 2060 Max-Q",
       },
       {
         Icon: FaLaptopCode,
         label: "Lenovo IdeaPad 1 (15AMN7)",
         noteKey: "ideapad",
         note: "Work daily driver at Zen for MyTax mobile dev. Ryzen 5 7520U · 16 GB RAM · Windows 11",
+      },
+      {
+        Icon: FaApple,
+        label: "Mac mini",
+        noteKey: "macmini",
+        note: "Shared office machine I use to ship the MyTax iOS releases to the App Store.",
       },
     ],
   },

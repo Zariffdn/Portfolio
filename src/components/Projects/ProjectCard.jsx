@@ -17,7 +17,9 @@ const PHONE_SIZES_WIDE = "(max-width: 767px) 134px, 214px";
 
 // One project, from src/data/projects.js.
 // variant: "default" | "wide" (media beside body; use for the featured entry)
-// clamp:   number of description lines to show, 0 shows everything
+// clamp:   number of description lines to show, 0 shows everything (the wide
+//          variant is still clamped by project-card.css once it stacks on a
+//          phone)
 function ProjectCard({ project, variant = "default", clamp = 0, priority = false }) {
   const { t } = useTranslation();
   const {

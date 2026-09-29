@@ -9,13 +9,11 @@ import {
 import { useTranslation } from "react-i18next";
 import Wordmark from "./ui/Wordmark";
 
-// `inert` is set while the mobile menu covers the page. onResumeIntent warms
-// the resume chunk when a pointer or focus reaches its link.
-function Footer({ inert = false, onResumeIntent }) {
+// `inert` is set while the mobile menu covers the page. resumeIntent holds
+// the pointer and focus handlers App gives the Resume link, which warm the
+// resume chunk on intent.
+function Footer({ inert = false, resumeIntent = {} }) {
   const { t } = useTranslation();
-  const resumeIntent = onResumeIntent
-    ? { onPointerEnter: onResumeIntent, onFocus: onResumeIntent }
-    : {};
   const year = new Date().getFullYear();
 
   return (

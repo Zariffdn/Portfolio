@@ -27,15 +27,6 @@
   transition: border-color var(--dur) ease, background-color var(--dur) ease;
 }
 
-/* The two halves wrap as whole units (AvailableForHire.jsx). */
-.available-badge__part {
-  display: inline-block;
-}
-
-.available-badge__notice::before {
-  content: "· ";
-}
-
 .available-badge:hover,
 .available-badge:focus-visible {
   color: var(--ok);
@@ -323,7 +314,7 @@ html[lang|="ms"] .home-hero__title {
   margin-top: var(--s-6);
 }
 
-/* Stat tiles themselves live in styles/stat-tile.css (shared with About) */
+/* Stat tiles themselves live in styles/stat-tile.css (components/StatTile.jsx). */
 .home-about__stats {
   margin-top: var(--s-12);
 }

@@ -11,6 +11,9 @@ function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    // Without matchMedia there is no way to tell a touch screen or a reduced
+    // motion preference, so the native cursor stays (and the app stays up).
+    if (typeof window.matchMedia !== "function") return undefined;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const coarsePointer = window.matchMedia("(pointer: coarse)");
 

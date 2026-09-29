@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Case studies (/mytax, /bestinet and /baglock)
+   Case studies (/mytax, /bestinet, /silent-support and /baglock)
    Builds only on tokens.css and base.css primitives; no overrides by force.
    .cs-art, .cs-moment and .cs-trace are the Bestinet additions, which
    /baglock reuses; its own additions are at the end of the file.
@@ -263,7 +263,6 @@
 .cs-block .prose + .cs-tech,
 .cs-block .prose + .cs-list,
 .cs-block .prose + .cs-press-list,
-.cs-block .prose + .cs-press,
 .cs-block .prose + .cs-trace,
 .cs-block .prose + .cs-block__cta,
 .cs-block .cs-list + .prose {
@@ -478,8 +477,6 @@
 /* ---- Trace stepper: CSS only, one row per step, rail between the nodes --- */
 .cs-trace {
   display: grid;
-  list-style: none;
-  padding-left: 0;
 }
 
 .cs-trace__step {
@@ -556,6 +553,12 @@
   max-width: 60ch;
 }
 
+/* A link inside a step: the accent is only about 1.2:1 against text-2, so
+   the underline is what marks it as a link (WCAG 1.4.1). */
+.cs-trace__text a {
+  text-decoration-line: underline;
+}
+
 /* "Defect" chip in danger tones. The soft fill and hairline are derived from
    the single --danger token; older engines fall back to the outlined chip. */
 .cs-trace__flag {
@@ -620,7 +623,6 @@
 }
 
 /* A one-line lead-in between two lists sits closer to the list it opens. */
-.cs-block .cs-list + .prose + .cs-list,
 .cs-block .cs-trace + .prose + .cs-list {
   margin-top: var(--s-3);
 }
@@ -731,8 +733,10 @@ ul.cs-tech .eyebrow {
 /* ==========================================================================
    MyTax: the two codebases diagram
    The SVG draws with tokens only, so it follows the theme. Its viewBox is
-   360 wide so the text stays readable at 390px; on desktop it is capped so
-   the text never grows past body size.
+   360 wide and its text is set in viewBox units, so at 390px (350px wide)
+   the labels land near 12px and the values near 13px. The cap is in rem so
+   a reader with a larger default font size gets a larger drawing; at the
+   usual 16px it is 440px, where the text stays near body size.
    ========================================================================== */
 .cs-diagram {
   display: grid;
@@ -744,7 +748,7 @@ ul.cs-tech .eyebrow {
 .cs-diagram__svg {
   display: block;
   width: 100%;
-  max-width: 440px;
+  max-width: 27.5rem;
   height: auto;
   overflow: visible;
   font-family: var(--font-body);
@@ -764,7 +768,7 @@ ul.cs-tech .eyebrow {
 
 .cs-diagram__sub {
   fill: var(--text-2);
-  font-size: 12.5px;
+  font-size: 13.5px;
 }
 
 .cs-diagram__rule {
@@ -775,13 +779,13 @@ ul.cs-tech .eyebrow {
 .cs-diagram__label {
   fill: var(--text-3);
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.12em;
 }
 
 .cs-diagram__value {
   fill: var(--text-1);
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 500;
 }
 
@@ -801,6 +805,41 @@ ul.cs-tech .eyebrow {
   fill: var(--accent-text);
   font-size: 14.5px;
   font-weight: 600;
+}
+
+/* Windows contrast themes paint the page in the system Canvas colour but
+   leave an SVG's fill and stroke alone, so the connectors (drawn in the
+   dark theme's translucent white) and the lavender hub text disappear on a
+   light contrast theme, and the light theme's grey lines vanish on a dark
+   one. Redraw the diagram in the system pair, with the hub in the
+   Highlight pair the project filter already uses so it stays the
+   emphasised node. */
+@media (forced-colors: active) {
+  .cs-diagram__card {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .cs-diagram__title,
+  .cs-diagram__sub,
+  .cs-diagram__label,
+  .cs-diagram__value {
+    fill: CanvasText;
+  }
+
+  .cs-diagram__rule,
+  .cs-diagram__link {
+    stroke: CanvasText;
+  }
+
+  .cs-diagram__hub {
+    fill: Highlight;
+    stroke: Highlight;
+  }
+
+  .cs-diagram__hub-text {
+    fill: HighlightText;
+  }
 }
 
 /* ==========================================================================

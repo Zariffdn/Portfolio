@@ -7,18 +7,22 @@
 // overflow, exactly one h1, the html lang the pass asked for, the document
 // title from meta.* in that language's locale file, the canonical (or, on the
 // 404, robots noindex), lang="en" on the English-only case studies, the three
-// self-hosted web fonts loaded, the contribution calendar on /about drawn
-// from its data, and no serious or critical axe violation (WCAG 2.0 A and AA,
+// self-hosted web fonts loaded, the resume drawn by the PDF viewer rather
+// than its load error, the contribution calendar on /about drawn from its
+// data, every page answering 200 (the 404 answering 404: a failure with
+// --serve, whose preview mirrors Vercel, and a note against any other
+// server), and no serious or critical axe violation (WCAG 2.0 A and AA,
 // WCAG 2.1 AA). A full-page screenshot and the complete axe result for every
 // page land in tools/qa/output/ next to report.json, so a red run can be
 // inspected without re-running it.
 //
 // Everything the site loads is its own, fonts included, so any failed load or
 // script error fails the page. The one exception is the contribution
-// calendar's third-party API on /about, which is rate limited and sometimes
-// down: an HTTP error or network failure there is reported without failing,
-// and the calendar must then show its error text. A request the CSP refused
-// is never excused.
+// calendar's third-party API on /about, which is rate limited, sometimes
+// down and slow on a cold request: an HTTP error, a network failure or no
+// answer in time there is reported without failing, and after an error the
+// calendar must show its error text. A request the CSP refused is never
+// excused.
 //
 // The script builds nothing. It expects `dist/` to exist and a server to be
 // serving it:
@@ -35,7 +39,8 @@
 //
 // PW_CHANNEL=chrome (or msedge) launches the installed browser instead of
 // Playwright's bundled Chromium, so nothing needs downloading locally. CI
-// leaves it unset and runs `npx playwright install --with-deps chromium`.
+// leaves it unset and installs Playwright's Chromium, cached per Playwright
+// version (see .github/workflows/quality.yml).
 //
 // Node 22 or newer (global fetch, ESM).
 
@@ -96,16 +101,22 @@ const CALENDAR_API = "https://github-contributions-api.jogruber.de/";
 // svg too, but has neither the total count nor the month labels.
 const CALENDAR_DATA = ".gh__surface :is(.react-activity-calendar__count, .react-activity-calendar__legend-month)";
 
-// Vercel injects its analytics and speed-insights scripts at the edge. The
-// preview server has none and its SPA fallback answers those paths with
-// index.html, which Chrome refuses to run as a script and logs as a console
-// error, so the sweep serves an empty script for them instead.
+// The app loads Vercel's analytics and speed-insights scripts from /_vercel/
+// on its own origin at run time. A local server (http) has no such paths
+// (the preview answers them 404, which Chrome logs as a console error), so
+// there the sweep serves an empty script for them instead. A deployment
+// (https) has them, and the real scripts then load and run under the page's
+// CSP, which the stub can never test. The weekly production check confirms
+// the live site serves them and that the CSP allows them.
 const STUBBED_REQUESTS = "**/_vercel/**";
 
 const PRELOADER_TIMEOUT = 15000;
 const NAVIGATION_TIMEOUT = 60000;
 const FONTS_TIMEOUT = 10000;
 const PDF_TIMEOUT = 30000;
+// How long the calendar API gets to answer once asked (a cold request has
+// taken 9 s), then how long the calendar gets to draw what it got.
+const CALENDAR_API_TIMEOUT = 20000;
 const CALENDAR_TIMEOUT = 8000;
 const SERVER_TIMEOUT = 60000;
 
@@ -118,6 +129,7 @@ const args = Object.fromEntries(
 
 const BASE = String(args.url || process.env.QA_URL || "http://localhost:4173").replace(/\/+$/, "");
 const SERVE = Boolean(args.serve);
+const STUB_VERCEL = !BASE.startsWith("https:");
 
 // An expected stop (a mistake on the command line, a port in use, no dist),
 // reported without a stack trace.
@@ -313,7 +325,7 @@ async function waitForFonts(page) {
 // and the wordmark preloader, which only the first page of a browser session
 // shows, is gone or finished.
 async function openPage(page, url, notes) {
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: NAVIGATION_TIMEOUT });
+  const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: NAVIGATION_TIMEOUT });
   await page.waitForFunction(
     () => document.querySelector("#main") && !document.querySelector(".preloader:not(.preloader--done)"),
     null,
@@ -321,7 +333,36 @@ async function openPage(page, url, notes) {
   );
   const fonts = await waitForFonts(page);
   if (fonts.timedOut) notes.push(`web fonts did not settle within ${FONTS_TIMEOUT / 1000}s`);
-  return fonts;
+  return { fonts, status: response ? response.status() : null };
+}
+
+// What the resume viewer on /resume ended up showing: "rendered" once pdf.js
+// has drawn a page, "error" for the viewer's own load-error text, "none"
+// when neither appeared in time.
+async function pdfState(page) {
+  return page
+    .waitForFunction(
+      () => {
+        if (document.querySelector(".react-pdf__Page canvas")) return "rendered";
+        if (document.querySelector('.resume__placeholder[role="alert"]')) return "error";
+        return null;
+      },
+      null,
+      { timeout: PDF_TIMEOUT }
+    )
+    .then((handle) => handle.jsonValue(), (error) => (timedOut(error), "none"));
+}
+
+// Waits for the calendar API's answer or failure, but never longer than
+// CALENDAR_API_TIMEOUT. The calendar asks only once its section has been
+// scrolled near and its chunk has loaded, so the request itself may still be
+// on its way when this starts.
+async function waitForCalendarApi(calendarApi) {
+  const started = Date.now();
+  while (calendarApi.status === null && calendarApi.failure === null) {
+    if (Date.now() - started >= CALENDAR_API_TIMEOUT) return;
+    await sleep(100);
+  }
 }
 
 // What the contribution calendar on /about ended up showing: "data" once it
@@ -411,10 +452,12 @@ function emptyResult(route, pass) {
     lang: pass.lang,
     screenshot: null,
     axeReport: null,
+    status: null,
     h1: null,
     overflowX: null,
     htmlLang: null,
     title: null,
+    pdf: null,
     calendar: null,
     fontsMissing: [],
     errors: [],
@@ -433,8 +476,9 @@ async function sweepPage(context, route, pass) {
   const started = Date.now();
   let page = null;
 
-  // The calendar API's answer on /about: an HTTP status, or the network error.
-  const calendarApi = { status: null, failure: null };
+  // The calendar API on /about: whether the page asked it, and its answer, an
+  // HTTP status or the network error.
+  const calendarApi = { requested: false, status: null, failure: null };
 
   try {
     page = await context.newPage();
@@ -454,6 +498,9 @@ async function sweepPage(context, route, pass) {
     page.on("pageerror", (error) => {
       errors.push(`pageerror: ${String((error && error.message) || error).slice(0, 400)}`);
     });
+    page.on("request", (request) => {
+      if (request.url().startsWith(CALENDAR_API)) calendarApi.requested = true;
+    });
     page.on("response", (response) => {
       if (response.url().startsWith(CALENDAR_API)) calendarApi.status = response.status();
     });
@@ -461,26 +508,27 @@ async function sweepPage(context, route, pass) {
       if (!request.url().startsWith(CALENDAR_API)) return;
       calendarApi.failure = (request.failure() && request.failure().errorText) || "failed";
     });
-    await page.route(STUBBED_REQUESTS, (handler) =>
-      handler.fulfill({ status: 200, contentType: "application/javascript", body: "" })
-    );
-
-    const fonts = await openPage(page, BASE + route.path, notes);
-    result.fontsMissing = fonts.missing;
-
-    if (route.name === "resume") {
-      const rendered = await page
-        .waitForSelector(".react-pdf__Page canvas", { timeout: PDF_TIMEOUT })
-        .then(() => true, timedOut);
-      if (!rendered) notes.push(`pdf page did not render within ${PDF_TIMEOUT / 1000}s`);
+    if (STUB_VERCEL) {
+      await page.route(STUBBED_REQUESTS, (handler) =>
+        handler.fulfill({ status: 200, contentType: "application/javascript", body: "" })
+      );
     }
+
+    const { fonts, status } = await openPage(page, BASE + route.path, notes);
+    result.fontsMissing = fonts.missing;
+    result.status = status;
+
+    if (route.name === "resume") result.pdf = await pdfState(page);
 
     await primeReveals(page);
 
     if (route.name === "about") {
-      // The calendar mounts once its surface scrolls near and draws either
-      // the contributions or, when the API fails, a plain div holding the
-      // error text. Wait for either so the screenshot shows the settled page.
+      // The calendar mounts once its surface scrolls near and asks the API,
+      // which can be slow on a cold request. Wait for the answer, then for
+      // the calendar to draw either the contributions or, when the API
+      // failed, a plain div holding the error text, so the screenshot shows
+      // the settled page.
+      await waitForCalendarApi(calendarApi);
       result.calendar = await calendarState(page);
       await sleep(300);
     }
@@ -519,6 +567,24 @@ async function sweepPage(context, route, pass) {
     if (fonts.missing.length) {
       result.failures.push(`no loaded face for ${fonts.missing.join(", ")}, measured in fallback fonts`);
     }
+    // The 404 page must answer 404, as Vercel and the preview-like-vercel
+    // plugin in vite.config.mjs do; a server the sweep did not start (the dev
+    // server answers 200 there) is only reported.
+    if (route.notFound) {
+      if (status !== 404) {
+        const message = `the 404 page answered ${status === null ? "no status" : `HTTP ${status}`}, not 404`;
+        (SERVE ? result.failures : notes).push(message);
+      }
+    } else if (status !== 200) {
+      result.failures.push(`the page answered ${status === null ? "no status" : `HTTP ${status}`}, not 200`);
+    }
+    if (route.name === "resume" && result.pdf !== "rendered") {
+      result.failures.push(
+        result.pdf === "error"
+          ? "the resume viewer showed its load error instead of the PDF"
+          : `the resume viewer drew no page within ${PDF_TIMEOUT / 1000}s`
+      );
+    }
     if (metrics.lang !== pass.lang) result.failures.push(`html lang is "${metrics.lang}", expected "${pass.lang}"`);
     if (metrics.overflowX) result.failures.push("horizontal overflow");
     if (metrics.h1 !== 1) result.failures.push(`${metrics.h1} h1 elements`);
@@ -537,6 +603,13 @@ async function sweepPage(context, route, pass) {
         if (result.calendar !== "error") result.failures.push("the calendar showed neither its data nor its error text");
       } else if (calendarApi.status !== null) {
         result.failures.push(`the calendar API answered HTTP ${calendarApi.status} but the calendar did not draw its data`);
+      } else if (calendarApi.requested) {
+        // The request went out and nothing came back in time: the API's
+        // problem, not the page's.
+        notes.push(
+          `contribution calendar API did not answer within ${CALENDAR_API_TIMEOUT / 1000}s; ` +
+            `the calendar showed ${result.calendar === "error" ? "its error text" : "nothing"}`
+        );
       } else {
         result.failures.push(
           `the calendar never got its data (${calendarApi.failure || "no request reached the network"}); blocked by the Content-Security-Policy or never mounted`
@@ -713,6 +786,7 @@ async function main() {
     browser: null,
     channel: process.env.PW_CHANNEL || null,
     commit: process.env.GITHUB_SHA || null,
+    stubbedVercelScripts: STUB_VERCEL,
     startedAt: new Date().toISOString(),
     finishedAt: null,
     pages: [],
