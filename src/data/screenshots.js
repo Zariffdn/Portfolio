@@ -7,6 +7,8 @@ import mytax3Small from "../Assets/featured/pic 3-300.webp";
 import silent1 from "../Assets/featured/silent-1.webp";
 import silent3 from "../Assets/featured/silent-3.webp";
 import silent1Small from "../Assets/featured/silent-1-300.webp";
+import silent2 from "../Assets/featured/silent-2.webp";
+import silent2Small from "../Assets/featured/silent-2-300.webp";
 import silent3Small from "../Assets/featured/silent-3-300.webp";
 import halalsaji1 from "../Assets/featured/halalsaji-1.webp";
 import halalsaji1Small from "../Assets/featured/halalsaji-1-300.webp";
@@ -69,6 +71,7 @@ register(mytax1, mytax1Small);
 register(mytax2, mytax2Small);
 register(mytax3, mytax3Small);
 register(silent1, silent1Small);
+register(silent2, silent2Small);
 register(silent3, silent3Small);
 register(halalsaji1, halalsaji1Small);
 
@@ -77,10 +80,9 @@ export const mytaxScreens = [mytax1, mytax2, mytax3];
 
 // Silent Support: the emotional check-in, the "Looking back" history, and the
 // response screen. The check-in is the one the project card shows.
-// The "Looking back" history screen is left out until Zariff confirms it
-// shows test data (it lists a week of logged feelings with times); it is in
-// git history as silent-2.jpeg.
-export const silentSupportScreens = [silent1, silent3];
+// Check-in, history ("Looking back") and response. The history screen shows
+// test data, confirmed by Zariff.
+export const silentSupportScreens = [silent1, silent2, silent3];
 
 // HalalSaji: the Nearby list, captured from a web build of the app at 1pm
 // Malaysia time on its sample data (no certificate numbers on screen).

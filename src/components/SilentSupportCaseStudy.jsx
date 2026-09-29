@@ -19,9 +19,9 @@ import "../styles/casestudy.css";
 // The timings and limits quoted are constants in that code.
 const REPO = "https://github.com/Zariffdn/Silent-Support-App";
 
-// silentSupportScreens is [check-in, response], in the order a visit runs
-// (see data/screenshots.js for the history screen).
-const [checkIn, response] = silentSupportScreens;
+// silentSupportScreens is [check-in, history, response]; the band shows them
+// in the order a visit runs. No alt transcribes a time or a count.
+const [checkIn, history, response] = silentSupportScreens;
 const screens = [
   {
     src: checkIn,
@@ -32,6 +32,11 @@ const screens = [
     src: response,
     alt: "Response screen: a short, calm reply under the chosen feeling, with a Breathe with me button",
     caption: "Reply",
+  },
+  {
+    src: history,
+    alt: "Looking back screen: two gentle reflections, a count of each feeling over the past seven days, and the day's check-ins",
+    caption: "Looking back",
   },
 ];
 
@@ -371,6 +376,13 @@ function SilentSupportCaseStudy() {
                   <strong>No tests or linter yet.</strong> The only check is
                   the TypeScript compiler, and its config excludes the Edge
                   Functions.
+                </li>
+                <li>
+                  <strong>Sync only adds.</strong> Clearing history deletes the
+                  account&apos;s rows and this phone&apos;s copy, but another
+                  signed-in phone would upload its copy again at its next sync;
+                  the clear dialog warns about it. A clear that reaches every
+                  device needs sync to record deletions.
                 </li>
                 <li>
                   <strong>Two copies kept in step by hand.</strong> The
