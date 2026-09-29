@@ -21,7 +21,9 @@ import "../styles/casestudy.css";
 const REPO = "https://github.com/Zariffdn/Silent-Support-App";
 
 // silentSupportScreens is [check-in, history, response]; the band shows them
-// in the order a visit runs. No alt transcribes a time or a count.
+// in the order a visit runs. No alt transcribes a time or a count. The
+// history screen was captured on test check-ins, and its caption and alt say
+// so, so a week of logged moods is never read as anyone's own.
 const [checkIn, history, response] = silentSupportScreens;
 const screens = [
   {
@@ -36,8 +38,10 @@ const screens = [
   },
   {
     src: history,
-    alt: "Looking back screen: two gentle reflections, a count of each feeling over the past seven days, and the day's check-ins",
-    caption: "Looking back",
+    alt: "Looking back screen: two gentle reflections, a count of each feeling over the past seven days, and the day's check-ins, all sample data",
+    // A no-break space keeps "(sample data)" whole when the caption wraps
+    // under the narrow phone frame on small screens.
+    caption: "Looking back (sample data)",
   },
 ];
 
