@@ -443,6 +443,12 @@ async function sweepPage(context, route, pass) {
       const text = message.text();
       const source = (message.location() && message.location().url) || "";
       const entry = `console: ${text.slice(0, 300)}${source ? ` [${source.slice(0, 200)}]` : ""}`;
+      // On Vercel the 404 page is served with status 404, which Chrome logs
+      // against the document itself. That is the page working as intended.
+      if (route.notFound && source === BASE + route.path && /status of 404/.test(text)) {
+        notes.push("document answered 404, as intended");
+        return;
+      }
       (isCalendarApiFailure(text, source) ? external : errors).push(entry);
     });
     page.on("pageerror", (error) => {
