@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, Suspense } from "react";
+import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -22,9 +22,10 @@ import KonamiEgg from "./components/KonamiEgg";
 import ToastContainer from "./components/ToastContainer";
 import Backdrop from "./components/ui/Backdrop";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { ToastProvider } from "./contexts/ToastContext";
+import { ToastProvider, useToast } from "./contexts/ToastContext";
 import lazyPreload from "./utils/lazyPreload";
 import { writeStorage } from "./utils/storage";
+import { dropIfOptedOut } from "./utils/analytics";
 import { prefersReducedMotion } from "./utils/motion";
 import installPrintReveal from "./utils/printReveal";
 // The landing route ships in the main bundle so the hero (the LCP element)
@@ -190,7 +191,24 @@ function HtmlLang() {
   return null;
 }
 
-function App() {
+// Confirms an ?analytics=off or ?analytics=on that main.jsx applied (see
+// utils/analytics). The ref keeps StrictMode's repeated effect from showing
+// the toast twice.
+function AnalyticsNotice({ change }) {
+  const { showToast } = useToast();
+  const { t } = useTranslation();
+  const shown = useRef(false);
+
+  useEffect(() => {
+    if (!change || shown.current) return;
+    shown.current = true;
+    showToast(t(change === "off" ? "toast.analyticsOff" : "toast.analyticsOn"), { icon: "📊" });
+  }, [change, showToast, t]);
+
+  return null;
+}
+
+function App({ analyticsChange = null }) {
   const [preloader, setPreloader] = useState(firstVisitOfSession);
   const hidePreloader = useCallback(() => setPreloader(false), []);
   // While the mobile menu covers the page, everything behind it is inert:
@@ -249,9 +267,10 @@ function App() {
               <Footer inert={menuOpen} resumeIntent={resumeIntent} />
             </div>
             <ToastContainer />
+            <AnalyticsNotice change={analyticsChange} />
             <KonamiEgg />
-            <Analytics />
-            <SpeedInsights />
+            <Analytics beforeSend={dropIfOptedOut} />
+            <SpeedInsights beforeSend={dropIfOptedOut} />
           </Router>
         </MotionConfig>
       </ToastProvider>

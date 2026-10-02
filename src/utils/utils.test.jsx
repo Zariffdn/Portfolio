@@ -1,13 +1,14 @@
 // The chunk-reload path and the helpers under it, which no browser sweep can
 // reach: the guarded storage helpers, reloadOnce and lazyPreload, plus
-// formatMonth.
+// formatMonth and the analytics opt-out.
 
 import { Component, Suspense } from "react";
 import { act, render, screen } from "@testing-library/react";
-import { readStorage, writeStorage } from "./storage";
+import { readStorage, writeStorage, removeStorage } from "./storage";
 import reloadOnce from "./reload";
 import lazyPreload, { retryFailedRoutes } from "./lazyPreload";
 import { formatMonth } from "./formatMonth";
+import { applyAnalyticsParam, dropIfOptedOut } from "./analytics";
 
 const RELOAD_KEY = "chunk-reload-at";
 
@@ -24,16 +25,19 @@ describe("storage helpers", () => {
     window.sessionStorage.clear();
   });
 
-  it("read and write the named area", () => {
+  it("read, write and remove in the named area", () => {
     expect(writeStorage("sessionStorage", "k", "v")).toBe(true);
     expect(readStorage("sessionStorage", "k")).toBe("v");
     expect(readStorage("sessionStorage", "missing")).toBeNull();
+    expect(removeStorage("sessionStorage", "k")).toBe(true);
+    expect(readStorage("sessionStorage", "k")).toBeNull();
   });
 
   it("report null and false, without throwing, when the area itself throws", () => {
     blockStorage("sessionStorage");
     expect(readStorage("sessionStorage", "k")).toBeNull();
     expect(writeStorage("sessionStorage", "k", "v")).toBe(false);
+    expect(removeStorage("sessionStorage", "k")).toBe(false);
   });
 
   it("report false when a write is refused", () => {
@@ -204,6 +208,65 @@ describe("lazyPreload", () => {
     mount(Route, "second");
     expect(await screen.findByText("page loaded")).toBeInTheDocument();
     expect(load).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("analytics opt-out", () => {
+  const OPT_OUT_KEY = "va-disable";
+  const event = { type: "pageview", url: "https://zariffdanial.vercel.app/" };
+  const address = () => window.location.pathname + window.location.search + window.location.hash;
+
+  beforeEach(() => {
+    window.localStorage.removeItem(OPT_OUT_KEY);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    window.localStorage.removeItem(OPT_OUT_KEY);
+    window.history.replaceState(null, "", "/");
+  });
+
+  it("passes events through until the browser opts out, then drops them", () => {
+    expect(dropIfOptedOut(event)).toBe(event);
+    window.localStorage.setItem(OPT_OUT_KEY, "1");
+    expect(dropIfOptedOut(event)).toBeNull();
+  });
+
+  it("counts a browser whose storage is blocked, since it cannot opt out", () => {
+    blockStorage("localStorage");
+    expect(dropIfOptedOut(event)).toBe(event);
+  });
+
+  it("opts out on ?analytics=off and leaves the rest of the address and the entry's state", () => {
+    window.history.replaceState({ key: "abc", idx: 0 }, "", "/about?analytics=off&x=1#experience");
+    expect(applyAnalyticsParam()).toBe("off");
+    expect(window.localStorage.getItem(OPT_OUT_KEY)).toBe("1");
+    expect(address()).toBe("/about?x=1#experience");
+    expect(window.history.state).toEqual({ key: "abc", idx: 0 });
+  });
+
+  it("counts the browser again on ?analytics=on, whatever its case", () => {
+    window.localStorage.setItem(OPT_OUT_KEY, "1");
+    window.history.replaceState(null, "", "/?analytics=ON");
+    expect(applyAnalyticsParam()).toBe("on");
+    expect(window.localStorage.getItem(OPT_OUT_KEY)).toBeNull();
+    expect(address()).toBe("/");
+  });
+
+  it("leaves any other address alone", () => {
+    window.history.replaceState(null, "", "/project?analytics=maybe");
+    expect(applyAnalyticsParam()).toBeNull();
+    expect(address()).toBe("/project?analytics=maybe");
+    window.history.replaceState(null, "", "/project");
+    expect(applyAnalyticsParam()).toBeNull();
+    expect(window.localStorage.getItem(OPT_OUT_KEY)).toBeNull();
+  });
+
+  it("reports nothing stored when storage refuses, and still cleans the address", () => {
+    blockStorage("localStorage");
+    window.history.replaceState(null, "", "/?analytics=off");
+    expect(applyAnalyticsParam()).toBeNull();
+    expect(address()).toBe("/");
   });
 });
 

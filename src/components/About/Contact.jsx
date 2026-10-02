@@ -10,7 +10,8 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoepdvd";
 
 const EMAIL = "zariffdanial.zul@gmail.com";
 
-// Formspree uses _subject as the email subject line.
+// Formspree takes the notification email's subject line from the subject
+// field, the only name its docs have given for it since 2022.
 const SUBJECT_PREFIX = "Portfolio: ";
 
 // How long the button keeps its "sent" label before it can send again.
@@ -59,7 +60,7 @@ function Contact() {
     const data = new FormData(formEl);
     const subject = String(data.get("subject") || "").trim();
     data.delete("subject");
-    if (subject) data.set("_subject", SUBJECT_PREFIX + subject);
+    if (subject) data.set("subject", SUBJECT_PREFIX + subject);
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
