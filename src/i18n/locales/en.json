@@ -53,7 +53,9 @@
     "switchedToLight": "Switched to light mode",
     "switchedToDark": "Switched to dark mode",
     "switchedToEnglish": "Language switched to English",
-    "switchedToMalay": "Bahasa ditukar kepada Bahasa Malaysia"
+    "switchedToMalay": "Bahasa ditukar kepada Bahasa Malaysia",
+    "analyticsOff": "Visits from this browser are no longer counted",
+    "analyticsOn": "Visits from this browser are counted again"
   },
   "konami": {
     "title": "You found the easter egg!",

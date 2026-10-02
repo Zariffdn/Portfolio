@@ -1,13 +1,20 @@
+import { StrictMode } from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "./i18n";
 import App from "./App";
 import { ORIGIN } from "../routes.mjs";
 import en from "./i18n/locales/en.json";
 import { stats } from "./data/stats";
+import { dropIfOptedOut } from "./utils/analytics";
 
-// Neither analytics script should run in a test.
-vi.mock("@vercel/analytics/react", () => ({ Analytics: () => null }));
-vi.mock("@vercel/speed-insights/react", () => ({ SpeedInsights: () => null }));
+// Neither analytics script should run in a test. The stand-ins render
+// nothing but keep their props, so the opt-out wiring can be checked.
+const vercel = vi.hoisted(() => ({
+  analytics: vi.fn(() => null),
+  speedInsights: vi.fn(() => null),
+}));
+vi.mock("@vercel/analytics/react", () => ({ Analytics: vercel.analytics }));
+vi.mock("@vercel/speed-insights/react", () => ({ SpeedInsights: vercel.speedInsights }));
 
 // The app reads window.location on mount; every test here starts on the
 // home page, whatever the previous one navigated to.
@@ -106,6 +113,36 @@ describe("theme", () => {
     render(<App />);
     await screen.findByRole("navigation");
     expect(document.documentElement.dataset.theme).toBe("dark");
+  });
+});
+
+// Both Vercel components drop what an opted-out browser would send (see
+// utils/analytics). An ?analytics=off or ?analytics=on that main.jsx applied
+// is confirmed with one toast, StrictMode's repeated effects included;
+// without one there is none.
+describe("analytics opt-out", () => {
+  test("both Vercel components get the opt-out", async () => {
+    render(<App />);
+    await screen.findByRole("navigation");
+    expect(vercel.analytics.mock.lastCall[0].beforeSend).toBe(dropIfOptedOut);
+    expect(vercel.speedInsights.mock.lastCall[0].beforeSend).toBe(dropIfOptedOut);
+  });
+
+  test("confirms the change once", async () => {
+    render(
+      <StrictMode>
+        <App analyticsChange="off" />
+      </StrictMode>
+    );
+    expect(await screen.findByText(en.toast.analyticsOff)).toBeInTheDocument();
+    expect(screen.getAllByText(en.toast.analyticsOff)).toHaveLength(1);
+  });
+
+  test("stays quiet when nothing changed", async () => {
+    render(<App />);
+    await screen.findByRole("navigation");
+    expect(screen.queryByText(en.toast.analyticsOff)).toBeNull();
+    expect(screen.queryByText(en.toast.analyticsOn)).toBeNull();
   });
 });
 

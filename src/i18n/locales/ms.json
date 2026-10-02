@@ -53,7 +53,9 @@
     "switchedToLight": "Ditukar ke mod terang",
     "switchedToDark": "Ditukar ke mod gelap",
     "switchedToEnglish": "Language switched to English",
-    "switchedToMalay": "Ditukar ke Bahasa Malaysia"
+    "switchedToMalay": "Ditukar ke Bahasa Malaysia",
+    "analyticsOff": "Lawatan daripada pelayar ini tidak lagi dikira",
+    "analyticsOn": "Lawatan daripada pelayar ini kembali dikira"
   },
   "konami": {
     "title": "Anda jumpa rahsia!",
