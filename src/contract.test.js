@@ -444,7 +444,9 @@ describe("hard rules", () => {
   it("post the contact form to Formspree with the honeypot and the subject prefix", () => {
     const contact = read("src/components/About/Contact.jsx");
     expect(contact).toMatch(/name="_gotcha"/);
-    expect(contact).toMatch(/"_subject"/);
+    // Formspree documents only "subject" for the email's subject line.
+    expect(contact).toMatch(/data\.set\("subject",\s*SUBJECT_PREFIX \+ subject\)/);
+    expect(contact).not.toMatch(/"_subject"/);
     expect(contact).toMatch(/"Portfolio: "/);
   });
 });
