@@ -66,16 +66,20 @@ const techStack = [
   },
 ];
 
-// From the three store listings, September 2026 (the caption under the list
-// says so; update both together).
+// From the three store listings, October 2026 (the caption under the list
+// says so; update both together). No-break spaces keep each version with its
+// store when the line wraps on a phone.
 const facts = [
   ["Live since", "January 2023"],
   ["Min OS", "iOS 15+ · Android 9 (API 28)+"],
   ["Distribution", "iOS · Android · Huawei AppGallery (HMS)"],
   ["App size", "About 190 MB on iOS, 290 MB on AppGallery"],
-  ["Current version", "1.0.52 (App Store, AppGallery) · 1.0.53 (Google Play)"],
-  ["Latest release", "September 2026"],
-  ["Release record", "13 App Store releases, February to September 2026"],
+  [
+    "Current version",
+    "1.0.53 (App Store) · 1.0.54 (Google Play) · 1.0.52 (AppGallery)",
+  ],
+  ["Latest release", "October 2026"],
+  ["Release record", "14 App Store releases, February to October 2026"],
 ];
 
 // One notification from the server to the phone, before and after the move
@@ -485,7 +489,7 @@ function MyTaxCaseStudy() {
                   </dl>
                 </div>
                 <figcaption className="mono cs-art__caption">
-                  Store listings as of September 2026
+                  Store listings as of October 2026
                 </figcaption>
               </figure>
             </Block>
