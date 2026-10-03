@@ -31,6 +31,17 @@
   gap: var(--s-6);
 }
 
+/* His photo opens the aside, a square at the aside's full width. */
+.about-aside__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--bg-3);
+}
+
 .about-aside__block {
   display: grid;
   gap: var(--s-3);
@@ -88,6 +99,12 @@
   .about-intro__grid {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--s-10);
+  }
+
+  /* The aside spans the column here; the source is only 470 px, so the
+     photo stays near its desktop size instead of stretching. */
+  .about-aside__photo {
+    max-width: 400px;
   }
 }
 

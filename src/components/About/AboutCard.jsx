@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Container, Section, Chip, Reveal } from "../ui";
+import photo from "../../Assets/me-470.webp";
 
 // Jump links under the intro. Each id is the id of a <Section> further down
 // About (see About.jsx); the label keys live under about.toc*. Rendered as
@@ -22,7 +23,10 @@ const TOC = [
 const SETUPS = ["workRemote", "workHybrid", "workOnsite"];
 
 // Intro: the page's single h1, the bio prose, the "On this page" jump links,
-// and an aside with location, languages and the kind of role he is after.
+// and an aside with his photo, location, languages and the kind of role he
+// is after. The photo is a square head-and-chest crop at 470 px, the most
+// the original allows, so it has no 2x source; it sits above the fold on
+// desktop, hence the high fetch priority.
 function AboutCard() {
   const { t } = useTranslation();
 
@@ -70,6 +74,15 @@ function AboutCard() {
           </Reveal>
 
           <Reveal delay={0.12} className="surface about-aside">
+            <img
+              className="about-aside__photo"
+              src={photo}
+              width="470"
+              height="470"
+              alt={t("aboutCard.intro_name")}
+              fetchPriority="high"
+              decoding="async"
+            />
             <dl className="meta-list">
               <dt>{t("aboutCard.metaLocationLabel")}</dt>
               <dd>{t("aboutCard.metaLocationValue")}</dd>

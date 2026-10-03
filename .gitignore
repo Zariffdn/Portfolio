@@ -47,8 +47,9 @@ docs/MATRICULATION.md
 docs/DEGREE.md
 docs/BOOTCAMP.md
 
-# The headshot original stays local. The site shows no photo of Zariff (he
-# asked for it to be taken off), so nothing made from it is committed either.
+# An older headshot original stays local, and nothing made from it is
+# committed. The About photo is committed only as its crop,
+# src/Assets/me-470.webp; that original never enters the repository.
 src/Assets/me.png
 
 # The bag lock exhibition photo shows the FYP poster with a student photo and

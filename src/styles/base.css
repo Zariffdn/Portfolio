@@ -961,6 +961,19 @@ html[data-theme="light"] .site-backdrop__grain {
     height: auto;
   }
 
+  /* About's aside is one surface that must not split. At print widths its
+     photo would take 400px (about.css) and push the whole card to page 2,
+     leaving most of page 1 blank, so on paper the photo sits small beside
+     the details instead. */
+  html .about-aside {
+    grid-template-columns: 140px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  html .about-aside__photo {
+    grid-row: 1 / span 2;
+  }
+
   /* Press rows link to the articles; on paper the address is the link. It
      takes a row of its own under the icon and the title. */
   .cs-press::after {
